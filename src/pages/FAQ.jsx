@@ -158,7 +158,7 @@ const FAQ = () => {
       questions: [
         {
           question: 'Comment contacter le support client ?',
-          answer: 'Vous pouvez nous contacter via la page "Contact" du site, par email à support@adsmarket.com, ou utiliser le chat en direct disponible dans le coin inférieur droit. Notre équipe répond généralement dans les 24 heures.'
+          answer: 'Vous pouvez nous contacter via la page "Contact" du site, par email à support.alladsmarket.com, ou utiliser le chat en direct disponible dans le coin inférieur droit. Notre équipe répond généralement dans les 24 heures.'
         },
         {
           question: 'Que faire si je rencontre un bug ou un problème technique ?',

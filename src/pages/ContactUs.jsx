@@ -156,20 +156,20 @@ const ContactUs = () => {
                   <div className="contact-info-list">
                     <div className="contact-info-item">
                       <span className="contact-label">Support technique</span>
-                      <a href="mailto:support@alladsmarket.com" className="contact-value">
-                        support@alladsmarket.com
+                      <a href="mailto:support.alladsmarket.com" className="contact-value">
+                        support.alladsmarket.com
                       </a>
                     </div>
                     <div className="contact-info-item">
                       <span className="contact-label">Informations générales</span>
-                      <a href="mailto:info@alladsmarket.com" className="contact-value">
-                        info@alladsmarket.com
+                      <a href="mailto:newtiv05@gmail.com" className="contact-value">
+                        newtiv05@gmail.com
                       </a>
                     </div>
                     <div className="contact-info-item">
                       <span className="contact-label">Partenariat</span>
-                      <a href="mailto:partnership@alladsmarket.com" className="contact-value">
-                        partnership@alladsmarket.com
+                      <a href="mailto:newtiv05@gmail.com" className="contact-value">
+                        newtiv05@gmail.com
                       </a>
                     </div>
                   </div>
