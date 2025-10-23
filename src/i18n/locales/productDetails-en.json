@@ -1,0 +1,266 @@
+{
+  "product1": {
+    "name": "Wireless Bluetooth Headphones with Active Noise Cancellation",
+    "description": "Enjoy an exceptional audio experience with these high-quality Bluetooth headphones. Active noise cancellation allows you to focus on your music without external distractions. Long-lasting 30-hour battery with fast charging.",
+    "features": [
+      "Active noise cancellation",
+      "30-hour battery life",
+      "15-minute fast charging",
+      "HD audio quality",
+      "Bluetooth 5.0 connectivity",
+      "Ergonomic comfortable design"
+    ],
+    "benefits": [
+      "Crystal clear sound without interference",
+      "Exceptional battery life",
+      "Extended listening comfort",
+      "Stable and fast connection"
+    ]
+  },
+  "product2": {
+    "name": "Smart Watch with Health Tracking",
+    "description": "Monitor your health and stay connected with this smart watch. Heart rate monitoring, step counter, sleep monitor, and smart notifications. Water resistant up to 50 meters.",
+    "features": [
+      "Heart rate monitoring",
+      "Step and calorie counter",
+      "Sleep monitor",
+      "50m water resistance",
+      "Smart notifications",
+      "Color touch screen"
+    ],
+    "benefits": [
+      "Complete health monitoring",
+      "Motivation for physical activity",
+      "Modern and elegant style",
+      "Advanced features"
+    ]
+  },
+  "product3": {
+    "name": "High-Performance Android Smartphone",
+    "description": "Discover power and innovation with this cutting-edge Android smartphone. High-performance processor, professional camera, AMOLED screen, and long-lasting battery. Perfect for work and leisure.",
+    "features": [
+      "Octa-core processor",
+      "108MP camera",
+      "6.7\" AMOLED screen",
+      "5000mAh battery",
+      "256GB storage",
+      "5G and WiFi 6"
+    ],
+    "benefits": [
+      "Exceptional performance",
+      "Professional quality photos",
+      "Long-lasting battery",
+      "Ultra-fast connectivity"
+    ]
+  },
+  "product4": {
+    "name": "Versatile Android Tablet",
+    "description": "Your ideal companion for work and leisure. High-resolution screen, powerful processor, generous storage, and exceptional battery life. Perfect for productivity and entertainment.",
+    "features": [
+      "10.1\" Full HD screen",
+      "Quad-core processor",
+      "128GB storage",
+      "8000mAh battery",
+      "Front and rear cameras",
+      "WiFi and 4G connectivity"
+    ],
+    "benefits": [
+      "Large and sharp screen",
+      "Smooth performance",
+      "Sufficient storage",
+      "Impressive battery life"
+    ]
+  },
+  "product5": {
+    "name": "High-Performance Gaming Laptop",
+    "description": "Dominate your games with this portable gaming machine. Dedicated graphics card, high-performance processor, high-refresh screen, and advanced cooling system. The ultimate gaming experience.",
+    "features": [
+      "RTX 4060 graphics card",
+      "Intel i7 processor",
+      "15.6\" 144Hz screen",
+      "16GB DDR5 RAM",
+      "1TB NVMe SSD",
+      "RGB backlit keyboard"
+    ],
+    "benefits": [
+      "Exceptional gaming performance",
+      "Ultra-realistic graphics",
+      "Perfect fluidity",
+      "Immersive experience"
+    ]
+  },
+  "product6": {
+    "name": "Professional Gaming Headset with Microphone",
+    "description": "Dive into action with this professional gaming headset. 7.1 surround sound, detachable microphone, extended listening comfort, and intuitive audio control. The perfect equipment for gamers.",
+    "features": [
+      "7.1 surround sound",
+      "Detachable microphone",
+      "Leather ear cushions",
+      "Integrated audio control",
+      "Detachable cable",
+      "Multi-platform compatibility"
+    ],
+    "benefits": [
+      "Total audio immersion",
+      "Clear communication",
+      "Optimal listening comfort",
+      "Maximum versatility"
+    ]
+  },
+  "product7": {
+    "name": "HD Webcam for Streaming and Video Conferencing",
+    "description": "Enhance your video calls and streaming with this professional HD webcam. 4K resolution, autofocus, integrated microphones, and automatic lighting. Guaranteed professional quality.",
+    "features": [
+      "4K Ultra HD resolution",
+      "Intelligent autofocus",
+      "Stereo microphones",
+      "Automatic lighting",
+      "Universal support",
+      "Plug & Play"
+    ],
+    "benefits": [
+      "Crystal clear image",
+      "Clear and crisp sound",
+      "Simple installation",
+      "Professional quality"
+    ]
+  },
+  "product8": {
+    "name": "RGB Mechanical Gaming Keyboard",
+    "description": "Type with style and precision with this mechanical gaming keyboard. Mechanical switches, customizable RGB backlighting, robust construction, and ergonomic design. Performance and aesthetics combined.",
+    "features": [
+      "Mechanical switches",
+      "RGB backlighting",
+      "Aluminum construction",
+      "N-key anti-ghosting",
+      "Detachable cable",
+      "Ergonomic design"
+    ],
+    "benefits": [
+      "Tactile and responsive",
+      "Visual customization",
+      "Exceptional durability",
+      "Comfortable use"
+    ]
+  },
+  "product9": {
+    "name": "8000 mAh Wireless Portable Monitor",
+    "description": "Transform your workspace with this innovative portable monitor. 15.6\" Full HD screen, integrated 8000mAh battery, wireless connection, and integrated speakers. Maximum mobile productivity.",
+    "features": [
+      "15.6\" Full HD screen",
+      "8000mAh battery",
+      "Wireless connection",
+      "Integrated speakers",
+      "VESA support",
+      "Universal compatibility"
+    ],
+    "benefits": [
+      "Total mobility",
+      "Long-lasting battery",
+      "Wireless installation",
+      "Maximum versatility"
+    ]
+  },
+  "product10": {
+    "name": "High-Precision Wireless Gaming Mouse",
+    "description": "Control your games with precision with this wireless gaming mouse. High-precision sensor, programmable buttons, RGB backlighting, and long-lasting battery. Performance and style combined.",
+    "features": [
+      "16000 DPI sensor",
+      "Programmable buttons",
+      "RGB backlighting",
+      "70-hour battery life",
+      "Fast charging",
+      "Ergonomic design"
+    ],
+    "benefits": [
+      "Maximum precision",
+      "Complete customization",
+      "Exceptional battery life",
+      "Comfortable use"
+    ]
+  },
+  "product11": {
+    "name": "UPERFECT 18.5\" Touch 120Hz Portable Monitor",
+    "description": "Discover the future of portable monitors with this revolutionary UPERFECT model. 18.5\" 120Hz touch screen, VESA support, adjustable stand, and ultra-thin design. Exceptional performance and mobility.",
+    "features": [
+      "18.5\" 120Hz touch screen",
+      "Full HD resolution",
+      "Integrated VESA support",
+      "180° adjustable stand",
+      "Ultra-thin design",
+      "Universal compatibility"
+    ],
+    "benefits": [
+      "Touch interactivity",
+      "Perfect fluidity",
+      "Flexible installation",
+      "Maximum portability"
+    ]
+  },
+  "product12": {
+    "name": "ANRABESS Long Sleeve Casual T-Shirt",
+    "description": "Style and comfort combined with this ANRABESS casual t-shirt. Soft and breathable material, modern cut, long sleeves, and versatile design. Perfect for all occasions.",
+    "features": [
+      "100% cotton material",
+      "Modern cut",
+      "Long sleeves",
+      "Versatile design",
+      "Machine washable",
+      "Various colors"
+    ],
+    "benefits": [
+      "Optimal comfort",
+      "Timeless style",
+      "Easy care",
+      "Maximum versatility"
+    ]
+  },
+  "product25": {
+    "name": "DreamQuest Support Windows Computers Bluetooth5.3",
+    "description": "High-performance laptop with Bluetooth 5.3 connectivity, perfect for business and personal use.",
+    "features": [
+      "Bluetooth 5.3 connectivity",
+      "High performance",
+      "Business and personal use",
+      "Modern design"
+    ],
+    "benefits": [
+      "Stable and fast connection",
+      "Ideal for work",
+      "Optimal performance",
+      "Versatile usage"
+    ]
+  },
+  "product26": {
+    "name": "Huidun Laptops Computer Business Quad-Core",
+    "description": "Business laptop with quad-core processor, ideal for professional work and multitasking.",
+    "features": [
+      "Quad-core processor",
+      "Professional use",
+      "Optimized multitasking",
+      "High performance"
+    ],
+    "benefits": [
+      "Fast task processing",
+      "Professional efficiency",
+      "Smooth multitasking",
+      "Guaranteed reliability"
+    ]
+  },
+  "product27": {
+    "name": "Cordless Robotic Pool Cleaner – 150 Mins Runtime",
+    "description": "IPX8 Waterproof automatic pool vacuum robot for in-ground & above-ground pools with dual brushes.",
+    "features": [
+      "150 minutes runtime",
+      "IPX8 waterproof",
+      "Dual brushes",
+      "For in-ground & above-ground pools"
+    ],
+    "benefits": [
+      "Automatic cleaning",
+      "Water resistance",
+      "Deep cleaning",
+      "Versatile usage"
+    ]
+  }
+}

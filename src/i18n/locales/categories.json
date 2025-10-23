@@ -1,0 +1,139 @@
+{
+  "electronics": {
+    "name": "Électronique",
+    "description": "Derniers gadgets et technologies",
+    "icon": "📱",
+    "subcategories": {
+      "smartphones": "Smartphones",
+      "laptops": "Ordinateurs portables",
+      "tablets": "Tablettes",
+      "headphones": "Écouteurs",
+      "cameras": "Appareils photo",
+      "gaming": "Gaming",
+      "audio": "Audio",
+      "smart_home": "Maison connectée"
+    }
+  },
+  "fashion": {
+    "name": "Mode",
+    "description": "Style et tendances",
+    "icon": "👕",
+    "subcategories": {
+      "clothing": "Vêtements",
+      "shoes": "Chaussures",
+      "accessories": "Accessoires",
+      "jewelry": "Bijoux",
+      "bags": "Sacs",
+      "watches": "Montres",
+      "sunglasses": "Lunettes de soleil"
+    }
+  },
+  "home": {
+    "name": "Maison et jardin",
+    "description": "Rendez votre espace magnifique",
+    "icon": "🏠",
+    "subcategories": {
+      "furniture": "Mobilier",
+      "decor": "Décoration",
+      "kitchen": "Cuisine",
+      "bathroom": "Salle de bain",
+      "garden": "Jardin",
+      "lighting": "Éclairage",
+      "storage": "Rangement"
+    }
+  },
+  "sports": {
+    "name": "Sports",
+    "description": "Équipement pour un mode de vie actif",
+    "icon": "⚽",
+    "subcategories": {
+      "fitness": "Fitness",
+      "outdoor": "Plein air",
+      "team_sports": "Sports d'équipe",
+      "water_sports": "Sports nautiques",
+      "winter_sports": "Sports d'hiver",
+      "cycling": "Cyclisme",
+      "running": "Course à pied"
+    }
+  },
+  "beauty": {
+    "name": "Beauté",
+    "description": "Regardez et sentez-vous bien",
+    "icon": "💄",
+    "subcategories": {
+      "skincare": "Soins de la peau",
+      "makeup": "Maquillage",
+      "hair_care": "Soins des cheveux",
+      "fragrances": "Parfums",
+      "tools": "Outils de beauté",
+      "men_grooming": "Soins masculins"
+    }
+  },
+  "books": {
+    "name": "Livres",
+    "description": "Connaissance et divertissement",
+    "icon": "📚",
+    "subcategories": {
+      "fiction": "Fiction",
+      "non_fiction": "Non-fiction",
+      "children": "Enfants",
+      "textbooks": "Manuels scolaires",
+      "ebooks": "Livres électroniques",
+      "audiobooks": "Livres audio"
+    }
+  },
+  "automotive": {
+    "name": "Automobile",
+    "description": "Pièces et accessoires automobiles",
+    "icon": "🚗",
+    "subcategories": {
+      "parts": "Pièces détachées",
+      "accessories": "Accessoires",
+      "tools": "Outils",
+      "maintenance": "Entretien",
+      "electronics": "Électronique auto",
+      "interior": "Intérieur",
+      "exterior": "Extérieur"
+    }
+  },
+  "health": {
+    "name": "Santé",
+    "description": "Bien-être et santé",
+    "icon": "🏥",
+    "subcategories": {
+      "supplements": "Compléments",
+      "medical": "Médical",
+      "fitness": "Fitness",
+      "wellness": "Bien-être",
+      "monitoring": "Surveillance",
+      "therapy": "Thérapie"
+    }
+  },
+  "toys": {
+    "name": "Jouets",
+    "description": "Jouets et jeux pour tous les âges",
+    "icon": "🧸",
+    "subcategories": {
+      "educational": "Éducatifs",
+      "action_figures": "Figurines",
+      "board_games": "Jeux de société",
+      "outdoor": "Plein air",
+      "electronic": "Électroniques",
+      "arts_crafts": "Arts et artisanat"
+    }
+  },
+  "garden": {
+    "name": "Jardin",
+    "description": "Outils et accessoires de jardinage",
+    "icon": "🌱",
+    "subcategories": {
+      "tools": "Outils",
+      "plants": "Plantes",
+      "seeds": "Graines",
+      "pots": "Pots",
+      "fertilizers": "Engrais",
+      "decorations": "Décorations"
+    }
+  }
+}
+

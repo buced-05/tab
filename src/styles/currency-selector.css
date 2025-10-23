@@ -1,0 +1,559 @@
+/* Currency Selector Styles - Hyper Modern */
+.currency-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.currency-selector-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  color: #000000;           /* COULEUR NOIRE pour le texte */
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.currency-selector-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.currency-selector-button:hover::before {
+  left: 100%;
+}
+
+.currency-selector-button:hover {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.08));
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.currency-selector-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.currency-icon {
+  font-size: 12px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.currency-selector-button:hover .currency-icon {
+  transform: rotate(180deg);
+}
+
+.currency-symbol {
+  font-size: 14px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+  font-weight: bold;
+  color: #2563eb !important;
+}
+
+.currency-selector-button:hover .currency-symbol {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.currency-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.currency-name {
+  font-size: 10px;
+  white-space: nowrap;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.2px;
+}
+
+.currency-code {
+  font-size: 8px;
+  opacity: 0.7;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.currency-chevron {
+  transition: transform 0.3s ease;
+}
+
+.currency-chevron.open {
+  transform: rotate(180deg);
+}
+
+.currency-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 200px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: dropdownFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.currency-dropdown-header {
+  padding: 12px 16px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+}
+
+.currency-dropdown-header h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.3px;
+}
+
+.currency-list {
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.currency-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 12px;
+  color: #000000 !important;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.currency-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.currency-option:hover::before {
+  left: 100%;
+}
+
+.currency-option:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.05));
+  transform: translateX(6px) scale(1.02);
+  box-shadow: 0 3px 16px rgba(16, 185, 129, 0.2);
+}
+
+.currency-option.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.1));
+  color: #059669;
+  font-weight: 600;
+  box-shadow: 0 3px 16px rgba(16, 185, 129, 0.3);
+  border: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.currency-option .currency-symbol {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+  font-weight: bold;
+  color: #2563eb !important;
+}
+
+.currency-option:hover .currency-symbol {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.currency-option .currency-name {
+  flex: 1;
+  font-size: 12px;
+  font-weight: 600;
+  color: #000000 !important;
+  text-shadow: none;
+  letter-spacing: 0.2px;
+}
+
+.currency-option .currency-code {
+  font-size: 9px;
+  opacity: 0.8;
+  font-weight: 500;
+  color: #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 1px;
+}
+
+.check-icon {
+  color: #059669;
+  flex-shrink: 0;
+  font-size: 14px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  animation: checkPulse 2s infinite;
+}
+
+@keyframes checkPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Dark theme support - Hyper Modern */
+@media (prefers-color-scheme: dark) {
+  .currency-dropdown {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.85));
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+
+  .currency-dropdown-header {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.1), rgba(31, 41, 55, 0.05));
+    border-color: rgba(75, 85, 99, 0.2);
+  }
+
+  .currency-dropdown-header h4 {
+    color: #f9fafb;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .currency-option {
+    color: #f9fafb;
+  }
+
+  .currency-option:hover {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(52, 211, 153, 0.1));
+    box-shadow: 0 3px 16px rgba(16, 185, 129, 0.3);
+  }
+
+  .currency-option.active {
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.3), rgba(16, 185, 129, 0.2));
+    color: #6ee7b7;
+    box-shadow: 0 3px 16px rgba(16, 185, 129, 0.4);
+    border: 2px solid rgba(16, 185, 129, 0.4);
+  }
+
+  .check-icon {
+    color: #6ee7b7;
+  }
+}
+
+/* Mobile responsive - Hyper Modern */
+@media (max-width: 768px) {
+  .currency-selector-button {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 6px;
+  }
+
+  .currency-name {
+    display: none;
+  }
+
+  .currency-dropdown {
+    right: -10px;
+    min-width: 200px;
+    margin-top: 6px;
+  }
+
+  .currency-option {
+    padding: 10px 12px;
+    font-size: 12px;
+    gap: 10px;
+  }
+
+  .currency-option .currency-symbol {
+    font-size: 18px;
+  }
+
+  .currency-option .currency-name {
+    font-size: 12px;
+  }
+}
+
+/* Header integration - Hyper Modern */
+.header .currency-selector {
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.header .currency-selector-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+}
+
+.header .currency-selector-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional modern effects */
+.currency-selector-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+.currency-option:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+/* Currency dropdown styles - STYLED BACKGROUND */
+.currency-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95)) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  z-index: 1000;
+  margin-top: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.currency-dropdown-header {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05)) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding: 12px 16px;
+}
+
+.currency-list {
+  background: transparent;
+  padding: 8px 0;
+}
+
+.currency-option {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #1f2937 !important;
+  border-radius: 0;
+}
+
+.currency-option:hover {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(52, 211, 153, 0.08)) !important;
+  color: #047857 !important;
+  transform: translateX(4px);
+}
+
+.currency-option.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(52, 211, 153, 0.12)) !important;
+  color: #047857 !important;
+  font-weight: 600;
+}
+
+/* Currency text styling */
+.currency-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.currency-name {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000000;           /* COULEUR NOIRE pour le nom de devise */
+}
+
+.currency-code {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.8;             /* Légèrement plus visible */
+  line-height: 1;
+  color: #000000;           /* COULEUR NOIRE pour le code de devise */
+}
+
+.currency-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+/* Currency dropdown header */
+.currency-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE pour le titre - FORCE */
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  padding: 0 8px;
+}
+
+/* Additional specificity for dropdown headers */
+.currency-dropdown .currency-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE FORCÉE */
+}
+
+/* Force black color for all h4 elements in currency dropdown */
+.currency-dropdown h4,
+.currency-selector h4,
+.currency-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE ABSOLUE */
+}
+
+/* Currency option text */
+.currency-option .currency-name {
+  color: #000000;           /* COULEUR NOIRE pour les options */
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.currency-option .currency-code {
+  color: #000000;           /* COULEUR NOIRE pour les codes */
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Currency symbol styling */
+.currency-symbol {
+  color: #000000;           /* COULEUR NOIRE pour les symboles */
+  font-weight: 700;
+}
+
+/* Mobile styles - Reduced container size */
+@media (max-width: 768px) {
+  .currency-selector-button {
+    padding: 4px 6px;        /* Reduced padding for mobile */
+    font-size: 10px;        /* Smaller font size */
+    gap: 4px;               /* Reduced gap between elements */
+    border-radius: 8px;     /* Smaller border radius */
+  }
+  
+  .currency-selector-button svg {
+    width: 12px;             /* Smaller icon size */
+    height: 12px;
+  }
+  
+  .currency-dropdown {
+    min-width: 120px;        /* Reduced dropdown width */
+    padding: 4px 0;          /* Reduced dropdown padding */
+  }
+  
+  .currency-option {
+    padding: 6px 8px;        /* Reduced option padding */
+    font-size: 11px;          /* Smaller option text */
+  }
+  
+  .currency-option svg {
+    width: 14px;              /* Smaller currency icons */
+    height: 14px;
+  }
+  
+  .currency-option .currency-symbol {
+    font-size: 14px;         /* Smaller currency symbols */
+  }
+  
+  .currency-option .currency-name {
+    font-size: 10px;         /* Smaller currency names */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .currency-selector-button {
+    padding: 3px 5px;        /* Even smaller padding */
+    font-size: 9px;          /* Even smaller font */
+    gap: 3px;                /* Minimal gap */
+    border-radius: 6px;      /* Smaller radius */
+  }
+  
+  .currency-selector-button svg {
+    width: 10px;             /* Very small icons */
+    height: 10px;
+  }
+  
+  .currency-dropdown {
+    min-width: 100px;        /* Very compact dropdown */
+    padding: 2px 0;          /* Minimal padding */
+  }
+  
+  .currency-option {
+    padding: 4px 6px;        /* Very compact options */
+    font-size: 10px;         /* Small text */
+  }
+  
+  .currency-option svg {
+    width: 12px;              /* Small currency icons */
+    height: 12px;
+  }
+  
+  .currency-option .currency-symbol {
+    font-size: 12px;         /* Very small currency symbols */
+  }
+  
+  .currency-option .currency-name {
+    font-size: 9px;          /* Very small currency names */
+  }
+}
+
+/* Scrollbar styling for currency list */
+.currency-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.currency-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.currency-list::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.5);
+  border-radius: 2px;
+}
+
+.currency-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.7);
+}

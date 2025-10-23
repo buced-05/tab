@@ -1,0 +1,44 @@
+{
+  "name": "best",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config config/vite.config.js --port 3000 --host",
+    "build": "vite build --config config/vite.config.js",
+    "lint": "eslint . --ext js,jsx --config config/eslint.config.js --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview --config config/vite.config.js",
+    "server": "cd bestserver && npm start",
+    "server:dev": "cd bestserver && npm run dev",
+    "server:install": "cd bestserver && npm install",
+    "start:all": "npm run build && npm run server",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\""
+  },
+  "dependencies": {
+    "i18next": "^23.7.8",
+    "i18next-browser-languagedetector": "^7.2.0",
+    "lucide-react": "^0.294.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
+    "react-hot-toast": "^2.4.1",
+    "react-i18next": "^14.0.0",
+    "react-router-dom": "^6.20.1",
+    "web-vitals": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.32",
+    "rollup-plugin-obfuscator": "^1.1.0",
+    "tailwindcss": "^3.3.6",
+    "vite": "^5.0.8"
+  }
+}

@@ -1,0 +1,57 @@
+# AllAdsMarket - Rewrite Rules Configuration
+# For Apache with mod_rewrite and mod_proxy enabled
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Force HTTPS for alladsmarket.com
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP_HOST} ^(www\.)?alladsmarket\.com$ [NC]
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Force www (optional - uncomment if you want www prefix)
+  # RewriteCond %{HTTP_HOST} ^alladsmarket\.com$ [NC]
+  # RewriteRule ^(.*)$ https://www.alladsmarket.com/$1 [L,R=301]
+
+  # Proxy API requests to backend server on port 4000
+  # Make sure mod_proxy and mod_proxy_http are enabled
+  RewriteCond %{REQUEST_URI} ^/api/(.*)$ [OR]
+  RewriteCond %{REQUEST_URI} ^/health$
+  RewriteRule ^(.*)$ http://127.0.0.1:4000/$1 [P,L]
+  ProxyPassReverse /api http://127.0.0.1:4000/api
+  ProxyPassReverse /health http://127.0.0.1:4000/health
+
+  # Allow static files and directories to be served directly
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # React Router - Redirect all other requests to index.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-l
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Proxy Configuration
+<IfModule mod_proxy.c>
+  ProxyRequests Off
+  ProxyPreserveHost On
+  
+  # Proxy timeout settings
+  ProxyTimeout 300
+  
+  # Forward headers
+  <Proxy *>
+    Order deny,allow
+    Allow from all
+  </Proxy>
+</IfModule>
+
+# Enable required Apache modules (add to your Apache config if not enabled)
+# a2enmod rewrite
+# a2enmod proxy
+# a2enmod proxy_http
+# a2enmod headers
+

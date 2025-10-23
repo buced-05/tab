@@ -1,0 +1,52 @@
+/* Star Rating Component Styles */
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.star-rating .stars {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.star-rating .half-star {
+  position: relative;
+  display: inline-block;
+}
+
+.star-rating .half-star > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+  height: 100%;
+}
+
+.star-rating .filled {
+  color: #fbbf24;
+}
+
+.star-rating .empty {
+  color: #d1d5db;
+}
+
+.star-rating .rating-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .star-rating .stars {
+    gap: 0.1rem;
+  }
+  
+  .star-rating .rating-text {
+    font-size: 0.8rem;
+  }
+}
+

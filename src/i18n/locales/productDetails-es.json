@@ -1,0 +1,266 @@
+{
+  "product1": {
+    "name": "Auriculares Bluetooth Inalámbricos con Cancelación Activa de Ruido",
+    "description": "Disfruta de una experiencia de audio excepcional con estos auriculares Bluetooth de alta calidad. La cancelación activa de ruido te permite concentrarte en tu música sin distracciones externas. Batería de larga duración de 30 horas con carga rápida.",
+    "features": [
+      "Cancelación activa de ruido",
+      "Batería de 30 horas",
+      "Carga rápida de 15 minutos",
+      "Calidad de audio HD",
+      "Conectividad Bluetooth 5.0",
+      "Diseño ergonómico cómodo"
+    ],
+    "benefits": [
+      "Sonido cristalino sin interferencias",
+      "Vida de batería excepcional",
+      "Comodidad de escucha prolongada",
+      "Conexión estable y rápida"
+    ]
+  },
+  "product2": {
+    "name": "Reloj Inteligente con Seguimiento de Salud",
+    "description": "Monitorea tu salud y mantente conectado con este reloj inteligente. Monitoreo de frecuencia cardíaca, contador de pasos, monitor de sueño y notificaciones inteligentes. Resistente al agua hasta 50 metros.",
+    "features": [
+      "Monitoreo de frecuencia cardíaca",
+      "Contador de pasos y calorías",
+      "Monitor de sueño",
+      "Resistencia al agua 50m",
+      "Notificaciones inteligentes",
+      "Pantalla táctil a color"
+    ],
+    "benefits": [
+      "Monitoreo completo de salud",
+      "Motivación para actividad física",
+      "Estilo moderno y elegante",
+      "Características avanzadas"
+    ]
+  },
+  "product3": {
+    "name": "Smartphone Android de Alto Rendimiento",
+    "description": "Descubre poder e innovación con este smartphone Android de última generación. Procesador de alto rendimiento, cámara profesional, pantalla AMOLED y batería de larga duración. Perfecto para trabajo y ocio.",
+    "features": [
+      "Procesador octa-core",
+      "Cámara 108MP",
+      "Pantalla AMOLED 6.7\"",
+      "Batería 5000mAh",
+      "Almacenamiento 256GB",
+      "5G y WiFi 6"
+    ],
+    "benefits": [
+      "Rendimiento excepcional",
+      "Fotos de calidad profesional",
+      "Batería de larga duración",
+      "Conectividad ultra rápida"
+    ]
+  },
+  "product4": {
+    "name": "Tablet Android Versátil",
+    "description": "Tu compañero ideal para trabajo y ocio. Pantalla de alta resolución, procesador potente, almacenamiento generoso y vida de batería excepcional. Perfecta para productividad y entretenimiento.",
+    "features": [
+      "Pantalla 10.1\" Full HD",
+      "Procesador quad-core",
+      "Almacenamiento 128GB",
+      "Batería 8000mAh",
+      "Cámaras frontal y trasera",
+      "Conectividad WiFi y 4G"
+    ],
+    "benefits": [
+      "Pantalla grande y nítida",
+      "Rendimiento fluido",
+      "Almacenamiento suficiente",
+      "Vida de batería impresionante"
+    ]
+  },
+  "product5": {
+    "name": "Laptop Gaming de Alto Rendimiento",
+    "description": "Domina tus juegos con esta máquina de guerra portátil. Tarjeta gráfica dedicada, procesador de alto rendimiento, pantalla de alta frecuencia y sistema de enfriamiento avanzado. La experiencia de gaming definitiva.",
+    "features": [
+      "Tarjeta gráfica RTX 4060",
+      "Procesador Intel i7",
+      "Pantalla 15.6\" 144Hz",
+      "RAM 16GB DDR5",
+      "SSD 1TB NVMe",
+      "Teclado retroiluminado RGB"
+    ],
+    "benefits": [
+      "Rendimiento de gaming excepcional",
+      "Gráficos ultra realistas",
+      "Fluidez perfecta",
+      "Experiencia inmersiva"
+    ]
+  },
+  "product6": {
+    "name": "Auriculares Gaming Profesionales con Micrófono",
+    "description": "Sumérgete en la acción con estos auriculares gaming profesionales. Sonido envolvente 7.1, micrófono desmontable, comodidad de escucha prolongada y control de audio intuitivo. El equipo perfecto para gamers.",
+    "features": [
+      "Sonido envolvente 7.1",
+      "Micrófono desmontable",
+      "Almohadillas de cuero",
+      "Control de audio integrado",
+      "Cable desmontable",
+      "Compatibilidad multi-plataforma"
+    ],
+    "benefits": [
+      "Inmersión de audio total",
+      "Comunicación clara",
+      "Comodidad de escucha óptima",
+      "Máxima versatilidad"
+    ]
+  },
+  "product7": {
+    "name": "Webcam HD para Streaming y Videoconferencias",
+    "description": "Mejora tus videollamadas y streaming con esta webcam HD profesional. Resolución 4K, enfoque automático, micrófonos integrados e iluminación automática. Calidad profesional garantizada.",
+    "features": [
+      "Resolución 4K Ultra HD",
+      "Enfoque automático inteligente",
+      "Micrófonos estéreo",
+      "Iluminación automática",
+      "Soporte universal",
+      "Plug & Play"
+    ],
+    "benefits": [
+      "Imagen cristalina",
+      "Sonido claro y nítido",
+      "Instalación simple",
+      "Calidad profesional"
+    ]
+  },
+  "product8": {
+    "name": "Teclado Gaming Mecánico RGB",
+    "description": "Escribe con estilo y precisión con este teclado gaming mecánico. Interruptores mecánicos, retroiluminación RGB personalizable, construcción robusta y diseño ergonómico. Rendimiento y estética combinados.",
+    "features": [
+      "Interruptores mecánicos",
+      "Retroiluminación RGB",
+      "Construcción de aluminio",
+      "Anti-ghosting N-key",
+      "Cable desmontable",
+      "Diseño ergonómico"
+    ],
+    "benefits": [
+      "Táctil y responsivo",
+      "Personalización visual",
+      "Durabilidad excepcional",
+      "Uso cómodo"
+    ]
+  },
+  "product9": {
+    "name": "Monitor Portátil Inalámbrico 8000 mAh",
+    "description": "Transforma tu espacio de trabajo con este monitor portátil innovador. Pantalla 15.6\" Full HD, batería integrada 8000mAh, conexión inalámbrica y altavoces integrados. Productividad móvil máxima.",
+    "features": [
+      "Pantalla 15.6\" Full HD",
+      "Batería 8000mAh",
+      "Conexión inalámbrica",
+      "Altavoces integrados",
+      "Soporte VESA",
+      "Compatibilidad universal"
+    ],
+    "benefits": [
+      "Movilidad total",
+      "Vida de batería prolongada",
+      "Instalación inalámbrica",
+      "Máxima versatilidad"
+    ]
+  },
+  "product10": {
+    "name": "Ratón Gaming Inalámbrico de Alta Precisión",
+    "description": "Controla tus juegos con precisión con este ratón gaming inalámbrico. Sensor de alta precisión, botones programables, retroiluminación RGB y batería de larga duración. Rendimiento y estilo combinados.",
+    "features": [
+      "Sensor 16000 DPI",
+      "Botones programables",
+      "Retroiluminación RGB",
+      "Vida de batería 70 horas",
+      "Carga rápida",
+      "Diseño ergonómico"
+    ],
+    "benefits": [
+      "Precisión máxima",
+      "Personalización completa",
+      "Vida de batería excepcional",
+      "Uso cómodo"
+    ]
+  },
+  "product11": {
+    "name": "Monitor Portátil UPERFECT 18.5\" Táctil 120Hz",
+    "description": "Descubre el futuro de los monitores portátiles con este modelo UPERFECT revolucionario. Pantalla táctil 18.5\" 120Hz, soporte VESA, soporte ajustable y diseño ultra delgado. Rendimiento y movilidad excepcionales.",
+    "features": [
+      "Pantalla táctil 18.5\" 120Hz",
+      "Resolución Full HD",
+      "Soporte VESA integrado",
+      "Soporte ajustable 180°",
+      "Diseño ultra delgado",
+      "Compatibilidad universal"
+    ],
+    "benefits": [
+      "Interactividad táctil",
+      "Fluidez perfecta",
+      "Instalación flexible",
+      "Máxima portabilidad"
+    ]
+  },
+  "product12": {
+    "name": "Camiseta Casual de Manga Larga ANRABESS",
+    "description": "Estilo y comodidad combinados con esta camiseta casual ANRABESS. Material suave y transpirable, corte moderno, mangas largas y diseño versátil. Perfecta para todas las ocasiones.",
+    "features": [
+      "Material 100% algodón",
+      "Corte moderno",
+      "Mangas largas",
+      "Diseño versátil",
+      "Lavable en máquina",
+      "Varios colores"
+    ],
+    "benefits": [
+      "Comodidad óptima",
+      "Estilo atemporal",
+      "Cuidado fácil",
+      "Máxima versatilidad"
+    ]
+  },
+  "product25": {
+    "name": "DreamQuest Support Windows Computers Bluetooth5.3",
+    "description": "Laptop de alto rendimiento con conectividad Bluetooth 5.3, perfecto para uso empresarial y personal.",
+    "features": [
+      "Conectividad Bluetooth 5.3",
+      "Alto rendimiento",
+      "Uso empresarial y personal",
+      "Diseño moderno"
+    ],
+    "benefits": [
+      "Conexión estable y rápida",
+      "Ideal para el trabajo",
+      "Rendimiento óptimo",
+      "Uso versátil"
+    ]
+  },
+  "product26": {
+    "name": "Huidun Laptops Computer Business Quad-Core",
+    "description": "Laptop empresarial con procesador quad-core, ideal para trabajo profesional y multitarea.",
+    "features": [
+      "Procesador quad-core",
+      "Uso profesional",
+      "Multitarea optimizada",
+      "Alto rendimiento"
+    ],
+    "benefits": [
+      "Procesamiento rápido de tareas",
+      "Eficiencia profesional",
+      "Multitarea fluida",
+      "Fiabilidad garantizada"
+    ]
+  },
+  "product27": {
+    "name": "Limpiador de Piscina Robótico Inalámbrico – 150 Minutos de Autonomía",
+    "description": "Robot aspirador automático de piscina resistente al agua IPX8 para piscinas enterradas y elevadas con cepillos dobles.",
+    "features": [
+      "Autonomía 150 minutos",
+      "Resistente al agua IPX8",
+      "Cepillos dobles",
+      "Para piscinas enterradas y elevadas"
+    ],
+    "benefits": [
+      "Limpieza automática",
+      "Resistencia al agua",
+      "Limpieza profunda",
+      "Uso versátil"
+    ]
+  }
+}

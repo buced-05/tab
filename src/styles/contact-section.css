@@ -1,0 +1,225 @@
+/* Contact Section Styles */
+.contact-section {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: var(--spacing-16) 0;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.contact-content {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-4);
+  background: linear-gradient(135deg, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.contact-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-12);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-8);
+}
+
+.contact-method {
+  background: white;
+  padding: var(--spacing-8);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-method::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.contact-method:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+  border-color: var(--primary-200);
+}
+
+.contact-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-6);
+  color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.contact-details h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-3);
+}
+
+.contact-info {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--primary-600);
+  margin-bottom: var(--spacing-2);
+}
+
+.contact-hours,
+.contact-location,
+.contact-response {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .contact-section {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .contact-title {
+    font-size: var(--font-size-2xl);
+  }
+  
+  .contact-subtitle {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .contact-methods {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-6);
+  }
+  
+  .contact-method {
+    padding: var(--spacing-6);
+  }
+  
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .contact-details h3 {
+    font-size: var(--font-size-lg);
+  }
+  
+  .contact-info {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-methods {
+    gap: var(--spacing-4);
+  }
+  
+  .contact-method {
+    padding: var(--spacing-4);
+  }
+  
+  .contact-icon {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .contact-section {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  }
+  
+  .contact-method {
+    background: var(--bg-primary-dark, #374151);
+    border-color: var(--border-light-dark, #4b5563);
+  }
+  
+  .contact-method:hover {
+    border-color: var(--primary-300-dark, #60a5fa);
+  }
+  
+  .contact-details h3 {
+    color: var(--text-primary-dark, #f9fafb);
+  }
+  
+  .contact-info {
+    color: var(--primary-400-dark, #60a5fa);
+  }
+  
+  .contact-hours,
+  .contact-location,
+  .contact-response {
+    color: var(--text-secondary-dark, #d1d5db);
+  }
+}
+
+/* Animation Effects */
+@keyframes contactFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-method {
+  animation: contactFadeIn 0.6s ease-out;
+}
+
+.contact-method:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.contact-method:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.contact-method:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* RTL Support */
+[dir="rtl"] .contact-content {
+  text-align: center;
+}
+
+[dir="rtl"] .contact-method {
+  text-align: center;
+}
+
+

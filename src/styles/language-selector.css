@@ -1,0 +1,806 @@
+/* Language Selector Styles - Hyper Modern */
+.language-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.language-selector-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  color: #000000;           /* COULEUR NOIRE pour le texte */
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.language-selector-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s;
+}
+
+.language-selector-button:hover::before {
+  left: 100%;
+}
+
+.language-selector-button:hover {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.08));
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.language-selector-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+.language-flag {
+  font-size: 14px;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.language-selector-button:hover .language-flag {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.language-name {
+  font-size: 10px;
+  white-space: nowrap;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.2px;
+}
+
+.language-code {
+  font-size: 8px;
+  opacity: 0.7;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Additional classes for the component */
+.language-icon {
+  transition: transform 0.3s ease;
+}
+
+.language-selector-button:hover .language-icon {
+  transform: rotate(180deg);
+}
+
+.language-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.language-chevron {
+  transition: transform 0.3s ease;
+}
+
+.language-chevron.open {
+  transform: rotate(180deg);
+}
+
+.language-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  flex: 1;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 6px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.95));
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  min-width: 200px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: dropdownFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.language-dropdown-header {
+  padding: 16px 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+}
+
+.language-dropdown-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1f2937;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+}
+
+.language-list {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 13px;
+  color: #000000 !important;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.language-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.language-option:hover::before {
+  left: 100%;
+}
+
+.language-option:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.05));
+  transform: translateX(8px) scale(1.02);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.2);
+}
+
+.language-option.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.1));
+  color: #1d4ed8;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+}
+
+.language-option .language-flag {
+  font-size: 20px;
+  line-height: 1;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.language-option:hover .language-flag {
+  transform: scale(1.1) rotate(3deg);
+}
+
+.language-option .language-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000000 !important;
+  text-shadow: none;
+  letter-spacing: 0.2px;
+}
+
+.language-option .language-code {
+  font-size: 10px;
+  opacity: 0.8;
+  font-weight: 500;
+  color: #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+.check-icon {
+  color: #1d4ed8;
+  flex-shrink: 0;
+  font-size: 14px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+  animation: checkPulse 2s infinite;
+}
+
+@keyframes checkPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.language-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+/* Dark theme support - Hyper Modern */
+@media (prefers-color-scheme: dark) {
+  .language-dropdown {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.95), rgba(17, 24, 39, 0.85));
+    border-color: rgba(75, 85, 99, 0.3);
+  }
+
+  .language-dropdown-header {
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.1), rgba(31, 41, 55, 0.05));
+    border-color: rgba(75, 85, 99, 0.2);
+  }
+
+  .language-dropdown-header h4 {
+    color: #f9fafb;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .language-option {
+    color: #f9fafb;
+  }
+
+  .language-option:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(147, 197, 253, 0.1));
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .language-option.active {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.3), rgba(59, 130, 246, 0.2));
+    color: #93c5fd;
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+    border: 2px solid rgba(59, 130, 246, 0.4);
+  }
+
+  .check-icon {
+    color: #93c5fd;
+  }
+}
+
+/* Mobile responsive - Hyper Modern */
+@media (max-width: 768px) {
+  .language-selector-button {
+    padding: 10px 14px;
+    font-size: 14px;
+    gap: 8px;
+  }
+
+  .language-name {
+    display: none;
+  }
+
+  .language-dropdown {
+    right: -10px;
+    min-width: 240px;
+    margin-top: 8px;
+  }
+
+  .language-option {
+    padding: 12px 16px;
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .language-option .language-flag {
+    font-size: 24px;
+  }
+
+  .language-option .language-name {
+    font-size: 14px;
+  }
+}
+
+/* Header integration - Hyper Modern */
+.header .language-selector {
+  margin-left: auto;
+  margin-right: 16px;
+}
+
+.header .language-selector-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header .language-selector-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer integration */
+.footer .language-selector {
+  margin-top: 16px;
+}
+
+.footer .language-selector-button {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: #374151;
+}
+
+.footer .language-selector-button:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Accessibility */
+.language-selector-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.language-option:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: -2px;
+}
+
+/* Language dropdown styles - STYLED BACKGROUND */
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95)) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  backdrop-filter: blur(20px) !important;
+  z-index: 1000;
+  margin-top: 4px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.language-dropdown-header {
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.05)) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  padding: 12px 16px;
+}
+
+.language-list {
+  background: transparent;
+  padding: 8px 0;
+}
+
+.language-option {
+  background: transparent;
+  border: none;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #1f2937 !important;
+  border-radius: 0;
+}
+
+.language-option:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(147, 197, 253, 0.08)) !important;
+  color: #1e40af !important;
+  transform: translateX(4px);
+}
+
+.language-option.active {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(147, 197, 253, 0.12)) !important;
+  color: #1e40af !important;
+  font-weight: 600;
+}
+
+/* Language text styling */
+.language-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.language-name {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #000000;           /* COULEUR NOIRE pour le nom de langue */
+}
+
+.language-code {
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.8;             /* Légèrement plus visible */
+  line-height: 1;
+  color: #000000;           /* COULEUR NOIRE pour l'abréviation */
+}
+
+.language-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+/* Language dropdown header */
+.language-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE pour le titre - FORCE */
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  padding: 0 8px;
+}
+
+/* Additional specificity for dropdown headers */
+.language-dropdown .language-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE FORCÉE */
+}
+
+/* Force black color for all h4 elements in language dropdown */
+.language-dropdown h4,
+.language-selector h4,
+.language-dropdown-header h4 {
+  color: #000000 !important;    /* COULEUR NOIRE ABSOLUE */
+}
+
+/* Language option text */
+.language-option .language-name {
+  color: #000000;           /* COULEUR NOIRE pour les options */
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.language-option .language-code {
+  color: #000000;           /* COULEUR NOIRE pour les codes */
+  font-size: 10px;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+/* Mobile styles - Reduced container size */
+@media (max-width: 768px) {
+  .language-selector-button {
+    padding: 4px 6px;        /* Reduced padding for mobile */
+    font-size: 10px;        /* Smaller font size */
+    gap: 4px;               /* Reduced gap between elements */
+    border-radius: 8px;     /* Smaller border radius */
+  }
+  
+  /* CRITICAL: Force all language text elements to be visible on mobile */
+  .language-selector .language-selector-button .language-text,
+  .language-selector .language-selector-button .language-name,
+  .language-selector .language-selector-button .language-code {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+  
+  .language-selector .language-selector-button .language-name {
+    font-weight: 600 !important;
+    margin-bottom: 1px !important;
+  }
+  
+  .language-selector .language-selector-button .language-code {
+    font-weight: 500 !important;
+    font-size: 8px !important;
+    opacity: 0.9 !important;
+  }
+  
+  .language-selector-button svg {
+    width: 12px;             /* Smaller icon size */
+    height: 12px;
+  }
+  
+  .language-dropdown {
+    min-width: 120px;        /* Reduced dropdown width */
+    padding: 4px 0;          /* Reduced dropdown padding */
+  }
+  
+  .language-option {
+    padding: 6px 8px;        /* Reduced option padding */
+    font-size: 11px;          /* Smaller option text */
+  }
+  
+  .language-option svg {
+    width: 14px;              /* Smaller flag icons */
+    height: 14px;
+  }
+  
+  /* Ensure language text container is visible on mobile */
+  .language-selector-button .language-text {
+    display: flex !important;     /* FORCE display of text container */
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1px !important;
+  }
+  
+  /* Ensure language names are visible on mobile */
+  .language-selector-button .language-name {
+    display: block !important;    /* FORCE display of language name */
+    color: #000000 !important;    /* BLACK color for visibility */
+    font-size: 10px;              /* Readable size on mobile */
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  
+  .language-selector-button .language-code {
+    display: block !important;    /* FORCE display of language code */
+    color: #000000 !important;    /* BLACK color for visibility */
+    font-size: 8px;               /* Smaller but visible */
+    font-weight: 500;
+    opacity: 0.9;                 /* More visible */
+  }
+  
+  .language-option .language-name {
+    display: block !important;    /* FORCE display in dropdown */
+    color: #000000 !important;    /* BLACK color */
+    font-size: 11px;              /* Readable size */
+    font-weight: 600;
+  }
+  
+  .language-option .language-code {
+    display: block !important;    /* FORCE display in dropdown */
+    color: #000000 !important;    /* BLACK color */
+    font-size: 9px;               /* Smaller but visible */
+    font-weight: 500;
+    opacity: 0.9;                 /* More visible */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .language-selector-button {
+    padding: 3px 5px;        /* Even smaller padding */
+    font-size: 9px;          /* Even smaller font */
+    gap: 3px;                /* Minimal gap */
+    border-radius: 6px;      /* Smaller radius */
+  }
+  
+  /* CRITICAL: Force all language text elements to be visible on small mobile */
+  .language-selector .language-selector-button .language-text,
+  .language-selector .language-selector-button .language-name,
+  .language-selector .language-selector-button .language-code {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+    font-size: 9px !important;
+    line-height: 1.1 !important;
+  }
+  
+  .language-selector .language-selector-button .language-name {
+    font-weight: 600 !important;
+    margin-bottom: 1px !important;
+  }
+  
+  .language-selector .language-selector-button .language-code {
+    font-weight: 500 !important;
+    font-size: 7px !important;
+    opacity: 0.9 !important;
+  }
+  
+  .language-selector-button svg {
+    width: 10px;             /* Very small icons */
+    height: 10px;
+  }
+  
+  .language-dropdown {
+    min-width: 100px;        /* Very compact dropdown */
+    padding: 2px 0;          /* Minimal padding */
+  }
+  
+  .language-option {
+    padding: 4px 6px;        /* Very compact options */
+    font-size: 10px;         /* Small text */
+  }
+  
+  .language-option svg {
+    width: 12px;              /* Small flag icons */
+    height: 12px;
+  }
+  
+  /* Ensure language text container is visible on small mobile */
+  .language-selector-button .language-text {
+    display: flex !important;     /* FORCE display of text container */
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1px !important;
+  }
+  
+  /* Ensure language names are visible on small mobile */
+  .language-selector-button .language-name {
+    display: block !important;    /* FORCE display of language name */
+    color: #000000 !important;    /* BLACK color for visibility */
+    font-size: 9px;               /* Small but readable */
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  
+  .language-selector-button .language-code {
+    display: block !important;    /* FORCE display of language code */
+    color: #000000 !important;    /* BLACK color for visibility */
+    font-size: 7px;                /* Very small but visible */
+    font-weight: 500;
+    opacity: 0.9;                 /* More visible */
+  }
+  
+  .language-option .language-name {
+    display: block !important;    /* FORCE display in dropdown */
+    color: #000000 !important;    /* BLACK color */
+    font-size: 10px;              /* Small but readable */
+    font-weight: 600;
+  }
+  
+  .language-option .language-code {
+    display: block !important;    /* FORCE display in dropdown */
+    color: #000000 !important;    /* BLACK color */
+    font-size: 8px;               /* Small but visible */
+    font-weight: 500;
+    opacity: 0.9;                 /* More visible */
+  }
+}
+
+/* GLOBAL MOBILE OVERRIDE - Force language names to be visible */
+@media (max-width: 768px) {
+  /* Override any conflicting styles */
+  .language-selector * {
+    box-sizing: border-box;
+  }
+  
+  /* Force language text visibility with maximum specificity */
+  .language-selector .language-selector-button .language-text {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1px !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+  }
+  
+  .language-selector .language-selector-button .language-name {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #000000 !important;
+    background: transparent !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    text-align: left !important;
+  }
+  
+  .language-selector .language-selector-button .language-code {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 0.9 !important;
+    color: #000000 !important;
+    background: transparent !important;
+    font-size: 8px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    text-align: left !important;
+  }
+}
+
+/* Animation for language change - Hyper Modern */
+.language-change-animation {
+  animation: languageChange 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes languageChange {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.9) rotate(-2deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Additional modern effects */
+.language-selector-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.language-option:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Scrollbar styling for language list */
+.language-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.language-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.language-list::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.5);
+  border-radius: 3px;
+}
+
+.language-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.7);
+}
+
+/* Loading state styles */
+.language-selector-button.changing {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.language-selector-button .loading-indicator {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  animation: spin 1s linear infinite;
+  font-size: 14px;
+  color: #3b82f6;
+}
+
+@keyframes spin {
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
+}

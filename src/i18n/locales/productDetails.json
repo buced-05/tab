@@ -1,0 +1,266 @@
+{
+  "product1": {
+    "name": "Écouteurs Bluetooth sans fil avec réduction de bruit active",
+    "description": "Profitez d'une expérience audio exceptionnelle avec ces écouteurs Bluetooth haute qualité. La réduction de bruit active vous permet de vous concentrer sur votre musique sans distractions extérieures. Batterie longue durée de 30 heures avec charge rapide.",
+    "features": [
+      "Réduction de bruit active",
+      "Batterie 30 heures",
+      "Charge rapide 15 minutes",
+      "Qualité audio HD",
+      "Connexion Bluetooth 5.0",
+      "Design ergonomique confortable"
+    ],
+    "benefits": [
+      "Son cristallin sans interférences",
+      "Autonomie exceptionnelle",
+      "Confort d'écoute prolongé",
+      "Connexion stable et rapide"
+    ]
+  },
+  "product2": {
+    "name": "Montre connectée intelligente avec suivi de santé",
+    "description": "Surveillez votre santé et restez connecté avec cette montre intelligente. Suivi de fréquence cardiaque, compteur de pas, moniteur de sommeil et notifications intelligentes. Résistante à l'eau jusqu'à 50 mètres.",
+    "features": [
+      "Suivi de fréquence cardiaque",
+      "Compteur de pas et calories",
+      "Moniteur de sommeil",
+      "Résistance à l'eau 50m",
+      "Notifications intelligentes",
+      "Écran tactile couleur"
+    ],
+    "benefits": [
+      "Surveillance complète de la santé",
+      "Motivation pour l'activité physique",
+      "Style moderne et élégant",
+      "Fonctionnalités avancées"
+    ]
+  },
+  "product3": {
+    "name": "Smartphone Android haute performance",
+    "description": "Découvrez la puissance et l'innovation avec ce smartphone Android dernier cri. Processeur haute performance, appareil photo professionnel, écran AMOLED et batterie longue durée. Parfait pour le travail et les loisirs.",
+    "features": [
+      "Processeur octa-core",
+      "Appareil photo 108MP",
+      "Écran AMOLED 6.7\"",
+      "Batterie 5000mAh",
+      "Stockage 256GB",
+      "5G et WiFi 6"
+    ],
+    "benefits": [
+      "Performance exceptionnelle",
+      "Photos de qualité professionnelle",
+      "Autonomie longue durée",
+      "Connectivité ultra-rapide"
+    ]
+  },
+  "product4": {
+    "name": "Tablette Android polyvalente",
+    "description": "Votre compagnon idéal pour le travail et les loisirs. Écran haute résolution, processeur puissant, stockage généreux et autonomie exceptionnelle. Parfaite pour la productivité et le divertissement.",
+    "features": [
+      "Écran 10.1\" Full HD",
+      "Processeur quad-core",
+      "Stockage 128GB",
+      "Batterie 8000mAh",
+      "Caméras avant et arrière",
+      "Connexion WiFi et 4G"
+    ],
+    "benefits": [
+      "Écran large et net",
+      "Performance fluide",
+      "Stockage suffisant",
+      "Autonomie impressionnante"
+    ]
+  },
+  "product5": {
+    "name": "Ordinateur portable gaming haute performance",
+    "description": "Dominez vos jeux avec cette machine de guerre portable. Carte graphique dédiée, processeur haute performance, écran haute fréquence et système de refroidissement avancé. L'expérience gaming ultime.",
+    "features": [
+      "Carte graphique RTX 4060",
+      "Processeur Intel i7",
+      "Écran 15.6\" 144Hz",
+      "RAM 16GB DDR5",
+      "SSD 1TB NVMe",
+      "Clavier RGB rétroéclairé"
+    ],
+    "benefits": [
+      "Performance gaming exceptionnelle",
+      "Graphismes ultra-réalistes",
+      "Fluidité parfaite",
+      "Expérience immersive"
+    ]
+  },
+  "product6": {
+    "name": "Casque gaming professionnel avec microphone",
+    "description": "Plongez dans l'action avec ce casque gaming professionnel. Son surround 7.1, microphone détachable, confort d'écoute prolongé et contrôle audio intuitif. L'équipement parfait pour les gamers.",
+    "features": [
+      "Son surround 7.1",
+      "Microphone détachable",
+      "Coussinets en cuir",
+      "Contrôle audio intégré",
+      "Câble détachable",
+      "Compatibilité multi-plateforme"
+    ],
+    "benefits": [
+      "Immersion audio totale",
+      "Communication claire",
+      "Confort d'écoute optimal",
+      "Polyvalence maximale"
+    ]
+  },
+  "product7": {
+    "name": "Webcam HD pour streaming et vidéoconférence",
+    "description": "Améliorez vos appels vidéo et votre streaming avec cette webcam HD professionnelle. Résolution 4K, autofocus, microphones intégrés et éclairage automatique. Qualité professionnelle garantie.",
+    "features": [
+      "Résolution 4K Ultra HD",
+      "Autofocus intelligent",
+      "Microphones stéréo",
+      "Éclairage automatique",
+      "Support universel",
+      "Plug & Play"
+    ],
+    "benefits": [
+      "Image cristalline",
+      "Son clair et net",
+      "Installation simple",
+      "Qualité professionnelle"
+    ]
+  },
+  "product8": {
+    "name": "Clavier mécanique gaming RGB",
+    "description": "Tapez avec style et précision avec ce clavier mécanique gaming. Switches mécaniques, rétroéclairage RGB personnalisable, construction robuste et design ergonomique. Performance et esthétique réunies.",
+    "features": [
+      "Switches mécaniques",
+      "Rétroéclairage RGB",
+      "Construction en aluminium",
+      "Anti-ghosting N-key",
+      "Câble détachable",
+      "Design ergonomique"
+    ],
+    "benefits": [
+      "Tactile et réactif",
+      "Personnalisation visuelle",
+      "Durabilité exceptionnelle",
+      "Confort d'utilisation"
+    ]
+  },
+  "product9": {
+    "name": "Moniteur portable 8000 mAh sans fil",
+    "description": "Transformez votre espace de travail avec ce moniteur portable innovant. Écran 15.6\" Full HD, batterie intégrée 8000mAh, connexion sans fil et haut-parleurs intégrés. Productivité mobile maximale.",
+    "features": [
+      "Écran 15.6\" Full HD",
+      "Batterie 8000mAh",
+      "Connexion sans fil",
+      "Haut-parleurs intégrés",
+      "Support VESA",
+      "Compatibilité universelle"
+    ],
+    "benefits": [
+      "Mobilité totale",
+      "Autonomie longue durée",
+      "Installation sans fil",
+      "Polyvalence maximale"
+    ]
+  },
+  "product10": {
+    "name": "Souris gaming sans fil haute précision",
+    "description": "Contrôlez vos jeux avec précision avec cette souris gaming sans fil. Capteur haute précision, boutons programmables, rétroéclairage RGB et autonomie longue durée. Performance et style réunis.",
+    "features": [
+      "Capteur 16000 DPI",
+      "Boutons programmables",
+      "Rétroéclairage RGB",
+      "Autonomie 70 heures",
+      "Charge rapide",
+      "Design ergonomique"
+    ],
+    "benefits": [
+      "Précision maximale",
+      "Personnalisation complète",
+      "Autonomie exceptionnelle",
+      "Confort d'utilisation"
+    ]
+  },
+  "product11": {
+    "name": "Moniteur portable UPERFECT 18.5\" tactile 120Hz",
+    "description": "Découvrez l'avenir des moniteurs portables avec ce modèle UPERFECT révolutionnaire. Écran tactile 18.5\" 120Hz, support VESA, stand ajustable et design ultra-fin. Performance et mobilité exceptionnelles.",
+    "features": [
+      "Écran tactile 18.5\" 120Hz",
+      "Résolution Full HD",
+      "Support VESA intégré",
+      "Stand ajustable 180°",
+      "Design ultra-fin",
+      "Compatibilité universelle"
+    ],
+    "benefits": [
+      "Interactivité tactile",
+      "Fluidité parfaite",
+      "Installation flexible",
+      "Portabilité maximale"
+    ]
+  },
+  "product12": {
+    "name": "T-shirt casual manches longues ANRABESS",
+    "description": "Style et confort réunis avec ce t-shirt casual ANRABESS. Matériau doux et respirant, coupe moderne, manches longues et design polyvalent. Parfait pour toutes les occasions.",
+    "features": [
+      "Matériau 100% coton",
+      "Coupe moderne",
+      "Manches longues",
+      "Design polyvalent",
+      "Lavable en machine",
+      "Couleurs variées"
+    ],
+    "benefits": [
+      "Confort optimal",
+      "Style intemporel",
+      "Entretien facile",
+      "Polyvalence maximale"
+    ]
+  },
+  "product25": {
+    "name": "DreamQuest Support Windows Computers Bluetooth5.3",
+    "description": "Ordinateur portable haute performance avec connectivité Bluetooth 5.3, parfait pour un usage professionnel et personnel.",
+    "features": [
+      "Connectivité Bluetooth 5.3",
+      "Haute performance",
+      "Usage professionnel et personnel",
+      "Design moderne"
+    ],
+    "benefits": [
+      "Connexion stable et rapide",
+      "Idéal pour le travail",
+      "Performance optimale",
+      "Polyvalence d'usage"
+    ]
+  },
+  "product26": {
+    "name": "Huidun Laptops Computer Business Quad-Core",
+    "description": "Ordinateur portable professionnel avec processeur quad-core, idéal pour le travail professionnel et le multitâche.",
+    "features": [
+      "Processeur quad-core",
+      "Usage professionnel",
+      "Multitâche optimisé",
+      "Performance élevée"
+    ],
+    "benefits": [
+      "Traitement rapide des tâches",
+      "Efficacité professionnelle",
+      "Multitâche fluide",
+      "Fiabilité garantie"
+    ]
+  },
+  "product27": {
+    "name": "Nettoyeur de Piscine Robotique Sans Fil – 150 Minutes d'Autonomie",
+    "description": "Robot aspirateur automatique de piscine étanche IPX8 pour piscines enterrées et hors-sol avec brosses doubles.",
+    "features": [
+      "Autonomie 150 minutes",
+      "Étanche IPX8",
+      "Brosses doubles",
+      "Pour piscines enterrées et hors-sol"
+    ],
+    "benefits": [
+      "Nettoyage automatique",
+      "Résistance à l'eau",
+      "Nettoyage en profondeur",
+      "Polyvalence d'usage"
+    ]
+  }
+}

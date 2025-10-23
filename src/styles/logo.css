@@ -1,0 +1,328 @@
+/* ADS MARKET Logo Styles */
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+/* Logo Badge - Circular with Scalloped Edge */
+.logo-icon {
+  position: relative;
+  z-index: 2;
+}
+
+.logo-badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-badge-outer {
+  width: 40px;
+  height: 40px;
+  background: #d4a574; /* Light brown/gold color */
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Scalloped edge effect */
+.logo-badge-outer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #d4a574;
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.logo-badge-inner {
+  width: 32px;
+  height: 32px;
+  background: #059669; /* Dark green */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-check {
+  color: white;
+  stroke-width: 3;
+}
+
+.logo:hover .logo-badge-outer {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(212, 165, 116, 0.4);
+}
+
+/* Logo Text */
+.logo-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  z-index: 2;
+}
+
+.logo-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: #000000; /* Black - darker color */
+  letter-spacing: 0.5px;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Decorative Line */
+.logo-decoration {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-line {
+  width: 60px;
+  height: 3px;
+  background: #d4a574; /* Light brown/gold color */
+  position: relative;
+  border-radius: 2px;
+}
+
+/* V-shape/chevron in the center */
+.logo-line::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #d4a574;
+}
+
+/* Size Variants */
+.logo-small .logo-badge-outer {
+  width: 30px;
+  height: 30px;
+}
+
+.logo-small .logo-badge-inner {
+  width: 24px;
+  height: 24px;
+}
+
+.logo-small .logo-check {
+  width: 12px;
+  height: 12px;
+}
+
+.logo-small .logo-text {
+  font-size: 12px;
+}
+
+.logo-small .logo-line {
+  width: 45px;
+  height: 2px;
+}
+
+.logo-large .logo-badge-outer {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-large .logo-badge-inner {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-large .logo-check {
+  width: 20px;
+  height: 20px;
+}
+
+.logo-large .logo-text {
+  font-size: 18px;
+}
+
+.logo-large .logo-line {
+  width: 75px;
+  height: 4px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .logo {
+    gap: 6px;
+  }
+  
+  .logo-text {
+    font-size: 13px;
+  }
+  
+  .logo-badge-outer {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .logo-badge-inner {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .logo-line {
+    width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text-container {
+    display: none;
+  }
+  
+  .logo-decoration {
+    display: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .logo-text {
+    color: #f3f4f6;
+  }
+  
+  .logo-badge-inner {
+    background: #10b981;
+  }
+  
+  .logo-badge-outer {
+    background: #f59e0b;
+  }
+  
+  .logo-line {
+    background: #f59e0b;
+  }
+  
+  .logo-line::before {
+    border-top-color: #f59e0b;
+  }
+}
+
+/* Animation Effects */
+@keyframes logoGlow {
+  0%, 100% {
+    box-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(212, 165, 116, 0.5);
+  }
+}
+
+.logo:hover .logo-badge-outer {
+  animation: logoGlow 2s ease-in-out infinite;
+}
+
+/* Footer Logo */
+.footer-logo {
+  margin-bottom: 16px;
+}
+
+.footer-logo .logo-text {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.footer-logo .logo-badge-outer {
+  width: 32px;
+  height: 32px;
+}
+
+.footer-logo .logo-badge-inner {
+  width: 24px;
+  height: 24px;
+}
+
+.footer-logo .logo-check {
+  width: 12px;
+  height: 12px;
+}
+
+.footer-logo .logo-line {
+  width: 45px;
+  height: 2px;
+}
+
+/* Header Logo (horizontal layout) */
+.header-logo {
+  flex-direction: row;
+  gap: 12px;
+}
+
+.header-logo .logo-decoration {
+  display: none;
+}
+
+/* RTL Support */
+[dir="rtl"] .logo {
+  text-align: right;
+}
+
+[dir="rtl"] .logo-text {
+  text-align: right;
+}
+
+/* Click Animation for Secret Feature */
+.logo:active {
+  transform: scale(0.98);
+}
+
+.logo:active .logo-badge-outer {
+  animation: logoClickPulse 0.3s ease;
+}
+
+@keyframes logoClickPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(212, 165, 116, 0.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Easter egg hint animation */
+@keyframes secretHint {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
