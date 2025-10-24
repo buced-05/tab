@@ -2135,6 +2135,2119 @@ export const getSampleProducts = () => {
       inStock: true,
       tags: ['fashion', 'handbag', 'leather', 'designer', 'tote', 'shoulder', 'women', 'purse', 'bucket-bag', 'professional', 'casual'],
       affiliateUrl: 'https://amzn.to/3WVw9LT'
+    },
+
+    // Product 1 - HP 14 Laptop
+    {
+      _id: 'product-hp-14-laptop',
+      productNumber: 1,
+      name: 'HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365 (14-dq0040nr, Snowflake White)',
+      description: 'Thin and portable HP 14 laptop with Intel Celeron N4020 processor, 4GB RAM, 64GB storage, and Windows 11 Home. Features 14-inch Micro-edge HD display and includes one year of Microsoft 365.',
+      price: 171,
+      originalPrice: 171,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41iUBrIDcDS._AC_US40_.jpg', alt: 'HP 14 Laptop Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41wHfNF0gzL._AC_US40_.jpg', alt: 'HP 14 Laptop Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41AhlS+8tfS._AC_US40_.jpg', alt: 'HP 14 Laptop Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81wQmKSkWVS._AC_SL1500_.jpg', alt: 'HP 14 Laptop Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4345 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'HP',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'hp', 'windows', 'portable', 'business'],
+      affiliateUrl: 'https://amzn.to/4oh0f8P'
+    },
+
+    // Product 2 - Lenovo V15 Gen 4 Business Laptop
+    {
+      _id: 'product-lenovo-v15-gen4',
+      productNumber: 2,
+      name: 'Lenovo V15 Gen 4 Business Laptop, 15.6" FHD Display, Intel Core i5-13420H (Beat i7-1355U), HDMI, RJ45, Webcam, Numeric Keypad, Wi-Fi, Windows 11 Pro, Black (16GB RAM | 512GB SSD)',
+      description: 'Professional business laptop with Intel Core i5-13420H processor, 16GB RAM, 512GB SSD, 15.6" FHD display, and Windows 11 Pro. Features HDMI, RJ45, webcam, and numeric keypad.',
+      price: 529,
+      originalPrice: 529,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71N9tTF6pML._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61qJN6Yn8qL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61+o7g9qZBL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71FUdhdOSLL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 96 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'intel', 'windows-pro'],
+      affiliateUrl: 'https://amzn.to/47a7uJC'
+    },
+
+    // Product 3 - Lenovo V-Series V15 Business Laptop
+    {
+      _id: 'product-lenovo-v15-amd',
+      productNumber: 3,
+      name: 'Lenovo V-Series V15 Business Laptop, 15.6" FHD Display, AMD Ryzen 7 7730U, 40GB RAM, 2TB SSD, Numeric Keypad, HDMI, RJ45, Webcam, Wi-Fi, Windows 11 Pro, Black',
+      description: 'High-performance business laptop with AMD Ryzen 7 7730U processor, 40GB RAM, 2TB SSD, 15.6" FHD display, and Windows 11 Pro. Perfect for demanding business applications.',
+      price: 648,
+      originalPrice: 648,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71TN6dLVcsL._AC_SL1500_.jpg', alt: 'Lenovo V15 AMD Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71KQXadhfOL._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41fT-gINjKL._AC_.jpg', alt: 'Lenovo V15 AMD Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61z6GKwnq2L._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 457 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'amd', 'ryzen', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/3Jp5zaV'
+    },
+
+    // Product 4 - Lenovo IdeaPad 5X 2-in-1
+    {
+      _id: 'product-lenovo-ideapad-5x',
+      productNumber: 4,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 821,
+      originalPrice: 821,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71UmMRFj6aL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81e+sK+U7UL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 32 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/3WjomHN'
+    },
+
+    // Product 5 - Lenovo LOQ 15 Gaming Laptop
+    {
+      _id: 'product-lenovo-loq-15',
+      productNumber: 5,
+      name: 'Lenovo LOQ 15" - NVIDIA GeForce RTX 5050 Graphics - 15.6" IPS LCD FHD 144hz Display - Intel Core i7-13650HX - 24GB DDR5-1 TB SSD - Windows 11 Home - Luna Grey',
+      description: 'Gaming laptop with NVIDIA GeForce RTX 5050 graphics, Intel Core i7-13650HX processor, 24GB DDR5 RAM, 1TB SSD, and 15.6" IPS LCD FHD 144Hz display for smooth gaming.',
+      price: 1166,
+      originalPrice: 1166,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81Dn-XD8GsL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71jH93E4dxL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71MgOGFKAGL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51nqcwm8I9L._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 36 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'gaming', 'nvidia', 'rtx', 'intel', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/4o40949'
+    },
+
+    // Product 6 - LG gram Pro 17-inch
+    {
+      _id: 'product-lg-gram-pro-17',
+      productNumber: 6,
+      name: 'LG gram Pro 17-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra9 285H Processor, NVIDIA RTX5050, Windows 11 Home, 32GB RAM, 2TB SSD, Black',
+      description: 'Ultra-lightweight 17-inch laptop with Intel Core Ultra9 285H processor, NVIDIA RTX5050 graphics, 32GB RAM, 2TB SSD, and Windows 11 Home. Perfect for professionals on the go.',
+      price: 2749,
+      originalPrice: 2749,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/617zFnvYNlL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/711pbDS5ZNL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71rV1HbvkFL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/711QUUUMl6L._AC_SX679_.jpg', alt: 'LG gram Pro 17 Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 8 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'ultra-lightweight', 'intel-evo', 'professional'],
+      affiliateUrl: 'https://amzn.to/4nm66bO'
+    },
+
+    // Product 7 - LG gram Pro 16-inch
+    {
+      _id: 'product-lg-gram-pro-16',
+      productNumber: 7,
+      name: 'LG gram Pro 16-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra7 258V Processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD - Metal Gray',
+      description: 'Lightweight 16-inch laptop with Intel Core Ultra7 258V processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD. Features AI-powered productivity and ultra-portable design.',
+      price: 1899,
+      originalPrice: 1899,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 11 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'lightweight', 'intel-evo', 'copilot', 'ai'],
+      affiliateUrl: 'https://amzn.to/3JpwHqm'
+    },
+
+    // Product 8 - Lenovo IdeaPad 5X 2-in-1 (Duplicate with different price)
+    {
+      _id: 'product-lenovo-ideapad-5x-alt',
+      productNumber: 8,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 32,
+      originalPrice: 32,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41JdHKLzyYL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51i6xIBYPGL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 821 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/4hnxVii'
+    },
+
+    // Product 9 - Bicycle Pump with Gauge
+    {
+      _id: 'product-bicycle-pump',
+      productNumber: 9,
+      name: 'Bicycle Pump with Gauge, 3X Faster & Auto Stop & Brushless Motor, Electric Bike Tire Pump with Presta and Schrader Valve for Road Bike, MTB, Motorcycle, Ball,etc',
+      description: 'Electric bicycle pump with gauge, 3X faster pumping, auto-stop feature, and brushless motor. Compatible with Presta and Schrader valves for bikes, motorcycles, and balls.',
+      price: 49,
+      originalPrice: 49,
+      category: 'sports',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71xuypbqHRL._AC_SY300_SX300_QL70_FMwebp_.jpg', alt: 'Bicycle Pump Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/91TYUM89NuL._AC_SX679_.jpg', alt: 'Bicycle Pump Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/517IrjVMHZL._AC_US100_.jpg', alt: 'Bicycle Pump Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71S8sWIJXxL._AC_SX679_.jpg', alt: 'Bicycle Pump Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 662 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['sports', 'bicycle', 'pump', 'electric', 'gauge', 'auto-stop'],
+      affiliateUrl: 'https://amzn.to/4niaus3'
+    },
+
+    // Product 10 - VOCH GALA Nipple Covers
+    {
+      _id: 'product-voch-gala-nipple-covers',
+      productNumber: 10,
+      name: 'VOCH GALA Nipple Covers 2 Pairs-Seamless and Sheer Adhesive Silicone Nipple Pasties for Women Reusable, Sticky Breast Petals',
+      description: 'Seamless and sheer adhesive silicone nipple covers for women. Reusable and sticky breast petals that provide comfort and coverage.',
+      price: 18.26,
+      originalPrice: 18.26,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Package', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4708 },
+      isFeatured: false,
+      isTrending: false,
+      brand: 'VOCH GALA',
+      inStock: true,
+      tags: ['fashion', 'women', 'underwear', 'silicone', 'adhesive', 'reusable'],
+      affiliateUrl: 'https://amzn.to/47hJsg1'
+    },
+
+    // Product 11 - Popular Girls Padded Training Bra
+    {
+      _id: 'product-girls-training-bra-padded',
+      productNumber: 11,
+      name: 'Popular Girls Padded Training Bra Pack – Crop Cami Training Bras for Girls. Seamless Bra Design with Removable Padding',
+      description: 'Training bra pack for girls with seamless design and removable padding. Crop cami style training bras perfect for young girls.',
+      price: 26.99,
+      originalPrice: 26.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 4306 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'padded', 'seamless', 'removable-padding'],
+      affiliateUrl: 'https://amzn.to/3Jbj26h'
+    },
+
+    // Product 12 - Popular Cotton Girls Training Bra
+    {
+      _id: 'product-girls-cotton-training-bra',
+      productNumber: 12,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.99,
+      originalPrice: 16.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14889 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/47nP1s2'
+    },
+
+    // Product 13 - Hilarious Jokes For 8 Year Old Kids
+    {
+      _id: 'product-hilarious-jokes-book',
+      productNumber: 13,
+      name: 'Hilarious Jokes For 8 Year Old Kids: An Awesome LOL Gag Book For Young Boys and Girls Filled With Tons of Tongue Twisters, Rib Ticklers, Side Splitters, and Knock Knocks',
+      description: 'Fun joke book for 8-year-old kids filled with hilarious jokes, tongue twisters, rib ticklers, side splitters, and knock-knock jokes. Perfect for young boys and girls.',
+      price: 9.99,
+      originalPrice: 9.99,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71aoNAbO9SL._SL1499_.jpg', alt: 'Jokes Book Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61VIlVlVaRL.jpg', alt: 'Jokes Book Pages', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2867 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['books', 'children', 'jokes', 'humor', 'tongue-twisters', 'knock-knock'],
+      affiliateUrl: 'https://amzn.to/4nhEJ2p'
+    },
+
+    // Product 14 - Popular Girl's Bandeau Bra
+    {
+      _id: 'product-girls-bandeau-bra',
+      productNumber: 14,
+      name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
+      description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81XmFVfF69L._AC_SY879_.jpg', alt: 'Bandeau Bra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81XuvePYEFL._AC_SX679_.jpg', alt: 'Bandeau Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81VWc3DgAPL._AC_SX679_.jpg', alt: 'Bandeau Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81cbJ-izFTL._AC_SX679_.jpg', alt: 'Bandeau Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 1181 },
+      isFeatured: false,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'bandeau-bra', 'strapless', 'removable-padding', 'seamless'],
+      affiliateUrl: 'https://amzn.to/4hmNg2E'
+    },
+
+    // Product 15 - Popular Cotton Girls Training Bra (Alternative)
+    {
+      _id: 'product-girls-cotton-training-bra-alt',
+      productNumber: 15,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.98,
+      originalPrice: 16.98,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14832 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/4npeBCF'
+    },
+
+    // Product 16 - Popular Womens Bike Shorts
+    {
+      _id: 'product-womens-bike-shorts',
+      productNumber: 16,
+      name: 'Popular Womens Bike Shorts Plus Size - Cotton Biker Bottoms. Bermuda Long Shorts for Women. Great Gym, Workout & Yoga',
+      description: 'Plus size bike shorts for women made from cotton. Bermuda long shorts perfect for gym, workout, and yoga activities.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2144 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'women', 'bike-shorts', 'plus-size', 'cotton', 'workout', 'yoga'],
+      affiliateUrl: 'https://amzn.to/48H5TfB'
+    },
+
+    // Product 17 - Mouse Jiggler Mover
+    {
+      _id: 'product-mouse-jiggler',
+      productNumber: 17,
+      name: 'Mouse Jiggler Mover Wiggler Undetectable Shaker USB Port for Computer Laptop, Keeps PC Awake, Simulate Movement to Prevent Laptop Entering Sleep, No Software Plug-and-Play',
+      description: 'USB mouse jiggler that keeps your computer awake by simulating mouse movement. Undetectable shaker prevents laptop from entering sleep mode. No software required, plug-and-play.',
+      price: 6.99,
+      originalPrice: 6.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61AUhToZptL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61OWkA9Wl9L._AC_SL1500_.jpg', alt: 'Mouse Jiggler Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71U+2I8UDCL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71I5iqYbwfL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 5269 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'computer', 'mouse-jiggler', 'usb', 'plug-and-play', 'productivity'],
+      affiliateUrl: 'https://amzn.to/4qssfb8'
+    },
+
+    // Product 18 - LISEN Retractable Car Charger
+    {
+      _id: 'product-lisen-car-charger',
+      productNumber: 18,
+      name: 'LISEN Retractable Car Charger, 69W Cars Adapter USB C Fast Charger, Car Accessories for Women Men, Christmas for Gifts for Dad Mom, Gifts for Women Men, for iPhone 17 Pro Max Air 16 15 14 13 Plus',
+      description: '69W retractable car charger with USB-C fast charging. Compatible with iPhone 17 Pro Max, Air, 16, 15, 14, 13 Plus. Perfect gift for men and women.',
+      price: 16.99,
+      originalPrice: 29.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71Ryl5xKbuL._AC_SL1500_.jpg', alt: 'Car Charger Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61TNXDLQlqL._AC_SL1500_.jpg', alt: 'Car Charger Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/713wm1uB5nL._AC_SL1500_.jpg', alt: 'Car Charger Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zNi1-2V0L._AC_SL1500_.jpg', alt: 'Car Charger Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 12113 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'LISEN',
+      inStock: true,
+      tags: ['electronics', 'car-charger', 'usb-c', 'fast-charging', 'retractable', 'gift'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 19 - The Very Hungry Caterpillar
+    {
+      _id: 'product-very-hungry-caterpillar',
+      productNumber: 19,
+      name: 'The Very Hungry Caterpillar',
+      description: 'Classic children\'s book "The Very Hungry Caterpillar" by Eric Carle. A beloved story about a caterpillar\'s transformation into a beautiful butterfly.',
+      price: 4.61,
+      originalPrice: 4.61,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SX445_.jpg', alt: 'Very Hungry Caterpillar Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SL1500_.jpg', alt: 'Very Hungry Caterpillar Pages', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 77761 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Eric Carle',
+      inStock: true,
+      tags: ['books', 'children', 'classic', 'picture-book', 'caterpillar', 'butterfly'],
+      affiliateUrl: 'https://amzn.to/47Ga3TR'
+    },
+
+    // Product 20 - Chicka Chicka Boom Boom
+    {
+      _id: 'product-chicka-chicka-boom-boom',
+      productNumber: 20,
+      name: 'Chicka Chicka Boom Boom (Board Book)',
+      description: 'Classic children\'s book "Chicka Chicka Boom Boom" in board book format. A fun alphabet story that teaches letters through rhythm and rhyme.',
+      price: 4.17,
+      originalPrice: 8.00,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71gilMPLAHL._SY522_.jpg', alt: 'Chicka Chicka Boom Boom Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71gZVUYGHdL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61G30iYlguL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61rHuppIU3L._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 40937 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'alphabet', 'board-book', 'rhythm', 'rhyme'],
+      affiliateUrl: 'https://amzn.to/49ib2L9'
+    },
+
+    // Product 21 - Brown Bear, Brown Bear, What Do You See?
+    {
+      _id: 'product-brown-bear-brown-bear',
+      productNumber: 21,
+      name: 'Brown Bear, Brown Bear, What Do You See?',
+      description: 'Classic children\'s book "Brown Bear, Brown Bear, What Do You See?" by Bill Martin Jr. and Eric Carle. A beloved story that teaches colors and animals.',
+      price: 4.82,
+      originalPrice: 9.64,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81kZ3Gl3WKL._SL1500_.jpg', alt: 'Brown Bear Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Aot5wdfML._SL1500_.jpg', alt: 'Brown Bear Pages', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 55224 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'colors', 'animals', 'classic', 'picture-book'],
+      affiliateUrl: 'https://amzn.to/49hYLX8'
+    },
+
+    // Product 22 - I Love You to the Moon and Back
+    {
+      _id: 'product-love-you-moon-back',
+      productNumber: 22,
+      name: 'I Love You to the Moon and Back',
+      description: 'Heartwarming children\'s book "I Love You to the Moon and Back" that expresses the depth of a parent\'s love for their child. A perfect bedtime story.',
+      price: 3.97,
+      originalPrice: 7.94,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81D8qaGlTVL._SL1500_.jpg', alt: 'Love You Moon Back Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71rkrN8ulXL._SL1500_.jpg', alt: 'Love You Moon Back Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/818QZeo8s+L._SL1500_.jpg', alt: 'Love You Moon Back Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/9168cMVcNBL._SL1500_.jpg', alt: 'Love You Moon Back Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 79128 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Amelia Hepworth',
+      inStock: true,
+      tags: ['books', 'children', 'love', 'bedtime-story', 'parent-child', 'heartwarming'],
+      affiliateUrl: 'https://amzn.to/493Lx0n'
+    },
+
+    // Product 23 - The Going To Bed Book
+    {
+      _id: 'product-going-to-bed-book',
+      productNumber: 23,
+      name: 'The Going To Bed Book',
+      description: 'Classic bedtime book "The Going To Bed Book" by Sandra Boynton. A gentle story that helps children wind down and prepare for sleep.',
+      price: 3.86,
+      originalPrice: 7.72,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71FVbHHW+AL._SL1400_.jpg', alt: 'Going To Bed Book Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71yRyF+25LL._SL1400_.jpg', alt: 'Going To Bed Book Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71L7jgM-CFL._SL1500_.jpg', alt: 'Going To Bed Book Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/715f0EUccwL._SL1400_.jpg', alt: 'Going To Bed Book Back', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 19233 },
+      isFeatured: false,
+      isTrending: false,
+      brand: 'Sandra Boynton',
+      inStock: true,
+      tags: ['books', 'children', 'bedtime', 'sleep', 'gentle', 'wind-down'],
+      affiliateUrl: 'https://amzn.to/49kyJTb'
+    },
+
+    // Product 24 - 16 inch Screen Magnifier
+    {
+      _id: 'product-screen-magnifier',
+      productNumber: 24,
+      name: '16 inch Screen Magnifier for Cell Phone 3D Magnifier Screen Enlarger for Movies,Videos,Reading,Gaming-Screen Amplifie with Foldable Phone Stand Holder. Compatible with All Smartphones-White',
+      description: '16-inch screen magnifier for cell phones with 3D magnifier screen enlarger. Perfect for movies, videos, reading, and gaming. Includes foldable phone stand holder, compatible with all smartphones.',
+      price: 23.20,
+      originalPrice: 23.20,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71LK-Fd3t6L._AC_SX679_.jpg', alt: 'Screen Magnifier Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/714SzEeeoLL._AC_SL1500_.jpg', alt: 'Screen Magnifier Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71SPpqk+Q7L._AC_SL1500_.jpg', alt: 'Screen Magnifier Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71t5PNrKbKL._AC_SL1500_.jpg', alt: 'Screen Magnifier Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 577 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'screen-magnifier', 'phone-accessory', '3d', 'foldable', 'stand'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 25 - Bitzee Interactive Toy
+    {
+      _id: 'product-bitzee-interactive-toy',
+      productNumber: 25,
+      name: 'Bitzee, Interactive Toy Digital Pet with 15 Animals Inside, Virtual Electronic Pets React to Touch, Kids Toys for Girls and Boys',
+      description: 'Interactive digital pet toy with 15 different animals inside. Virtual electronic pets that react to touch. Perfect toy for girls and boys.',
+      price: 36.99,
+      originalPrice: 36.99,
+      category: 'toys',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/716BajcQptL._AC_SL1500_.jpg', alt: 'Bitzee Toy Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81t89hgKo6L._AC_SL1500_.jpg', alt: 'Bitzee Toy Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81gpb4CEjBL._AC_SL1500_.jpg', alt: 'Bitzee Toy Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81q8fU6oQgL._AC_SL1500_.jpg', alt: 'Bitzee Toy Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 8117 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Bitzee',
+      inStock: true,
+      tags: ['toys', 'interactive', 'digital-pet', 'electronic', 'touch-reactive', 'children'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 26 - JBL Clip 4 Bluetooth Speaker
+    {
+      _id: 'product-jbl-clip-4-speaker',
+      productNumber: 26,
+      name: 'JBL Clip 4 - Portable Mini Bluetooth Speaker, big audio and punchy bass, integrated carabiner, IP67 waterproof and dustproof, 10 hours of playtime, speaker for home, outdoor and travel (Black)',
+      description: 'Portable mini Bluetooth speaker with big audio and punchy bass. Features integrated carabiner, IP67 waterproof and dustproof rating, 10 hours of playtime. Perfect for home, outdoor, and travel.',
+      price: 46.95,
+      originalPrice: 46.95,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/712bkrVtjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71AC7CR3MDL._AC_SL1200_.jpg', alt: 'JBL Clip 4 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/710tqtuNjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81y2odwsmSL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 34039 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'JBL',
+      inStock: true,
+      tags: ['electronics', 'bluetooth-speaker', 'portable', 'waterproof', 'carabiner', 'travel'],
+      affiliateUrl: 'https://amzn.to/42URtEV'
+    },
+
+    // Product 27 - Samsung Galaxy Watch Ultra
+    {
+      _id: 'product-samsung-galaxy-watch-ultra',
+      productNumber: 27,
+      name: 'Samsung Galaxy Watch Ultra (2024) 47mm LTE AI Smartwatch w/Energy Score, Wellness Tips, Heart Rate Tracking, Sleep Monitor, Fitness Tracker, GPS,Titanium Silver [US Version, 1Yr Manufacturer Warranty]',
+      description: 'Samsung Galaxy Watch Ultra 47mm LTE AI smartwatch with energy score, wellness tips, heart rate tracking, sleep monitoring, fitness tracking, and GPS. Titanium silver with 1-year manufacturer warranty.',
+      price: 449,
+      originalPrice: 449,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/817QHxxq34L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71LYrwpBxPL._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61WGpLzX--L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Detail', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 817 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Samsung',
+      inStock: true,
+      tags: ['electronics', 'smartwatch', 'samsung', 'galaxy-watch', 'fitness-tracker', 'gps', 'lte'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 1 Copy 1 - HP 14 Laptop (Image 2 as primary)
+    {
+      _id: 'product-hp-14-laptop-copy1',
+      productNumber: 1,
+      name: 'HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365 (14-dq0040nr, Snowflake White)',
+      description: 'Thin and portable HP 14 laptop with Intel Celeron N4020 processor, 4GB RAM, 64GB storage, and Windows 11 Home. Features 14-inch Micro-edge HD display and includes one year of Microsoft 365.',
+      price: 171,
+      originalPrice: 171,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41wHfNF0gzL._AC_US40_.jpg', alt: 'HP 14 Laptop Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41iUBrIDcDS._AC_US40_.jpg', alt: 'HP 14 Laptop Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41AhlS+8tfS._AC_US40_.jpg', alt: 'HP 14 Laptop Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81wQmKSkWVS._AC_SL1500_.jpg', alt: 'HP 14 Laptop Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4345 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'HP',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'hp', 'windows', 'portable', 'business'],
+      affiliateUrl: 'https://amzn.to/4oh0f8P'
+    },
+
+    // Product 1 Copy 2 - HP 14 Laptop (Image 3 as primary)
+    {
+      _id: 'product-hp-14-laptop-copy2',
+      productNumber: 1,
+      name: 'HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365 (14-dq0040nr, Snowflake White)',
+      description: 'Thin and portable HP 14 laptop with Intel Celeron N4020 processor, 4GB RAM, 64GB storage, and Windows 11 Home. Features 14-inch Micro-edge HD display and includes one year of Microsoft 365.',
+      price: 171,
+      originalPrice: 171,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41AhlS+8tfS._AC_US40_.jpg', alt: 'HP 14 Laptop Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41iUBrIDcDS._AC_US40_.jpg', alt: 'HP 14 Laptop Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41wHfNF0gzL._AC_US40_.jpg', alt: 'HP 14 Laptop Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81wQmKSkWVS._AC_SL1500_.jpg', alt: 'HP 14 Laptop Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4345 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'HP',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'hp', 'windows', 'portable', 'business'],
+      affiliateUrl: 'https://amzn.to/4oh0f8P'
+    },
+
+    // Product 2 Copy 1 - Lenovo V15 Gen 4 (Image 2 as primary)
+    {
+      _id: 'product-lenovo-v15-gen4-copy1',
+      productNumber: 2,
+      name: 'Lenovo V15 Gen 4 Business Laptop, 15.6" FHD Display, Intel Core i5-13420H (Beat i7-1355U), HDMI, RJ45, Webcam, Numeric Keypad, Wi-Fi, Windows 11 Pro, Black (16GB RAM | 512GB SSD)',
+      description: 'Professional business laptop with Intel Core i5-13420H processor, 16GB RAM, 512GB SSD, 15.6" FHD display, and Windows 11 Pro. Features HDMI, RJ45, webcam, and numeric keypad.',
+      price: 529,
+      originalPrice: 529,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61qJN6Yn8qL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71N9tTF6pML._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61+o7g9qZBL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71FUdhdOSLL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 96 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'intel', 'windows-pro'],
+      affiliateUrl: 'https://amzn.to/47a7uJC'
+    },
+
+    // Product 2 Copy 2 - Lenovo V15 Gen 4 (Image 3 as primary)
+    {
+      _id: 'product-lenovo-v15-gen4-copy2',
+      productNumber: 2,
+      name: 'Lenovo V15 Gen 4 Business Laptop, 15.6" FHD Display, Intel Core i5-13420H (Beat i7-1355U), HDMI, RJ45, Webcam, Numeric Keypad, Wi-Fi, Windows 11 Pro, Black (16GB RAM | 512GB SSD)',
+      description: 'Professional business laptop with Intel Core i5-13420H processor, 16GB RAM, 512GB SSD, 15.6" FHD display, and Windows 11 Pro. Features HDMI, RJ45, webcam, and numeric keypad.',
+      price: 529,
+      originalPrice: 529,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61+o7g9qZBL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71N9tTF6pML._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61qJN6Yn8qL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71FUdhdOSLL._AC_SX679_.jpg', alt: 'Lenovo V15 Gen 4 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 96 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'intel', 'windows-pro'],
+      affiliateUrl: 'https://amzn.to/47a7uJC'
+    },
+
+    // Product 3 Copy 1 - Lenovo V-Series V15 AMD (Image 2 as primary)
+    {
+      _id: 'product-lenovo-v15-amd-copy1',
+      productNumber: 3,
+      name: 'Lenovo V-Series V15 Business Laptop, 15.6" FHD Display, AMD Ryzen 7 7730U, 40GB RAM, 2TB SSD, Numeric Keypad, HDMI, RJ45, Webcam, Wi-Fi, Windows 11 Pro, Black',
+      description: 'High-performance business laptop with AMD Ryzen 7 7730U processor, 40GB RAM, 2TB SSD, 15.6" FHD display, and Windows 11 Pro. Perfect for demanding business applications.',
+      price: 648,
+      originalPrice: 648,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71KQXadhfOL._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71TN6dLVcsL._AC_SL1500_.jpg', alt: 'Lenovo V15 AMD Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41fT-gINjKL._AC_.jpg', alt: 'Lenovo V15 AMD Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61z6GKwnq2L._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 457 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'amd', 'ryzen', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/3Jp5zaV'
+    },
+
+    // Product 3 Copy 2 - Lenovo V-Series V15 AMD (Image 3 as primary)
+    {
+      _id: 'product-lenovo-v15-amd-copy2',
+      productNumber: 3,
+      name: 'Lenovo V-Series V15 Business Laptop, 15.6" FHD Display, AMD Ryzen 7 7730U, 40GB RAM, 2TB SSD, Numeric Keypad, HDMI, RJ45, Webcam, Wi-Fi, Windows 11 Pro, Black',
+      description: 'High-performance business laptop with AMD Ryzen 7 7730U processor, 40GB RAM, 2TB SSD, 15.6" FHD display, and Windows 11 Pro. Perfect for demanding business applications.',
+      price: 648,
+      originalPrice: 648,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41fT-gINjKL._AC_.jpg', alt: 'Lenovo V15 AMD Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71TN6dLVcsL._AC_SL1500_.jpg', alt: 'Lenovo V15 AMD Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71KQXadhfOL._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61z6GKwnq2L._AC_SX679_.jpg', alt: 'Lenovo V15 AMD Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 457 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', 'business', 'amd', 'ryzen', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/3Jp5zaV'
+    },
+
+    // Product 4 Copy 1 - Lenovo IdeaPad 5X 2-in-1 (Image 2 as primary)
+    {
+      _id: 'product-lenovo-ideapad-5x-copy1',
+      productNumber: 4,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 821,
+      originalPrice: 821,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71UmMRFj6aL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81e+sK+U7UL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 32 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/3WjomHN'
+    },
+
+    // Product 4 Copy 2 - Lenovo IdeaPad 5X 2-in-1 (Image 3 as primary)
+    {
+      _id: 'product-lenovo-ideapad-5x-copy2',
+      productNumber: 4,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 821,
+      originalPrice: 821,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71UmMRFj6aL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81e+sK+U7UL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 32 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/3WjomHN'
+    },
+
+    // Product 5 Copy 1 - Lenovo LOQ 15 Gaming Laptop (Image 2 as primary)
+    {
+      _id: 'product-lenovo-loq-15-copy1',
+      productNumber: 5,
+      name: 'Lenovo LOQ 15" - NVIDIA GeForce RTX 5050 Graphics - 15.6" IPS LCD FHD 144hz Display - Intel Core i7-13650HX - 24GB DDR5-1 TB SSD - Windows 11 Home - Luna Grey',
+      description: 'Gaming laptop with NVIDIA GeForce RTX 5050 graphics, Intel Core i7-13650HX processor, 24GB DDR5 RAM, 1TB SSD, and 15.6" IPS LCD FHD 144Hz display for smooth gaming.',
+      price: 1166,
+      originalPrice: 1166,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71jH93E4dxL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Dn-XD8GsL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71MgOGFKAGL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51nqcwm8I9L._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 36 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'gaming', 'nvidia', 'rtx', 'intel', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/4o40949'
+    },
+
+    // Product 5 Copy 2 - Lenovo LOQ 15 Gaming Laptop (Image 3 as primary)
+    {
+      _id: 'product-lenovo-loq-15-copy2',
+      productNumber: 5,
+      name: 'Lenovo LOQ 15" - NVIDIA GeForce RTX 5050 Graphics - 15.6" IPS LCD FHD 144hz Display - Intel Core i7-13650HX - 24GB DDR5-1 TB SSD - Windows 11 Home - Luna Grey',
+      description: 'Gaming laptop with NVIDIA GeForce RTX 5050 graphics, Intel Core i7-13650HX processor, 24GB DDR5 RAM, 1TB SSD, and 15.6" IPS LCD FHD 144Hz display for smooth gaming.',
+      price: 1166,
+      originalPrice: 1166,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71MgOGFKAGL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Dn-XD8GsL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71jH93E4dxL._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51nqcwm8I9L._AC_SX679_.jpg', alt: 'Lenovo LOQ 15 Display', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 36 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'gaming', 'nvidia', 'rtx', 'intel', 'high-performance'],
+      affiliateUrl: 'https://amzn.to/4o40949'
+    },
+
+    // Product 6 Copy 1 - LG gram Pro 17-inch (Image 2 as primary)
+    {
+      _id: 'product-lg-gram-pro-17-copy1',
+      productNumber: 6,
+      name: 'LG gram Pro 17-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra9 285H Processor, NVIDIA RTX5050, Windows 11 Home, 32GB RAM, 2TB SSD, Black',
+      description: 'Ultra-lightweight 17-inch laptop with Intel Core Ultra9 285H processor, NVIDIA RTX5050 graphics, 32GB RAM, 2TB SSD, and Windows 11 Home. Perfect for professionals on the go.',
+      price: 2749,
+      originalPrice: 2749,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/711pbDS5ZNL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/617zFnvYNlL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71rV1HbvkFL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/711QUUUMl6L._AC_SX679_.jpg', alt: 'LG gram Pro 17 Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 8 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'ultra-lightweight', 'intel-evo', 'professional'],
+      affiliateUrl: 'https://amzn.to/4nm66bO'
+    },
+
+    // Product 6 Copy 2 - LG gram Pro 17-inch (Image 3 as primary)
+    {
+      _id: 'product-lg-gram-pro-17-copy2',
+      productNumber: 6,
+      name: 'LG gram Pro 17-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra9 285H Processor, NVIDIA RTX5050, Windows 11 Home, 32GB RAM, 2TB SSD, Black',
+      description: 'Ultra-lightweight 17-inch laptop with Intel Core Ultra9 285H processor, NVIDIA RTX5050 graphics, 32GB RAM, 2TB SSD, and Windows 11 Home. Perfect for professionals on the go.',
+      price: 2749,
+      originalPrice: 2749,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71rV1HbvkFL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/617zFnvYNlL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/711pbDS5ZNL._AC_SX679_.jpg', alt: 'LG gram Pro 17 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/711QUUUMl6L._AC_SX679_.jpg', alt: 'LG gram Pro 17 Display', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 8 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'ultra-lightweight', 'intel-evo', 'professional'],
+      affiliateUrl: 'https://amzn.to/4nm66bO'
+    },
+
+    // Product 7 Copy 1 - LG gram Pro 16-inch (Image 2 as primary)
+    {
+      _id: 'product-lg-gram-pro-16-copy1',
+      productNumber: 7,
+      name: 'LG gram Pro 16-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra7 258V Processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD - Metal Gray',
+      description: 'Lightweight 16-inch laptop with Intel Core Ultra7 258V processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD. Features AI-powered productivity and ultra-portable design.',
+      price: 1899,
+      originalPrice: 1899,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 11 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'lightweight', 'intel-evo', 'copilot', 'ai'],
+      affiliateUrl: 'https://amzn.to/3JpwHqm'
+    },
+
+    // Product 7 Copy 2 - LG gram Pro 16-inch (Image 3 as primary)
+    {
+      _id: 'product-lg-gram-pro-16-copy2',
+      productNumber: 7,
+      name: 'LG gram Pro 16-inch Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra7 258V Processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD - Metal Gray',
+      description: 'Lightweight 16-inch laptop with Intel Core Ultra7 258V processor, Copilot+ Windows 11 Home, 32GB RAM, 2TB SSD. Features AI-powered productivity and ultra-portable design.',
+      price: 1899,
+      originalPrice: 1899,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 11 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'LG',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lg', 'lightweight', 'intel-evo', 'copilot', 'ai'],
+      affiliateUrl: 'https://amzn.to/3JpwHqm'
+    },
+
+    // Product 8 Copy 1 - Lenovo IdeaPad 5X 2-in-1 Alternative (Image 2 as primary)
+    {
+      _id: 'product-lenovo-ideapad-5x-alt-copy1',
+      productNumber: 8,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 32,
+      originalPrice: 32,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41JdHKLzyYL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51i6xIBYPGL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 821 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/4hnxVii'
+    },
+
+    // Product 8 Copy 2 - Lenovo IdeaPad 5X 2-in-1 Alternative (Image 3 as primary)
+    {
+      _id: 'product-lenovo-ideapad-5x-alt-copy2',
+      productNumber: 8,
+      name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
+      description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
+      price: 32,
+      originalPrice: 32,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71yB66ZUE1L._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Touch', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41JdHKLzyYL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51i6xIBYPGL._AC_US40_.jpg', alt: 'Lenovo IdeaPad 5X Display', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 821 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Lenovo',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'lenovo', '2-in-1', 'touch', 'oled', 'snapdragon'],
+      affiliateUrl: 'https://amzn.to/4hnxVii'
+    },
+
+    // Product 9 Copy 1 - Bicycle Pump (Image 2 as primary)
+    {
+      _id: 'product-bicycle-pump-copy1',
+      productNumber: 9,
+      name: 'Bicycle Pump with Gauge, 3X Faster & Auto Stop & Brushless Motor, Electric Bike Tire Pump with Presta and Schrader Valve for Road Bike, MTB, Motorcycle, Ball,etc',
+      description: 'Electric bicycle pump with gauge, 3X faster pumping, auto-stop feature, and brushless motor. Compatible with Presta and Schrader valves for bikes, motorcycles, and balls.',
+      price: 49,
+      originalPrice: 49,
+      category: 'sports',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/91TYUM89NuL._AC_SX679_.jpg', alt: 'Bicycle Pump Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71xuypbqHRL._AC_SY300_SX300_QL70_FMwebp_.jpg', alt: 'Bicycle Pump Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/517IrjVMHZL._AC_US100_.jpg', alt: 'Bicycle Pump Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71S8sWIJXxL._AC_SX679_.jpg', alt: 'Bicycle Pump Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 662 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['sports', 'bicycle', 'pump', 'electric', 'gauge', 'auto-stop'],
+      affiliateUrl: 'https://amzn.to/4niaus3'
+    },
+
+    // Product 9 Copy 2 - Bicycle Pump (Image 3 as primary)
+    {
+      _id: 'product-bicycle-pump-copy2',
+      productNumber: 9,
+      name: 'Bicycle Pump with Gauge, 3X Faster & Auto Stop & Brushless Motor, Electric Bike Tire Pump with Presta and Schrader Valve for Road Bike, MTB, Motorcycle, Ball,etc',
+      description: 'Electric bicycle pump with gauge, 3X faster pumping, auto-stop feature, and brushless motor. Compatible with Presta and Schrader valves for bikes, motorcycles, and balls.',
+      price: 49,
+      originalPrice: 49,
+      category: 'sports',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/517IrjVMHZL._AC_US100_.jpg', alt: 'Bicycle Pump Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71xuypbqHRL._AC_SY300_SX300_QL70_FMwebp_.jpg', alt: 'Bicycle Pump Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/91TYUM89NuL._AC_SX679_.jpg', alt: 'Bicycle Pump Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71S8sWIJXxL._AC_SX679_.jpg', alt: 'Bicycle Pump Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 662 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['sports', 'bicycle', 'pump', 'electric', 'gauge', 'auto-stop'],
+      affiliateUrl: 'https://amzn.to/4niaus3'
+    },
+
+    // Product 10 Copy 1 - VOCH GALA Nipple Covers (Image 2 as primary)
+    {
+      _id: 'product-voch-gala-nipple-covers-copy1',
+      productNumber: 10,
+      name: 'VOCH GALA Nipple Covers 2 Pairs-Seamless and Sheer Adhesive Silicone Nipple Pasties for Women Reusable, Sticky Breast Petals',
+      description: 'Seamless and sheer adhesive silicone nipple covers for women. Reusable and sticky breast petals that provide comfort and coverage.',
+      price: 18.26,
+      originalPrice: 18.26,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Package', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4708 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'VOCH GALA',
+      inStock: true,
+      tags: ['fashion', 'women', 'underwear', 'silicone', 'adhesive', 'reusable'],
+      affiliateUrl: 'https://amzn.to/47hJsg1'
+    },
+
+    // Product 10 Copy 2 - VOCH GALA Nipple Covers (Image 3 as primary)
+    {
+      _id: 'product-voch-gala-nipple-covers-copy2',
+      productNumber: 10,
+      name: 'VOCH GALA Nipple Covers 2 Pairs-Seamless and Sheer Adhesive Silicone Nipple Pasties for Women Reusable, Sticky Breast Petals',
+      description: 'Seamless and sheer adhesive silicone nipple covers for women. Reusable and sticky breast petals that provide comfort and coverage.',
+      price: 18.26,
+      originalPrice: 18.26,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Package', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71F0imqAOCL._AC_SL1500_.jpg', alt: 'VOCH GALA Nipple Covers Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81-JmqabxbL._AC_SX679_.jpg', alt: 'VOCH GALA Nipple Covers Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 4708 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'VOCH GALA',
+      inStock: true,
+      tags: ['fashion', 'women', 'underwear', 'silicone', 'adhesive', 'reusable'],
+      affiliateUrl: 'https://amzn.to/47hJsg1'
+    },
+
+    // Product 11 Copy 1 - Popular Girls Padded Training Bra (Image 2 as primary)
+    {
+      _id: 'product-girls-training-bra-padded-copy1',
+      productNumber: 11,
+      name: 'Popular Girls Padded Training Bra Pack – Crop Cami Training Bras for Girls. Seamless Bra Design with Removable Padding',
+      description: 'Training bra pack for girls with seamless design and removable padding. Crop cami style training bras perfect for young girls.',
+      price: 26.99,
+      originalPrice: 26.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 4306 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'padded', 'seamless', 'removable-padding'],
+      affiliateUrl: 'https://amzn.to/3Jbj26h'
+    },
+
+    // Product 11 Copy 2 - Popular Girls Padded Training Bra (Image 3 as primary)
+    {
+      _id: 'product-girls-training-bra-padded-copy2',
+      productNumber: 11,
+      name: 'Popular Girls Padded Training Bra Pack – Crop Cami Training Bras for Girls. Seamless Bra Design with Removable Padding',
+      description: 'Training bra pack for girls with seamless design and removable padding. Crop cami style training bras perfect for young girls.',
+      price: 26.99,
+      originalPrice: 26.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 4306 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'padded', 'seamless', 'removable-padding'],
+      affiliateUrl: 'https://amzn.to/3Jbj26h'
+    },
+
+    // Product 12 Copy 1 - Popular Cotton Girls Training Bra (Image 2 as primary)
+    {
+      _id: 'product-girls-cotton-training-bra-copy1',
+      productNumber: 12,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.99,
+      originalPrice: 16.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14889 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/47nP1s2'
+    },
+
+    // Product 12 Copy 2 - Popular Cotton Girls Training Bra (Image 3 as primary)
+    {
+      _id: 'product-girls-cotton-training-bra-copy2',
+      productNumber: 12,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.99,
+      originalPrice: 16.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14889 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/47nP1s2'
+    },
+
+    // Product 13 Copy 1 - Hilarious Jokes For 8 Year Old Kids (Image 2 as primary)
+    {
+      _id: 'product-hilarious-jokes-book-copy1',
+      productNumber: 13,
+      name: 'Hilarious Jokes For 8 Year Old Kids: An Awesome LOL Gag Book For Young Boys and Girls Filled With Tons of Tongue Twisters, Rib Ticklers, Side Splitters, and Knock Knocks',
+      description: 'Fun joke book for 8-year-old kids filled with hilarious jokes, tongue twisters, rib ticklers, side splitters, and knock-knock jokes. Perfect for young boys and girls.',
+      price: 9.99,
+      originalPrice: 9.99,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61VIlVlVaRL.jpg', alt: 'Jokes Book Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71aoNAbO9SL._SL1499_.jpg', alt: 'Jokes Book Cover', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2867 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['books', 'children', 'jokes', 'humor', 'tongue-twisters', 'knock-knock'],
+      affiliateUrl: 'https://amzn.to/4nhEJ2p'
+    },
+
+    // Product 13 Copy 2 - Hilarious Jokes For 8 Year Old Kids (Image 3 as primary)
+    {
+      _id: 'product-hilarious-jokes-book-copy2',
+      productNumber: 13,
+      name: 'Hilarious Jokes For 8 Year Old Kids: An Awesome LOL Gag Book For Young Boys and Girls Filled With Tons of Tongue Twisters, Rib Ticklers, Side Splitters, and Knock Knocks',
+      description: 'Fun joke book for 8-year-old kids filled with hilarious jokes, tongue twisters, rib ticklers, side splitters, and knock-knock jokes. Perfect for young boys and girls.',
+      price: 9.99,
+      originalPrice: 9.99,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71aoNAbO9SL._SL1500_.jpg', alt: 'Jokes Book Cover Large', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71aoNAbO9SL._SL1499_.jpg', alt: 'Jokes Book Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61VIlVlVaRL.jpg', alt: 'Jokes Book Pages', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2867 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['books', 'children', 'jokes', 'humor', 'tongue-twisters', 'knock-knock'],
+      affiliateUrl: 'https://amzn.to/4nhEJ2p'
+    },
+
+    // Product 14 Copy 1 - Popular Girl's Bandeau Bra (Image 2 as primary)
+    {
+      _id: 'product-girls-bandeau-bra-copy1',
+      productNumber: 14,
+      name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
+      description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81XuvePYEFL._AC_SX679_.jpg', alt: 'Bandeau Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81XmFVfF69L._AC_SY879_.jpg', alt: 'Bandeau Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81VWc3DgAPL._AC_SX679_.jpg', alt: 'Bandeau Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81cbJ-izFTL._AC_SX679_.jpg', alt: 'Bandeau Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 1181 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'bandeau-bra', 'strapless', 'removable-padding', 'seamless'],
+      affiliateUrl: 'https://amzn.to/4hmNg2E'
+    },
+
+    // Product 14 Copy 2 - Popular Girl's Bandeau Bra (Image 3 as primary)
+    {
+      _id: 'product-girls-bandeau-bra-copy2',
+      productNumber: 14,
+      name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
+      description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81VWc3DgAPL._AC_SX679_.jpg', alt: 'Bandeau Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81XmFVfF69L._AC_SY879_.jpg', alt: 'Bandeau Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81XuvePYEFL._AC_SX679_.jpg', alt: 'Bandeau Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81cbJ-izFTL._AC_SX679_.jpg', alt: 'Bandeau Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 1181 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'bandeau-bra', 'strapless', 'removable-padding', 'seamless'],
+      affiliateUrl: 'https://amzn.to/4hmNg2E'
+    },
+
+    // Product 15 Copy 1 - Popular Cotton Girls Training Bra Alternative (Image 2 as primary)
+    {
+      _id: 'product-girls-cotton-training-bra-alt-copy1',
+      productNumber: 15,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.98,
+      originalPrice: 16.98,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14832 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/4npeBCF'
+    },
+
+    // Product 15 Copy 2 - Popular Cotton Girls Training Bra Alternative (Image 3 as primary)
+    {
+      _id: 'product-girls-cotton-training-bra-alt-copy2',
+      productNumber: 15,
+      name: 'Popular Cotton Girls Training Bra - Crop Cami Training Bras for Girls with Adjustable Straps. Cotton Bra Pack.',
+      description: 'Cotton training bra for girls with adjustable straps. Crop cami style training bras made from comfortable cotton material.',
+      price: 16.98,
+      originalPrice: 16.98,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 14832 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'girls', 'training-bra', 'cotton', 'adjustable-straps', 'comfortable'],
+      affiliateUrl: 'https://amzn.to/4npeBCF'
+    },
+
+    // Product 16 Copy 1 - Popular Womens Bike Shorts (Image 2 as primary)
+    {
+      _id: 'product-womens-bike-shorts-copy1',
+      productNumber: 16,
+      name: 'Popular Womens Bike Shorts Plus Size - Cotton Biker Bottoms. Bermuda Long Shorts for Women. Great Gym, Workout & Yoga',
+      description: 'Plus size bike shorts for women made from cotton. Bermuda long shorts perfect for gym, workout, and yoga activities.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2144 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'women', 'bike-shorts', 'plus-size', 'cotton', 'workout', 'yoga'],
+      affiliateUrl: 'https://amzn.to/48H5TfB'
+    },
+
+    // Product 16 Copy 2 - Popular Womens Bike Shorts (Image 3 as primary)
+    {
+      _id: 'product-womens-bike-shorts-copy2',
+      productNumber: 16,
+      name: 'Popular Womens Bike Shorts Plus Size - Cotton Biker Bottoms. Bermuda Long Shorts for Women. Great Gym, Workout & Yoga',
+      description: 'Plus size bike shorts for women made from cotton. Bermuda long shorts perfect for gym, workout, and yoga activities.',
+      price: 14.99,
+      originalPrice: 14.99,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 2144 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Popular',
+      inStock: true,
+      tags: ['fashion', 'women', 'bike-shorts', 'plus-size', 'cotton', 'workout', 'yoga'],
+      affiliateUrl: 'https://amzn.to/48H5TfB'
+    },
+
+    // Product 17 Copy 1 - Mouse Jiggler Mover (Image 2 as primary)
+    {
+      _id: 'product-mouse-jiggler-copy1',
+      productNumber: 17,
+      name: 'Mouse Jiggler Mover Wiggler Undetectable Shaker USB Port for Computer Laptop, Keeps PC Awake, Simulate Movement to Prevent Laptop Entering Sleep, No Software Plug-and-Play',
+      description: 'USB mouse jiggler that keeps your computer awake by simulating mouse movement. Undetectable shaker prevents laptop from entering sleep mode. No software required, plug-and-play.',
+      price: 6.99,
+      originalPrice: 6.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61OWkA9Wl9L._AC_SL1500_.jpg', alt: 'Mouse Jiggler Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61AUhToZptL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71U+2I8UDCL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71I5iqYbwfL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 5269 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'computer', 'mouse-jiggler', 'usb', 'plug-and-play', 'productivity'],
+      affiliateUrl: 'https://amzn.to/4qssfb8'
+    },
+
+    // Product 17 Copy 2 - Mouse Jiggler Mover (Image 3 as primary)
+    {
+      _id: 'product-mouse-jiggler-copy2',
+      productNumber: 17,
+      name: 'Mouse Jiggler Mover Wiggler Undetectable Shaker USB Port for Computer Laptop, Keeps PC Awake, Simulate Movement to Prevent Laptop Entering Sleep, No Software Plug-and-Play',
+      description: 'USB mouse jiggler that keeps your computer awake by simulating mouse movement. Undetectable shaker prevents laptop from entering sleep mode. No software required, plug-and-play.',
+      price: 6.99,
+      originalPrice: 6.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71U+2I8UDCL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61AUhToZptL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61OWkA9Wl9L._AC_SL1500_.jpg', alt: 'Mouse Jiggler Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71I5iqYbwfL._AC_SL1500_.jpg', alt: 'Mouse Jiggler Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 5269 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'computer', 'mouse-jiggler', 'usb', 'plug-and-play', 'productivity'],
+      affiliateUrl: 'https://amzn.to/4qssfb8'
+    },
+
+    // Product 18 Copy 1 - LISEN Retractable Car Charger (Image 2 as primary)
+    {
+      _id: 'product-lisen-car-charger-copy1',
+      productNumber: 18,
+      name: 'LISEN Retractable Car Charger, 69W Cars Adapter USB C Fast Charger, Car Accessories for Women Men, Christmas for Gifts for Dad Mom, Gifts for Women Men, for iPhone 17 Pro Max Air 16 15 14 13 Plus',
+      description: '69W retractable car charger with USB-C fast charging. Compatible with iPhone 17 Pro Max, Air, 16, 15, 14, 13 Plus. Perfect gift for men and women.',
+      price: 16.99,
+      originalPrice: 29.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61TNXDLQlqL._AC_SL1500_.jpg', alt: 'Car Charger Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71Ryl5xKbuL._AC_SL1500_.jpg', alt: 'Car Charger Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/713wm1uB5nL._AC_SL1500_.jpg', alt: 'Car Charger Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zNi1-2V0L._AC_SL1500_.jpg', alt: 'Car Charger Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 12113 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'LISEN',
+      inStock: true,
+      tags: ['electronics', 'car-charger', 'usb-c', 'fast-charging', 'retractable', 'gift'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 18 Copy 2 - LISEN Retractable Car Charger (Image 3 as primary)
+    {
+      _id: 'product-lisen-car-charger-copy2',
+      productNumber: 18,
+      name: 'LISEN Retractable Car Charger, 69W Cars Adapter USB C Fast Charger, Car Accessories for Women Men, Christmas for Gifts for Dad Mom, Gifts for Women Men, for iPhone 17 Pro Max Air 16 15 14 13 Plus',
+      description: '69W retractable car charger with USB-C fast charging. Compatible with iPhone 17 Pro Max, Air, 16, 15, 14, 13 Plus. Perfect gift for men and women.',
+      price: 16.99,
+      originalPrice: 29.99,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/713wm1uB5nL._AC_SL1500_.jpg', alt: 'Car Charger Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71Ryl5xKbuL._AC_SL1500_.jpg', alt: 'Car Charger Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61TNXDLQlqL._AC_SL1500_.jpg', alt: 'Car Charger Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zNi1-2V0L._AC_SL1500_.jpg', alt: 'Car Charger Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 12113 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'LISEN',
+      inStock: true,
+      tags: ['electronics', 'car-charger', 'usb-c', 'fast-charging', 'retractable', 'gift'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 19 Copy 1 - The Very Hungry Caterpillar (Image 2 as primary)
+    {
+      _id: 'product-very-hungry-caterpillar-copy1',
+      productNumber: 19,
+      name: 'The Very Hungry Caterpillar',
+      description: 'Classic children\'s book "The Very Hungry Caterpillar" by Eric Carle. A beloved story about a caterpillar\'s transformation into a beautiful butterfly.',
+      price: 4.61,
+      originalPrice: 4.61,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SL1500_.jpg', alt: 'Very Hungry Caterpillar Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SX445_.jpg', alt: 'Very Hungry Caterpillar Cover', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 77761 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Eric Carle',
+      inStock: true,
+      tags: ['books', 'children', 'classic', 'picture-book', 'caterpillar', 'butterfly'],
+      affiliateUrl: 'https://amzn.to/47Ga3TR'
+    },
+
+    // Product 19 Copy 2 - The Very Hungry Caterpillar (Image 3 as primary)
+    {
+      _id: 'product-very-hungry-caterpillar-copy2',
+      productNumber: 19,
+      name: 'The Very Hungry Caterpillar',
+      description: 'Classic children\'s book "The Very Hungry Caterpillar" by Eric Carle. A beloved story about a caterpillar\'s transformation into a beautiful butterfly.',
+      price: 4.61,
+      originalPrice: 4.61,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SX445_.jpg', alt: 'Very Hungry Caterpillar Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81qsstEtrgL._SL1500_.jpg', alt: 'Very Hungry Caterpillar Pages', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 77761 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Eric Carle',
+      inStock: true,
+      tags: ['books', 'children', 'classic', 'picture-book', 'caterpillar', 'butterfly'],
+      affiliateUrl: 'https://amzn.to/47Ga3TR'
+    },
+
+    // Product 20 Copy 1 - Chicka Chicka Boom Boom (Image 2 as primary)
+    {
+      _id: 'product-chicka-chicka-boom-boom-copy1',
+      productNumber: 20,
+      name: 'Chicka Chicka Boom Boom (Board Book)',
+      description: 'Classic children\'s book "Chicka Chicka Boom Boom" in board book format. A fun alphabet story that teaches letters through rhythm and rhyme.',
+      price: 4.17,
+      originalPrice: 8.00,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71gZVUYGHdL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71gilMPLAHL._SY522_.jpg', alt: 'Chicka Chicka Boom Boom Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61G30iYlguL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61rHuppIU3L._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 40937 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'alphabet', 'board-book', 'rhythm', 'rhyme'],
+      affiliateUrl: 'https://amzn.to/49ib2L9'
+    },
+
+    // Product 20 Copy 2 - Chicka Chicka Boom Boom (Image 3 as primary)
+    {
+      _id: 'product-chicka-chicka-boom-boom-copy2',
+      productNumber: 20,
+      name: 'Chicka Chicka Boom Boom (Board Book)',
+      description: 'Classic children\'s book "Chicka Chicka Boom Boom" in board book format. A fun alphabet story that teaches letters through rhythm and rhyme.',
+      price: 4.17,
+      originalPrice: 8.00,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61G30iYlguL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71gilMPLAHL._SY522_.jpg', alt: 'Chicka Chicka Boom Boom Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71gZVUYGHdL._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61rHuppIU3L._SL1500_.jpg', alt: 'Chicka Chicka Boom Boom Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 40937 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'alphabet', 'board-book', 'rhythm', 'rhyme'],
+      affiliateUrl: 'https://amzn.to/49ib2L9'
+    },
+
+    // Product 21 Copy 1 - Brown Bear, Brown Bear, What Do You See? (Image 2 as primary)
+    {
+      _id: 'product-brown-bear-brown-bear-copy1',
+      productNumber: 21,
+      name: 'Brown Bear, Brown Bear, What Do You See?',
+      description: 'Classic children\'s book "Brown Bear, Brown Bear, What Do You See?" by Bill Martin Jr. and Eric Carle. A beloved story that teaches colors and animals.',
+      price: 4.82,
+      originalPrice: 9.64,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81Aot5wdfML._SL1500_.jpg', alt: 'Brown Bear Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81kZ3Gl3WKL._SL1500_.jpg', alt: 'Brown Bear Cover', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 55224 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'colors', 'animals', 'classic', 'picture-book'],
+      affiliateUrl: 'https://amzn.to/49hYLX8'
+    },
+
+    // Product 21 Copy 2 - Brown Bear, Brown Bear, What Do You See? (Image 3 as primary)
+    {
+      _id: 'product-brown-bear-brown-bear-copy2',
+      productNumber: 21,
+      name: 'Brown Bear, Brown Bear, What Do You See?',
+      description: 'Classic children\'s book "Brown Bear, Brown Bear, What Do You See?" by Bill Martin Jr. and Eric Carle. A beloved story that teaches colors and animals.',
+      price: 4.82,
+      originalPrice: 9.64,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81kZ3Gl3WKL._SL1500_.jpg', alt: 'Brown Bear Cover', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81Aot5wdfML._SL1500_.jpg', alt: 'Brown Bear Pages', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 55224 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Bill Martin Jr.',
+      inStock: true,
+      tags: ['books', 'children', 'colors', 'animals', 'classic', 'picture-book'],
+      affiliateUrl: 'https://amzn.to/49hYLX8'
+    },
+
+    // Product 22 Copy 1 - I Love You to the Moon and Back (Image 2 as primary)
+    {
+      _id: 'product-love-you-moon-back-copy1',
+      productNumber: 22,
+      name: 'I Love You to the Moon and Back',
+      description: 'Heartwarming children\'s book "I Love You to the Moon and Back" that expresses the depth of a parent\'s love for their child. A perfect bedtime story.',
+      price: 3.97,
+      originalPrice: 7.94,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71rkrN8ulXL._SL1500_.jpg', alt: 'Love You Moon Back Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81D8qaGlTVL._SL1500_.jpg', alt: 'Love You Moon Back Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/818QZeo8s+L._SL1500_.jpg', alt: 'Love You Moon Back Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/9168cMVcNBL._SL1500_.jpg', alt: 'Love You Moon Back Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 79128 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Amelia Hepworth',
+      inStock: true,
+      tags: ['books', 'children', 'love', 'bedtime-story', 'parent-child', 'heartwarming'],
+      affiliateUrl: 'https://amzn.to/493Lx0n'
+    },
+
+    // Product 22 Copy 2 - I Love You to the Moon and Back (Image 3 as primary)
+    {
+      _id: 'product-love-you-moon-back-copy2',
+      productNumber: 22,
+      name: 'I Love You to the Moon and Back',
+      description: 'Heartwarming children\'s book "I Love You to the Moon and Back" that expresses the depth of a parent\'s love for their child. A perfect bedtime story.',
+      price: 3.97,
+      originalPrice: 7.94,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/818QZeo8s+L._SL1500_.jpg', alt: 'Love You Moon Back Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81D8qaGlTVL._SL1500_.jpg', alt: 'Love You Moon Back Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71rkrN8ulXL._SL1500_.jpg', alt: 'Love You Moon Back Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/9168cMVcNBL._SL1500_.jpg', alt: 'Love You Moon Back Back', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 79128 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Amelia Hepworth',
+      inStock: true,
+      tags: ['books', 'children', 'love', 'bedtime-story', 'parent-child', 'heartwarming'],
+      affiliateUrl: 'https://amzn.to/493Lx0n'
+    },
+
+    // Product 23 Copy 1 - The Going To Bed Book (Image 2 as primary)
+    {
+      _id: 'product-going-to-bed-book-copy1',
+      productNumber: 23,
+      name: 'The Going To Bed Book',
+      description: 'Classic bedtime book "The Going To Bed Book" by Sandra Boynton. A gentle story that helps children wind down and prepare for sleep.',
+      price: 3.86,
+      originalPrice: 7.72,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71yRyF+25LL._SL1400_.jpg', alt: 'Going To Bed Book Pages', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71FVbHHW+AL._SL1400_.jpg', alt: 'Going To Bed Book Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71L7jgM-CFL._SL1500_.jpg', alt: 'Going To Bed Book Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/715f0EUccwL._SL1400_.jpg', alt: 'Going To Bed Book Back', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 19233 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Sandra Boynton',
+      inStock: true,
+      tags: ['books', 'children', 'bedtime', 'sleep', 'gentle', 'wind-down'],
+      affiliateUrl: 'https://amzn.to/49kyJTb'
+    },
+
+    // Product 23 Copy 2 - The Going To Bed Book (Image 3 as primary)
+    {
+      _id: 'product-going-to-bed-book-copy2',
+      productNumber: 23,
+      name: 'The Going To Bed Book',
+      description: 'Classic bedtime book "The Going To Bed Book" by Sandra Boynton. A gentle story that helps children wind down and prepare for sleep.',
+      price: 3.86,
+      originalPrice: 7.72,
+      category: 'books',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71L7jgM-CFL._SL1500_.jpg', alt: 'Going To Bed Book Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71FVbHHW+AL._SL1400_.jpg', alt: 'Going To Bed Book Cover', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yRyF+25LL._SL1400_.jpg', alt: 'Going To Bed Book Pages', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/715f0EUccwL._SL1400_.jpg', alt: 'Going To Bed Book Back', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 19233 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Sandra Boynton',
+      inStock: true,
+      tags: ['books', 'children', 'bedtime', 'sleep', 'gentle', 'wind-down'],
+      affiliateUrl: 'https://amzn.to/49kyJTb'
+    },
+
+    // Product 24 Copy 1 - 16 inch Screen Magnifier (Image 2 as primary)
+    {
+      _id: 'product-screen-magnifier-copy1',
+      productNumber: 24,
+      name: '16 inch Screen Magnifier for Cell Phone 3D Magnifier Screen Enlarger for Movies,Videos,Reading,Gaming-Screen Amplifie with Foldable Phone Stand Holder. Compatible with All Smartphones-White',
+      description: '16-inch screen magnifier for cell phones with 3D magnifier screen enlarger. Perfect for movies, videos, reading, and gaming. Includes foldable phone stand holder, compatible with all smartphones.',
+      price: 23.20,
+      originalPrice: 23.20,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/714SzEeeoLL._AC_SL1500_.jpg', alt: 'Screen Magnifier Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71LK-Fd3t6L._AC_SX679_.jpg', alt: 'Screen Magnifier Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71SPpqk+Q7L._AC_SL1500_.jpg', alt: 'Screen Magnifier Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71t5PNrKbKL._AC_SL1500_.jpg', alt: 'Screen Magnifier Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 577 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'screen-magnifier', 'phone-accessory', '3d', 'foldable', 'stand'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 24 Copy 2 - 16 inch Screen Magnifier (Image 3 as primary)
+    {
+      _id: 'product-screen-magnifier-copy2',
+      productNumber: 24,
+      name: '16 inch Screen Magnifier for Cell Phone 3D Magnifier Screen Enlarger for Movies,Videos,Reading,Gaming-Screen Amplifie with Foldable Phone Stand Holder. Compatible with All Smartphones-White',
+      description: '16-inch screen magnifier for cell phones with 3D magnifier screen enlarger. Perfect for movies, videos, reading, and gaming. Includes foldable phone stand holder, compatible with all smartphones.',
+      price: 23.20,
+      originalPrice: 23.20,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71SPpqk+Q7L._AC_SL1500_.jpg', alt: 'Screen Magnifier Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71LK-Fd3t6L._AC_SX679_.jpg', alt: 'Screen Magnifier Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/714SzEeeoLL._AC_SL1500_.jpg', alt: 'Screen Magnifier Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71t5PNrKbKL._AC_SL1500_.jpg', alt: 'Screen Magnifier Usage', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 577 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['electronics', 'screen-magnifier', 'phone-accessory', '3d', 'foldable', 'stand'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 25 Copy 1 - Bitzee Interactive Toy (Image 2 as primary)
+    {
+      _id: 'product-bitzee-interactive-toy-copy1',
+      productNumber: 25,
+      name: 'Bitzee, Interactive Toy Digital Pet with 15 Animals Inside, Virtual Electronic Pets React to Touch, Kids Toys for Girls and Boys',
+      description: 'Interactive digital pet toy with 15 different animals inside. Virtual electronic pets that react to touch. Perfect toy for girls and boys.',
+      price: 36.99,
+      originalPrice: 36.99,
+      category: 'toys',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81t89hgKo6L._AC_SL1500_.jpg', alt: 'Bitzee Toy Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/716BajcQptL._AC_SL1500_.jpg', alt: 'Bitzee Toy Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81gpb4CEjBL._AC_SL1500_.jpg', alt: 'Bitzee Toy Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81q8fU6oQgL._AC_SL1500_.jpg', alt: 'Bitzee Toy Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 8117 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Bitzee',
+      inStock: true,
+      tags: ['toys', 'interactive', 'digital-pet', 'electronic', 'touch-reactive', 'children'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 25 Copy 2 - Bitzee Interactive Toy (Image 3 as primary)
+    {
+      _id: 'product-bitzee-interactive-toy-copy2',
+      productNumber: 25,
+      name: 'Bitzee, Interactive Toy Digital Pet with 15 Animals Inside, Virtual Electronic Pets React to Touch, Kids Toys for Girls and Boys',
+      description: 'Interactive digital pet toy with 15 different animals inside. Virtual electronic pets that react to touch. Perfect toy for girls and boys.',
+      price: 36.99,
+      originalPrice: 36.99,
+      category: 'toys',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81gpb4CEjBL._AC_SL1500_.jpg', alt: 'Bitzee Toy Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/716BajcQptL._AC_SL1500_.jpg', alt: 'Bitzee Toy Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81t89hgKo6L._AC_SL1500_.jpg', alt: 'Bitzee Toy Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81q8fU6oQgL._AC_SL1500_.jpg', alt: 'Bitzee Toy Usage', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 8117 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Bitzee',
+      inStock: true,
+      tags: ['toys', 'interactive', 'digital-pet', 'electronic', 'touch-reactive', 'children'],
+      affiliateUrl: 'https://amzn.to/4nrC9XR'
+    },
+
+    // Product 26 Copy 1 - JBL Clip 4 Bluetooth Speaker (Image 2 as primary)
+    {
+      _id: 'product-jbl-clip-4-speaker-copy1',
+      productNumber: 26,
+      name: 'JBL Clip 4 - Portable Mini Bluetooth Speaker, big audio and punchy bass, integrated carabiner, IP67 waterproof and dustproof, 10 hours of playtime, speaker for home, outdoor and travel (Black)',
+      description: 'Portable mini Bluetooth speaker with big audio and punchy bass. Features integrated carabiner, IP67 waterproof and dustproof rating, 10 hours of playtime. Perfect for home, outdoor, and travel.',
+      price: 46.95,
+      originalPrice: 46.95,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71AC7CR3MDL._AC_SL1200_.jpg', alt: 'JBL Clip 4 Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/712bkrVtjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/710tqtuNjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81y2odwsmSL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 34039 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'JBL',
+      inStock: true,
+      tags: ['electronics', 'bluetooth-speaker', 'portable', 'waterproof', 'carabiner', 'travel'],
+      affiliateUrl: 'https://amzn.to/42URtEV'
+    },
+
+    // Product 26 Copy 2 - JBL Clip 4 Bluetooth Speaker (Image 3 as primary)
+    {
+      _id: 'product-jbl-clip-4-speaker-copy2',
+      productNumber: 26,
+      name: 'JBL Clip 4 - Portable Mini Bluetooth Speaker, big audio and punchy bass, integrated carabiner, IP67 waterproof and dustproof, 10 hours of playtime, speaker for home, outdoor and travel (Black)',
+      description: 'Portable mini Bluetooth speaker with big audio and punchy bass. Features integrated carabiner, IP67 waterproof and dustproof rating, 10 hours of playtime. Perfect for home, outdoor, and travel.',
+      price: 46.95,
+      originalPrice: 46.95,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/710tqtuNjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/712bkrVtjHL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71AC7CR3MDL._AC_SL1200_.jpg', alt: 'JBL Clip 4 Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/81y2odwsmSL._AC_SL1500_.jpg', alt: 'JBL Clip 4 Usage', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 34039 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'JBL',
+      inStock: true,
+      tags: ['electronics', 'bluetooth-speaker', 'portable', 'waterproof', 'carabiner', 'travel'],
+      affiliateUrl: 'https://amzn.to/42URtEV'
+    },
+
+    // Product 27 Copy 1 - Samsung Galaxy Watch Ultra (Image 2 as primary)
+    {
+      _id: 'product-samsung-galaxy-watch-ultra-copy1',
+      productNumber: 27,
+      name: 'Samsung Galaxy Watch Ultra (2024) 47mm LTE AI Smartwatch w/Energy Score, Wellness Tips, Heart Rate Tracking, Sleep Monitor, Fitness Tracker, GPS,Titanium Silver [US Version, 1Yr Manufacturer Warranty]',
+      description: 'Samsung Galaxy Watch Ultra 47mm LTE AI smartwatch with energy score, wellness tips, heart rate tracking, sleep monitoring, fitness tracking, and GPS. Titanium silver with 1-year manufacturer warranty.',
+      price: 449,
+      originalPrice: 449,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71LYrwpBxPL._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/817QHxxq34L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61WGpLzX--L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Detail', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 817 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Samsung',
+      inStock: true,
+      tags: ['electronics', 'smartwatch', 'samsung', 'galaxy-watch', 'fitness-tracker', 'gps', 'lte'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 27 Copy 2 - Samsung Galaxy Watch Ultra (Image 3 as primary)
+    {
+      _id: 'product-samsung-galaxy-watch-ultra-copy2',
+      productNumber: 27,
+      name: 'Samsung Galaxy Watch Ultra (2024) 47mm LTE AI Smartwatch w/Energy Score, Wellness Tips, Heart Rate Tracking, Sleep Monitor, Fitness Tracker, GPS,Titanium Silver [US Version, 1Yr Manufacturer Warranty]',
+      description: 'Samsung Galaxy Watch Ultra 47mm LTE AI smartwatch with energy score, wellness tips, heart rate tracking, sleep monitoring, fitness tracking, and GPS. Titanium silver with 1-year manufacturer warranty.',
+      price: 449,
+      originalPrice: 449,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61WGpLzX--L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/817QHxxq34L._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71LYrwpBxPL._AC_SL1500_.jpg', alt: 'Samsung Galaxy Watch Ultra Side', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 817 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Samsung',
+      inStock: true,
+      tags: ['electronics', 'smartwatch', 'samsung', 'galaxy-watch', 'fitness-tracker', 'gps', 'lte'],
+      affiliateUrl: 'https://amzn.to/4qrVRFw'
+    },
+
+    // Product 1 Copy 1 - DreamQuest Support Windows Computers (Image 2 as primary)
+    {
+      _id: 'product-1-copy1',
+      productNumber: 1,
+      name: 'DreamQuest Support Windows Computers Bluetooth5-3',
+      description: 'High-performance computer support system with Bluetooth 5.3 connectivity for Windows computers.',
+      price: 0,
+      originalPrice: 0,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/714MXVDkijL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 0 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'DreamQuest',
+      inStock: true,
+      tags: ['electronics', 'computer', 'support', 'bluetooth'],
+      affiliateUrl: 'https://amzn.to/478mN4d'
+    },
+
+    // Product 1 Copy 2 - DreamQuest Support Windows Computers (Image 3 as primary)
+    {
+      _id: 'product-1-copy2',
+      productNumber: 1,
+      name: 'DreamQuest Support Windows Computers Bluetooth5-3',
+      description: 'High-performance computer support system with Bluetooth 5.3 connectivity for Windows computers.',
+      price: 0,
+      originalPrice: 0,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/714MXVDkijL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support Detail', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 0 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'DreamQuest',
+      inStock: true,
+      tags: ['electronics', 'computer', 'support', 'bluetooth'],
+      affiliateUrl: 'https://amzn.to/478mN4d'
+    },
+
+    // Product 2 Copy 1 - Huidun Laptops Computer Business (Image 2 as primary)
+    {
+      _id: 'product-2-copy1',
+      productNumber: 2,
+      name: 'Huidun Laptops Computer Business Quad-Core',
+      description: 'Business laptop with quad-core processor for professional computing needs.',
+      price: 0,
+      originalPrice: 0,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71TlVU8NwVL._AC_SL1500_.jpg', alt: 'Huidun Laptop Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71lIO9V46sL._AC_SL1500_.jpg', alt: 'Huidun Laptop', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71IKXFXwibL._AC_SL1500_.jpg', alt: 'Huidun Laptop Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71tzRV8BBkL._AC_SL1500_.jpg', alt: 'Huidun Laptop Screen', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 0 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Huidun',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'business', 'quad-core'],
+      affiliateUrl: 'https://www.amazon.com/Huidun-Laptops-Computer-Business-Quad-Core/dp/B0FBRP3VG8?crid=3AVKTSZ7HOQRK&dib=eyJ2IjoiMSJ9.HbzpBJ1F9FbiB-b7h_UTNVFelnWTuV0A-sIGYuScf2Ew7IKbHV_W_JOkx19n886qH8UxNOWPMRel-mChaetRjYt4NFkX3xDT-J4mOqLYMVMBweDxCvq84V1HJkwWG99OyU8IvxQhzn6z0aN515WCKuZOmiHAnWQBe2ZzSFCa3ASFZWQ9kVpe1To-xy09mIOxzNvK9GvXSM5bfx_-FXnHnQIophsq-u_yvRtIdehzLyo.vOe6OglW_9MsyMquBRev9P15iS4usBIFQ_36X10rd7Q&dib_tag=se&keywords=computer&qid=1760758080&sprefix=computer%2Caps%2C342&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&linkCode=ll1&tag=adsmarket08-20&linkId=fc7ee0b405f96fe2d78b5292a3c44553&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 2 Copy 2 - Huidun Laptops Computer Business (Image 3 as primary)
+    {
+      _id: 'product-2-copy2',
+      productNumber: 2,
+      name: 'Huidun Laptops Computer Business Quad-Core',
+      description: 'Business laptop with quad-core processor for professional computing needs.',
+      price: 0,
+      originalPrice: 0,
+      category: 'electronics',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71IKXFXwibL._AC_SL1500_.jpg', alt: 'Huidun Laptop Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71lIO9V46sL._AC_SL1500_.jpg', alt: 'Huidun Laptop', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71TlVU8NwVL._AC_SL1500_.jpg', alt: 'Huidun Laptop Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71tzRV8BBkL._AC_SL1500_.jpg', alt: 'Huidun Laptop Screen', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 0 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Huidun',
+      inStock: true,
+      tags: ['electronics', 'laptop', 'business', 'quad-core'],
+      affiliateUrl: 'https://www.amazon.com/Huidun-Laptops-Computer-Business-Quad-Core/dp/B0FBRP3VG8?crid=3AVKTSZ7HOQRK&dib=eyJ2IjoiMSJ9.HbzpBJ1F9FbiB-b7h_UTNVFelnWTuV0A-sIGYuScf2Ew7IKbHV_W_JOkx19n886qH8UxNOWPMRel-mChaetRjYt4NFkX3xDT-J4mOqLYMVMBweDxCvq84V1HJkwWG99OyU8IvxQhzn6z0aN515WCKuZOmiHAnWQBe2ZzSFCa3ASFZWQ9kVpe1To-xy09mIOxzNvK9GvXSM5bfx_-FXnHnQIophsq-u_yvRtIdehzLyo.vOe6OglW_9MsyMquBRev9P15iS4usBIFQ_36X10rd7Q&dib_tag=se&keywords=computer&qid=1760758080&sprefix=computer%2Caps%2C342&sr=8-2-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1&linkCode=ll1&tag=adsmarket08-20&linkId=fc7ee0b405f96fe2d78b5292a3c44553&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 3 Copy 1 - Cordless Robotic Pool Cleaner (Image 2 as primary)
+    {
+      _id: 'product-3-copy1',
+      productNumber: 3,
+      name: 'Cordless Robotic Pool Cleaner – 150 Mins Runtime, IPX8 Waterproof, 2200 Sq Ft Coverage, Powerful Automatic Pool Vacuum Robot for In-Ground & Above-Ground Pools, Quick Charging, Dual Brushes',
+      description: 'Advanced cordless robotic pool cleaner with 150 minutes runtime and IPX8 waterproof rating for complete pool maintenance.',
+      price: 0,
+      originalPrice: 0,
+      category: 'home',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71NihcTbfVL._AC_SL1500_.jpg', alt: 'Pool Cleaner Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71cdqL6rWjL._AC_SL1500_.jpg', alt: 'Robotic Pool Cleaner', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71FpAA3YvBL._AC_SL1500_.jpg', alt: 'Pool Cleaner Brushes', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/7137SMAraHL._AC_SL1500_.jpg', alt: 'Pool Cleaner Charging', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 345 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['home', 'pool', 'cleaner', 'robotic'],
+      affiliateUrl: 'https://www.amazon.com/Cordless-Robotic-Pool-Cleaner-Ground/dp/B0FK4FKWPZ?crid=1GH011HVF49PQ&dib=eyJ2IjoiMSJ9.1Ig_2kXfg5Q-FozjHXWToPgDzSRJjOoEOcKxytOHSpfwoRvfFZP-lWYkQ4Mgr_CpsZ4xGi_UQseZb176SoWr_1fSZGueHyJI7H9KtuvP_mRTd1hEi2laSBXlK_UjlOdNMp0zQsd1dpiGZUJPm9xZj2Y53GmkGUuAt79CMZyWHQNiPK7836I_m0o-3IWki2LgqOFWyqvdC7rfmmq67TdwsP3H-RRGUykHK3Ml28s_FC0.N9R0ipNb_8ZVhwRCmgfSnuPoo35SFHxPBXTnnrje3LY&dib_tag=se&keywords=robot+piscina&qid=1760796004&sprefix=robot+piscina%2Caps%2C330&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1&linkCode=ll1&tag=adsmarket08-20&linkId=fe12ab24bf40176fc47a8f3fe0a6427c&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 3 Copy 2 - Cordless Robotic Pool Cleaner (Image 3 as primary)
+    {
+      _id: 'product-3-copy2',
+      productNumber: 3,
+      name: 'Cordless Robotic Pool Cleaner – 150 Mins Runtime, IPX8 Waterproof, 2200 Sq Ft Coverage, Powerful Automatic Pool Vacuum Robot for In-Ground & Above-Ground Pools, Quick Charging, Dual Brushes',
+      description: 'Advanced cordless robotic pool cleaner with 150 minutes runtime and IPX8 waterproof rating for complete pool maintenance.',
+      price: 0,
+      originalPrice: 0,
+      category: 'home',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71FpAA3YvBL._AC_SL1500_.jpg', alt: 'Pool Cleaner Brushes', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71cdqL6rWjL._AC_SL1500_.jpg', alt: 'Robotic Pool Cleaner', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71NihcTbfVL._AC_SL1500_.jpg', alt: 'Pool Cleaner Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/7137SMAraHL._AC_SL1500_.jpg', alt: 'Pool Cleaner Charging', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 345 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Generic',
+      inStock: true,
+      tags: ['home', 'pool', 'cleaner', 'robotic'],
+      affiliateUrl: 'https://www.amazon.com/Cordless-Robotic-Pool-Cleaner-Ground/dp/B0FK4FKWPZ?crid=1GH011HVF49PQ&dib=eyJ2IjoiMSJ9.1Ig_2kXfg5Q-FozjHXWToPgDzSRJjOoEOcKxytOHSpfwoRvfFZP-lWYkQ4Mgr_CpsZ4xGi_UQseZb176SoWr_1fSZGueHyJI7H9KtuvP_mRTd1hEi2laSBXlK_UjlOdNMp0zQsd1dpiGZUJPm9xZj2Y53GmkGUuAt79CMZyWHQNiPK7836I_m0o-3IWki2LgqOFWyqvdC7rfmmq67TdwsP3H-RRGUykHK3Ml28s_FC0.N9R0ipNb_8ZVhwRCmgfSnuPoo35SFHxPBXTnnrje3LY&dib_tag=se&keywords=robot+piscina&qid=1760796004&sprefix=robot+piscina%2Caps%2C330&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1&linkCode=ll1&tag=adsmarket08-20&linkId=fe12ab24bf40176fc47a8f3fe0a6427c&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 4 Copy 1 - WYBOT C2 Vision Cordless Pool Cleaner (Image 2 as primary)
+    {
+      _id: 'product-4-copy1',
+      productNumber: 4,
+      name: 'WYBOT C2 Vision Cordless Pool Cleaner with Camera, 8-in-1 Pool Vacuum for Inground Pools, Powerful Suction, Ultra-Fine Filter System Pool Robot, Wall Climbing Navigation, Gray',
+      description: 'Advanced pool cleaner with camera technology, 8-in-1 functionality, and wall climbing navigation for complete pool cleaning.',
+      price: 0,
+      originalPrice: 0,
+      category: 'home',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71d83jk0UWL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61Lce9JQjnL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71h7XR4IbqL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Camera', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yNT0gNnZL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Filter', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/811eyTO0rcL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Navigation', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71td5Ciu9FL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Accessories', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 128 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'WYBOT',
+      inStock: true,
+      tags: ['home', 'pool', 'cleaner', 'camera'],
+      affiliateUrl: 'https://www.amazon.com/WYBOT-Cordless-Inground-Ultra-Fine-Navigation/dp/B0FM7RHT4H?crid=1GH011HVF49PQ&dib=eyJ2IjoiMSJ9.1Ig_2kXfg5Q-FozjHXWToPgDzSRJjOoEOcKxytOHSpfwoRvfFZP-lWYkQ4Mgr_CpsZ4xGi_UQseZb176SoWr_1fSZGueHyJI7H9KtuvP_mRTd1hEi2laSBXlK_UjlOdNMp0zQsd1dpiGZUJPm9xZj2Y53GmkGUuAt79CMZyWHQNiPK7836I_m0o-3IWki2LgqOFWyqvdC7rfmmq67TdwsP3H-RRGUykHK3Ml28s_FC0.N9R0ipNb_8ZVhwRCmgfSnuPoo35SFHxPBXTnnrje3LY&dib_tag=se&keywords=robot%2Bpiscina&qid=1760796004&sprefix=robot%2Bpiscina%2Caps%2C330&sr=8-6&th=1&linkCode=ll1&tag=adsmarket08-20&linkId=d7308d4087f7d7cba5146f951768b756&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 4 Copy 2 - WYBOT C2 Vision Cordless Pool Cleaner (Image 3 as primary)
+    {
+      _id: 'product-4-copy2',
+      productNumber: 4,
+      name: 'WYBOT C2 Vision Cordless Pool Cleaner with Camera, 8-in-1 Pool Vacuum for Inground Pools, Powerful Suction, Ultra-Fine Filter System Pool Robot, Wall Climbing Navigation, Gray',
+      description: 'Advanced pool cleaner with camera technology, 8-in-1 functionality, and wall climbing navigation for complete pool cleaning.',
+      price: 0,
+      originalPrice: 0,
+      category: 'home',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/71h7XR4IbqL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Camera', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61Lce9JQjnL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71d83jk0UWL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71yNT0gNnZL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Filter', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/811eyTO0rcL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Navigation', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71td5Ciu9FL._AC_SL1500_.jpg', alt: 'WYBOT Pool Cleaner Accessories', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 128 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'WYBOT',
+      inStock: true,
+      tags: ['home', 'pool', 'cleaner', 'camera'],
+      affiliateUrl: 'https://www.amazon.com/WYBOT-Cordless-Inground-Ultra-Fine-Navigation/dp/B0FM7RHT4H?crid=1GH011HVF49PQ&dib=eyJ2IjoiMSJ9.1Ig_2kXfg5Q-FozjHXWToPgDzSRJjOoEOcKxytOHSpfwoRvfFZP-lWYkQ4Mgr_CpsZ4xGi_UQseZb176SoWr_1fSZGueHyJI7H9KtuvP_mRTd1hEi2laSBXlK_UjlOdNMp0zQsd1dpiGZUJPm9xZj2Y53GmkGUuAt79CMZyWHQNiPK7836I_m0o-3IWki2LgqOFWyqvdC7rfmmq67TdwsP3H-RRGUykHK3Ml28s_FC0.N9R0ipNb_8ZVhwRCmgfSnuPoo35SFHxPBXTnnrje3LY&dib_tag=se&keywords=robot%2Bpiscina&qid=1760796004&sprefix=robot%2Bpiscina%2Caps%2C330&sr=8-6&th=1&linkCode=ll1&tag=adsmarket08-20&linkId=d7308d4087f7d7cba5146f951768b756&language=en_US&ref_=as_li_ss_tl'
     }
   ];
   

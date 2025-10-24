@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://alladsmarket.com/</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/og-image.jpg</image:loc>
+      <image:title>AllAdsMarket - Marketplace d'Affiliation Premium</image:title>
+      <image:caption>Découvrez les meilleurs produits tendances et offres exclusives sur AllAdsMarket</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Products Page -->
+  <url>
+    <loc>https://alladsmarket.com/products</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Featured Products -->
+  <url>
+    <loc>https://alladsmarket.com/featured</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Trending Products -->
+  <url>
+    <loc>https://alladsmarket.com/trending</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Categories -->
+  <url>
+    <loc>https://alladsmarket.com/categories</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Electronics Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=electronics</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Fashion Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=fashion</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Home & Garden Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=home</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Sports Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=sports</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Beauty Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=beauty</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Books Category -->
+  <url>
+    <loc>https://alladsmarket.com/products?category=books</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Visited Products -->
+  <url>
+    <loc>https://alladsmarket.com/visited-items</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Individual Product Pages (Top Products) -->
+  <url>
+    <loc>https://alladsmarket.com/product/ecouteurs-bluetooth-sans-fil</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/ecouteurs-bluetooth.jpg</image:loc>
+      <image:title>Écouteurs Bluetooth sans fil avec réduction de bruit active</image:title>
+      <image:caption>Profitez d'une expérience audio exceptionnelle avec ces écouteurs Bluetooth haute qualité</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/montre-connectee-intelligente</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/montre-connectee.jpg</image:loc>
+      <image:title>Montre connectée intelligente avec suivi de santé</image:title>
+      <image:caption>Surveillez votre santé et restez connecté avec cette montre intelligente</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/smartphone-android-haute-performance</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/smartphone-android.jpg</image:loc>
+      <image:title>Smartphone Android haute performance</image:title>
+      <image:caption>Découvrez la puissance et l'innovation avec ce smartphone Android dernier cri</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/tablette-android-polyvalente</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/tablette-android.jpg</image:loc>
+      <image:title>Tablette Android polyvalente</image:title>
+      <image:caption>Votre compagnon idéal pour le travail et les loisirs</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/ordinateur-portable-gaming</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/ordinateur-gaming.jpg</image:loc>
+      <image:title>Ordinateur portable gaming haute performance</image:title>
+      <image:caption>Dominez vos jeux avec cette machine de guerre portable</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/casque-gaming-professionnel</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/casque-gaming.jpg</image:loc>
+      <image:title>Casque gaming professionnel avec microphone</image:title>
+      <image:caption>Plongez dans l'action avec ce casque gaming professionnel</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/webcam-hd-streaming</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/webcam-hd.jpg</image:loc>
+      <image:title>Webcam HD pour streaming et vidéoconférence</image:title>
+      <image:caption>Améliorez vos appels vidéo et votre streaming avec cette webcam HD professionnelle</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/clavier-mecanique-gaming-rgb</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/clavier-gaming.jpg</image:loc>
+      <image:title>Clavier mécanique gaming RGB</image:title>
+      <image:caption>Tapez avec style et précision avec ce clavier mécanique gaming</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/moniteur-portable-8000-mah</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/moniteur-portable.jpg</image:loc>
+      <image:title>Moniteur portable 8000 mAh sans fil</image:title>
+      <image:caption>Transformez votre espace de travail avec ce moniteur portable innovant</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/souris-gaming-sans-fil</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/souris-gaming.jpg</image:loc>
+      <image:title>Souris gaming sans fil haute précision</image:title>
+      <image:caption>Contrôlez vos jeux avec précision avec cette souris gaming sans fil</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/moniteur-uperfect-18-5-tactile</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/moniteur-uperfect.jpg</image:loc>
+      <image:title>Moniteur portable UPERFECT 18.5" tactile 120Hz</image:title>
+      <image:caption>Découvrez l'avenir des moniteurs portables avec ce modèle UPERFECT révolutionnaire</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://alladsmarket.com/product/t-shirt-casual-anrabess</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://alladsmarket.com/images/t-shirt-anrabess.jpg</image:loc>
+      <image:title>T-shirt casual manches longues ANRABESS</image:title>
+      <image:caption>Style et confort réunis avec ce t-shirt casual ANRABESS</image:caption>
+    </image:image>
+  </url>
+  
+</urlset>

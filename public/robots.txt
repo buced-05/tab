@@ -1,0 +1,93 @@
+# AllAdsMarket - Robots.txt
+# Optimisé pour le SEO et l'indexation des moteurs de recherche
+
+# Règles générales pour tous les robots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /*.map$
+
+# Sitemap principal
+Sitemap: https://alladsmarket.com/sitemap.xml
+
+# Sitemaps spécifiques (si disponibles)
+# Sitemap: https://alladsmarket.com/sitemap-products.xml
+# Sitemap: https://alladsmarket.com/sitemap-categories.xml
+# Sitemap: https://alladsmarket.com/sitemap-images.xml
+
+# Règles spécifiques pour Google
+User-agent: Googlebot
+Allow: /
+Allow: /products/
+Allow: /featured/
+Allow: /trending/
+Allow: /categories/
+Allow: /affiliate-links/
+Crawl-delay: 1
+
+# Règles spécifiques pour Bing
+User-agent: Bingbot
+Allow: /
+Allow: /products/
+Allow: /featured/
+Allow: /trending/
+Allow: /categories/
+Allow: /affiliate-links/
+Crawl-delay: 1
+
+# Règles spécifiques pour Yahoo
+User-agent: Slurp
+Allow: /
+Allow: /products/
+Allow: /featured/
+Allow: /trending/
+Allow: /categories/
+Allow: /affiliate-links/
+Crawl-delay: 2
+
+# Règles pour les robots d'images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /assets/
+Allow: /public/
+
+# Règles pour les robots de vidéos
+User-agent: Googlebot-Video
+Allow: /videos/
+Allow: /media/
+
+# Bloquer les robots malveillants
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Règles pour les réseaux sociaux
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Délai de crawl respectueux
+Crawl-delay: 1
+
+# Host directive (remplacez par votre domaine principal)
+Host: https://adsmarket.com

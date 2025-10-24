@@ -337,10 +337,10 @@ const HelpCenter = () => {
                 <h3>Appeler</h3>
                 <p>+225 0714520133 (Lun-Ven 9h-18h)</p>
               </a>
-              <a href="mailto:support.alladsmarket.com" className="action-card">
+              <a href="mailto:support@adsmarket.com" className="action-card">
                 <Mail size={24} />
                 <h3>Email</h3>
-                <p>support.alladsmarket.com</p>
+                <p>support@adsmarket.com</p>
               </a>
             </div>
           </div>

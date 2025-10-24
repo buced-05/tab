@@ -147,11 +147,11 @@ const Footer = () => {
                 <div className="footer-contact-details">
                   <span className="footer-contact-label">E-mail</span>
                   <a 
-                    href="mailto:support.alladsmarket.com" 
+                    href="mailto:support@best.com" 
                     className="footer-contact-value footer-email-link"
                     title="Cliquez pour nous envoyer un e-mail"
                   >
-                    support.alladsmarket.com
+                    support@best.com
                     <ExternalLink size={14} className="email-external-icon" />
                   </a>
                 </div>
