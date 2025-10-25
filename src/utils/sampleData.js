@@ -2293,7 +2293,7 @@ export const getSampleProducts = () => {
       images: [
         { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
       ],
       rating: { average: 4.9, count: 11 },
@@ -2388,9 +2388,9 @@ export const getSampleProducts = () => {
       category: 'fashion',
       images: [
         { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SX679_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SX679_.jpg', alt: 'Girls Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SX679_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.7, count: 4306 },
       isFeatured: false,
@@ -2411,10 +2411,10 @@ export const getSampleProducts = () => {
       originalPrice: 16.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SX679_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.8, count: 14889 },
       isFeatured: true,
@@ -2482,9 +2482,9 @@ export const getSampleProducts = () => {
       category: 'fashion',
       images: [
         { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SX679_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.8, count: 14832 },
       isFeatured: true,
@@ -3077,7 +3077,7 @@ export const getSampleProducts = () => {
       images: [
         { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
       ],
       rating: { average: 4.9, count: 11 },
@@ -3099,7 +3099,7 @@ export const getSampleProducts = () => {
       originalPrice: 1899,
       category: 'electronics',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_US40_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/51VOD-fpeTL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Keyboard', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/71gIsZX3hgL._AC_SL1500_.jpg', alt: 'LG gram Pro 16 Front', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/617DY34HlmL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Side', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/71ZxlCD+VCL._AC_SX679_.jpg', alt: 'LG gram Pro 16 Display', isPrimary: false }
@@ -3267,7 +3267,7 @@ export const getSampleProducts = () => {
       originalPrice: 26.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SX679_.jpg', alt: 'Girls Training Bra Side', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
@@ -3291,10 +3291,10 @@ export const getSampleProducts = () => {
       originalPrice: 26.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/41s3h2zSsKL._AC_SX679_.jpg', alt: 'Girls Training Bra Detail', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/81Kh0vW6QqL._AC_SX679_.jpg', alt: 'Girls Training Bra Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SR38,50_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/41gK0fXglJL._AC_SX679_.jpg', alt: 'Girls Training Bra Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51BWs5C9BsL._AC_SX679_.jpg', alt: 'Girls Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.7, count: 4306 },
       isFeatured: false,
@@ -3316,9 +3316,9 @@ export const getSampleProducts = () => {
       category: 'fashion',
       images: [
         { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SX679_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.8, count: 14889 },
       isFeatured: false,
@@ -3339,7 +3339,7 @@ export const getSampleProducts = () => {
       originalPrice: 16.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/41Vzw56F4SL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/61XCDkGktdL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/41czkCjmd0L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
@@ -3456,10 +3456,10 @@ export const getSampleProducts = () => {
       originalPrice: 16.98,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SX679_.jpg', alt: 'Cotton Training Bra Side', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SX679_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }
       ],
       rating: { average: 4.8, count: 14832 },
       isFeatured: false,
@@ -3480,7 +3480,7 @@ export const getSampleProducts = () => {
       originalPrice: 16.98,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/411q6dElS4L._AC_SX679_.jpg', alt: 'Cotton Training Bra Detail', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/811oWE2zJRL._AC_SX679_.jpg', alt: 'Cotton Training Bra Front', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/31DEsNmoBDL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Side', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/51Em+bZnZcL._AC_SR38,50_.jpg', alt: 'Cotton Training Bra Package', isPrimary: false }

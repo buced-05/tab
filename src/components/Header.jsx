@@ -13,7 +13,8 @@ import {
   Filter,
   ChevronDown,
   History,
-  BarChart3
+  BarChart3,
+  BookOpen
 } from 'lucide-react';
 import { useModal } from '../contexts/ModalContext';
 import ModernLanguageSelector from './ModernLanguageSelector';
@@ -124,6 +125,10 @@ const Header = () => {
           <Link to="/products" className="nav-link" data-cta="🛍️ Parcourez tous les produits">
             <Grid3X3 size={16} />
             <span>{t('navigation.products')}</span>
+          </Link>
+          <Link to="/articles" className="nav-link" data-cta="📚 Découvrez nos guides d'achat">
+            <BookOpen size={16} />
+            <span>Articles</span>
           </Link>
           <div className="nav-dropdown">
             <button 
@@ -258,6 +263,14 @@ const Header = () => {
                 >
                   <Grid3X3 size={18} />
                   <span>Products</span>
+                </Link>
+                <Link 
+                  to="/articles" 
+                  className="mobile-nav-link"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <BookOpen size={18} />
+                  <span>Articles</span>
                 </Link>
                 <Link
                   to="/visited-items"

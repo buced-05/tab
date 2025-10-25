@@ -22,6 +22,8 @@ import {
       Home,
       Products,
       ProductDetail,
+      Articles,
+      ArticleDetail,
       AffiliateLinksPage,
       HelpCenter,
       ContactUs,
@@ -80,6 +82,8 @@ const AppContent = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/articles" element={<Articles />} />
+                <Route path="/article/:productId" element={<ArticleDetail />} />
                 <Route path="/featured" element={<Products />} />
                 <Route path="/trending" element={<Products />} />
                 <Route path="/categories" element={<Products />} />
