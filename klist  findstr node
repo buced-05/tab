@@ -1,0 +1,45 @@
+[33mcommit f1a7c20c6ae2978954f58c0dbde3f2b05f59ad6f[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: buced-05 <buced13@gmail.com>
+Date:   Fri Oct 24 22:55:44 2025 +0000
+
+    Mise à jour des pages, suppression des .htaccess et ajout de nouveaux dossiers
+
+.gitignore
+.htaccess
+.htaccess.rewrite
+dist/assets/css/index-CvKMM2bu.css
+dist/assets/js/i18n-vendor-Cd_Lb8h5.js
+dist/assets/js/index-Dhh_5xVz.js
+dist/assets/js/react-router-OANrnnZb.js
+dist/assets/js/react-vendor-DtOhX2xw.js
+dist/assets/js/toast-vendor-CWiWmSYj.js
+dist/assets/js/ui-vendor-BYPXvQjs.js
+dist/favicon.svg
+dist/index.html
+dist/logo.png
+dist/manifest.json
+dist/og-image.jpg
+dist/robots.txt
+dist/sitemap.xml
+dist/sw.js
+dist/twitter-card.jpg
+dist/vite.svg
+public/favicon.svg
+public/logo.png
+public/manifest.json
+public/og-image.jpg
+public/robots.txt
+public/sitemap.xml
+public/sw.js
+public/twitter-card.jpg
+public/vite.svg
+scripts/deploy/deploy-alladsmarket.sh
+scripts/deploy/deploy-vps.sh
+scripts/deploy/ecosystem.config.js
+scripts/generate-tripled-products.js
+src/components/Footer.jsx
+src/pages/ContactUs.jsx
+src/pages/FAQ.jsx
+src/pages/HelpCenter.jsx
+src/utils/sampleData.js
+top

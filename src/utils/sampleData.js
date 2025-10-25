@@ -4248,6 +4248,54 @@ export const getSampleProducts = () => {
       inStock: true,
       tags: ['home', 'pool', 'cleaner', 'camera'],
       affiliateUrl: 'https://www.amazon.com/WYBOT-Cordless-Inground-Ultra-Fine-Navigation/dp/B0FM7RHT4H?crid=1GH011HVF49PQ&dib=eyJ2IjoiMSJ9.1Ig_2kXfg5Q-FozjHXWToPgDzSRJjOoEOcKxytOHSpfwoRvfFZP-lWYkQ4Mgr_CpsZ4xGi_UQseZb176SoWr_1fSZGueHyJI7H9KtuvP_mRTd1hEi2laSBXlK_UjlOdNMp0zQsd1dpiGZUJPm9xZj2Y53GmkGUuAt79CMZyWHQNiPK7836I_m0o-3IWki2LgqOFWyqvdC7rfmmq67TdwsP3H-RRGUykHK3Ml28s_FC0.N9R0ipNb_8ZVhwRCmgfSnuPoo35SFHxPBXTnnrje3LY&dib_tag=se&keywords=robot%2Bpiscina&qid=1760796004&sprefix=robot%2Bpiscina%2Caps%2C330&sr=8-6&th=1&linkCode=ll1&tag=adsmarket08-20&linkId=d7308d4087f7d7cba5146f951768b756&language=en_US&ref_=as_li_ss_tl'
+    },
+
+    // Product 28 - Trendy Queen Women's Oversized Cable Knit Crewneck Sweaters
+    {
+      _id: 'product-trendy-queen-cable-knit-sweater',
+      productNumber: 28,
+      name: 'Trendy Queen Women\'s Oversized Cable Knit Crewneck Sweaters',
+      description: 'Stylish oversized cable knit crewneck sweater for women. Perfect for casual wear with a trendy and comfortable design.',
+      price: 39,
+      originalPrice: 39,
+      category: 'fashion',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/81oalmKiLvL._AC_SY879_.jpg', alt: 'Trendy Queen Cable Knit Sweater Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/81TReYIN1ZL._AC_SY879_.jpg', alt: 'Trendy Queen Cable Knit Sweater Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71vt2CYPyAL._AC_SY879_.jpg', alt: 'Trendy Queen Cable Knit Sweater Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71BxfG0OL1L._AC_SY879_.jpg', alt: 'Trendy Queen Cable Knit Sweater Back', isPrimary: false }
+      ],
+      rating: { average: 4.7, count: 1290 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'Trendy Queen',
+      inStock: true,
+      tags: ['fashion', 'women', 'sweater', 'cable-knit', 'oversized', 'crewneck', 'casual'],
+      affiliateUrl: 'https://amzn.to/3WiZQXf'
+    },
+
+    // Product 29 - boeemi Frog Toilet Bolt Covers Decorative Glow in The Dark
+    {
+      _id: 'product-boeemi-frog-toilet-bolt-covers',
+      productNumber: 29,
+      name: 'boeemi Frog Toilet Bolt Covers Decorative Glow in The Dark- 2PCs Toilet Screw Caps Luminous Green PLA Cute Bathroom Decor Accessories Push-on Install',
+      description: 'Decorative glow-in-the-dark frog toilet bolt covers. 2-piece set with luminous green PLA material for cute bathroom decor. Easy push-on installation.',
+      price: 14.48,
+      originalPrice: 14.48,
+      category: 'home',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/61hevoyJucL._AC_SL1500_.jpg', alt: 'Boeemi Frog Toilet Bolt Covers Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/616IQwvkC4L._AC_SL1500_.jpg', alt: 'Boeemi Frog Toilet Bolt Covers Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71WBO30UsrL._AC_SL1500_.jpg', alt: 'Boeemi Frog Toilet Bolt Covers Detail', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/619HxovRRLL._AC_SL1500_.jpg', alt: 'Boeemi Frog Toilet Bolt Covers Glow', isPrimary: false }
+      ],
+      rating: { average: 4.6, count: 175 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'boeemi',
+      inStock: true,
+      tags: ['home', 'bathroom', 'decor', 'toilet', 'glow-in-dark', 'cute', 'accessories', 'frog'],
+      affiliateUrl: 'https://www.amazon.com/dp/B0DRJFF6JV?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.UNQZBZVUUU2H&linkCode=tr1&tag=adsmarket08-20&linkId=amzn1.campaign.UNQZBZVUUU2H_1761352685947'
     }
   ];
   
