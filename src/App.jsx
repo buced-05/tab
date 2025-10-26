@@ -24,6 +24,7 @@ import {
       ProductDetail,
       Articles,
       ArticleDetail,
+      Admin,
       AffiliateLinksPage,
       HelpCenter,
       ContactUs,
@@ -84,6 +85,7 @@ const AppContent = () => {
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/article/:productId" element={<ArticleDetail />} />
+                <Route path="/admin" element={<Admin />} />
                 <Route path="/featured" element={<Products />} />
                 <Route path="/trending" element={<Products />} />
                 <Route path="/categories" element={<Products />} />

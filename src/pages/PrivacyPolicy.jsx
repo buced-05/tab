@@ -316,8 +316,8 @@ const PrivacyPolicy = () => {
               <h2>Contact Us</h2>
               <p>If you have any questions about this privacy policy or our data practices, please contact us:</p>
               <div className="contact-info">
-                <p><strong>Email:</strong> privacy@adsmarket.com</p>
-                <p><strong>Data Protection Officer:</strong> dpo@adsmarket.com</p>
+                <p><strong>Email:</strong> newtiv05@gmail.com</p>
+                <p><strong>Data Protection Officer:</strong> newtiv05@gmail.com</p>
                 <p><strong>Address:</strong> 123 Business Street, New York, NY 10001</p>
                 <p><strong>Phone:</strong> +1 (555) 123-4567</p>
                 <p><strong>Response Time:</strong> We will respond to all privacy inquiries within 30 days</p>

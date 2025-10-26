@@ -33,6 +33,10 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // Triple-click functionality
+  const [productClickCount, setProductClickCount] = useState(0);
+  const [articleClickCount, setArticleClickCount] = useState(0);
+  const [showTripleClickHint, setShowTripleClickHint] = useState(false);
   // const [isClickStatsOpen, setIsClickStatsOpen] = useState(false); // Removed for client-side only app
   
   const navigate = useNavigate();
@@ -46,6 +50,59 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Navigation handlers with triple-click detection
+  const handleProductClick = (e) => {
+    const newCount = productClickCount + 1;
+    setProductClickCount(newCount);
+    
+    // Show hint after second click
+    if (newCount === 2) {
+      setShowTripleClickHint(true);
+      setTimeout(() => setShowTripleClickHint(false), 2000);
+    }
+    
+    // If it's the third click, go to admin
+    if (newCount >= 3) {
+      e.preventDefault();
+      setProductClickCount(0);
+      setShowTripleClickHint(false);
+      navigate('/admin?tab=new-product');
+    } else {
+      // Allow normal navigation for first and second clicks
+      // Reset counter after 2 seconds if not triple-clicked
+      setTimeout(() => {
+        setProductClickCount(0);
+        setShowTripleClickHint(false);
+      }, 2000);
+    }
+  };
+
+  const handleArticleClick = (e) => {
+    const newCount = articleClickCount + 1;
+    setArticleClickCount(newCount);
+    
+    // Show hint after second click
+    if (newCount === 2) {
+      setShowTripleClickHint(true);
+      setTimeout(() => setShowTripleClickHint(false), 2000);
+    }
+    
+    // If it's the third click, go to admin
+    if (newCount >= 3) {
+      e.preventDefault();
+      setArticleClickCount(0);
+      setShowTripleClickHint(false);
+      navigate('/admin?tab=new-article');
+    } else {
+      // Allow normal navigation for first and second clicks
+      // Reset counter after 2 seconds if not triple-clicked
+      setTimeout(() => {
+        setArticleClickCount(0);
+        setShowTripleClickHint(false);
+      }, 2000);
+    }
+  };
 
 
   // Close dropdowns when clicking outside
@@ -122,11 +179,23 @@ const Header = () => {
             <Home size={16} />
             <span>{t('navigation.home')}</span>
           </Link>
-          <Link to="/products" className="nav-link" data-cta="🛍️ Parcourez tous les produits">
+          <Link 
+            to="/products" 
+            className="nav-link" 
+            data-cta="🛍️ Parcourez tous les produits"
+            onClick={handleProductClick}
+            title="1 clic: voir les produits | 3 clics: créer un produit"
+          >
             <Grid3X3 size={16} />
             <span>{t('navigation.products')}</span>
           </Link>
-          <Link to="/articles" className="nav-link" data-cta="📚 Découvrez nos guides d'achat">
+          <Link 
+            to="/articles" 
+            className="nav-link" 
+            data-cta="📚 Découvrez nos guides d'achat"
+            onClick={handleArticleClick}
+            title="1 clic: voir les articles | 3 clics: créer un article"
+          >
             <BookOpen size={16} />
             <span>Articles</span>
           </Link>
@@ -211,6 +280,13 @@ const Header = () => {
         <ModernLanguageSelector />
         <CurrencySelector />
 
+        {/* Triple-click hint */}
+        {showTripleClickHint && (
+          <div className="triple-click-hint">
+            <span>Cliquez encore une fois pour accéder à la création</span>
+          </div>
+        )}
+
         {/* User profile icon removed - Use 3-click logo to access login */}
 
         <button 
@@ -259,7 +335,11 @@ const Header = () => {
                 <Link 
                   to="/products" 
                   className="mobile-nav-link"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    setIsMenuOpen(false);
+                    handleProductClick(e);
+                  }}
+                  title="1 clic: voir les produits | 3 clics: créer un produit"
                 >
                   <Grid3X3 size={18} />
                   <span>Products</span>
@@ -267,7 +347,11 @@ const Header = () => {
                 <Link 
                   to="/articles" 
                   className="mobile-nav-link"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    setIsMenuOpen(false);
+                    handleArticleClick(e);
+                  }}
+                  title="1 clic: voir les articles | 3 clics: créer un article"
                 >
                   <BookOpen size={18} />
                   <span>Articles</span>

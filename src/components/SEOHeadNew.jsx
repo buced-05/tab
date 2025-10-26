@@ -12,9 +12,9 @@ const SEOHeadNew = ({
   category = null,
   pageType = 'home'
 }) => {
-  const baseUrl = 'https://adsmarket.com';
-  const defaultTitle = 'AdsMarket - Marketplace d\'Affiliation Premium | Produits Tendances & Offres Exclusives';
-  const defaultDescription = 'Découvrez AdsMarket, votre marketplace d\'affiliation premium. Trouvez les meilleurs produits tendances, offres exclusives et deals incroyables. Plus de 100K+ produits de marques de confiance.';
+  const baseUrl = 'https://alladsmarket.com';
+  const defaultTitle = 'AllAdsMarket - Marketplace d\'Affiliation Premium | Produits Tendances & Offres Exclusives';
+  const defaultDescription = 'Découvrez AllAdsMarket, votre marketplace d\'affiliation premium. Trouvez les meilleurs produits tendances, offres exclusives et deals incroyables. Plus de 100K+ produits de marques de confiance.';
   const defaultImage = `${baseUrl}/og-image.jpg`;
 
   // Generate optimized keywords for the page

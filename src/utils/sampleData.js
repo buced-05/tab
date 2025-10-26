@@ -12,8 +12,8 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'electronics',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/714MXVDkijL._AC_SL1500_.jpg', alt: 'DreamQuest Computer Support Detail', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SX679_.jpg', alt: 'DreamQuest Computer Support', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/714MXVDkijL._AC_SX679_.jpg', alt: 'DreamQuest Computer Support Detail', isPrimary: false }
       ],
       rating: { average: 4.6, count: 0 },
       isFeatured: true,
@@ -2505,9 +2505,9 @@ export const getSampleProducts = () => {
       originalPrice: 14.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SX679_.jpg', alt: 'Bike Shorts Front', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SX679_.jpg', alt: 'Bike Shorts Side', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SX679_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
       ],
       rating: { average: 4.6, count: 2144 },
       isFeatured: false,
@@ -3504,9 +3504,9 @@ export const getSampleProducts = () => {
       originalPrice: 14.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SX679_.jpg', alt: 'Bike Shorts Side', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SX679_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SX679_.jpg', alt: 'Bike Shorts Detail', isPrimary: false }
       ],
       rating: { average: 4.6, count: 2144 },
       isFeatured: true,
@@ -3527,9 +3527,9 @@ export const getSampleProducts = () => {
       originalPrice: 14.99,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SY879_.jpg', alt: 'Bike Shorts Detail', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SY879_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
-        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SR38,50_.jpg', alt: 'Bike Shorts Side', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/61yL2OzBbDL._AC_SX679_.jpg', alt: 'Bike Shorts Detail', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/61z+raI3QTL._AC_SX679_.jpg', alt: 'Bike Shorts Front', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51ne9LWOKeL._AC_SX679_.jpg', alt: 'Bike Shorts Side', isPrimary: false }
       ],
       rating: { average: 4.6, count: 2144 },
       isFeatured: false,
@@ -4296,6 +4296,81 @@ export const getSampleProducts = () => {
       inStock: true,
       tags: ['home', 'bathroom', 'decor', 'toilet', 'glow-in-dark', 'cute', 'accessories', 'frog'],
       affiliateUrl: 'https://www.amazon.com/dp/B0DRJFF6JV?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.UNQZBZVUUU2H&linkCode=tr1&tag=adsmarket08-20&linkId=amzn1.campaign.UNQZBZVUUU2H_1761352685947'
+    },
+
+    // Product 30 - YRU True Military-Grade Car Phone Holder
+    {
+      _id: 'product-30',
+      productNumber: 30,
+      name: 'YRU True Military-Grade [360° Rotation Suction] 2025 Ultimate Car Phone Holder Mount 【90+LBS Safest Strongest & Patent Certs】 Dashboard Windshield Vent for iPhone 17 16 Pro Max Samsung, Gloss Black',
+      description: 'Military-grade car phone holder with 360° rotation, 90+ lbs suction strength, and patent certifications. Compatible with iPhone 17, 16, Pro Max, Samsung and other smartphones.',
+      price: 25.97,
+      originalPrice: 25.97,
+      category: 'automotive',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/712xBKWDniL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Main', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/513RREuJ6mL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 1', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51DwNKly0GL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 2', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/517miOTe-3L._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 3', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zC6qiiAUL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Installation', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 5000 },
+      isFeatured: true,
+      isTrending: true,
+      brand: 'YRU',
+      inStock: true,
+      tags: ['automotive', 'phone-holder', 'car-accessories', 'military-grade', 'suction-mount', '360-rotation', 'dashboard', 'windshield', 'vent-mount'],
+      affiliateUrl: 'https://amzn.to/4hocaio'
+    },
+
+    // Product 30 Copy 1 - YRU True Military-Grade Car Phone Holder (Image 2 as primary)
+    {
+      _id: 'product-30-copy1',
+      productNumber: 30,
+      name: 'YRU True Military-Grade [360° Rotation Suction] 2025 Ultimate Car Phone Holder Mount 【90+LBS Safest Strongest & Patent Certs】 Dashboard Windshield Vent for iPhone 17 16 Pro Max Samsung, Gloss Black',
+      description: 'Military-grade car phone holder with 360° rotation, 90+ lbs suction strength, and patent certifications. Compatible with iPhone 17, 16, Pro Max, Samsung and other smartphones.',
+      price: 25.97,
+      originalPrice: 25.97,
+      category: 'automotive',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/513RREuJ6mL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 1', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/712xBKWDniL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Main', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/51DwNKly0GL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 2', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/517miOTe-3L._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 3', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zC6qiiAUL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Installation', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 5000 },
+      isFeatured: false,
+      isTrending: true,
+      brand: 'YRU',
+      inStock: true,
+      tags: ['automotive', 'phone-holder', 'car-accessories', 'military-grade', 'suction-mount', '360-rotation', 'dashboard', 'windshield', 'vent-mount'],
+      affiliateUrl: 'https://amzn.to/4hocaio'
+    },
+
+    // Product 30 Copy 2 - YRU True Military-Grade Car Phone Holder (Image 3 as primary)
+    {
+      _id: 'product-30-copy2',
+      productNumber: 30,
+      name: 'YRU True Military-Grade [360° Rotation Suction] 2025 Ultimate Car Phone Holder Mount 【90+LBS Safest Strongest & Patent Certs】 Dashboard Windshield Vent for iPhone 17 16 Pro Max Samsung, Gloss Black',
+      description: 'Military-grade car phone holder with 360° rotation, 90+ lbs suction strength, and patent certifications. Compatible with iPhone 17, 16, Pro Max, Samsung and other smartphones.',
+      price: 25.97,
+      originalPrice: 25.97,
+      category: 'automotive',
+      images: [
+        { url: 'https://m.media-amazon.com/images/I/51DwNKly0GL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 2', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/712xBKWDniL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Main', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/513RREuJ6mL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 1', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/517miOTe-3L._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Detail 3', isPrimary: false },
+        { url: 'https://m.media-amazon.com/images/I/71zC6qiiAUL._AC_SX679_.jpg', alt: 'YRU Car Phone Holder Installation', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 5000 },
+      isFeatured: true,
+      isTrending: false,
+      brand: 'YRU',
+      inStock: true,
+      tags: ['automotive', 'phone-holder', 'car-accessories', 'military-grade', 'suction-mount', '360-rotation', 'dashboard', 'windshield', 'vent-mount'],
+      affiliateUrl: 'https://amzn.to/4hocaio'
     }
   ];
   

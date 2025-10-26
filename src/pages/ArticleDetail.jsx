@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import { getSampleProducts } from '../utils/sampleData';
+import { generateDiverseArticleContent } from '../utils/articleGenerator';
 import SEOHead from '../components/SEOHead';
+import CommentSection from '../components/CommentSection';
 import '../styles/articles.css';
 
 const ArticleDetail = () => {
@@ -614,6 +617,12 @@ const ArticleDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Section Commentaires */}
+      <CommentSection 
+        productId={product._id} 
+        productName={product.name}
+      />
     </>
   );
 };

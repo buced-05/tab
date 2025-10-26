@@ -388,8 +388,8 @@ const TermsOfService = () => {
               <h2>Contact Information</h2>
               <p>If you have any questions about these Terms of Service, please contact us:</p>
               <div className="contact-info">
-                <p><strong>Email:</strong> legal@adsmarket.com</p>
-                <p><strong>Legal Department:</strong> legal@adsmarket.com</p>
+                <p><strong>Email:</strong> newtiv05@gmail.com</p>
+                <p><strong>Legal Department:</strong> newtiv05@gmail.com</p>
                 <p><strong>Address:</strong> 123 Business Street, New York, NY 10001</p>
                 <p><strong>Phone:</strong> +1 (555) 123-4567</p>
                 <p><strong>Response Time:</strong> We will respond to all legal inquiries within 5 business days</p>

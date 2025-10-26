@@ -4,6 +4,7 @@ export { default as Products } from './Products';
 export { default as ProductDetail } from './ProductDetail';
 export { default as Articles } from './Articles';
 export { default as ArticleDetail } from './ArticleDetail';
+export { default as Admin } from './Admin';
 
 // Support Pages
 export { default as HelpCenter } from './HelpCenter';

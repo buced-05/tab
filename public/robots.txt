@@ -90,4 +90,4 @@ Allow: /
 Crawl-delay: 1
 
 # Host directive (remplacez par votre domaine principal)
-Host: https://adsmarket.com
+Host: https://alladsmarket.com
