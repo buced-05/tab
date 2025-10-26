@@ -12,58 +12,34 @@ Disallow: /node_modules/
 Disallow: /*.json$
 Disallow: /*.js$
 Disallow: /*.css$
-Disallow: /*.map$
-
-# Sitemap principal
-Sitemap: https://alladsmarket.com/sitemap.xml
-
-# Sitemaps spécifiques (si disponibles)
-# Sitemap: https://alladsmarket.com/sitemap-products.xml
-# Sitemap: https://alladsmarket.com/sitemap-categories.xml
-# Sitemap: https://alladsmarket.com/sitemap-images.xml
 
 # Règles spécifiques pour Google
 User-agent: Googlebot
 Allow: /
-Allow: /products/
-Allow: /featured/
-Allow: /trending/
-Allow: /categories/
-Allow: /affiliate-links/
 Crawl-delay: 1
 
 # Règles spécifiques pour Bing
 User-agent: Bingbot
 Allow: /
-Allow: /products/
-Allow: /featured/
-Allow: /trending/
-Allow: /categories/
-Allow: /affiliate-links/
 Crawl-delay: 1
 
-# Règles spécifiques pour Yahoo
-User-agent: Slurp
+# Règles spécifiques pour Yandex
+User-agent: YandexBot
 Allow: /
-Allow: /products/
-Allow: /featured/
-Allow: /trending/
-Allow: /categories/
-Allow: /affiliate-links/
 Crawl-delay: 2
 
-# Règles pour les robots d'images
+# Règles pour les images
 User-agent: Googlebot-Image
 Allow: /images/
 Allow: /assets/
-Allow: /public/
+Disallow: /admin/images/
 
-# Règles pour les robots de vidéos
+# Règles pour les vidéos
 User-agent: Googlebot-Video
 Allow: /videos/
-Allow: /media/
+Disallow: /admin/videos/
 
-# Bloquer les robots malveillants
+# Bloquer les bots malveillants
 User-agent: AhrefsBot
 Disallow: /
 
@@ -73,21 +49,11 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-User-agent: SemrushBot
-Disallow: /
+# Sitemaps
+Sitemap: https://alladsmarket.com/sitemap.xml
+Sitemap: https://alladsmarket.com/sitemap-index.xml
+Sitemap: https://alladsmarket.com/sitemap-images.xml
+Sitemap: https://alladsmarket.com/sitemap-news.xml
 
-# Règles pour les réseaux sociaux
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
-# Délai de crawl respectueux
-Crawl-delay: 1
-
-# Host directive (remplacez par votre domaine principal)
+# Informations sur le site
 Host: https://alladsmarket.com
