@@ -15,13 +15,13 @@ const rootConfig = {
   port: 3306
 };
 
-// Configuration pour l'utilisateur tab
+// Configuration pour l'utilisateur (depuis variables d'environnement)
 const tabConfig = {
-  host: 'localhost',
-  user: 'tab',
-  password: 'Newtiv15@t',
-  database: 'alladsmarket',
-  port: 3306
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'your_mysql_user',
+  password: process.env.DB_PASSWORD || 'your_mysql_password',
+  database: process.env.DB_NAME || 'alladsmarket',
+  port: process.env.DB_PORT || 3306
 };
 
 // Couleurs pour les messages
@@ -57,31 +57,35 @@ async function createDatabase() {
     log('✅ Base de données "alladsmarket" créée', 'green');
     
     // 3. Créer l'utilisateur tab
-    log('\n3️⃣ Création de l\'utilisateur "tab"...', 'blue');
+    // Créer l'utilisateur (depuis variables d'environnement)
+    const dbUser = process.env.DB_USER || 'your_mysql_user';
+    const dbPassword = process.env.DB_PASSWORD || 'your_mysql_password';
+    
+    log(`\n3️⃣ Création de l'utilisateur "${dbUser}"...`, 'blue');
     
     // Supprimer l'utilisateur s'il existe déjà
     try {
-      await connection.execute('DROP USER IF EXISTS "tab"@"localhost"');
-      await connection.execute('DROP USER IF EXISTS "tab"@"%"');
+      await connection.execute(`DROP USER IF EXISTS "${dbUser}"@"localhost"`);
+      await connection.execute(`DROP USER IF EXISTS "${dbUser}"@"%"`);
     } catch (error) {
       // Ignorer les erreurs si l'utilisateur n'existe pas
     }
     
     // Créer l'utilisateur pour l'accès local
-    await connection.execute('CREATE USER "tab"@"localhost" IDENTIFIED BY "Newtiv15@t"');
-    await connection.execute('GRANT ALL PRIVILEGES ON alladsmarket.* TO "tab"@"localhost"');
+    await connection.execute(`CREATE USER "${dbUser}"@"localhost" IDENTIFIED BY "${dbPassword}"`);
+    await connection.execute(`GRANT ALL PRIVILEGES ON alladsmarket.* TO "${dbUser}"@"localhost"`);
     
     // Créer l'utilisateur pour l'accès distant
-    await connection.execute('CREATE USER "tab"@"%" IDENTIFIED BY "Newtiv15@t"');
-    await connection.execute('GRANT ALL PRIVILEGES ON alladsmarket.* TO "tab"@"%"');
+    await connection.execute(`CREATE USER "${dbUser}"@"%" IDENTIFIED BY "${dbPassword}"`);
+    await connection.execute(`GRANT ALL PRIVILEGES ON alladsmarket.* TO "${dbUser}"@"%"`);
     
     // Appliquer les privilèges
     await connection.execute('FLUSH PRIVILEGES');
-    log('✅ Utilisateur "tab" créé avec succès', 'green');
+    log(`✅ Utilisateur "${dbUser}" créé avec succès`, 'green');
     
     // 4. Vérifier la création
     log('\n4️⃣ Vérification de la création...', 'blue');
-    const [users] = await connection.execute('SELECT User, Host FROM mysql.user WHERE User = "tab"');
+    const [users] = await connection.execute(`SELECT User, Host FROM mysql.user WHERE User = "${dbUser}"`);
     log('👤 Utilisateurs créés:', 'green');
     users.forEach(user => {
       log(`   - ${user.User}@${user.Host}`, 'green');
