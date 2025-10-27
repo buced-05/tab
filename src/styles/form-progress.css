@@ -1,0 +1,413 @@
+/* ===========================================
+   📊 FORM PROGRESS INDICATOR - LIGNE VERTICALE
+   =========================================== */
+
+.form-progress-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  min-height: 400px;
+}
+
+.form-progress-indicator.vertical {
+  flex-direction: column;
+}
+
+.form-progress-indicator.horizontal {
+  flex-direction: row;
+  min-height: auto;
+  padding: 0.5rem 1rem;
+}
+
+/* ===========================================
+   📋 CONTAINER DE PROGRESSION
+   =========================================== */
+
+.progress-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.form-progress-indicator.horizontal .progress-container {
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ===========================================
+   🔘 ÉLÉMENTS D'ÉTAPE
+   =========================================== */
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.form-progress-indicator.horizontal .step-item {
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+}
+
+/* ===========================================
+   📝 CONTENU DE L'ÉTAPE
+   =========================================== */
+
+.step-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%;
+  min-height: 60px;
+}
+
+.step-item.current .step-content {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  color: white;
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
+}
+
+.step-item.completed .step-content {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  color: white;
+}
+
+.step-item.pending .step-content {
+  background: #f8f9fa;
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+/* ===========================================
+   🎯 ICÔNES D'ÉTAPE
+   =========================================== */
+
+.step-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.step-item.pending .step-icon-container {
+  background: #e9ecef;
+}
+
+.step-icon {
+  transition: all 0.3s ease;
+}
+
+.step-icon.completed {
+  color: white;
+  animation: checkPulse 0.6s ease-in-out;
+}
+
+.step-icon.current {
+  color: white;
+  animation: currentPulse 2s infinite;
+}
+
+.step-icon.pending {
+  color: #6c757d;
+}
+
+/* ===========================================
+   📄 INFORMATIONS DE L'ÉTAPE
+   =========================================== */
+
+.step-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.step-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.step-description {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  line-height: 1.3;
+}
+
+/* ===========================================
+   🔗 CONNECTEURS VERTICAUX
+   =========================================== */
+
+.step-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2px;
+  height: 40px;
+  margin: 0.5rem 0 0.5rem 15px;
+  background: linear-gradient(to bottom, #007bff, #e9ecef);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.step-connector.completed {
+  background: linear-gradient(to bottom, #28a745, #28a745);
+}
+
+.step-connector.current {
+  background: linear-gradient(to bottom, #007bff, #e9ecef);
+}
+
+.step-connector.pending {
+  background: #e9ecef;
+}
+
+.connector-arrow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.step-connector.completed .connector-arrow {
+  color: #28a745;
+}
+
+.step-connector.pending .connector-arrow {
+  color: #6c757d;
+}
+
+/* ===========================================
+   📊 RÉSUMÉ DE PROGRESSION
+   =========================================== */
+
+.progress-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.progress-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.progress-percentage {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===========================================
+   🎨 ANIMATIONS
+   =========================================== */
+
+@keyframes checkPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes currentPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-item {
+  animation: slideIn 0.5s ease-out;
+}
+
+.step-item:nth-child(1) { animation-delay: 0.1s; }
+.step-item:nth-child(2) { animation-delay: 0.2s; }
+.step-item:nth-child(3) { animation-delay: 0.3s; }
+.step-item:nth-child(4) { animation-delay: 0.4s; }
+.step-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* ===========================================
+   📱 RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+  .form-progress-indicator {
+    padding: 0.5rem;
+    min-height: 300px;
+  }
+  
+  .step-content {
+    padding: 0.75rem;
+    min-height: 50px;
+  }
+  
+  .step-icon-container {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .step-title {
+    font-size: 0.875rem;
+  }
+  
+  .step-description {
+    font-size: 0.75rem;
+  }
+  
+  .step-connector {
+    height: 30px;
+    margin: 0.25rem 0 0.25rem 14px;
+  }
+  
+  .progress-summary {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-progress-indicator {
+    padding: 0.25rem;
+  }
+  
+  .step-content {
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
+  
+  .step-icon-container {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .step-connector {
+    margin-left: 12px;
+  }
+}
+
+/* ===========================================
+   🎯 VARIANTES HORIZONTALES
+   =========================================== */
+
+.form-progress-indicator.horizontal .step-connector {
+  width: 40px;
+  height: 2px;
+  margin: 0 0.5rem;
+  background: linear-gradient(to right, #007bff, #e9ecef);
+}
+
+.form-progress-indicator.horizontal .connector-arrow {
+  right: -6px;
+  bottom: 50%;
+  top: auto;
+  left: auto;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.form-progress-indicator.horizontal .step-content {
+  flex-direction: column;
+  text-align: center;
+  min-height: 80px;
+  padding: 0.75rem 0.5rem;
+}
+
+.form-progress-indicator.horizontal .step-info {
+  margin-top: 0.5rem;
+}
+
+/* ===========================================
+   🌈 THÈMES COULEUR
+   =========================================== */
+
+.form-progress-indicator.theme-success .step-item.current .step-content {
+  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+}
+
+.form-progress-indicator.theme-warning .step-item.current .step-content {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+}
+
+.form-progress-indicator.theme-danger .step-item.current .step-content {
+  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.form-progress-indicator.theme-info .step-item.current .step-content {
+  background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+}
+
+/* ===========================================
+   ✨ EFFETS SPÉCIAUX
+   =========================================== */
+
+.form-progress-indicator.glow .step-item.current .step-content {
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+}
+
+.form-progress-indicator.minimal .step-content {
+  background: transparent;
+  box-shadow: none;
+  border: 2px solid #e9ecef;
+}
+
+.form-progress-indicator.minimal .step-item.current .step-content {
+  border-color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+}
+
+.form-progress-indicator.minimal .step-item.completed .step-content {
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}

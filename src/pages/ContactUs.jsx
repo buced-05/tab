@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import emailjs from '@emailjs/browser';
+import { emailConfig } from '../config/emailConfig';
 // import '../styles/contact-form.css'; // Removed unused CSS
 
 const ContactUs = () => {
@@ -25,12 +27,34 @@ const ContactUs = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Préparer les paramètres du template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: emailConfig.toEmail,
+        date: new Date().toLocaleString('fr-FR')
+      };
+      
+      // Envoyer l'email
+      await emailjs.send(
+        emailConfig.serviceId, 
+        emailConfig.templateId, 
+        templateParams, 
+        emailConfig.publicKey
+      );
+      
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 2000);
+      
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi de l\'email:', error);
+      setIsSubmitting(false);
+      alert('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+    }
   };
 
   return (

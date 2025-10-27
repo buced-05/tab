@@ -4371,6 +4371,89 @@ export const getSampleProducts = () => {
       inStock: true,
       tags: ['automotive', 'phone-holder', 'car-accessories', 'military-grade', 'suction-mount', '360-rotation', 'dashboard', 'windshield', 'vent-mount'],
       affiliateUrl: 'https://amzn.to/4hocaio'
+    },
+    
+    // Kinetic Innovative Staffing Services LLC
+    {
+      _id: 'kinetic-staffing-services',
+      productNumber: 282,
+      name: 'Kinetic Innovative Staffing Services LLC',
+      description: 'Revolutionary remote staffing solutions since 2013. Access to over 9 million qualified professionals in the Philippines at costs up to 76% lower than local recruitment.',
+      price: 0,
+      originalPrice: 0,
+      category: 'business',
+      images: [
+        { url: 'https://www.uc.edu/content/dam/uc/news/units/one-stop/summer-jobs.png/_jcr_content/renditions/cq5dam.web.1280.1280.png', alt: 'Kinetic Staffing Services - Professional Network', isPrimary: true },
+        { url: 'https://tse4.mm.bing.net/th/id/OIP.8gx8AlZ0jXKLfnbr2e4ClwHaFj?pid=ImgDet&w=179&h=134&c=7&dpr=1.5&o=7&rm=3', alt: 'Kinetic Staffing Services - Digital Network Ecosystem', isPrimary: false }
+      ],
+      rating: { average: 4.8, count: 1250 },
+      isFeatured: true,
+      isTrending: true,
+      inStock: true,
+      brand: 'Kinetic',
+      affiliateUrl: 'https://www.kineticstaff.com/share/v1/?ref=62a362f&linkId=1',
+      specifications: {
+        'Service Type': 'Remote Staffing Solutions',
+        'Founded': '2013',
+        'Talent Pool': '9+ Million Professionals',
+        'Cost Savings': 'Up to 76%',
+        'Recruitment Time': '3-5 Days',
+        'Locations': 'Philippines, USA, Australia, Singapore, UK',
+        'Specialties': 'Customer Support, Data Entry, Virtual Assistants, Technical Roles'
+      },
+      features: [
+        'Access to 9+ million qualified professionals',
+        'Cost savings up to 76% compared to local recruitment',
+        'Fast recruitment process (3-5 days)',
+        'International presence across multiple time zones',
+        'Flexible team management',
+        'Seamless integration with client processes',
+        'High-quality talent pool',
+        'Transparent pricing with no hidden fees'
+      ],
+      tags: ['remote-staffing', 'offshore-recruitment', 'business-services', 'talent-solutions', 'cost-effective', 'philippines', 'virtual-assistants']
+    },
+    
+    // Kinetic Partnership Program
+    {
+      _id: 'kinetic-partnership-program',
+      productNumber: 283,
+      name: 'Devenir Partenaire Kinetic',
+      description: 'Strategic partnership program for businesses seeking to optimize human resources. Join Kinetic to access global talent pool, reduce costs, and increase competitiveness in the digital economy.',
+      price: 0,
+      originalPrice: 0,
+      category: 'business',
+      images: [
+        { url: 'https://tse4.mm.bing.net/th/id/OIP.MiFi-iU4-Rk4XEHIR4X3HAHaFN?pid=ImgDet&w=179&h=126&c=7&dpr=1.5&o=7&rm=3', alt: 'Kinetic Partnership Program - Business Collaboration', isPrimary: true },
+        { url: 'https://www.uc.edu/content/dam/uc/news/units/one-stop/summer-jobs.png/_jcr_content/renditions/cq5dam.web.1280.1280.png', alt: 'Kinetic Partnership Program - Professional Network', isPrimary: false }
+      ],
+      rating: { average: 4.9, count: 890 },
+      isFeatured: true,
+      isTrending: true,
+      inStock: true,
+      brand: 'Kinetic',
+      affiliateUrl: 'https://www.kineticstaff.com/client-referral-program/?ref=62a362f',
+      specifications: {
+        'Program Type': 'Strategic Partnership',
+        'Target': 'Businesses & Enterprises',
+        'Benefits': 'Cost Optimization & Talent Access',
+        'Flexibility': 'Scalable Solutions',
+        'Support': '24/7 International Support',
+        'Integration': 'Seamless Process Integration',
+        'ROI': 'Proven Return on Investment',
+        'Growth': 'Business Scalability'
+      },
+      features: [
+        'Strategic partnership for business growth',
+        'Access to global talent marketplace',
+        'Cost optimization and reduction',
+        'Scalable workforce solutions',
+        '24/7 international support',
+        'Seamless integration with existing processes',
+        'Proven ROI and business results',
+        'Flexible partnership terms'
+      ],
+      tags: ['partnership', 'business-growth', 'strategic-alliance', 'talent-marketplace', 'cost-optimization', 'scalability', 'roi', 'business-solutions']
     }
   ];
   

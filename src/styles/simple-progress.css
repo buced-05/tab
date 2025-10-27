@@ -1,0 +1,460 @@
+/* ===========================================
+   📊 SIMPLE PROGRESS COMPONENTS STYLES
+   =========================================== */
+
+/* ===========================================
+   📏 SIMPLE PROGRESS LINE
+   =========================================== */
+
+.simple-progress-line {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  max-width: 300px;
+}
+
+.simple-progress-line .step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.simple-progress-line .step-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.simple-progress-line .step-item.current .step-content {
+  background: #007bff;
+  color: white;
+  transform: scale(1.02);
+}
+
+.simple-progress-line .step-item.completed .step-content {
+  background: #28a745;
+  color: white;
+}
+
+.simple-progress-line .step-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.simple-progress-line .step-item.pending .step-icon-container {
+  background: #e9ecef;
+}
+
+.simple-progress-line .step-icon {
+  transition: all 0.3s ease;
+}
+
+.simple-progress-line .step-icon.completed {
+  color: white;
+}
+
+.simple-progress-line .step-icon.current {
+  color: white;
+  animation: currentPulse 2s infinite;
+}
+
+.simple-progress-line .step-icon.pending {
+  color: #6c757d;
+}
+
+.simple-progress-line .step-info {
+  flex: 1;
+}
+
+.simple-progress-line .step-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.simple-progress-line .step-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2px;
+  height: 20px;
+  margin: 0.25rem 0 0.25rem 12px;
+  position: relative;
+}
+
+.simple-progress-line .connector-line {
+  width: 100%;
+  height: 100%;
+  background: #007bff;
+  transition: all 0.3s ease;
+}
+
+.simple-progress-line .step-connector.completed .connector-line {
+  background: #28a745;
+}
+
+.simple-progress-line .step-connector.pending .connector-line {
+  background: #e9ecef;
+}
+
+/* ===========================================
+   📊 SIMPLE PROGRESS BAR
+   =========================================== */
+
+.simple-progress-bar {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+}
+
+.simple-progress-bar .progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.simple-progress-bar .progress-text {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.simple-progress-bar .progress-percentage {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.simple-progress-bar .progress-bar-container {
+  width: 100%;
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.simple-progress-bar .progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.simple-progress-bar .progress-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.simple-progress-bar .progress-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  position: relative;
+}
+
+.simple-progress-bar .step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.simple-progress-bar .progress-step.completed .step-dot {
+  background: #28a745;
+  transform: scale(1.2);
+}
+
+.simple-progress-bar .progress-step.current .step-dot {
+  background: #007bff;
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.simple-progress-bar .step-label {
+  font-size: 0.75rem;
+  color: #6c757d;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.simple-progress-bar .progress-step.completed .step-label {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.simple-progress-bar .progress-step.current .step-label {
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* ===========================================
+   🎮 PROGRESS DEMO
+   =========================================== */
+
+.progress-demo {
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.progress-demo h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+}
+
+.demo-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.demo-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+  font-size: 1.125rem;
+}
+
+.demo-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.demo-controls button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.demo-controls button:first-child {
+  background: #6c757d;
+  color: white;
+}
+
+.demo-controls button:first-child:hover:not(:disabled) {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.demo-controls button:nth-child(2) {
+  background: #007bff;
+  color: white;
+}
+
+.demo-controls button:nth-child(2):hover:not(:disabled) {
+  background: #0056b3;
+  transform: translateY(-2px);
+}
+
+.demo-controls button:last-child {
+  background: #dc3545;
+  color: white;
+}
+
+.demo-controls button:last-child:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
+
+.demo-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ===========================================
+   📱 RESPONSIVE DESIGN
+   =========================================== */
+
+@media (max-width: 768px) {
+  .simple-progress-line {
+    max-width: 100%;
+  }
+  
+  .simple-progress-bar {
+    max-width: 100%;
+  }
+  
+  .simple-progress-bar .progress-steps {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .simple-progress-bar .progress-step {
+    min-width: 80px;
+  }
+  
+  .progress-demo {
+    padding: 1rem;
+  }
+  
+  .demo-controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .demo-controls button {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .simple-progress-line .step-content {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .simple-progress-line .step-icon-container {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .simple-progress-line .step-title {
+    font-size: 0.75rem;
+  }
+  
+  .simple-progress-bar .progress-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .simple-progress-bar .progress-steps {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .simple-progress-bar .progress-step {
+    flex-direction: row;
+    justify-content: flex-start;
+    min-width: auto;
+  }
+  
+  .simple-progress-bar .step-label {
+    text-align: left;
+  }
+}
+
+/* ===========================================
+   ✨ ANIMATIONS
+   =========================================== */
+
+@keyframes currentPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.simple-progress-line .step-item {
+  animation: slideIn 0.3s ease-out;
+}
+
+.simple-progress-line .step-item:nth-child(1) { animation-delay: 0.1s; }
+.simple-progress-line .step-item:nth-child(2) { animation-delay: 0.2s; }
+.simple-progress-line .step-item:nth-child(3) { animation-delay: 0.3s; }
+.simple-progress-line .step-item:nth-child(4) { animation-delay: 0.4s; }
+.simple-progress-line .step-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* ===========================================
+   🎨 VARIANTES DE COULEURS
+   =========================================== */
+
+.simple-progress-line.theme-success .step-item.current .step-content {
+  background: #28a745;
+}
+
+.simple-progress-line.theme-success .step-connector .connector-line {
+  background: #28a745;
+}
+
+.simple-progress-bar.theme-success .progress-bar-fill {
+  background: linear-gradient(90deg, #28a745 0%, #1e7e34 100%);
+}
+
+.simple-progress-bar.theme-success .progress-percentage {
+  color: #28a745;
+}
+
+.simple-progress-line.theme-warning .step-item.current .step-content {
+  background: #ffc107;
+  color: #333;
+}
+
+.simple-progress-line.theme-warning .step-connector .connector-line {
+  background: #ffc107;
+}
+
+.simple-progress-bar.theme-warning .progress-bar-fill {
+  background: linear-gradient(90deg, #ffc107 0%, #e0a800 100%);
+}
+
+.simple-progress-bar.theme-warning .progress-percentage {
+  color: #ffc107;
+}
+
+.simple-progress-line.theme-danger .step-item.current .step-content {
+  background: #dc3545;
+}
+
+.simple-progress-line.theme-danger .step-connector .connector-line {
+  background: #dc3545;
+}
+
+.simple-progress-bar.theme-danger .progress-bar-fill {
+  background: linear-gradient(90deg, #dc3545 0%, #c82333 100%);
+}
+
+.simple-progress-bar.theme-danger .progress-percentage {
+  color: #dc3545;
+}

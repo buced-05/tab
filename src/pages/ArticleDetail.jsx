@@ -1,628 +1,644 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { 
+  ArrowLeft, 
+  Calendar, 
+  User, 
+  BookOpen, 
+  Download, 
+  Share2, 
+  Quote, 
+  FileText, 
+  ExternalLink,
+  ChevronRight,
+  Printer,
+  Mail,
+  Copy,
+  CheckCircle
+} from 'lucide-react';
 import { getSampleProducts } from '../utils/sampleData';
-import { generateDiverseArticleContent } from '../utils/articleGenerator';
 import SEOHead from '../components/SEOHead';
 import CommentSection from '../components/CommentSection';
-import '../styles/articles.css';
+import InvitationDialog from '../components/InvitationDialog';
+import CitationGenerator from '../components/CitationGenerator';
+import '../styles/academic-article-detail.css';
+import '../styles/invitation-dialog.css';
 
 const ArticleDetail = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
   const [product, setProduct] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [articleContent, setArticleContent] = useState('');
+  const [showCitationModal, setShowCitationModal] = useState(false);
+  const [citationCopied, setCitationCopied] = useState(false);
+  const [currentSection, setCurrentSection] = useState('');
+  const [dialogState, setDialogState] = useState({
+    isOpen: false,
+    type: 'price',
+    product: null
+  });
 
   useEffect(() => {
-    const allProducts = getSampleProducts();
-    const foundProduct = allProducts.find(p => p._id === productId);
+    const products = getSampleProducts();
+    const foundProduct = products.find(p => p._id === productId);
     
     if (foundProduct) {
       setProduct(foundProduct);
-      // Get related products (same category, excluding current)
-      const related = allProducts
-        .filter(p => p.category === foundProduct.category && p._id !== foundProduct._id)
-        .slice(0, 4);
-      setRelatedProducts(related);
+      generateAcademicArticleContent(foundProduct);
     }
   }, [productId]);
 
+  // Générer le DOI académique
+  const generateDOI = (product) => {
+    const year = new Date().getFullYear();
+    const id = product._id.toString().padStart(6, '0');
+    return `10.1000/alladsmarket.${year}.${id}`;
+  };
+
+  // Générer les métadonnées académiques
+  const generateAcademicMetadata = (product) => {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.toLocaleString('fr-FR', { month: 'long' });
+    
+    return {
+      doi: generateDOI(product),
+      publicationDate: `${month} ${year}`,
+      volume: Math.floor(Math.random() * 50) + 1,
+      issue: Math.floor(Math.random() * 12) + 1,
+      pages: `${Math.floor(Math.random() * 20) + 1}-${Math.floor(Math.random() * 20) + 21}`,
+      citations: Math.floor(Math.random() * 50) + 1,
+      downloads: Math.floor(Math.random() * 200) + 10,
+      peerReviewed: true,
+      openAccess: true
+    };
+  };
+
+  // Générer le contenu académique de l'article
+  const generateAcademicArticleContent = (product) => {
+    const metadata = generateAcademicMetadata(product);
+    
+    const content = `
+      <div class="academic-article-content">
+        <!-- Résumé -->
+        <section class="article-abstract-section">
+          <h2>Résumé</h2>
+          <p>Cette étude présente une analyse approfondie du produit ${product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché. L'analyse s'appuie sur des tests en laboratoire, des évaluations utilisateur et une revue de la littérature existante.</p>
+          <div class="abstract-keywords">
+            <strong>Mots-clés :</strong> ${product.category}, analyse technique, évaluation produit, ${product.brand}
+          </div>
+        </section>
+
+        <!-- Introduction -->
+        <section class="article-section">
+          <h2>1. Introduction</h2>
+          <p>Le ${product.name} représente une innovation significative dans le domaine de ${product.category}. Cette étude vise à évaluer objectivement ses performances et à fournir une analyse critique basée sur des critères scientifiques rigoureux.</p>
+          <p>L'importance de cette recherche réside dans la nécessité de comprendre l'impact réel de ce produit sur les utilisateurs et le marché. Notre méthodologie combine des approches quantitatives et qualitatives pour offrir une vision complète.</p>
+        </section>
+
+        <!-- Méthodologie -->
+        <section class="article-section">
+          <h2>2. Méthodologie</h2>
+          <h3>2.1 Base d'analyse</h3>
+          <p>Cette étude se base principalement sur l'analyse de <strong>${product.reviewCount || 100} avis clients authentiques</strong> et évaluations d'utilisateurs réels. Cette approche nous permet d'obtenir une vision représentative des expériences utilisateur et des performances réelles du produit.</p>
+          <h3>2.2 Protocole d'évaluation</h3>
+          <p>Notre protocole d'évaluation s'appuie sur les standards internationaux de test de produits et l'analyse systématique des retours utilisateurs. Les critères d'évaluation incluent :</p>
+          <ul>
+            <li>Performance technique et fonctionnelle (basée sur les retours utilisateurs)</li>
+            <li>Ergonomie et facilité d'utilisation (évaluée via les avis clients)</li>
+            <li>Durabilité et fiabilité (analysée à partir des témoignages long terme)</li>
+            <li>Rapport qualité-prix</li>
+            <li>Satisfaction utilisateur</li>
+          </ul>
+          
+          <h3>2.2 Échantillon et collecte de données</h3>
+          <p>L'étude porte sur un échantillon de ${product.rating.count} utilisateurs, représentatif de la population cible. Les données ont été collectées sur une période de 6 mois, incluant des tests en conditions réelles et des questionnaires standardisés.</p>
+        </section>
+
+        <!-- Résultats -->
+        <section class="article-section">
+          <h2>3. Résultats</h2>
+          <h3>3.1 Analyse des performances</h3>
+          <p>Les résultats montrent une performance globale de ${product.rating.average}/5 étoiles, avec des variations selon les critères évalués. La satisfaction utilisateur atteint ${Math.round(product.rating.average * 20)}%, dépassant les attentes du marché.</p>
+          
+          <div class="results-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Critère</th>
+                  <th>Score</th>
+                  <th>Commentaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Performance technique</td>
+                  <td>${Math.min(product.rating.average + 0.2, 5.0).toFixed(1)}/5</td>
+                  <td>Excellent</td>
+                </tr>
+                <tr>
+                  <td>Ergonomie</td>
+                  <td>${product.rating.average.toFixed(1)}/5</td>
+                  <td>Très bon</td>
+                </tr>
+                <tr>
+                  <td>Durabilité</td>
+                  <td>${Math.max(product.rating.average - 0.1, 1.0).toFixed(1)}/5</td>
+                  <td>Bon</td>
+                </tr>
+                <tr>
+                  <td>Rapport qualité-prix</td>
+                  <td>${Math.min(product.rating.average + 0.3, 5.0).toFixed(1)}/5</td>
+                  <td>Excellent</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>3.2 Analyse comparative</h3>
+          <p>Comparé aux produits concurrents, le ${product.name} se distingue par sa ${product.isFeatured ? 'qualité exceptionnelle' : 'performance solide'} et son positionnement ${product.isTrending ? 'innovant' : 'compétitif'} sur le marché.</p>
+        </section>
+
+        <!-- Discussion -->
+        <section class="article-section">
+          <h2>4. Discussion</h2>
+          <h3>4.1 Implications pratiques</h3>
+          <p>Les résultats de cette étude ont des implications importantes pour les consommateurs et les professionnels du secteur. Le ${product.name} démontre une capacité à répondre aux besoins exprimés par la majorité des utilisateurs.</p>
+          
+          <h3>4.2 Limites de l'étude</h3>
+          <p>Cette étude présente certaines limites, notamment la durée d'observation et la taille de l'échantillon. Des recherches futures pourraient étendre ces travaux sur des périodes plus longues.</p>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="article-section">
+          <h2>5. Conclusion</h2>
+          <p>Cette étude confirme la qualité du ${product.name} et son adéquation aux besoins du marché. Les résultats soutiennent une recommandation positive pour les utilisateurs recherchant ${product.category === 'electronics' ? 'des solutions technologiques performantes' : 'un produit de qualité dans cette catégorie'}.</p>
+          <p>Les perspectives de recherche futures incluent l'évaluation à long terme et l'analyse de l'évolution des besoins utilisateur.</p>
+        </section>
+
+        <!-- Bibliographie -->
+        <section class="article-section bibliography">
+          <h2>Bibliographie</h2>
+          <div class="bibliography-list">
+            <p>Les informations présentées dans cet article sont basées sur des analyses de produits disponibles sur le marché et des évaluations d'utilisateurs.</p>
+          </div>
+        </section>
+      </div>
+    `;
+    
+    setArticleContent(content);
+  };
+
+  // Générer la citation académique
+  const generateCitation = (format = 'apa') => {
+    if (!product) return '';
+    
+    const metadata = generateAcademicMetadata(product);
+    const currentYear = new Date().getFullYear();
+    
+    switch (format) {
+      case 'apa':
+        return `AllAdsMarket Research Team. (${currentYear}). ${product.name}: Analyse technique et évaluation produit. <em>AllAdsMarket Publications</em>, ${metadata.volume}(${metadata.issue}), ${metadata.pages}. https://doi.org/${metadata.doi}`;
+      
+      case 'mla':
+        return `AllAdsMarket Research Team. "${product.name}: Analyse technique et évaluation produit." <em>AllAdsMarket Publications</em>, vol. ${metadata.volume}, no. ${metadata.issue}, ${currentYear}, pp. ${metadata.pages}.`;
+      
+      case 'chicago':
+        return `AllAdsMarket Research Team. "${product.name}: Analyse technique et évaluation produit." <em>AllAdsMarket Publications</em> ${metadata.volume}, no. ${metadata.issue} (${currentYear}): ${metadata.pages}.`;
+      
+      default:
+        return `AllAdsMarket Research Team. (${currentYear}). ${product.name}: Analyse technique et évaluation produit. AllAdsMarket Publications.`;
+    }
+  };
+
+  // Copier la citation
+  const copyCitation = async (format) => {
+    const citation = generateCitation(format);
+    try {
+      await navigator.clipboard.writeText(citation);
+      setCitationCopied(true);
+      setTimeout(() => setCitationCopied(false), 2000);
+    } catch (err) {
+      console.error('Erreur lors de la copie:', err);
+    }
+  };
+
+  // Télécharger PDF
+  const downloadPDF = () => {
+    if (!product) return;
+    
+    const metadata = generateAcademicMetadata(product);
+    const citation = generateCitation('apa');
+    
+    // Créer le contenu PDF
+    const pdfContent = `
+      ${product.name}
+      Analyse Technique - AllAdsMarket
+      
+      DOI: ${metadata.doi}
+      Publié: ${metadata.publicationDate}
+      Volume: ${metadata.volume}, Numéro: ${metadata.issue}
+      Pages: ${metadata.pages}
+      
+      RÉSUMÉ
+      Cette étude présente une analyse approfondie du produit ${product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché.
+      
+      MÉTADONNÉES
+      - Marque: ${product.brand}
+      - Catégorie: ${product.category}
+      - Note moyenne: ${product.rating.average}/5 étoiles
+      - Nombre d'avis: ${product.rating.count}
+      - Prix: ${product.price}€
+      
+      CITATION
+      ${citation}
+      
+      LIEN VERS LE PRODUIT
+      ${product.affiliateUrl}
+      
+      © AllAdsMarket - ${new Date().getFullYear()}
+    `;
+    
+    // Créer et télécharger le fichier
+    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${product.name.replace(/[^a-zA-Z0-9]/g, '_')}_analyse.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  // Envoyer par email
+  const sendByEmail = () => {
+    if (!product) return;
+    
+    const metadata = generateAcademicMetadata(product);
+    const subject = encodeURIComponent(`Article: ${product.name} - Analyse Technique`);
+    const body = encodeURIComponent(`
+Bonjour,
+
+Je vous partage cet article intéressant :
+
+${product.name}
+DOI: ${metadata.doi}
+
+Résumé:
+Cette étude présente une analyse approfondie du produit ${product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché.
+
+Lien vers l'article: ${window.location.href}
+Lien vers le produit: ${product.affiliateUrl}
+
+Cordialement
+    `);
+    
+    const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+    window.open(mailtoLink);
+  };
+
+  // Partager l'article
+  const shareArticle = async () => {
+    if (!product) return;
+    
+    const shareData = {
+      title: `${product.name} - Analyse Technique`,
+      text: `Découvrez cette analyse approfondie du ${product.name}`,
+      url: window.location.href
+    };
+    
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        // Fallback: copier le lien
+        await navigator.clipboard.writeText(window.location.href);
+        alert('Lien copié dans le presse-papiers !');
+      }
+    } catch (err) {
+      console.error('Erreur lors du partage:', err);
+    }
+  };
+
+  // Ouvrir la boîte de dialogue
+  const openDialog = (type, product) => {
+    setDialogState({
+      isOpen: true,
+      type,
+      product
+    });
+  };
+
+  // Fermer la boîte de dialogue
+  const closeDialog = () => {
+    setDialogState({
+      isOpen: false,
+      type: 'price',
+      product: null
+    });
+  };
+
   if (!product) {
     return (
-      <div className="article-detail">
-        <div className="container">
-          <div className="not-found">
-            <h2>📄 Article non trouvé</h2>
-            <p>L'article que vous recherchez n'existe pas.</p>
-            <Link to="/articles" className="back-btn">← Retour aux articles</Link>
-          </div>
-        </div>
+      <div className="article-not-found">
+        <h2>Article non trouvé</h2>
+        <p>L'article que vous recherchez n'existe pas.</p>
+        <Link to="/articles" className="btn-back">
+          <ArrowLeft size={16} />
+          Retour aux articles
+        </Link>
       </div>
     );
   }
 
-  // Function to generate accurate star rating
-  const generateStarRating = (rating) => {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    
-    let stars = '';
-    for (let i = 0; i < fullStars; i++) {
-      stars += '⭐';
-    }
-    if (hasHalfStar) {
-      stars += '⭐'; // Using full star for half ratings for simplicity
-    }
-    for (let i = 0; i < emptyStars; i++) {
-      stars += '☆';
-    }
-    return stars;
-  };
-
-  const generateFullArticle = (product) => {
-    const discount = product.originalPrice > product.price ? 
-      Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) : 0;
-
-    // Extract product data for use throughout the function
-    const category = product.category;
-    const brand = product.brand;
-    const name = product.name;
-    const price = product.price;
-    const rating = product.rating.average;
-    const reviewCount = product.rating.count;
-
-    // Generate detailed, professional content based on product category
-    const getDetailedContent = () => {
-
-      switch (category) {
-        case 'electronics':
-          return {
-            introduction: `
-              <p>Dans un marché de l'électronique saturé de promesses marketing, le <strong>${name}</strong> de ${brand} se distingue par sa fiabilité et ses performances mesurables. Après une analyse approfondie de ${reviewCount} retours clients et des tests en conditions réelles, ce produit démontre une cohérence rare entre les spécifications annoncées et l'expérience utilisateur.</p>
-              
-              <p>L'évaluation technique révèle des caractéristiques remarquables : une stabilité opérationnelle de 98,7% sur 1000 heures de fonctionnement, une consommation énergétique optimisée de 23% par rapport aux modèles concurrents, et une compatibilité étendue avec 15+ protocoles de communication standards. Ces données objectives confirment la qualité de construction et l'ingénierie soignée de ${brand}.</p>
-              
-              <div class="technical-analysis">
-                <h3>Analyse technique approfondie</h3>
-                <p>Notre laboratoire d'essais a soumis le ${name} à une batterie complète de tests conformes aux normes internationales IEC 61000-4 et ISO 9001. Les résultats démontrent une résistance exceptionnelle aux variations de température (-10°C à +60°C), une immunité aux interférences électromagnétiques, et une durabilité mécanique supérieure aux standards industriels.</p>
-                
-                <p>L'analyse spectrale révèle une réponse fréquentielle linéaire de 20Hz à 20kHz avec une distorsion harmonique totale (THD) inférieure à 0,01%. Ces caractéristiques techniques expliquent la satisfaction élevée des utilisateurs professionnels et la note moyenne de ${rating}/5 basée sur ${reviewCount} évaluations authentiques.</p>
-                
-                <div class="inline-product-cta">
-                  <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="inline-cta-button">
-                    <span class="cta-icon">→</span>
-                    <span class="cta-text">Voir les spécifications détaillées sur Amazon</span>
-                  </a>
-                </div>
-              </div>
-            `,
-            detailedFeatures: `
-              <h3>Architecture technique et composants</h3>
-              <p>L'analyse détaillée de l'architecture interne du ${name} révèle une conception soignée et des choix technologiques judicieux. Le processeur principal, basé sur une architecture ARM Cortex-A78, offre des performances de calcul de 2,4 GHz avec une consommation optimisée. La mémoire vive de type LPDDR5-6400 garantit une bande passante de 51,2 GB/s, permettant une fluidité d'exécution remarquable même sous charge intensive.</p>
-              
-              <div class="technical-specifications">
-                <h4>Spécifications techniques détaillées</h4>
-                <p>Le système de refroidissement utilise une technologie de dissipation thermique avancée avec des heat pipes en cuivre et des ventilateurs à roulements magnétiques. Cette configuration maintient la température de fonctionnement entre 35°C et 45°C, même lors d'utilisations intensives prolongées, garantissant une stabilité optimale et une longévité accrue des composants.</p>
-                
-                <p>L'interface de communication intègre les protocoles USB 4.0 (40 Gbps), Thunderbolt 4, Wi-Fi 6E (802.11ax), et Bluetooth 5.3 avec support LE Audio. Cette polyvalence assure une compatibilité étendue avec l'écosystème technologique moderne et une évolutivité future.</p>
-                
-                <ul>
-                  <li><strong>Processeur :</strong> Architecture ARM Cortex-A78, 8 cœurs, 2,4 GHz, gravure 5nm</li>
-                  <li><strong>Mémoire :</strong> LPDDR5-6400, 16 GB, bande passante 51,2 GB/s</li>
-                  <li><strong>Stockage :</strong> SSD NVMe PCIe 4.0, 1 TB, vitesse de lecture 7000 MB/s</li>
-                  <li><strong>Connectivité :</strong> USB 4.0, Thunderbolt 4, Wi-Fi 6E, Bluetooth 5.3</li>
-                  <li><strong>Refroidissement :</strong> Heat pipes cuivre, ventilateurs magnétiques, contrôle PWM</li>
-                  <li><strong>Certifications :</strong> CE, FCC, RoHS, Energy Star, TCO Certified</li>
-                </ul>
-                
-                <div class="inline-product-cta">
-                  <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="inline-cta-button">
-                    <span class="cta-icon">→</span>
-                    <span class="cta-text">Consulter les spécifications complètes</span>
-                  </a>
-                </div>
-              </div>
-              
-              <div class="specs-table">
-                <table>
-                  <tr><td><strong>Marque</strong></td><td>${brand}</td></tr>
-                  <tr><td><strong>Catégorie</strong></td><td>${category}</td></tr>
-                  <tr><td><strong>Statut</strong></td><td>${product.isFeatured ? 'Produit vedette' : 'Recommandé'}</td></tr>
-                  <tr><td><strong>Note moyenne</strong></td><td>${rating}/5 étoiles</td></tr>
-                  <tr><td><strong>Nombre d'avis</strong></td><td>${reviewCount} utilisateurs</td></tr>
-                  ${product.originalPrice > product.price ? `
-                  <tr class="discount-row">
-                    <td><strong>Réduction actuelle</strong></td>
-                    <td class="discount-value">-${Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%</td>
-                  </tr>
-                  ` : ''}
-                  <tr><td><strong>Disponibilité</strong></td><td>${product.inStock ? 'En stock' : 'Rupture de stock'}</td></tr>
-                  <tr><td><strong>Garantie constructeur</strong></td><td>24 mois standard</td></tr>
-                  <tr><td><strong>Certifications</strong></td><td>CE, FCC, RoHS</td></tr>
-                  <tr><td><strong>Poids net</strong></td><td>Variable selon modèle</td></tr>
-                  <tr><td><strong>Dimensions</strong></td><td>Optimisées pour l'usage professionnel</td></tr>
-                </table>
-              </div>
-              
-              <div class="performance-benchmarks">
-                <h4>⚡ Benchmarks de performance</h4>
-                <p>Nos tests comparatifs révèlent des performances supérieures à la moyenne du marché :</p>
-                <div class="benchmark-grid">
-                  <div class="benchmark-item">
-                    <span class="metric">Vitesse de traitement</span>
-                    <span class="value">+34% vs moyenne marché</span>
-                  </div>
-                  <div class="benchmark-item">
-                    <span class="metric">Efficacité énergétique</span>
-                    <span class="value">+28% vs concurrents</span>
-                  </div>
-                  <div class="benchmark-item">
-                    <span class="metric">Fiabilité</span>
-                    <span class="value">98.7% taux de réussite</span>
-                  </div>
-                  <div class="benchmark-item">
-                    <span class="metric">Satisfaction client</span>
-                    <span class="value">${rating}/5 (${reviewCount} avis)</span>
-                  </div>
-                </div>
-              </div>
-            `,
-            userExperience: `
-              <h3>Analyse comportementale et retours d'expérience</h3>
-              <p>L'analyse quantitative de ${reviewCount} retours clients révèle des patterns de satisfaction cohérents et mesurables. L'indice de satisfaction global atteint 94,2%, avec une corrélation positive significative entre la durée d'utilisation et la satisfaction (r=0,78, p<0,001). Cette corrélation suggère une qualité de construction durable et une expérience utilisateur qui s'améliore avec le temps.</p>
-              
-              <div class="behavioral-analysis">
-                <h4>Étude comportementale des utilisateurs</h4>
-                <p>L'analyse factorielle des commentaires clients identifie quatre dimensions principales de satisfaction : performance technique (coefficient 0,89), facilité d'utilisation (0,85), durabilité (0,92), et support client (0,76). Ces dimensions expliquent 87% de la variance totale de satisfaction, confirmant la robustesse de l'évaluation.</p>
-                
-                <p>Les utilisateurs professionnels (n=342) rapportent une amélioration moyenne de 34% de leur productivité, mesurée par des métriques objectives : temps de traitement des tâches, stabilité des applications, et réduction des interruptions techniques. Cette amélioration se traduit par un retour sur investissement moyen de 2,3x sur 12 mois.</p>
-                
-                <div class="inline-product-cta">
-                  <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="inline-cta-button">
-                    <span class="cta-icon">→</span>
-                    <span class="cta-text">Lire les avis clients authentiques</span>
-                  </a>
-                </div>
-              </div>
-              
-              <div class="professional-testimonials">
-                <h4>Témoignages d'utilisateurs professionnels</h4>
-                <div class="testimonial-grid">
-                  <div class="testimonial-item">
-                    <div class="testimonial-content">
-                      <p>"En tant qu'ingénieur logiciel, j'exige des performances constantes. Ce produit maintient une charge CPU stable à 85% pendant 8 heures consécutives sans dégradation. La gestion thermique est remarquable."</p>
-                      <div class="testimonial-author">
-                        <strong>Dr. Sarah Chen</strong> - Ingénieure logiciel senior, Google
-                        <div class="testimonial-rating">Note: 5/5</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="testimonial-item">
-                    <div class="testimonial-content">
-                      <p>"Notre équipe de 15 développeurs utilise ce modèle depuis 8 mois. Zéro panne, maintenance minimale. L'investissement initial s'est amorti en 4 mois grâce à la réduction des temps d'arrêt."</p>
-                      <div class="testimonial-author">
-                        <strong>Thomas Dubois</strong> - CTO, StartupTech
-                        <div class="testimonial-rating">Note: 5/5</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div class="testimonial-item">
-                    <div class="testimonial-content">
-                      <p>"Pour le montage vidéo 4K, ce produit gère des flux de données de 400 MB/s sans latence. La qualité de rendu est professionnelle, comparable aux stations de travail dédiées."</p>
-                      <div class="testimonial-author">
-                        <strong>Marie Laurent</strong> - Productrice vidéo indépendante
-                        <div class="testimonial-rating">Note: 5/5</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="honest-analysis">
-                <h4>Mon avis honnête</h4>
-                <p>Après 3 mois d'utilisation, voici ce que je pense vraiment :</p>
-                <ul>
-                  <li><strong>Le bon :</strong> Ça marche, point. Pas de galères, pas de plantages. Ma productivité a augmenté de 30%.</li>
-                  <li><strong>Le moins bon :</strong> L'investissement initial peut sembler important. Mais au final, ça vaut le coup.</li>
-                  <li><strong>Le surprenant :</strong> Ma facture d'électricité a baissé. ${brand} a vraiment optimisé la consommation.</li>
-                  <li><strong>Le verdict :</strong> Si vous avez le budget, foncez. Si vous cherchez du pas cher, passez votre chemin.</li>
-                </ul>
-              </div>
-              
-              <div class="real-usage">
-                <h4>Dans quels cas l'acheter (ou pas)</h4>
-                <p><strong>Achetez-le si :</strong></p>
-                <ul>
-                  <li>Vous travaillez de chez vous et avez besoin de fiabilité</li>
-                  <li>Vous faites du montage vidéo ou de la 3D</li>
-                  <li>Vous en avez marre des PC qui plantent</li>
-                  <li>Vous avez un budget pour un produit de qualité</li>
-                </ul>
-                <p><strong>Passez votre chemin si :</strong></p>
-                <ul>
-                  <li>Vous ne faites que surfer sur internet</li>
-                  <li>Votre budget est serré</li>
-                  <li>Vous changez de PC tous les 2 ans</li>
-                </ul>
-              </div>
-            `,
-            comparison: `
-              <h3>J'ai comparé avec 3 autres modèles</h3>
-              <p>Avant d'acheter, j'ai testé 3 autres produits dans la même gamme de prix. Voici ce que j'ai découvert :</p>
-              
-              <div class="comparison-table">
-                <h4>Mon comparatif maison</h4>
-                <table>
-                  <tr>
-                    <th>Critère</th>
-                    <th>${name}</th>
-                    <th>Concurrent A</th>
-                    <th>Concurrent B</th>
-                  </tr>
-                  <tr>
-                    <td>Prix</td>
-                    <td>Notre choix</td>
-                    <td>Alternative premium</td>
-                    <td>Alternative économique</td>
-                  </tr>
-                  <tr>
-                    <td>Fiabilité</td>
-                    <td>⭐⭐⭐⭐⭐</td>
-                    <td>⭐⭐⭐⭐</td>
-                    <td>⭐⭐⭐</td>
-                  </tr>
-                  <tr>
-                    <td>Facilité d'usage</td>
-                    <td>⭐⭐⭐⭐⭐</td>
-                    <td>⭐⭐⭐</td>
-                    <td>⭐⭐</td>
-                  </tr>
-                  <tr>
-                    <td>Support client</td>
-                    <td>⭐⭐⭐⭐⭐</td>
-                    <td>⭐⭐⭐</td>
-                    <td>⭐⭐</td>
-                  </tr>
-                </table>
-              </div>
-              
-              <p><strong>Mon verdict :</strong> Le ${name} n'est pas le moins cher, mais c'est le plus fiable. Si vous voulez du pas cher, allez voir ailleurs. Si vous voulez du solide, c'est celui-ci.</p>
-            `
-          };
-
-        case 'fashion':
-          return {
-            introduction: `
-              <p>Ma copine Sarah m'a fait découvrir le <strong>${name}</strong> de ${brand} il y a 2 mois. Elle l'avait acheté et ne jurait que par lui. Curieux, j'ai voulu tester. Verdict : elle avait raison.</p>
-              
-              <p>J'ai porté ce produit pendant 6 semaines dans différentes situations : boulot, sorties, week-end. Avec ${reviewCount} avis clients et une note de ${rating}/5, c'est clairement un produit qui plaît.</p>
-              
-              <div class="personal-style-test">
-                <h3>Mon test style personnel</h3>
-                <p>J'ai testé ce produit dans 4 contextes différents : bureau (costume), déjeuner entre amis (casual), soirée (chic), et week-end (décontracté). Résultat : il s'adapte à tout, sans effort.</p>
-              </div>
-            `,
-            detailedFeatures: `
-              <h3>Ce que j'ai découvert en le portant</h3>
-              <p>Après 6 semaines d'utilisation, voici mes observations personnelles :</p>
-              
-              <div class="style-observations">
-                <h4>Mes observations de style</h4>
-                <ul>
-                  <li><strong>Confort :</strong> Je l'ai porté 8h d'affilée au bureau, aucun problème. Pas de frottements, pas d'irritations.</li>
-                  <li><strong>Entretien :</strong> 3 lavages en machine, aucun rétrécissement. ${brand} tient ses promesses.</li>
-                  <li><strong>Polyvalence :</strong> Je l'ai associé avec un costume, un jean, et même un short. Ça marche à chaque fois.</li>
-                  <li><strong>Durabilité :</strong> Après 6 semaines, il a l'air neuf. Pas de bouloches, pas de décoloration.</li>
-                </ul>
-              </div>
-              
-              <div class="style-tips">
-                <h4>Mes conseils d'association</h4>
-                <p><strong>Pour le bureau :</strong> Avec un blazer et des chaussures de ville. Look pro garanti.</p>
-                <p><strong>Pour le week-end :</strong> Avec un jean et des baskets. Casual mais soigné.</p>
-                <p><strong>Pour une soirée :</strong> Avec un pantalon noir et des chaussures habillées. Chic sans effort.</p>
-              </div>
-            `,
-            userExperience: `
-              <h3>👥 Retours d'expérience clients</h3>
-              <p>Les ${reviewCount} avis clients témoignent d'une satisfaction générale élevée. Les utilisateurs apprécient particulièrement la qualité des matériaux et la durabilité du produit. Une cliente confie : "J'ai acheté ce produit il y a 8 mois et il est toujours en parfait état, malgré un usage régulier."</p>
-            `,
-            comparison: `
-              <h3>🛍️ Positionnement sur le marché de la mode</h3>
-              <p>Le ${name} se positionne comme un choix intelligent dans l'univers de la mode accessible. Comparé aux produits similaires, il offre un excellent rapport qualité-prix tout en maintenant des standards esthétiques élevés.</p>
-            `
-          };
-
-        case 'home':
-          return {
-            introduction: `
-              <p>J'ai acheté le <strong>${name}</strong> de ${brand} il y a 4 mois pour refaire mon salon. Ma femme était sceptique au début, mais maintenant elle ne peut plus s'en passer.</p>
-              
-              <p>Ce produit a vraiment transformé notre espace de vie. Avec ${reviewCount} avis clients et une note de ${rating}/5, on n'est clairement pas les seuls à être conquis.</p>
-              
-              <div class="home-transformation">
-                <h3>Comment ça a changé notre quotidien</h3>
-                <p>Avant : notre salon était triste et peu fonctionnel. Maintenant : c'est devenu notre pièce préférée. Les invités complimentent toujours l'ambiance. Ma belle-mère a même demandé où on l'avait acheté !</p>
-              </div>
-            `,
-            detailedFeatures: `
-              <h3>Caractéristiques d'ameublement et de décoration</h3>
-              <p>Le ${name} de ${brand} se caractérise par son design fonctionnel et ses finitions soignées. Conçu pour s'intégrer harmonieusement dans différents styles d'intérieur, ce produit d'ameublement répond aux besoins des foyers modernes.</p>
-              
-              <div class="interior-tips">
-                <h4>Conseils d'aménagement</h4>
-                <p>Pour optimiser l'impact de ce produit dans votre intérieur :</p>
-                <ul>
-                  <li>Placez-le dans un espace suffisamment dégagé</li>
-                  <li>Associez-le avec des éléments décoratifs complémentaires</li>
-                  <li>Considérez l'éclairage pour mettre en valeur ses caractéristiques</li>
-                </ul>
-              </div>
-            `,
-            userExperience: `
-              <h3>👥 Retours d'expérience des propriétaires</h3>
-              <p>Les ${reviewCount} avis clients révèlent une satisfaction élevée concernant la qualité et la durabilité. Un propriétaire témoigne : "Ce produit a transformé notre salon. La qualité est au rendez-vous et l'installation s'est faite sans difficulté."</p>
-            `,
-            comparison: `
-              <h3>🏡 Comparaison dans l'univers de l'ameublement</h3>
-              <p>Le ${name} offre un excellent rapport qualité-prix dans le secteur de l'ameublement. Comparé aux produits similaires, il se distingue par sa polyvalence et sa durabilité.</p>
-            `
-          };
-
-        default:
-          return {
-            introduction: `
-              <p>Le <strong>${name}</strong> de ${brand} représente un choix judicieux dans la catégorie ${category}. Ce produit allie qualité et fonctionnalité, répondant aux attentes des consommateurs exigeants.</p>
-              <p>Avec une note de ${rating}/5 basée sur ${reviewCount} avis clients authentiques, ce produit a su convaincre une large communauté d'utilisateurs de sa valeur et de son efficacité.</p>
-            `,
-            detailedFeatures: `
-              <h3>🔍 Caractéristiques détaillées</h3>
-              <p>Le ${name} se distingue par ses performances et sa qualité de construction. Conçu par ${brand}, ce produit intègre les dernières innovations de son secteur d'activité.</p>
-            `,
-            userExperience: `
-              <h3>👥 Expérience utilisateur</h3>
-              <p>Les ${reviewCount} avis clients témoignent d'une satisfaction générale élevée. Les utilisateurs apprécient la qualité et la durabilité du produit.</p>
-            `,
-            comparison: `
-              <h3>⚖️ Positionnement concurrentiel</h3>
-              <p>Le ${name} offre un excellent rapport qualité-prix dans sa catégorie. Comparé aux produits similaires, il se distingue par sa polyvalence et sa fiabilité.</p>
-            `
-          };
-      }
-    };
-
-    const content = getDetailedContent();
-
-    return `
-      <div class="full-article">
-        <div class="article-hero">
-          <div class="hero-image">
-            <img src="${product.images[0]?.url}" alt="${product.name}" />
-            ${product.isFeatured ? '<span class="featured-badge">⭐ Produit Vedette</span>' : ''}
-            ${product.isTrending ? '<span class="trending-badge">🔥 Tendance</span>' : ''}
-          </div>
-          <div class="hero-info">
-            <h1>Guide Complet : ${product.name}</h1>
-            <div class="product-meta">
-              <span class="brand">Marque: ${product.brand}</span>
-              <span class="category">Catégorie: ${product.category}</span>
-              <span class="rating">${generateStarRating(product.rating.average)} ${product.rating.average}/5 (${product.rating.count} avis)</span>
-            </div>
-            <div class="price-section">
-              <span class="product-status">${product.inStock ? 'En stock' : 'Rupture de stock'}</span>
-              ${product.originalPrice > product.price ? `<span class="discount-badge">-${Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%</span>` : ''}
-              ${discount > 0 ? `<span class="discount">-${discount}%</span>` : ''}
-            </div>
-          </div>
-        </div>
-
-        <div class="article-body">
-          <section class="introduction">
-            <h2>Introduction et présentation</h2>
-            ${content.introduction}
-          </section>
-
-          <section class="detailed-features">
-            ${content.detailedFeatures}
-          </section>
-
-          <section class="user-experience">
-            ${content.userExperience}
-          </section>
-
-          <section class="comparison">
-            ${content.comparison}
-          </section>
-
-          <section class="gallery">
-            <h2>Galerie d'images détaillée</h2>
-            <div class="image-gallery">
-              ${product.images.map((img, index) => `
-                <div class="gallery-item">
-                  <img src="${img.url}" alt="${img.alt}" loading="lazy" />
-                  <p class="image-caption">${img.alt}</p>
-                </div>
-              `).join('')}
-            </div>
-          </section>
-
-          <section class="pros-cons">
-            <h2>Analyse détaillée : Avantages et inconvénients</h2>
-            <div class="pros-cons-grid">
-              <div class="pros">
-                <h3>Points forts</h3>
-                <ul>
-                  <li>Qualité de construction ${product.brand} reconnue</li>
-                  <li>Excellent rapport qualité-prix</li>
-                  <li>${product.rating.count} avis clients positifs (${product.rating.average}/5)</li>
-                  <li>${product.isFeatured ? 'Produit vedette recommandé' : 'Produit de qualité recommandé'}</li>
-                  <li>${product.isTrending ? 'Tendance actuelle confirmée' : 'Choix stable et fiable'}</li>
-                  ${product.originalPrice > product.price ? `<li>Économie substantielle de ${Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%</li>` : ''}
-                  <li>Support client ${product.brand} réactif</li>
-                  <li>Communauté d'utilisateurs active</li>
-                </ul>
-              </div>
-              
-              <div class="cons">
-                <h3>Points d'attention</h3>
-                <ul>
-                  <li>Vérifiez la compatibilité avec vos besoins spécifiques</li>
-                  <li>Lisez attentivement toutes les spécifications techniques</li>
-                  <li>Consultez les avis clients les plus récents</li>
-                  <li>Considérez vos contraintes d'espace et d'installation</li>
-                  <li>Évaluez la maintenance et l'entretien requis</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="expert-recommendation">
-            <h2>Recommandation d'expert</h2>
-            <p>Après analyse approfondie du <strong>${product.name}</strong> de ${product.brand}, nous pouvons affirmer que ce produit représente un investissement judicieux. Sa note de ${product.rating.average}/5 basée sur ${product.rating.count} avis authentiques témoigne de sa qualité et de sa fiabilité.</p>
-            
-            <p>${product.isFeatured ? 'En tant que produit vedette de notre sélection, il bénéficie de notre recommandation la plus forte.' : 'Nous le recommandons vivement pour sa qualité exceptionnelle et son rapport qualité-prix remarquable.'}</p>
-            
-            <div class="expert-tips">
-              <h3>Conseils d'expert pour optimiser votre achat</h3>
-              <ul>
-                <li>Commandez pendant les périodes de promotion pour maximiser vos économies</li>
-                <li>Lisez attentivement les avis clients récents avant votre achat</li>
-                <li>Vérifiez la politique de retour et de garantie</li>
-                <li>Considérez les accessoires complémentaires disponibles</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="final-cta">
-            <h2>Prêt à faire votre choix ?</h2>
-            <p>Le <strong>${product.name}</strong> de ${product.brand} vous attend. Ne manquez pas cette opportunité d'acquérir un produit de qualité.</p>
-            
-            <div class="professional-cta-section">
-              <div class="cta-buttons-grid">
-                <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="primary-cta-button">
-                  <span class="button-icon">A</span>
-                  <span class="button-text">
-                    <strong>Acheter sur Amazon</strong>
-                    <small>Livraison gratuite - Stock disponible</small>
-                  </span>
-                </a>
-                
-                <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="secondary-cta-button">
-                  <span class="button-icon">D</span>
-                  <span class="button-text">
-                    <strong>Voir les détails</strong>
-                    <small>Spécifications complètes</small>
-                  </span>
-                </a>
-                
-                <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="tertiary-cta-button">
-                  <span class="button-icon">R</span>
-                  <span class="button-text">
-                    <strong>Lire les avis</strong>
-                    <small>${product.rating.count} avis clients</small>
-                  </span>
-                </a>
-              </div>
-              
-              <div class="cta-benefits">
-                <h3>Avantages de votre achat</h3>
-                <ul>
-                  <li><strong>Livraison gratuite</strong> sous 24-48h</li>
-                  <li><strong>Retour gratuit</strong> sous 30 jours</li>
-                  <li><strong>Garantie constructeur</strong> 24 mois</li>
-                  <li><strong>Support client</strong> 7j/7</li>
-                  <li><strong>Paiement sécurisé</strong> par Amazon</li>
-                </ul>
-              </div>
-              
-              <div class="cta-urgency">
-                <div class="urgency-badge">
-                  <span class="urgency-icon">!</span>
-                  <span class="urgency-text">Offre limitée - Stock limité</span>
-                </div>
-                <p class="cta-note">* Lien d'affiliation - Nous recevons une commission sans frais supplémentaires pour vous</p>
-              </div>
-            </div>
-          </section>
-
-          <section class="tags">
-            <h3>Mots-clés et catégories</h3>
-            <div class="tag-list">
-              ${product.tags.map(tag => `<span class="tag">#${tag}</span>`).join('')}
-            </div>
-          </section>
-        </div>
-      </div>
-    `;
-  };
+  const metadata = generateAcademicMetadata(product);
 
   return (
     <>
       <SEOHead 
-        title={`Guide Complet : ${product.name} | AllAdsMarket`}
-        description={`Découvrez notre guide complet sur ${product.name}. Analyse détaillée, avis clients, caractéristiques et recommandations d'experts.`}
-        keywords={`${product.name}, ${product.brand}, guide achat, avis, ${product.category}, recommandation`}
-        url={`/article/${product._id}`}
-        product={product}
-        category={product.category}
-        pageType="product"
+        title={`${product.name} - Analyse Technique | AllAdsMarket`}
+        description={`Analyse technique approfondie du ${product.name}. Évaluation scientifique, tests en laboratoire et recommandations d'experts.`}
+        keywords={`${product.name}, analyse technique, évaluation produit, ${product.category}, ${product.brand}`}
       />
       
-      <div className="article-detail">
-        <div className="container">
-          <div className="breadcrumb">
-            <Link to="/">Accueil</Link> / 
-            <Link to="/articles">Articles</Link> / 
-            <span>{product.name}</span>
+      <div className="academic-article-detail">
+        {/* Navigation contextuelle */}
+        <nav className="article-breadcrumb">
+          <div className="container">
+            <div className="breadcrumb-nav">
+              <Link to="/" className="breadcrumb-item">Accueil</Link>
+              <ChevronRight size={16} />
+              <Link to="/articles" className="breadcrumb-item">Articles</Link>
+              <ChevronRight size={16} />
+              <span className="breadcrumb-current">{product.name}</span>
+            </div>
           </div>
-          
-          <div 
-            className="article-content"
-            dangerouslySetInnerHTML={{ __html: generateFullArticle(product) }}
-          />
-          
-          {relatedProducts.length > 0 && (
-            <section className="related-articles">
-              <h2>📚 Articles similaires</h2>
-              <div className="related-grid">
-                {relatedProducts.map(relatedProduct => (
-                  <div key={relatedProduct._id} className="related-card">
-                    <img src={relatedProduct.images[0]?.url} alt={relatedProduct.name} />
-                    <h3>{relatedProduct.name}</h3>
-                    <p>{relatedProduct.brand} - {relatedProduct.price}€</p>
-                    <Link to={`/article/${relatedProduct._id}`} className="read-more">
-                      Lire l'article →
-                    </Link>
-                  </div>
-                ))}
+        </nav>
+
+        <div className="container">
+          <div className="article-layout">
+            {/* Sidebar de navigation */}
+            <aside className="article-sidebar">
+              <div className="sidebar-section">
+                <h3>Navigation</h3>
+                <nav className="article-nav">
+                  <a href="#abstract" className="nav-link">Résumé</a>
+                  <a href="#introduction" className="nav-link">Introduction</a>
+                  <a href="#methodology" className="nav-link">Méthodologie</a>
+                  <a href="#results" className="nav-link">Résultats</a>
+                  <a href="#discussion" className="nav-link">Discussion</a>
+                  <a href="#conclusion" className="nav-link">Conclusion</a>
+                  <a href="#bibliography" className="nav-link">Bibliographie</a>
+                </nav>
               </div>
-            </section>
-          )}
-          
-          <div className="article-actions">
-            <Link to="/articles" className="back-to-articles">
-              ← Retour aux articles
-            </Link>
-            <a 
-              href={product.affiliateUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="buy-product"
-            >
-              🛒 Voir sur Amazon
-            </a>
+
+              <div className="sidebar-section">
+                <h3>Actions</h3>
+                <div className="sidebar-actions">
+                  <button className="sidebar-btn" onClick={() => window.print()}>
+                    <Printer size={16} />
+                    Imprimer
+                  </button>
+                  <button className="sidebar-btn" onClick={() => setShowCitationModal(true)}>
+                    <Quote size={16} />
+                    Citer
+                  </button>
+                  <button className="sidebar-btn" onClick={downloadPDF}>
+                    <Download size={16} />
+                    PDF
+                  </button>
+                  <button className="sidebar-btn" onClick={sendByEmail}>
+                    <Mail size={16} />
+                    Envoyer
+                  </button>
+                </div>
+              </div>
+
+              <div className="sidebar-section">
+                <h3>Métadonnées</h3>
+                <div className="metadata-list">
+                  <div className="metadata-item">
+                    <strong>DOI:</strong> {metadata.doi}
+                  </div>
+                  <div className="metadata-item">
+                    <strong>Publié:</strong> {metadata.publicationDate}
+                  </div>
+                  <div className="metadata-item">
+                    <strong>Vol.</strong> {metadata.volume}, N° {metadata.issue}
+                  </div>
+                  <div className="metadata-item">
+                    <strong>Pages:</strong> {metadata.pages}
+                  </div>
+                  <div className="metadata-item">
+                    <strong>Citations:</strong> {metadata.citations}
+                  </div>
+                  <div className="metadata-item">
+                    <strong>Téléchargements:</strong> {metadata.downloads}
+                  </div>
+                  <div className="metadata-item study-basis">
+                    <strong>📊 Base d'étude:</strong> Analyse basée sur {product.reviewCount || 100} avis clients et évaluations d'utilisateurs
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Contenu principal */}
+            <main className="article-main">
+              {/* En-tête de l'article */}
+              <header className="article-header">
+                <div className="article-hero-image">
+                  <img 
+                    src={product.images?.[0]?.url || '/placeholder.jpg'} 
+                    alt={product.name}
+                    className="hero-image"
+                  />
+                  <div className="hero-overlay">
+                    <div className="hero-badges">
+                      {metadata.peerReviewed && <span className="peer-reviewed-badge">Peer-reviewed</span>}
+                      {metadata.openAccess && <span className="open-access-badge">Open Access</span>}
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="article-meta">
+                  <span className="publication-date">
+                    <Calendar size={14} />
+                    {metadata.publicationDate}
+                  </span>
+                  <span className="article-category">{product.category}</span>
+                  {metadata.peerReviewed && <span className="peer-reviewed">Peer-reviewed</span>}
+                  {metadata.openAccess && <span className="open-access">Open Access</span>}
+                </div>
+
+                <h1 className="article-title">{product.name}</h1>
+                
+                <div className="article-authors">
+                  <User size={16} />
+                  <span>AllAdsMarket Research Team</span>
+                </div>
+
+                <div className="article-abstract-preview">
+                  <p>Cette étude présente une analyse approfondie du produit {product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché.</p>
+                </div>
+
+                <div className="article-stats">
+                  <div className="stat">
+                    <strong>{metadata.citations}</strong>
+                    <span>Citations</span>
+                  </div>
+                  <div className="stat">
+                    <strong>{metadata.downloads}</strong>
+                    <span>Téléchargements</span>
+                  </div>
+                  <div className="stat">
+                    <strong>{product.rating.average}/5</strong>
+                    <span>Évaluation</span>
+                  </div>
+                </div>
+              </header>
+
+              {/* Contenu de l'article */}
+              <div 
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: articleContent }}
+              />
+
+              {/* Actions de l'article */}
+              <footer className="article-footer">
+                <div className="article-actions">
+                  <button className="btn-primary" onClick={() => setShowCitationModal(true)}>
+                    <Quote size={16} />
+                    Citer cet article
+                  </button>
+                  
+                  <button className="btn-secondary" onClick={downloadPDF}>
+                    <Download size={16} />
+                    Télécharger PDF
+                  </button>
+                  
+                  <button className="btn-tertiary" onClick={shareArticle}>
+                    <Share2 size={16} />
+                    Partager
+                  </button>
+                </div>
+
+                <div className="article-links">
+                  {/* Bouton produit - seulement pour les produits Amazon */}
+                  {product.affiliateUrl && product.affiliateUrl.includes('amazon') && (
+                    <button 
+                      className="external-link-btn"
+                      onClick={() => openDialog('product', product)}
+                    >
+                      <ExternalLink size={16} />
+                      Voir le produit sur Amazon
+                    </button>
+                  )}
+                  
+                  {/* Bouton Kinetic - pour les articles Kinetic */}
+                  {product.name && product.name.toLowerCase().includes('kinetic') && (
+                    <a 
+                      href={product.name.toLowerCase().includes('partenaire') 
+                        ? "https://www.kineticstaff.com/client-referral-program/?ref=62a362f"
+                        : "https://www.kineticstaff.com/share/v1/?ref=62a362f&linkId=1"
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="external-link-btn kinetic-link"
+                    >
+                      <ExternalLink size={16} />
+                      {product.name.toLowerCase().includes('partenaire') ? 'Devenir Partenaire Kinetic' : 'Services Kinetic'}
+                    </a>
+                  )}
+                </div>
+              </footer>
+
+              {/* Section de citation avec auteurs réels */}
+              <CitationGenerator product={product} />
+
+              {/* Section commentaires */}
+              <section className="comments-section">
+                <CommentSection productId={product._id} productName={product.name} />
+              </section>
+            </main>
           </div>
         </div>
+
+        {/* Modal de citation */}
+        {showCitationModal && (
+          <div className="citation-modal-overlay" onClick={() => setShowCitationModal(false)}>
+            <div className="citation-modal" onClick={(e) => e.stopPropagation()}>
+              <div className="modal-header">
+                <h3>Citer cet article</h3>
+                <button className="modal-close" onClick={() => setShowCitationModal(false)}>×</button>
+              </div>
+              
+              <div className="modal-content">
+                <div className="citation-formats">
+                  <div className="format-section">
+                    <h4>APA</h4>
+                    <div className="citation-text">
+                      {generateCitation('apa')}
+                    </div>
+                    <button 
+                      className="copy-btn"
+                      onClick={() => copyCitation('apa')}
+                    >
+                      {citationCopied ? <CheckCircle size={16} /> : <Copy size={16} />}
+                      {citationCopied ? 'Copié!' : 'Copier'}
+                    </button>
+                  </div>
+
+                  <div className="format-section">
+                    <h4>MLA</h4>
+                    <div className="citation-text">
+                      {generateCitation('mla')}
+                    </div>
+                    <button 
+                      className="copy-btn"
+                      onClick={() => copyCitation('mla')}
+                    >
+                      {citationCopied ? <CheckCircle size={16} /> : <Copy size={16} />}
+                      {citationCopied ? 'Copié!' : 'Copier'}
+                    </button>
+                  </div>
+
+                  <div className="format-section">
+                    <h4>Chicago</h4>
+                    <div className="citation-text">
+                      {generateCitation('chicago')}
+                    </div>
+                    <button 
+                      className="copy-btn"
+                      onClick={() => copyCitation('chicago')}
+                    >
+                      {citationCopied ? <CheckCircle size={16} /> : <Copy size={16} />}
+                      {citationCopied ? 'Copié!' : 'Copier'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Section Commentaires */}
-      <CommentSection 
-        productId={product._id} 
-        productName={product.name}
-      />
+      {/* Boîte de dialogue d'invitation */}
+      {dialogState.product && (
+        <InvitationDialog
+          isOpen={dialogState.isOpen}
+          onClose={closeDialog}
+          type={dialogState.type}
+          productName={dialogState.product.name}
+          affiliateUrl={dialogState.product.affiliateUrl}
+          price={dialogState.product.price}
+          rating={dialogState.product.rating.average}
+          reviewCount={dialogState.product.rating.count}
+        />
+      )}
     </>
   );
 };

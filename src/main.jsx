@@ -4,6 +4,9 @@ import { Toaster } from 'react-hot-toast'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.jsx'
 import './utils/performanceMonitor.js'
+import CoreWebVitalsOptimizer from './components/CoreWebVitalsOptimizer.jsx'
+import { ImageOptimizer } from './components/OptimizedImage.jsx'
+import CriticalCSSOptimizer from './components/CriticalCSSOptimizer.jsx'
 // import { initializeSEO, monitorSEOPerformance } from './utils/seoOptimization.js'
 
 // Hide initial loader after a short delay
@@ -32,7 +35,10 @@ setTimeout(() => {
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HelmetProvider>
+      <CriticalCSSOptimizer />
       <App />
+      <CoreWebVitalsOptimizer />
+      <ImageOptimizer />
       <Toaster
         position="top-right"
         toastOptions={{

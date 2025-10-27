@@ -18,6 +18,8 @@ import {
   ErrorHandler,
   DeviceNavigationHandler
 } from './components';
+import DialogDemo from './components/DialogDemo';
+import FormProgressDemo from './pages/FormProgressDemo';
 import {
       Home,
       Products,
@@ -97,6 +99,8 @@ const AppContent = () => {
                 <Route path="/returns" element={<Returns />} />
                 <Route path="/privacy" element={<PrivacyPolicy />} />
                 <Route path="/terms" element={<TermsOfService />} />
+                <Route path="/demo" element={<DialogDemo />} />
+                <Route path="/form-progress-demo" element={<FormProgressDemo />} />
                 <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

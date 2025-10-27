@@ -277,7 +277,7 @@
   justify-content: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-lg);
-  background: var(--gradient-forest);
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
   color: white;
   border: none;
   border-radius: var(--radius-lg);
@@ -285,11 +285,12 @@
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   transition: all var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
 .submit-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
 }
 
 .submit-button:disabled {
