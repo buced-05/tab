@@ -175,16 +175,16 @@ const Header = () => {
         <Logo size="default" className="header-logo" />
 
         <nav className="desktop-nav">
-          <Link to="/" className="nav-link" data-cta="🏠 Découvrez des produits incroyables">
+          <Link to="/" className="nav-link" data-cta="Plateforme e-commerce premium">
             <Home size={16} />
             <span>{t('navigation.home')}</span>
           </Link>
           <Link 
             to="/products" 
             className="nav-link" 
-            data-cta="🛍️ Parcourez tous les produits"
+            data-cta="Catalogue produits exclusifs"
             onClick={handleProductClick}
-            title="1 clic: voir les produits | 3 clics: créer un produit"
+            title="Accédez à notre sélection premium de produits"
           >
             <Grid3X3 size={16} />
             <span>{t('navigation.products')}</span>
@@ -192,18 +192,18 @@ const Header = () => {
           <Link 
             to="/articles" 
             className="nav-link" 
-            data-cta="📚 Découvrez nos guides d'achat"
+            data-cta="Analyses et guides experts"
             onClick={handleArticleClick}
-            title="1 clic: voir les articles | 3 clics: créer un article"
+            title="Découvrez nos analyses professionnelles et guides d'achat"
           >
             <BookOpen size={16} />
-            <span>Articles</span>
+            <span>Blog</span>
           </Link>
           <div className="nav-dropdown">
             <button 
               className="nav-link dropdown-trigger"
               onClick={toggleCategoriesMenu}
-              data-cta="🔍 Explorez les catégories"
+              data-cta="Catégories spécialisées"
             >
               <Filter size={16} />
               <span>{t('navigation.categories')}</span>
@@ -252,7 +252,7 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <Link to="/visited-items" className="nav-link" data-cta="📋 Voir l'historique de navigation">
+          <Link to="/visited-items" className="nav-link" data-cta="Historique de navigation">
             <History size={16} />
             <span>{t('navigation.visited')}</span>
           </Link>
@@ -271,8 +271,8 @@ const Header = () => {
         <button 
           onClick={openSearch}
           className="search-trigger"
-          title="Rechercher"
-          data-cta="🔍 Rechercher des produits"
+          title="Recherche avancée de produits"
+          data-cta="Recherche produits"
         >
           <Search size={20} />
         </button>
@@ -339,7 +339,7 @@ const Header = () => {
                     setIsMenuOpen(false);
                     handleProductClick(e);
                   }}
-                  title="1 clic: voir les produits | 3 clics: créer un produit"
+                  title="Accédez à notre sélection premium de produits"
                 >
                   <Grid3X3 size={18} />
                   <span>Products</span>
@@ -351,10 +351,10 @@ const Header = () => {
                     setIsMenuOpen(false);
                     handleArticleClick(e);
                   }}
-                  title="1 clic: voir les articles | 3 clics: créer un article"
+                  title="Découvrez nos analyses professionnelles et guides d'achat"
                 >
                   <BookOpen size={18} />
-                  <span>Articles</span>
+                  <span>Blog</span>
                 </Link>
                 <Link
                   to="/visited-items"

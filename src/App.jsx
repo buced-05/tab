@@ -36,6 +36,9 @@ import {
       PrivacyPolicy,
       TermsOfService
     } from './pages';
+import ModernArticlesPage from './pages/ModernArticles';
+import RevolutionaryBlog from './pages/RevolutionaryBlog';
+import RevolutionaryArticleDetail from './pages/RevolutionaryArticleDetail';
 import './App.css';
 import './styles/index.css';
 import './styles/mobile-products.css';
@@ -83,10 +86,11 @@ const AppContent = () => {
         >
           <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/modern" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
-                <Route path="/articles" element={<Articles />} />
-                <Route path="/article/:productId" element={<ArticleDetail />} />
+                <Route path="/articles" element={<RevolutionaryBlog />} />
+                <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/featured" element={<Products />} />
                 <Route path="/trending" element={<Products />} />
