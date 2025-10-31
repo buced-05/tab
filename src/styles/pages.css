@@ -285,10 +285,39 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-3);
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-2);
+  /* Make titles clearly more visible on all screens */
+  font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--primary-color);
+  letter-spacing: -0.01em;
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+  /* subtle emphasis without hurting accessibility */
+  text-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin-top: var(--spacing-2);
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Strong, high-contrast color specifically for Home sections */
+.quick-categories .section-title,
+.trending-section .section-title,
+.all-products-section .section-title {
+  color: #0b5fff; /* strong brand-like blue */
+}
+
+.quick-categories .title-icon,
+.trending-section .title-icon,
+.all-products-section .title-icon {
+  color: #0b5fff;
 }
 
 .title-icon {
@@ -389,7 +418,7 @@
   }
   
   .section-title {
-    font-size: var(--font-size-2xl);
+    font-size: clamp(1.5rem, 1.1rem + 1vw, 2rem);
   }
   
   .section-subtitle {
@@ -484,7 +513,7 @@
   }
   
   .section-title {
-    font-size: var(--font-size-xl);
+    font-size: clamp(1.35rem, 1.05rem + 1vw, 1.75rem);
   }
   
   .section-subtitle {

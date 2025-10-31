@@ -66,9 +66,9 @@
   }
   
   .products-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur mobile */
-    gap: 12px; /* Increased gap for better separation */
-    padding: 0 8px; /* Added horizontal padding */
+    grid-template-columns: 1fr; /* Une colonne pour éviter les décalages */
+    gap: 12px;
+    padding: 0 8px;
   }
   
   /* Typography adjustments */
@@ -81,6 +81,37 @@
     min-height: var(--touch-target-min);
     padding: var(--spacing-sm) var(--spacing-md);
   }
+  /* Compact article action buttons on very small devices */
+  .article-actions .action-button,
+  .action-button,
+  .download-pdf-btn,
+  .download-pdf-btn-large {
+    padding: 6px 10px !important;
+    border-radius: 10px !important;
+    min-width: 36px !important;
+  }
+  .article-actions .action-button svg,
+  .action-button svg,
+  .download-pdf-btn svg,
+  .download-pdf-btn-large svg { width: 18px; height: 18px; }
+
+  .article-stats-footer .stat-group {
+    padding: 6px 8px !important;
+    border-radius: 10px !important;
+    gap: 6px !important;
+  }
+  .article-stats-footer .stat-group svg { width: 18px; height: 18px; }
+  .article-stats-footer .stat-group span { font-size: 0.85rem; }
+
+  /* Revolutionary article buttons */
+  .action-btn-revolutionary {
+    padding: 6px 10px !important;
+    border-radius: 10px !important;
+    min-width: 36px !important;
+    gap: 6px !important;
+  }
+  .action-btn-revolutionary svg { width: 18px; height: 18px; }
+  .action-btn-revolutionary span { font-size: 0.9rem; }
   
   /* Form adjustments */
   input, textarea, select {
@@ -93,6 +124,9 @@
     margin: var(--spacing-sm);
     max-height: calc(100vh - var(--spacing-md));
   }
+
+  /* Hide card header stats on mobile (article list) */
+  .article-card .article-stats { display: none !important; }
   
   .quick-view-content {
     grid-template-columns: 1fr;
@@ -108,9 +142,9 @@
   }
   
   .products-grid {
-    grid-template-columns: repeat(3, 1fr); /* Changed from 4 to 3 for better mobile visibility */
-    gap: 8px; /* Increased gap */
-    padding: 0 8px; /* Added horizontal padding */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 10px;
   }
   
   .product-card {
@@ -124,14 +158,14 @@
   .mobile-menu-button {
     display: flex;
   }
+
+  /* Hide card header stats on small devices */
+  .article-card .article-stats { display: none !important; }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* Medium devices (tablets, 768px and up) */
-  .products-grid {
-    grid-template-columns: repeat(6, 1fr);
-    gap: 4px;
-  }
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
   
   .desktop-nav {
     display: flex;
@@ -151,6 +185,20 @@
   .nav-link {
     padding: var(--spacing-md) var(--spacing-lg);
   }
+}
+
+/* Ensure card stats are hidden up to tablet width */
+@media (max-width: 991px) {
+  .article-card .article-stats,
+  .article-card .article-stats * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+
+/* Hide table of contents on mobile devices */
+@media (max-width: 768px) {
+  .table-of-contents { display: none !important; }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {

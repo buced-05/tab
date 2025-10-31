@@ -494,7 +494,12 @@ const AIArticleDetail = () => {
       const amazonLink = 'http://amzn.to/47uWNjT';
       
       allLinks.forEach(link => {
-        const href = link.getAttribute('href');
+        let href = link.getAttribute('href');
+        // Convertir les liens relatifs en absolus pour le PDF
+        if (href && href.startsWith('/')) {
+          href = window.location.origin + href;
+          link.setAttribute('href', href);
+        }
         const text = link.textContent.trim();
         if (href && (href.includes('amazon') || href.includes('amzn.to') || href.includes('/products') || href.includes('http'))) {
           productLinks.push({ href, text: text || href });
@@ -566,16 +571,16 @@ const AIArticleDetail = () => {
               max-width: 900px;
               margin: 0 auto;
               padding: 40px 30px;
-              background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+              background: #ffffff;
               font-size: 16px;
             }
             .header-section {
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
               color: white;
               padding: 40px;
               border-radius: 12px;
               margin-bottom: 40px;
-              box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+              box-shadow: 0 16px 40px rgba(17, 24, 39, 0.35);
             }
             
             .header-section h1 {
@@ -584,8 +589,8 @@ const AIArticleDetail = () => {
               font-weight: 700;
               line-height: 1.2;
               color: white;
-              border-bottom: 3px solid rgba(255, 255, 255, 0.3);
-              padding-bottom: 15px;
+              border-bottom: 4px solid rgba(255, 255, 255, 0.2);
+              padding-bottom: 18px;
             }
             
             h1, h2, h3, h4, h5, h6 {
@@ -597,23 +602,23 @@ const AIArticleDetail = () => {
             
             h1 { 
               font-size: 2.5em; 
-              color: #1a1a1a;
-              border-bottom: 3px solid #667eea; 
-              padding-bottom: 15px; 
+              color: #111827;
+              border-bottom: 3px solid #2563eb; 
+              padding-bottom: 16px; 
             }
             
             h2 { 
-              font-size: 2em; 
-              color: #667eea;
-              margin-top: 45px;
-              border-bottom: 2px solid #e0e0e0;
-              padding-bottom: 10px;
+              font-size: 1.875em; 
+              color: #0f172a;
+              margin-top: 42px;
+              border-bottom: 2px solid #e5e7eb;
+              padding-bottom: 12px;
             }
             
             h3 { 
-              font-size: 1.6em; 
-              color: #4a5568;
-              margin-top: 35px;
+              font-size: 1.5em; 
+              color: #334155;
+              margin-top: 30px;
             }
             p {
               font-size: 1.1em;
@@ -621,14 +626,19 @@ const AIArticleDetail = () => {
               text-align: justify;
               color: #000;
             }
+            img { max-width: 100%; height: auto; border-radius: 10px; }
+            blockquote { border-left: 4px solid #e5e7eb; padding: 10px 16px; background: #f8fafc; color: #334155; }
+            code, pre { background: #0f172a; color: #e2e8f0; border-radius: 6px; padding: 2px 6px; }
+            table { width: 100%; border-collapse: collapse; margin: 14px 0; }
+            th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
             .product-link {
-              color: #000;
+              color: #111827;
               text-decoration: underline;
-              font-weight: bold;
-              background: #f0f0f0;
+              font-weight: 700;
+              background: #eef2ff;
               padding: 2px 6px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
+              border-radius: 6px;
+              border: 1px solid #c7d2fe;
             }
             .product-link:hover {
               background: #e9ecef;
@@ -652,10 +662,11 @@ const AIArticleDetail = () => {
             }
             
             .article-content {
-              background: white;
-              padding: 40px;
-              border-radius: 12px;
-              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+              background: #ffffff;
+              padding: 38px;
+              border-radius: 14px;
+              box-shadow: 0 16px 40px rgba(2, 8, 23, 0.06);
+              border: 1px solid #e5e7eb;
               margin-bottom: 30px;
             }
             
@@ -781,9 +792,10 @@ const AIArticleDetail = () => {
             }
             
             a {
-              color: #667eea !important;
+              color: #2563eb !important;
               text-decoration: underline !important;
               cursor: pointer;
+              word-break: break-word;
             }
             
             a:hover {
@@ -853,10 +865,26 @@ const AIArticleDetail = () => {
             format: 'a4', 
             orientation: 'portrait',
             compress: true
-          }
+          },
+          enableLinks: true,
+          pagebreak: { mode: ['css', 'legacy'] }
         };
-        
-        await window.html2pdf().set(opt).from(htmlContent).save();
+
+        // Utiliser un élément DOM plutôt qu'une string pour mieux préserver les liens
+        const wrapper = document.createElement('div');
+        wrapper.innerHTML = htmlContent;
+        // S'assurer que tous les liens sont absolus et cliquables
+        wrapper.querySelectorAll('a[href]').forEach(a => {
+          const href = a.getAttribute('href');
+          if (href && href.startsWith('/')) {
+            a.setAttribute('href', window.location.origin + href);
+          }
+          a.setAttribute('target', '_blank');
+          a.setAttribute('rel', 'noopener noreferrer');
+          a.style.pointerEvents = 'auto';
+        });
+
+        await window.html2pdf().set(opt).from(wrapper).save();
       } else {
         // Fallback: télécharger en HTML si html2pdf n'est pas disponible
         const element = document.createElement('a');
