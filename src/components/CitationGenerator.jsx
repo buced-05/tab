@@ -66,44 +66,199 @@ const CitationGenerator = ({ product, article }) => {
   };
 
   const downloadPDF = () => {
-    const pdfContent = `
-      ${product.name}
-      Analyse Technique - AllAdsMarket
-      
-      AUTEUR
-      ${teamInfo.name}
-      ${teamInfo.affiliation}
-      Email: ${teamInfo.email}
-      Site web: ${teamInfo.website}
-      
-      DOI: ${doi}
-      Publié: ${new Date().toLocaleDateString('fr-FR')}
-      
-      RÉSUMÉ
-      Cette étude présente une analyse approfondie du produit ${product.name}, 
-      examinant ses caractéristiques techniques, ses performances et son impact sur le marché.
-      
-      MÉTADONNÉES
-      - Marque: ${product.brand}
-      - Catégorie: ${product.category}
-      - Note moyenne: ${product.rating.average}/5 étoiles
-      - Nombre d'avis: ${product.rating.count}
-      - Prix: ${product.price}€
-      
-      CITATION APA
-      ${citations.apa}
-      
-      LIEN VERS LE PRODUIT
-      ${product.affiliateUrl}
-      
-      © AllAdsMarket - ${currentYear}
-    `;
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${product.name} - Citation et Analyse</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #007bff;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #495057;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: #0056b3;
+        }
+        
+        .author-info {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #007bff;
+        }
+        
+        .citation-section {
+            background: #e9ecef;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .citation-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            border-left: 3px solid #007bff;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>${product.name}</h1>
+        <div class="author-info">
+            <h3>Informations de l'Auteur</h3>
+            <p><strong>Nom:</strong> ${teamInfo.name}</p>
+            <p><strong>Affiliation:</strong> ${teamInfo.affiliation}</p>
+            <p><strong>Email:</strong> ${teamInfo.email}</p>
+            <p><strong>Site web:</strong> <a href="${teamInfo.website}" target="_blank">${teamInfo.website}</a></p>
+            <p><strong>DOI:</strong> ${doi}</p>
+            <p><strong>Publié:</strong> ${new Date().toLocaleDateString('fr-FR')}</p>
+        </div>
+    </header>
     
-    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    <main>
+        <div class="citation-section">
+            <h2>Citations Académiques</h2>
+            
+            <div class="citation-item">
+                <h3>APA (American Psychological Association)</h3>
+                <p>${citations.apa}</p>
+            </div>
+            
+            <div class="citation-item">
+                <h3>MLA (Modern Language Association)</h3>
+                <p>${citations.mla}</p>
+            </div>
+            
+            <div class="citation-item">
+                <h3>Chicago</h3>
+                <p>${citations.chicago}</p>
+            </div>
+            
+            <div class="citation-item">
+                <h3>Harvard</h3>
+                <p>${citations.harvard}</p>
+            </div>
+            
+            <div class="citation-item">
+                <h3>IEEE</h3>
+                <p>${citations.ieee}</p>
+            </div>
+        </div>
+        
+        <div class="citation-section">
+            <h2>Métadonnées du Produit</h2>
+            <p><strong>Marque:</strong> ${product.brand}</p>
+            <p><strong>Catégorie:</strong> ${product.category}</p>
+            <p><strong>Note moyenne:</strong> ${product.rating.average}/5 étoiles</p>
+            <p><strong>Nombre d'avis:</strong> ${product.rating.count}</p>
+            <p><strong>Prix:</strong> ${product.price}€</p>
+        </div>
+        
+        <div class="citation-section">
+            <h2>Liens et Actions</h2>
+            <a href="${product.affiliateUrl}" class="btn" target="_blank">Voir le produit sur Amazon</a>
+            <a href="https://alladsmarket.com" class="btn btn-secondary" target="_blank">Visiter AllAdsMarket</a>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© AllAdsMarket - ${currentYear}</p>
+        <p>Document généré le ${new Date().toLocaleDateString('fr-FR')}</p>
+    </footer>
+</body>
+</html>`;
+    
+    const blob = new Blob([htmlContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${product.name.replace(/[^a-zA-Z0-9]/g, '_')}_analyse.pdf`;
+    a.download = `${product.name.replace(/[^a-zA-Z0-9]/g, '_')}_citation.html`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -163,7 +318,7 @@ const CitationGenerator = ({ product, article }) => {
         <div className="citation-actions-main">
           <button className="btn-primary" onClick={downloadPDF}>
             <FileText size={16} />
-            Télécharger PDF complet
+            Télécharger HTML complet
           </button>
           
           <a 

@@ -1,3 +1,6 @@
+/* Import loading styles at the top */
+@import './loading.css';
+
 /* Modern Product Card Styles */
 .product-card {
   background: #ffffff;
@@ -234,7 +237,7 @@
 }
 
 .product-info {
-  padding: 1px; /* Padding minimal */
+  padding: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -249,7 +252,7 @@
 }
 
 .product-number {
-  font-size: 9px;
+  font-size: 12px; /* Increased from 9px */
   font-weight: 400;
   padding: 1px 3px;
   border-radius: 4px;
@@ -314,7 +317,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  margin: 2px 0 1px 0;
+  margin: 0;
   padding: 4px 8px;
   background: linear-gradient(135deg, #f8fafc, #ffffff);
   border-radius: 8px;
@@ -358,7 +361,7 @@
   font-weight: 800;
   color: #ffffff;
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  padding: 3px 8px;
+  padding: 0 6px;
   border-radius: 6px;
   box-shadow: 
     0 2px 6px rgba(59, 130, 246, 0.25),
@@ -391,11 +394,11 @@
 }
 
 .original-price {
-  font-size: 9px;
+  font-size: 12px; /* Increased from 9px */
   color: #64748b;
   text-decoration: line-through;
   background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-  padding: 2px 6px;
+  padding: 0 4px;
   border-radius: 4px;
   border: 1px solid #cbd5e1;
   font-weight: 600;
@@ -416,10 +419,10 @@
 }
 
 .savings-amount {
-  font-size: 8px;
+  font-size: 11px; /* Increased from 8px */
   color: #ffffff;
   background: linear-gradient(135deg, #10b981, #059669);
-  padding: 2px 6px;
+  padding: 0 4px;
   border-radius: 4px;
   border: 1px solid #047857;
   font-weight: 700;
@@ -458,7 +461,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0px; /* Further reduced gap from 2px to 0px */
-  margin: 4px -4px 3px -4px; /* Negative margins to extend to full width */
+  margin: 0;
   padding: 4px 8px;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
   border-radius: 0; /* Remove border radius to match card edges */
@@ -471,7 +474,7 @@
   position: relative;
   overflow: hidden;
   min-height: 32px; /* Increased further to accommodate larger font sizes */
-  width: calc(100% + 8px); /* Extend beyond padding to full width */
+  width: 100%;
 }
 
 .product-price-modern::before {
@@ -492,7 +495,7 @@
 }
 
 .price-current {
-  font-size: 22px; /* Further increased from 17px to 22px */
+  font-size: 24px; /* Increased from 22px for better readability */
   font-weight: 900;
   color: #ffffff;
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
@@ -575,7 +578,7 @@
 .price-savings::before {
   content: '💰';
   margin-right: 2px;
-  font-size: 8px;
+  font-size: 11px; /* Increased from 8px */
 }
 
 .price-savings::after {
@@ -838,6 +841,9 @@
   opacity: 0.7 !important;
 }
 
+/* Import des styles de chargement professionnels - Déjà importé en haut */
+
+
 .loading-spinner {
   width: 12px;
   height: 12px;
@@ -868,13 +874,13 @@
 }
 
 .author-label {
-  font-size: 10px;
+  font-size: 12px; /* Increased from 10px */
   color: var(--text-muted);
   font-weight: 500;
 }
 
 .author-name {
-  font-size: 10px;
+  font-size: 12px; /* Increased from 10px */
   color: var(--primary-600);
   font-weight: 600;
 }
@@ -907,7 +913,7 @@
   color: var(--secondary-700);
   padding: 2px 6px;
   border-radius: var(--radius-sm);
-  font-size: 9px;
+  font-size: 12px; /* Increased from 9px */
   font-weight: var(--font-weight-medium);
 }
 
@@ -924,7 +930,7 @@
   display: flex;
   align-items: center;
   gap: 2px;
-  font-size: 10px;
+  font-size: 12px; /* Increased from 10px */
   color: var(--text-muted);
 }
 

@@ -5,14 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config config/vite.config.js --port 3000 --host",
-    "build": "vite build --config config/vite.config.js",
+    "build": "vite build --config config/vite.config.js && npm run generate-sitemaps",
     "lint": "eslint . --ext js,jsx --config config/eslint.config.js --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview --config config/vite.config.js",
     "server": "cd bestserver && npm start",
     "server:dev": "cd bestserver && npm run dev",
     "server:install": "cd bestserver && npm install",
     "start:all": "npm run build && npm run server",
-    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\""
+    "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\"",
+    "generate-sitemaps": "node scripts/generate-multilingual-sitemaps.js",
+    "seo:generate": "npm run generate-sitemaps"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

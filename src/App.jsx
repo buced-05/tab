@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { ModalProvider, LoadingProvider } from './contexts';
 import './i18n'; // Initialize i18n
 import './styles/error-boundary.css';
@@ -39,9 +40,13 @@ import {
 import ModernArticlesPage from './pages/ModernArticles';
 import RevolutionaryBlog from './pages/RevolutionaryBlog';
 import RevolutionaryArticleDetail from './pages/RevolutionaryArticleDetail';
+import AIArticlesPage from './pages/AIArticles';
+import AIArticleDetail from './pages/AIArticleDetail';
+import './styles/compatibility-fixes.css';
 import './App.css';
 import './styles/index.css';
 import './styles/mobile-products.css';
+import './styles/pagination.css';
 
 // Inner App component
 const AppContent = () => {
@@ -50,6 +55,15 @@ const AppContent = () => {
 
   // No profile pages anymore
   const isProfilePage = false;
+  // Hide main header on article-related pages (listing and details)
+  const path = location.pathname;
+  const hideHeaderOnArticles = (
+    path.startsWith('/revolutionary-blog') ||
+    path.startsWith('/articles') ||
+    path.startsWith('/ai-articles') ||
+    path.startsWith('/article') ||
+    path.startsWith('/ai-article')
+  );
 
   useEffect(() => {
     // Ensure loader is hidden
@@ -75,22 +89,55 @@ const AppContent = () => {
 
   return (
     <>
+      <Helmet>
+        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://tse2.mm.bing.net" crossOrigin="anonymous" />
+        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+        <link rel="canonical" href={window.location.href.split('#')[0].split('?')[0]} />
+        <meta name="keywords" content="articles professionnels, guides, IA, e‑commerce, logiciels, marketing digital, tutoriels, analyses" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AllAdsMarket — Articles et Guides Professionnels" />
+        <meta property="og:description" content="Guides approfondis, analyses et tutoriels couvrant technologie, business, logiciels, IA et plus." />
+        <meta property="og:image" content="https://alladsmarket.com/og-image.jpg" />
+        <meta property="og:url" content={window.location.href.split('#')[0].split('?')[0]} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AllAdsMarket — Articles et Guides Professionnels" />
+        <meta name="twitter:description" content="Guides approfondis, analyses et tutoriels couvrant technologie, business, logiciels, IA et plus." />
+        <meta name="twitter:image" content="https://alladsmarket.com/og-image.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "AllAdsMarket",
+            "url": "https://alladsmarket.com/",
+            "logo": "https://alladsmarket.com/logo.png",
+            "sameAs": [
+              "https://www.facebook.com/",
+              "https://www.linkedin.com/",
+              "https://twitter.com/"
+            ]
+          })}
+        </script>
+      </Helmet>
       <ScrollToTop />
       <div className="app">
-        {!isProfilePage && <Header />}
+        {!isProfilePage && !hideHeaderOnArticles && <Header />}
         <main 
           className={`main-content ${isProfilePage ? 'profile-main' : ''}`}
           style={{ 
-            paddingTop: isProfilePage ? '0' : 'var(--header-height)' 
+            paddingTop: isProfilePage || hideHeaderOnArticles ? '0' : 'var(--header-height)'
           }}
         >
           <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/modern" element={<Home />} />
+                <Route path="/classic" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
-                <Route path="/articles" element={<RevolutionaryBlog />} />
+                <Route path="/articles" element={<AIArticlesPage />} />
+                <Route path="/revolutionary-blog" element={<RevolutionaryBlog />} />
                 <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
+                <Route path="/ai-articles" element={<AIArticlesPage />} />
+                <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/featured" element={<Products />} />
                 <Route path="/trending" element={<Products />} />

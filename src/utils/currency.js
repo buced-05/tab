@@ -120,20 +120,38 @@ class CurrencyService {
         return this.countryCurrencyMap[countryCode];
       }
 
-      // Try to detect from timezone
+      // Try to detect from timezone (sans géolocalisation)
       const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      const timezoneCountry = geolocationService.getCountryFromTimezone(timezone);
+      
+      // Détection basique depuis timezone (sans geolocationService)
+      const timezoneToCountry = {
+        'America/New_York': 'US',
+        'America/Chicago': 'US',
+        'America/Denver': 'US',
+        'America/Los_Angeles': 'US',
+        'Europe/London': 'GB',
+        'Europe/Paris': 'FR',
+        'Europe/Berlin': 'DE',
+        'Europe/Rome': 'IT',
+        'Europe/Madrid': 'ES',
+        'Asia/Tokyo': 'JP',
+        'Asia/Shanghai': 'CN',
+        'Asia/Hong_Kong': 'HK',
+        'Asia/Singapore': 'SG',
+        'Australia/Sydney': 'AU',
+        'America/Toronto': 'CA',
+        'America/Mexico_City': 'MX',
+        'America/Sao_Paulo': 'BR'
+      };
+      
+      const timezoneCountry = timezoneToCountry[timezone];
       
       if (timezoneCountry && this.countryCurrencyMap[timezoneCountry]) {
         return this.countryCurrencyMap[timezoneCountry];
       }
 
-      // Try to get country from IP geolocation
-      const ipCountry = await geolocationService.getCountryFromIP();
-      
-      if (ipCountry && this.countryCurrencyMap[ipCountry]) {
-        return this.countryCurrencyMap[ipCountry];
-      }
+      // Pas de détection IP (service désactivé)
+      // Fallback vers détection locale
 
       // Try to detect from Intl.NumberFormat
       try {

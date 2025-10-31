@@ -521,28 +521,28 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
             <div className="product-rating">
               <StarRating rating={product.rating?.average || 0} size={18} showText={false} />
               <span className="rating-text">
-                {product.rating?.average?.toFixed(1) || '0.0'} ({formatReviewCount(product.rating?.count || 0, i18n.language)} {t('products.reviews')})
+                {product.rating?.average?.toFixed(1) || '0.0'} ({formatReviewCount(product.rating?.count || 0, i18n.language)} avis)
               </span>
             </div>
 
                 {/* Social Stats - Moved up for better visibility */}
                 {product.social && (
                   <div className="product-social-stats">
-                    <h4>{t('products.socialEngagement')}</h4>
+                    <h4>Engagement Social</h4>
                 <div className="social-stats-grid">
                   <div className="social-stat">
                     <Heart size={16} />
-                    <span className="stat-label">{t('products.likes')}</span>
+                    <span className="stat-label">J'aime</span>
                     <span className="stat-value">{product.social.likes || 0}</span>
                   </div>
                   <div className="social-stat">
                     <Share2 size={16} />
-                    <span className="stat-label">{t('products.shares')}</span>
+                    <span className="stat-label">Partages</span>
                     <span className="stat-value">{product.social.shares?.total || 0}</span>
                   </div>
                   <div className="social-stat">
                     <Bookmark size={16} />
-                    <span className="stat-label">{t('products.bookmarks')}</span>
+                    <span className="stat-label">Signets</span>
                     <span className="stat-value">{product.social.bookmarks || 0}</span>
                   </div>
                 </div>
@@ -552,7 +552,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
             {/* Tags - Moved up for better visibility */}
                 {product.tags && product.tags.length > 0 && (
                   <div className="product-tags">
-                    <h4>{t('products.tags')}</h4>
+                    <h4>Étiquettes</h4>
                 <div className="tags-list">
                   {product.tags.map((tag, index) => (
                     <span key={index} className="tag">
@@ -565,7 +565,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.hashtags && product.hashtags.length > 0 && (
                   <div className="product-hashtags">
-                    <h4>{t('products.hashtags')}</h4>
+                    <h4>Hashtags</h4>
                 <div className="hashtags-list">
                   {product.hashtags.map((hashtag, index) => (
                     <span key={index} className="hashtag">
@@ -600,10 +600,10 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
                 {(translatedProduct.description || product.description) && (
                   <div className="product-description">
                     <div className="description-header">
-                      <h3>{t('products.productDescription')}</h3>
+                      <h3>Description du Produit</h3>
                       <div className="description-badge">
                         <Info size={14} />
-                        <span>{t('products.details')}</span>
+                        <span>Détails</span>
                       </div>
                     </div>
                 <div className={`description-content ${isDescriptionExpanded ? 'expanded' : 'collapsed'}`}>
@@ -611,7 +611,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
                     <p>{translatedProduct.description || product.description}</p>
                         {(translatedProduct.features?.length > 0 || product.features?.length > 0) && (
                           <div className="description-features">
-                            <h4>{t('products.keyFeatures')}:</h4>
+                            <h4>Caractéristiques Clés:</h4>
                         <ul>
                           {(translatedProduct.features || product.features || []).map((feature, index) => (
                             <li key={index}>
@@ -632,7 +632,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
                       setIsDescriptionExpanded(!isDescriptionExpanded);
                     }}
                   >
-                        <span>{isDescriptionExpanded ? t('products.showLess') : t('products.readMore')}</span>
+                        <span>{isDescriptionExpanded ? 'Voir moins' : 'Lire plus'}</span>
                     <ChevronDown size={14} className={`chevron ${isDescriptionExpanded ? 'expanded' : ''}`} />
                   </button>
                 )}
@@ -642,7 +642,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
                 {/* Product Specifications */}
                 {product.specifications && (
                   <div className="product-specifications">
-                    <h3>{t('products.specifications')}</h3>
+                    <h3>Spécifications</h3>
                 <div className="specs-list">
                   {Object.entries(product.specifications).map(([key, value]) => (
                     <div key={key} className="spec-item">
@@ -656,7 +656,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.keywords && product.keywords.length > 0 && (
                   <div className="product-keywords">
-                    <h4>{t('products.keywords')}</h4>
+                    <h4>Mots-clés</h4>
                 <div className="keywords-list">
                   {product.keywords.map((keyword, index) => (
                     <span key={index} className="keyword">
@@ -669,7 +669,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.features && product.features.length > 0 && (
                   <div className="product-features">
-                    <h4>{t('products.features')}</h4>
+                    <h4>Fonctionnalités</h4>
                 <div className="features-list">
                   {product.features.map((feature, index) => (
                     <div key={index} className="feature-item">
@@ -683,7 +683,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {(translatedProduct.benefits?.length > 0 || product.benefits?.length > 0) && (
                   <div className="product-benefits">
-                    <h4>{t('products.benefits')}</h4>
+                    <h4>Avantages</h4>
                 <div className="benefits-list">
                   {(translatedProduct.benefits || product.benefits || []).map((benefit, index) => (
                     <div key={index} className="benefit-item">
@@ -697,7 +697,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.pros && product.pros.length > 0 && (
                   <div className="product-pros">
-                    <h4>{t('products.pros')}</h4>
+                    <h4>Avantages</h4>
                 <div className="pros-list">
                   {product.pros.map((pro, index) => (
                     <div key={index} className="pro-item">
@@ -711,7 +711,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.cons && product.cons.length > 0 && (
                   <div className="product-cons">
-                    <h4>{t('products.cons')}</h4>
+                    <h4>Inconvénients</h4>
                 <div className="cons-list">
                   {product.cons.map((con, index) => (
                     <div key={index} className="con-item">
@@ -725,7 +725,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
 
                 {product.videos && product.videos.length > 0 && (
                   <div className="product-videos">
-                    <h4>{t('products.videos')}</h4>
+                    <h4>Vidéos</h4>
                 <div className="videos-list">
                   {product.videos.map((video, index) => (
                     <div key={index} className="video-item">
@@ -757,25 +757,25 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
             {/* Analytics section hidden as per user request */}
             {false && product.analytics && (
               <div className="product-analytics">
-                <h4>{t('products.analytics')}</h4>
+                <h4>Analytiques</h4>
                 <div className="analytics-grid">
                   <div className="analytics-stat">
                     <Eye size={16} />
-                    <span className="stat-label">{t('products.views')}</span>
+                    <span className="stat-label">Vues</span>
                     <span className="stat-value">{product.analytics.views || 0}</span>
                   </div>
                   <div className="analytics-stat">
                     <ExternalLink size={16} />
-                    <span className="stat-label">{t('products.clicks')}</span>
+                    <span className="stat-label">Clics</span>
                     <span className="stat-value">{product.analytics.clicks || 0}</span>
                   </div>
                   <div className="analytics-stat">
                     <CheckCircle size={16} />
-                    <span className="stat-label">{t('products.conversions')}</span>
+                    <span className="stat-label">Conversions</span>
                     <span className="stat-value">{product.analytics.conversions || 0}</span>
                   </div>
                   <div className="analytics-stat">
-                    <span className="stat-label">{t('products.conversionRate')}</span>
+                    <span className="stat-label">Taux de Conversion</span>
                     <span className="stat-value">{product.analytics.conversionRate || 0}%</span>
                   </div>
                 </div>
@@ -799,11 +799,11 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
             <div className="trust-indicators">
               <div className="trust-item">
                 <Users size={16} />
-                <span>10,000+ {t('products.happyCustomers')}</span>
+                <span>10,000+ Clients Satisfaits</span>
               </div>
               <div className="trust-item">
                 <Award size={16} />
-                <span>{t('products.topRated')}</span>
+                <span>Mieux Noté</span>
               </div>
             </div>
 
@@ -814,7 +814,7 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
                 onClick={handleProductClick}
               >
                 <ExternalLink size={16} />
-                {t('products.seePrice')}
+                Voir le Prix
               </button>
             </div>
           </div>

@@ -58,7 +58,7 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'home',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/71cdqL6rWjL._AC_SL1500_.jpg', alt: 'Robotic Pool Cleaner', isPrimary: true },
+        { url: 'https://tse3.mm.bing.net/th/id/OIP.H16jujC9CgCXjJaxDQMQDwHaE8?w=612&h=408&rs=1&pid=ImgDetMain&o=7&rm=3', alt: 'Robotic Pool Cleaner', isPrimary: true },
         { url: 'https://m.media-amazon.com/images/I/71NihcTbfVL._AC_SL1500_.jpg', alt: 'Pool Cleaner Detail', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/71FpAA3YvBL._AC_SL1500_.jpg', alt: 'Pool Cleaner Brushes', isPrimary: false },
         { url: 'https://m.media-amazon.com/images/I/7137SMAraHL._AC_SL1500_.jpg', alt: 'Pool Cleaner Charging', isPrimary: false }
@@ -1078,7 +1078,7 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'beauty',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/61LsPL7+kaL._SX679_.jpg', alt: 'Versace The Dreamer', isPrimary: true }
+        { url: 'https://www.boostyourweb.fr/wp-content/uploads/2022/02/Template-article13.png', alt: 'Versace The Dreamer', isPrimary: true }
       ],
       rating: { average: 4.6, count: 95000 },
       isFeatured: true,
@@ -1099,7 +1099,7 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'fashion',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/31A0Rob+vqL._AC_SR38,50_.jpg', alt: 'Versace Men\'s Sunglasses', isPrimary: true }
+        { url: 'https://images.unsplash.com/photo-1518544801976-3e206850154b?auto=format&fit=crop&w=1000&q=80', alt: 'Versace Men\'s Sunglasses', isPrimary: true }
       ],
       rating: { average: 4.7, count: 0 },
       isFeatured: false,

@@ -17,22 +17,24 @@ import {
   BookOpen
 } from 'lucide-react';
 import { useModal } from '../contexts/ModalContext';
-import ModernLanguageSelector from './ModernLanguageSelector';
+import AdvancedLanguageSelector from './AdvancedLanguageSelector';
 import '../styles/header.css';
 import '../styles/language-selector.css';
 import CurrencySelector from './CurrencySelector';
 import Logo from './Logo';
+import useGeoLocation from '../hooks/useGeoLocation';
 // import '../styles/search-overlay.css'; // Removed unused CSS
 // import '../styles/cta-messages.css'; // Removed unused CSS
 // Google security compliant: Removed cookie and tracking components
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [selectedCurrency, setSelectedCurrency] = useState('EUR');
   // Triple-click functionality
   const [productClickCount, setProductClickCount] = useState(0);
   const [articleClickCount, setArticleClickCount] = useState(0);
@@ -40,6 +42,7 @@ const Header = () => {
   // const [isClickStatsOpen, setIsClickStatsOpen] = useState(false); // Removed for client-side only app
   
   const navigate = useNavigate();
+  const { userLocation, getSuggestedConfig, isLoading: geoLoading } = useGeoLocation();
 
   // Handle scroll effect
   useEffect(() => {
@@ -50,6 +53,32 @@ const Header = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Détection automatique de langue et devise
+  useEffect(() => {
+    if (userLocation && !geoLoading) {
+      const suggestedConfig = getSuggestedConfig();
+      if (suggestedConfig) {
+        // Changer la langue si elle est différente de la langue actuelle
+        if (suggestedConfig.language !== i18n.language) {
+          const savedLanguage = localStorage.getItem('preferred-language');
+          if (!savedLanguage) {
+            i18n.changeLanguage(suggestedConfig.language);
+            localStorage.setItem('preferred-language', suggestedConfig.language);
+          }
+        }
+        
+        // Changer la devise si elle est différente de la devise actuelle
+        if (suggestedConfig.currency !== selectedCurrency) {
+          const savedCurrency = localStorage.getItem('preferred-currency');
+          if (!savedCurrency) {
+            setSelectedCurrency(suggestedConfig.currency);
+            localStorage.setItem('preferred-currency', suggestedConfig.currency);
+          }
+        }
+      }
+    }
+  }, [userLocation, geoLoading, i18n, selectedCurrency, getSuggestedConfig]);
 
   // Navigation handlers with triple-click detection
   const handleProductClick = (e) => {
@@ -177,7 +206,7 @@ const Header = () => {
         <nav className="desktop-nav">
           <Link to="/" className="nav-link" data-cta="Plateforme e-commerce premium">
             <Home size={16} />
-            <span>{t('navigation.home')}</span>
+            <span>{t('nav.home')}</span>
           </Link>
           <Link 
             to="/products" 
@@ -187,7 +216,7 @@ const Header = () => {
             title="Accédez à notre sélection premium de produits"
           >
             <Grid3X3 size={16} />
-            <span>{t('navigation.products')}</span>
+            <span>{t('nav.products')}</span>
           </Link>
           <Link 
             to="/articles" 
@@ -197,7 +226,7 @@ const Header = () => {
             title="Découvrez nos analyses professionnelles et guides d'achat"
           >
             <BookOpen size={16} />
-            <span>Blog</span>
+            <span>{t('nav.blog')}</span>
           </Link>
           <div className="nav-dropdown">
             <button 
@@ -206,7 +235,7 @@ const Header = () => {
               data-cta="Catégories spécialisées"
             >
               <Filter size={16} />
-              <span>{t('navigation.categories')}</span>
+              <span>Catégories</span>
               <ChevronDown size={14} />
             </button>
             <div className={`dropdown-menu ${isCategoriesOpen ? 'show' : ''}`}>
@@ -254,7 +283,7 @@ const Header = () => {
           </div>
           <Link to="/visited-items" className="nav-link" data-cta="Historique de navigation">
             <History size={16} />
-            <span>{t('navigation.visited')}</span>
+            <span>{t('nav.history')}</span>
           </Link>
           {/* Click Stats button removed for client-side only app
           <button 
@@ -263,7 +292,7 @@ const Header = () => {
             data-cta="📊 Voir les statistiques de clics"
           >
             <BarChart3 size={16} />
-            <span>{t('navigation.clickStats', 'Click Stats')}</span>
+            <span>Statistiques</span>
           </button>
           */}
         </nav>
@@ -277,8 +306,9 @@ const Header = () => {
           <Search size={20} />
         </button>
 
-        <ModernLanguageSelector />
-        <CurrencySelector />
+        <AdvancedLanguageSelector />
+        {/* Currency selector hidden as requested */}
+        {/* <CurrencySelector onCurrencyChange={setSelectedCurrency} /> */}
 
         {/* Triple-click hint */}
         {showTripleClickHint && (
@@ -306,7 +336,7 @@ const Header = () => {
                   <Search size={20} className="search-icon" />
                   <input
                     type="text"
-                    placeholder="Rechercher des produits..."
+                    placeholder={t('common.searchPlaceholderMobile')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="mobile-search-input"
@@ -330,7 +360,7 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Home size={18} />
-                  <span>Home</span>
+                  <span>{t('nav.home')}</span>
                 </Link>
                 <Link 
                   to="/products" 
@@ -342,7 +372,7 @@ const Header = () => {
                   title="Accédez à notre sélection premium de produits"
                 >
                   <Grid3X3 size={18} />
-                  <span>Products</span>
+                  <span>{t('nav.products')}</span>
                 </Link>
                 <Link 
                   to="/articles" 
@@ -354,7 +384,7 @@ const Header = () => {
                   title="Découvrez nos analyses professionnelles et guides d'achat"
                 >
                   <BookOpen size={18} />
-                  <span>Blog</span>
+                  <span>{t('nav.blog')}</span>
                 </Link>
                 <Link
                   to="/visited-items"
@@ -362,7 +392,7 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <History size={18} />
-                  <span>Visited</span>
+                  <span>{t('nav.history')}</span>
                 </Link>
                 {/* Click Stats mobile button removed for client-side only app
                 <button
@@ -390,7 +420,7 @@ const Header = () => {
             <div className="search-overlay-content" onClick={(e) => e.stopPropagation()}>
               <div className="search-overlay-header desktop-only">
                 <div className="search-header-content">
-                  <h2>Recherche de Produits</h2>
+                  <h2>{t('common.searchProducts')}</h2>
                   <p className="search-overlay-cta">Découvrez des milliers de produits avec notre moteur de recherche intelligent</p>
                 </div>
                 <button 
@@ -414,7 +444,7 @@ const Header = () => {
                   <Search size={24} className="search-overlay-icon" />
                   <input
                     type="text"
-                    placeholder="Tapez votre recherche... (ex: iPhone, Nike, ordinateur)"
+                    placeholder={t('common.searchPlaceholder')}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="search-overlay-input"
@@ -709,7 +739,7 @@ const Header = () => {
                   disabled={!searchQuery.trim()}
                 >
                   <Search size={20} />
-                  Rechercher "{searchQuery || 'produits'}"
+                  {t('common.searchProducts')}: "{searchQuery || 'produits'}"
                 </button>
               </form>
             </div>

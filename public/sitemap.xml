@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://alladsmarket.com/sitemap-pages.xml</loc>
-    <lastmod>2025-10-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://alladsmarket.com/sitemap-articles.xml</loc>
-    <lastmod>2025-10-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://alladsmarket.com/sitemap-categories.xml</loc>
-    <lastmod>2025-10-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://alladsmarket.com/sitemap-authors.xml</loc>
-    <lastmod>2025-10-28</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://alladsmarket.com/sitemap-images.xml</loc>
-    <lastmod>2025-10-28</lastmod>
-  </sitemap>
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://alladsmarket.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-articles</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

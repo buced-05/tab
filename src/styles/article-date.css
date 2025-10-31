@@ -1,0 +1,97 @@
+/* Styles pour la date d'article avec date relative */
+.article-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: #b0bec5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: rgba(100, 181, 246, 0.1);
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  transition: all 0.3s ease;
+}
+
+.article-date:hover {
+  background: rgba(100, 181, 246, 0.2);
+  border-color: rgba(100, 181, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.date-content {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.date-icon {
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.relative-indicator {
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 0.7rem;
+  animation: indicatorSpin 3s linear infinite;
+}
+
+@keyframes indicatorSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.article-date-separator {
+  color: #6c757d;
+}
+
+.article-date-relative {
+  color: #64b5f6;
+  font-style: italic;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  background: rgba(100, 181, 246, 0.15);
+  border-radius: 4px;
+  animation: dateUpdate 1s ease-in-out;
+}
+
+@keyframes dateUpdate {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.article-date-relative-only {
+  color: #64b5f6;
+  font-style: italic;
+}
+
+.utc-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #ff9800;
+  background: rgba(255, 152, 0, 0.15);
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 0.5rem;
+}
+

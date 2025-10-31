@@ -58,23 +58,23 @@ const Articles = () => {
       switch (category) {
         case 'electronics':
           return {
-            title: `${t('articles.articleContent.technicalAnalysis')} : ${name}`,
-            excerpt: `${t('articles.articleContent.whyChoose')} ${name} ? ${t('articles.articleContent.thisProductStandsOut')} ${t('articles.articleContent.mainFeatures')}, ${t('articles.articleContent.brand')} ${brand}, ${t('articles.articleContent.rating')} ${rating}/5, ${reviewCount} ${t('articles.articleContent.reviews')}.`
+            title: `Analyse Technique : ${name}`,
+            excerpt: `$Pourquoi choisir ${name} ? $Ce produit se distingue par ses $caractéristiques principales, $marque ${brand}, $note ${rating}/5, ${reviewCount} $avis.`
           };
         case 'fashion':
           return {
-            title: `${t('articles.articleContent.styleGuide')} : ${name}`,
-            excerpt: `${t('articles.articleContent.whyChoose')} ${name} ? ${t('articles.articleContent.thisProductStandsOut')} ${t('articles.articleContent.mainFeatures')}, ${t('articles.articleContent.brand')} ${brand}, ${t('articles.articleContent.rating')} ${rating}/5, ${reviewCount} ${t('articles.articleContent.reviews')}.`
+            title: `$Guide de Style : ${name}`,
+            excerpt: `$Pourquoi choisir ${name} ? $Ce produit se distingue par ses $caractéristiques principales, $marque ${brand}, $note ${rating}/5, ${reviewCount} $avis.`
           };
         case 'home':
           return {
-            title: `${t('articles.articleContent.homeGuide')} : ${name}`,
-            excerpt: `${t('articles.articleContent.whyChoose')} ${name} ? ${t('articles.articleContent.thisProductStandsOut')} ${t('articles.articleContent.mainFeatures')}, ${t('articles.articleContent.brand')} ${brand}, ${t('articles.articleContent.rating')} ${rating}/5, ${reviewCount} ${t('articles.articleContent.reviews')}.`
+            title: `$Guide Maison : ${name}`,
+            excerpt: `$Pourquoi choisir ${name} ? $Ce produit se distingue par ses $caractéristiques principales, $marque ${brand}, $note ${rating}/5, ${reviewCount} $avis.`
           };
         default:
           return {
-            title: `${t('articles.articleContent.expertGuide')} : ${name}`,
-            excerpt: `${t('articles.articleContent.whyChoose')} ${name} ? ${t('articles.articleContent.thisProductStandsOut')} ${t('articles.articleContent.mainFeatures')}, ${t('articles.articleContent.brand')} ${brand}, ${t('articles.articleContent.rating')} ${rating}/5, ${reviewCount} ${t('articles.articleContent.reviews')}.`
+            title: `$Guide Expert : ${name}`,
+            excerpt: `$Pourquoi choisir ${name} ? $Ce produit se distingue par ses $caractéristiques principales, $marque ${brand}, $note ${rating}/5, ${reviewCount} $avis.`
           };
       }
     };
@@ -86,36 +86,36 @@ const Articles = () => {
       excerpt: content.excerpt,
       content: `
         <div class="article-content">
-          <h2>${t('articles.articleContent.whyChoose')} ${product.name} ?</h2>
-          <p>${t('articles.articleContent.thisProductStandsOut')} ${t('articles.articleContent.excellentValue')}. ${product.rating.average}/5 ${t('articles.articleContent.rating')} (${product.rating.count} ${t('articles.articleContent.reviews')}).</p>
+          <h2>$Pourquoi choisir ${product.name} ?</h2>
+          <p>$Ce produit se distingue par ses $excellente valeur. ${product.rating.average}/5 $note (${product.rating.count} $avis).</p>
           
-          ${discount > 0 ? `<div class="discount-badge">💰 ${t('articles.articleContent.save')} ${discount}% - ${t('articles.articleContent.reducedPrice')} ${t('articles.articleContent.from')} ${product.originalPrice}€ ${t('articles.articleContent.to')} ${product.price}€</div>` : ''}
+          ${discount > 0 ? `<div class="discount-badge">💰 $Économisez ${discount}% - $prix réduit $de ${product.originalPrice}€ $à ${product.price}€</div>` : ''}
           
-          <h3>${t('articles.articleContent.mainFeatures')}</h3>
+          <h3>$caractéristiques principales</h3>
           <ul>
-            <li><strong>${t('articles.articleContent.brand')} :</strong> ${product.brand}</li>
-            <li><strong>${t('articles.articleContent.price')} :</strong> ${product.price}€ ${product.originalPrice > product.price ? `(${t('articles.articleContent.insteadOf')} ${product.originalPrice}€)` : ''}</li>
-            <li><strong>${t('articles.articleContent.rating')} :</strong> ${product.rating.average}/5 ⭐ (${product.rating.count} ${t('articles.articleContent.reviews')})</li>
-            <li><strong>${t('articles.articleContent.availability')} :</strong> ${product.inStock ? t('articles.articleContent.inStock') : t('articles.articleContent.outOfStock')}</li>
-            <li><strong>${t('articles.articleContent.category')} :</strong> ${product.category}</li>
+            <li><strong>$marque :</strong> ${product.brand}</li>
+            <li><strong>$prix :</strong> ${product.price}€ ${product.originalPrice > product.price ? `($au lieu de ${product.originalPrice}€)` : ''}</li>
+            <li><strong>$note :</strong> ${product.rating.average}/5 ⭐ (${product.rating.count} $avis)</li>
+            <li><strong>$disponibilité :</strong> ${product.inStock ? En Stock : Rupture de Stock}</li>
+            <li><strong>$catégorie :</strong> ${product.category}</li>
           </ul>
 
-          <h3>${t('articles.articleContent.whyWeRecommend')}</h3>
-          <p>${t('articles.articleContent.thisProductStandsOut')} ${product.isFeatured ? t('articles.articleContent.featuredProduct') : ''} ${product.isTrending ? t('articles.articleContent.trendingSuccess') : ''}.</p>
+          <h3>$Pourquoi nous recommandons</h3>
+          <p>$Ce produit se distingue par ses ${product.isFeatured ? produit vedette : ''} ${product.isTrending ? succès tendance : ''}.</p>
 
-          <h3>${t('articles.articleContent.keyPoints')}</h3>
+          <h3>$Points Clés</h3>
           <ul>
-            <li>✅ ${t('articles.articleContent.recognizedQuality').replace('{brand}', product.brand)}</li>
-            <li>✅ ${t('articles.articleContent.excellentValue')}</li>
-            <li>✅ ${product.rating.count} ${t('articles.articleContent.positiveReviews')}</li>
-            <li>✅ ${product.isFeatured ? t('articles.articleContent.featuredProductStatus') : t('articles.articleContent.recommendedProduct')}</li>
+            <li>✅ Qualité reconnue de la marque ${product.brand}</li>
+            <li>✅ $excellente valeur</li>
+            <li>✅ ${product.rating.count} $avis positifs</li>
+            <li>✅ ${product.isFeatured ? statut de produit vedette : produit recommandé}</li>
           </ul>
 
           <div class="cta-section">
-            <h3>${t('articles.articleContent.readyToOrder')}</h3>
-            <p>${t('articles.articleContent.dontMissOpportunity')}</p>
+            <h3>$Prêt à commander</h3>
+            <p>$Ne manquez pas cette opportunité</p>
             <a href="${product.affiliateUrl}" target="_blank" rel="noopener noreferrer" class="cta-button">
-              🛒 ${t('articles.articleContent.viewProductOnAmazon')}
+              🛒 $Voir le produit sur Amazon
             </a>
           </div>
 
@@ -148,8 +148,8 @@ const Articles = () => {
       <div className="articles-page">
         <div className="articles-header">
           <div className="container">
-            <h1>{t('articles.title')}</h1>
-            <p>{t('articles.subtitle')}</p>
+            <h1>Articles</h1>
+            <p>Découvrez nos analyses approfondies et guides experts</p>
           </div>
         </div>
 
@@ -159,7 +159,7 @@ const Articles = () => {
               <div className="search-box">
                 <input
                   type="text"
-                  placeholder={t('articles.searchPlaceholder')}
+                  placeholder="Rechercher dans les articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -173,7 +173,7 @@ const Articles = () => {
                     className={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
                     onClick={() => setSelectedCategory(category)}
                   >
-                    {category === 'all' ? t('articles.allCategories') : category}
+                    {category === 'all' ? Toutes les catégories : category}
                   </button>
                 ))}
               </div>
@@ -197,8 +197,8 @@ const Articles = () => {
                           className="article-main-image"
                         />
                         <div className="article-badges">
-                          {product.isFeatured && <span className="featured-badge">{t('articles.featured')}</span>}
-                          {product.isTrending && <span className="trending-badge">{t('articles.trending')}</span>}
+                          {product.isFeatured && <span className="featured-badge">Vedette</span>}
+                          {product.isTrending && <span className="trending-badge">Tendance</span>}
                         </div>
                       </div>
                       
@@ -234,8 +234,8 @@ const Articles = () => {
                         >
                           <span className="btn-icon">→</span>
                           <span className="btn-text">
-                            <strong>{t('articles.readFullArticle')}</strong>
-                            <small>{t('articles.readFullArticleSubtitle')}</small>
+                            <strong>Lire l'Article Complet</strong>
+                            <small>Analyse détaillée et guide d'achat</small>
                           </span>
                         </a>
                         
@@ -247,8 +247,8 @@ const Articles = () => {
                         >
                           <span className="btn-icon">→</span>
                           <span className="btn-text">
-                            <strong>{t('articles.viewOnAmazon')}</strong>
-                            <small>{t('articles.viewOnAmazonSubtitle')}</small>
+                            <strong>Voir sur Amazon</strong>
+                            <small>Prix et disponibilité actuels</small>
                           </span>
                         </a>
                       </div>
@@ -260,8 +260,8 @@ const Articles = () => {
             
             {filteredProducts.length === 0 && (
               <div className="no-results">
-                <h3>{t('articles.noArticles')}</h3>
-                <p>{t('articles.noArticlesDescription')}</p>
+                <h3>Aucun article trouvé</h3>
+                <p>Aucun article ne correspond à votre recherche. Essayez avec d'autres mots-clés.</p>
               </div>
             )}
           </div>

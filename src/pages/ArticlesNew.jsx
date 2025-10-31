@@ -68,15 +68,15 @@ const Articles = () => {
       
       <div className="articles-page">
         <div className="articles-header">
-          <h1>{t('articles.title')}</h1>
-          <p>{t('articles.subtitle')}</p>
+          <h1>Articles</h1>
+          <p>Découvrez nos analyses approfondies et guides experts</p>
         </div>
 
         <div className="articles-filters">
           <div className="search-container">
             <input
               type="text"
-              placeholder={t('articles.searchPlaceholder')}
+              placeholder="Rechercher dans les articles..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
@@ -90,7 +90,7 @@ const Articles = () => {
                 className={`category-filter ${selectedCategory === category ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(category)}
               >
-                {category === 'all' ? t('articles.allCategories') : category}
+                {category === 'all' ? 'Toutes les catégories' : category}
               </button>
             ))}
           </div>
@@ -112,8 +112,8 @@ const Articles = () => {
                         className="article-main-image"
                       />
                       <div className="article-badges">
-                        {product.isFeatured && <span className="featured-badge">{t('articles.featured')}</span>}
-                        {product.isTrending && <span className="trending-badge">{t('articles.trending')}</span>}
+                        {product.isFeatured && <span className="featured-badge">Vedette</span>}
+                        {product.isTrending && <span className="trending-badge">Tendance</span>}
                       </div>
                     </div>
                     
@@ -129,16 +129,16 @@ const Articles = () => {
                     
                     <div className="article-highlights">
                       <div className="highlight-item">
-                        <span className="highlight-label">{t('articles.brand')}:</span>
+                        <span className="highlight-label">Marque:</span>
                         <span className="highlight-value">{product.brand}</span>
                       </div>
                       <div className="highlight-item">
-                        <span className="highlight-label">{t('articles.status')}:</span>
-                        <span className="highlight-value">{product.inStock ? t('articles.inStock') : t('articles.outOfStock')}</span>
+                        <span className="highlight-label">Statut:</span>
+                        <span className="highlight-value">{product.inStock ? 'En Stock' : 'Rupture de Stock'}</span>
                       </div>
                       <div className="highlight-item">
-                        <span className="highlight-label">{t('articles.reviews')}:</span>
-                        <span className="highlight-value">{product.rating.count} {t('articles.evaluations')}</span>
+                        <span className="highlight-label">Avis:</span>
+                        <span className="highlight-value">{product.rating.count} évaluations</span>
                       </div>
                     </div>
                   </div>
@@ -149,7 +149,7 @@ const Articles = () => {
                       className="primary-cta-btn"
                     >
                       <span className="btn-icon">→</span>
-                      <span className="btn-text">{t('articles.readFullArticle')}</span>
+                      <span className="btn-text">Lire l'Article Complet</span>
                     </Link>
                     
                     <a 
@@ -159,7 +159,7 @@ const Articles = () => {
                       className="secondary-cta-btn"
                     >
                       <span className="btn-icon">→</span>
-                      <span className="btn-text">{t('articles.viewOnAmazon')}</span>
+                      <span className="btn-text">Voir sur Amazon</span>
                     </a>
                   </div>
                 </div>
@@ -167,8 +167,8 @@ const Articles = () => {
             })
           ) : (
             <div className="no-articles">
-              <h3>{t('articles.noArticles')}</h3>
-              <p>{t('articles.noArticlesDescription')}</p>
+              <h3>Aucun article trouvé</h3>
+              <p>Aucun article ne correspond à votre recherche. Essayez avec d'autres mots-clés.</p>
             </div>
           )}
         </div>

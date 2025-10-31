@@ -1,0 +1,264 @@
+{
+  "authors": {
+    "team-alladsmarket": {
+      "name": "Team AllAdsMarket",
+      "bio": "Ekspert team innen digital markedsføring og e-handel"
+    },
+    "marie-dubois": {
+      "name": "Marie Dubois",
+      "bio": "Ekspert innen AI og Markedsføringsautomatisering"
+    },
+    "pierre-martin": {
+      "name": "Pierre Martin",
+      "bio": "SEO og Content Marketing Spesialist"
+    },
+    "sophie-bernard": {
+      "name": "Sophie Bernard",
+      "bio": "E-handel og Konverteringsoptimalisering Konsulent"
+    },
+    "alexandre-roux": {
+      "name": "Alexandre Roux",
+      "bio": "Blockchain og Fremvoksende Teknologier Ekspert"
+    },
+    "laura-petit": {
+      "name": "Laura Petit",
+      "bio": "Dataanalytiker og Business Intelligence Ekspert"
+    }
+  },
+  "article": {
+    "author": "Forfatter",
+    "published": "Publisert den",
+    "readTime": "Lesetid",
+    "views": "visninger",
+    "likes": "liker",
+    "comments": "kommentarer",
+    "rating": "Vurdering",
+    "difficulty": "Vanskelighetsgrad",
+    "tags": "Tagger",
+    "category": "Kategori",
+    "featured": "Fremhevet",
+    "premium": "Premium",
+    "trending": "Trendende",
+    "aiGenerated": "AI Generert",
+    "readMore": "Les mer",
+    "share": "Del",
+    "bookmark": "Bokmerk",
+    "like": "Liker",
+    "comment": "Kommenter",
+    "download": "Last ned",
+    "relatedArticles": "Relaterte artikler",
+    "authorBio": "Om forfatteren",
+    "expertise": "Ekspertise",
+    "articlesCount": "publiserte artikler",
+    "followers": "følgere",
+    "verified": "Verifisert"
+  },
+  "categories": {
+    "all": "Alle kategorier",
+    "ia-tech": "AI & Tech",
+    "seo": "SEO",
+    "ecommerce": "E-handel",
+    "blockchain": "Blockchain",
+    "analytics": "Analytics",
+    "content": "Content Marketing",
+    "electronics": "Elektronikk",
+    "home-garden": "Hjem & Hage"
+  },
+  "difficulty": {
+    "beginner": "Nybegynner",
+    "intermediate": "Mellomnivå",
+    "advanced": "Avansert",
+    "expert": "Ekspert"
+  },
+  "seo": {
+    "metaTitle": "Digital Markedsføring Artikler | AllAdsMarket Blog",
+    "metaDescription": "Oppdag de nyeste trendene innen digital markedsføring, SEO, e-handel og AI. Ekspert artikler fra AllAdsMarket profesjonelle.",
+    "keywords": "digital markedsføring, SEO, e-handel, AI, content marketing, blockchain, analytics",
+    "ogTitle": "AllAdsMarket - Premium Affiliate Marketplace",
+    "ogDescription": "Oppdag de beste trendende produktene og eksklusive tilbud. Mer enn 100K+ produkter fra pålitelige merker.",
+    "twitterTitle": "AllAdsMarket - Premium Affiliate Marketplace",
+    "twitterDescription": "Oppdag de beste trendende produktene og eksklusive tilbud. Mer enn 100K+ produkter fra pålitelige merker."
+  },
+  "navigation": {
+    "home": "Hjem",
+    "products": "Produkter",
+    "articles": "Artikler",
+    "about": "Om oss",
+    "contact": "Kontakt",
+    "search": "Søk",
+    "menu": "Meny",
+    "close": "Lukk",
+    "language": "Språk",
+    "currency": "Valuta"
+  },
+  "home": {
+    "hero": {
+      "title": "Oppdag de Beste Trendende Produktene",
+      "subtitle": "AllAdsMarket - Din Premium Affiliate Marketplace",
+      "description": "Finn de nyeste og mest populære produktene fra pålitelige merker. Mer enn 100K+ produkter venter på deg.",
+      "cta": "Kom i Gang",
+      "learnMore": "Lær Mer"
+    },
+    "features": {
+      "title": "Hvorfor AllAdsMarket?",
+      "subtitle": "Det beste valget for din online shopping",
+      "feature1": {
+        "title": "100K+ Produkter",
+        "description": "Omfattende utvalg av kvalitetsprodukter"
+      },
+      "feature2": {
+        "title": "Eksklusive Tilbud",
+        "description": "Tilgang til spesialtilbud og rabatter"
+      },
+      "feature3": {
+        "title": "Pålitelige Merker",
+        "description": "Kun produkter fra verifiserte merker"
+      },
+      "feature4": {
+        "title": "24/7 Support",
+        "description": "Alltid tilgjengelig kundeservice"
+      }
+    },
+    "trending": {
+      "title": "Trendende Produkter",
+      "subtitle": "De mest populære produktene akkurat nå",
+      "viewAll": "Se Alle"
+    },
+    "categories": {
+      "title": "Handel per Kategori",
+      "subtitle": "Finn det du leter etter i våre organiserte kategorier"
+    },
+    "testimonials": {
+      "title": "Hva Våre Kunder Sier",
+      "subtitle": "Ekte erfaringer fra fornøyde kunder"
+    }
+  },
+  "products": {
+    "title": "Produkter",
+    "subtitle": "Oppdag vår omfattende samling",
+    "filter": "Filtrer",
+    "sort": "Sorter",
+    "view": "Visning",
+    "grid": "Rutenett",
+    "list": "Liste",
+    "price": "Pris",
+    "rating": "Vurdering",
+    "availability": "Tilgjengelighet",
+    "inStock": "På lager",
+    "outOfStock": "Utsolgt",
+    "limitedStock": "Begrenset lager",
+    "addToCart": "Legg til i handlekurv",
+    "buyNow": "Kjøp Nå",
+    "quickView": "Hurtigvisning",
+    "addToFavorites": "Legg til i favoritter",
+    "removeFromFavorites": "Fjern fra favoritter",
+    "share": "Del",
+    "compare": "Sammenlign",
+    "specifications": "Spesifikasjoner",
+    "reviews": "Anmeldelser",
+    "relatedProducts": "Relaterte produkter",
+    "recentlyViewed": "Nylig sett",
+    "recommended": "Anbefalt",
+    "newArrivals": "Nye ankomster",
+    "bestSellers": "Bestsellere",
+    "onSale": "På salg",
+    "clearance": "Utsalg"
+  },
+  "footer": {
+    "about": "Om AllAdsMarket",
+    "description": "Din pålitelige partner for premium affiliate markedsføring og e-handelsløsninger.",
+    "quickLinks": "Hurtig Lenker",
+    "categories": "Kategorier",
+    "support": "Support",
+    "legal": "Juridisk",
+    "newsletter": {
+      "title": "Nyhetsbrev",
+      "description": "Få de nyeste oppdateringene og eksklusive tilbud",
+      "placeholder": "Din e-postadresse",
+      "subscribe": "Abonner"
+    },
+    "social": "Følg Oss",
+    "copyright": "© 2024 AllAdsMarket. Alle rettigheter forbeholdt.",
+    "privacy": "Personvernpolicy",
+    "terms": "Bruksvilkår",
+    "cookies": "Cookiepolicy"
+  },
+  "common": {
+    "loading": "Laster...",
+    "error": "Feil",
+    "success": "Suksess",
+    "cancel": "Avbryt",
+    "save": "Lagre",
+    "edit": "Rediger",
+    "delete": "Slett",
+    "search": "Søk",
+    "filter": "Filtrer",
+    "close": "Lukk",
+    "back": "Tilbake",
+    "next": "Neste",
+    "previous": "Forrige",
+    "submit": "Send",
+    "confirm": "Bekreft",
+    "yes": "Ja",
+    "no": "Nei",
+    "selectLanguage": "Velg Språk",
+    "selectCurrency": "Velg Valuta",
+    "view": "Vis",
+    "seePrice": "Se Pris",
+    "buyNow": "Kjøp Nå",
+    "quickView": "Hurtigvisning",
+    "addToFavorites": "Legg til i Favoritter",
+    "removeFromFavorites": "Fjern fra Favoritter",
+    "share": "Del",
+    "bookmark": "Bokmerk",
+    "like": "Liker",
+    "unlike": "Liker Ikke",
+    "readMore": "Les Mer",
+    "showLess": "Vis Mindre",
+    "showAll": "Vis Alt",
+    "hide": "Skjul",
+    "expand": "Utvid",
+    "collapse": "Kollaps",
+    "refresh": "Oppdater",
+    "reload": "Last på nytt",
+    "retry": "Prøv Igjen",
+    "continue": "Fortsett",
+    "finish": "Fullfør",
+    "complete": "Fullført",
+    "done": "Ferdig",
+    "ok": "OK",
+    "apply": "Bruk",
+    "reset": "Tilbakestill",
+    "clear": "Tøm",
+    "select": "Velg",
+    "choose": "Velg",
+    "pick": "Velg",
+    "upload": "Last opp",
+    "download": "Last ned",
+    "print": "Skriv ut",
+    "copy": "Kopier",
+    "paste": "Lim inn",
+    "cut": "Klipp ut",
+    "undo": "Angre",
+    "redo": "Gjør om",
+    "sort": "Sorter",
+    "order": "Bestill",
+    "arrange": "Ordne",
+    "organize": "Organiser",
+    "manage": "Administrer",
+    "control": "Kontroller",
+    "settings": "Innstillinger",
+    "preferences": "Preferanser",
+    "options": "Alternativer",
+    "configuration": "Konfigurasjon",
+    "customize": "Tilpass",
+    "personalize": "Personaliser",
+    "profile": "Profil",
+    "account": "Konto",
+    "user": "Bruker",
+    "customer": "Kunde",
+    "client": "Klient",
+    "guest": "Gjest",
+    "visitor": "Besøkende"
+  }
+}

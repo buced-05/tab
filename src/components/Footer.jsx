@@ -27,7 +27,8 @@ const Footer = () => {
           <div className="footer-section">
             <Logo size="small" showText={true} className="footer-logo" />
             <p className="footer-description">
-              {t('footer.aboutDescription')}
+              AllAdsMarket est votre plateforme e-commerce premium pour découvrir et acheter les meilleurs produits du marché. 
+              Nous proposons une sélection soigneusement choisie d'articles de qualité supérieure pour une expérience d'achat exceptionnelle.
             </p>
             <div className="social-links">
               <a 
@@ -62,53 +63,53 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="footer-section">
-            <h4 className="footer-subtitle">{t('footer.quickLinks')}</h4>
+            <h4 className="footer-subtitle">{t('footer.quickLinks', 'Liens Rapides')}</h4>
             <ul className="footer-links">
               <li>
-                <Link to="/" className="footer-link">{t('navigation.home')}</Link>
+                <Link to="/" className="footer-link">{t('nav.home', 'Accueil')}</Link>
               </li>
               <li>
-                <Link to="/products" className="footer-link">{t('products.allProducts')}</Link>
+                <Link to="/products" className="footer-link">{t('nav.allProducts', 'Tous les Produits')}</Link>
               </li>
               <li>
-                <Link to="/featured" className="footer-link">{t('products.featuredProducts')}</Link>
+                <Link to="/featured" className="footer-link">{t('nav.featured', 'Produits Vedettes')}</Link>
               </li>
               <li>
-                <Link to="/trending" className="footer-link">{t('products.trendingProducts')}</Link>
+                <Link to="/trending" className="footer-link">{t('nav.trending', 'Produits Tendances')}</Link>
               </li>
               <li>
-                <Link to="/categories" className="footer-link">{t('navigation.categories')}</Link>
+                <Link to="/categories" className="footer-link">{t('nav.categories', 'Catégories')}</Link>
               </li>
             </ul>
           </div>
 
           {/* Categories */}
           <div className="footer-section">
-            <h4 className="footer-subtitle">{t('navigation.categories')}</h4>
+            <h4 className="footer-subtitle">{t('footer.categories', 'Catégories')}</h4>
             <ul className="footer-links">
               <li>
                 <Link to="/products?category=electronics" className="footer-link">
-                  Électronique
+                  {t('categories.electronics', 'Électronique')}
                 </Link>
               </li>
               <li>
                 <Link to="/products?category=fashion" className="footer-link">
-                  Mode
+                  {t('categories.fashion', 'Mode')}
                 </Link>
               </li>
               <li>
                 <Link to="/products?category=home" className="footer-link">
-                  Maison et jardin
+                  {t('categories.home', 'Maison et jardin')}
                 </Link>
               </li>
               <li>
                 <Link to="/products?category=sports" className="footer-link">
-                  Sports
+                  {t('categories.sports', 'Sports')}
                 </Link>
               </li>
               <li>
                 <Link to="/products?category=beauty" className="footer-link">
-                  Beauté
+                  {t('categories.beauty', 'Beauté')}
                 </Link>
               </li>
             </ul>
@@ -116,40 +117,40 @@ const Footer = () => {
 
           {/* Support */}
           <div className="footer-section">
-            <h4 className="footer-subtitle">Service client</h4>
+            <h4 className="footer-subtitle">{t('footer.support', 'Service client')}</h4>
             <ul className="footer-links">
               <li>
-                <Link to="/help" className="footer-link">{t('navigation.help')}</Link>
+                <Link to="/help" className="footer-link">{t('nav.help', 'Aide')}</Link>
               </li>
               <li>
-                <Link to="/contact" className="footer-link">{t('navigation.contact')}</Link>
+                <Link to="/contact" className="footer-link">{t('nav.contact', 'Contact')}</Link>
               </li>
               <li>
-                <Link to="/faq" className="footer-link">FAQ</Link>
+                <Link to="/faq" className="footer-link">{t('nav.faq', 'FAQ')}</Link>
               </li>
               <li>
-                <Link to="/shipping" className="footer-link">{t('navigation.shipping')}</Link>
+                <Link to="/shipping" className="footer-link">{t('nav.shipping', 'Livraison')}</Link>
               </li>
               <li>
-                <Link to="/returns" className="footer-link">{t('navigation.returns')}</Link>
+                <Link to="/returns" className="footer-link">{t('nav.returns', 'Retours')}</Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div className="footer-section">
-            <h4 className="footer-subtitle">Informations de contact</h4>
+            <h4 className="footer-subtitle">{t('footer.contactInfo', 'Informations de contact')}</h4>
             <div className="footer-contact-info">
               <div className="footer-contact-item">
                 <div className="footer-contact-icon">
                   <Mail size={18} />
                 </div>
                 <div className="footer-contact-details">
-                  <span className="footer-contact-label">E-mail</span>
+                  <span className="footer-contact-label">{t('footer.email', 'E-mail')}</span>
                   <a 
                     href="mailto:newtiv05@gmail.com" 
                     className="footer-contact-value footer-email-link"
-                    title="Cliquez pour nous envoyer un e-mail"
+                    title={t('footer.clickToEmail', 'Cliquez pour nous envoyer un e-mail')}
                   >
                     newtiv05@gmail.com
                     <ExternalLink size={14} className="email-external-icon" />
@@ -165,18 +166,18 @@ const Footer = () => {
           <div className="footer-bottom-content">
             <div className="footer-bottom-left">
               <p>
-                © {currentYear} BEST. All rights reserved.
+                © 2025 newtiv. {t('footer.allRightsReserved', 'All rights reserved.')}
               </p>
             </div>
             <div className="footer-bottom-right">
               <Link to="/privacy" className="footer-bottom-link">
-                {t('navigation.privacy')}
+                {t('legal.privacy', 'Politique de Confidentialité')}
               </Link>
               <Link to="/terms" className="footer-bottom-link">
-                {t('navigation.terms')}
+                {t('legal.terms', "Conditions d'Utilisation")}
               </Link>
               <Link to="/cookies" className="footer-bottom-link">
-                {t('navigation.cookies')}
+                {t('legal.cookies', 'Cookies')}
               </Link>
             </div>
           </div>
@@ -185,8 +186,7 @@ const Footer = () => {
           <div className="affiliate-disclaimer">
             <p>
               <ExternalLink size={14} />
-              BEST is a participant in various affiliate programs. 
-              We may earn commissions from qualifying purchases made through our links.
+              {t('footer.affiliateDisclaimer', 'BEST is a participant in various affiliate programs. We may earn commissions from qualifying purchases made through our links.')}
             </p>
           </div>
         </div>

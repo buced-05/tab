@@ -1,0 +1,264 @@
+{
+  "authors": {
+    "team-alladsmarket": {
+      "name": "Team AllAdsMarket",
+      "bio": "Expert team in digitale marketing en e-commerce"
+    },
+    "marie-dubois": {
+      "name": "Marie Dubois",
+      "bio": "Expert in AI en Marketing Automatisering"
+    },
+    "pierre-martin": {
+      "name": "Pierre Martin",
+      "bio": "SEO en Content Marketing Specialist"
+    },
+    "sophie-bernard": {
+      "name": "Sophie Bernard",
+      "bio": "E-commerce en Conversie Optimalisatie Consultant"
+    },
+    "alexandre-roux": {
+      "name": "Alexandre Roux",
+      "bio": "Blockchain en Opkomende Technologieën Expert"
+    },
+    "laura-petit": {
+      "name": "Laura Petit",
+      "bio": "Data Analist en Business Intelligence Expert"
+    }
+  },
+  "article": {
+    "author": "Auteur",
+    "published": "Gepubliceerd op",
+    "readTime": "Leestijd",
+    "views": "weergaven",
+    "likes": "likes",
+    "comments": "reacties",
+    "rating": "Beoordeling",
+    "difficulty": "Moeilijkheidsgraad",
+    "tags": "Tags",
+    "category": "Categorie",
+    "featured": "Uitgelicht",
+    "premium": "Premium",
+    "trending": "Trending",
+    "aiGenerated": "AI Gegenereerd",
+    "readMore": "Lees meer",
+    "share": "Delen",
+    "bookmark": "Bladwijzer",
+    "like": "Like",
+    "comment": "Reageer",
+    "download": "Downloaden",
+    "relatedArticles": "Gerelateerde artikelen",
+    "authorBio": "Over de auteur",
+    "expertise": "Expertise",
+    "articlesCount": "gepubliceerde artikelen",
+    "followers": "volgers",
+    "verified": "Geverifieerd"
+  },
+  "categories": {
+    "all": "Alle categorieën",
+    "ia-tech": "AI & Tech",
+    "seo": "SEO",
+    "ecommerce": "E-commerce",
+    "blockchain": "Blockchain",
+    "analytics": "Analytics",
+    "content": "Content Marketing",
+    "electronics": "Elektronica",
+    "home-garden": "Huis & Tuin"
+  },
+  "difficulty": {
+    "beginner": "Beginner",
+    "intermediate": "Gemiddeld",
+    "advanced": "Gevorderd",
+    "expert": "Expert"
+  },
+  "seo": {
+    "metaTitle": "Digitale Marketing Artikelen | AllAdsMarket Blog",
+    "metaDescription": "Ontdek de nieuwste trends in digitale marketing, SEO, e-commerce en AI. Expert artikelen van AllAdsMarket professionals.",
+    "keywords": "digitale marketing, SEO, e-commerce, AI, content marketing, blockchain, analytics",
+    "ogTitle": "AllAdsMarket - Premium Affiliate Marketplace",
+    "ogDescription": "Ontdek de beste trending producten en exclusieve aanbiedingen. Meer dan 100K+ producten van vertrouwde merken.",
+    "twitterTitle": "AllAdsMarket - Premium Affiliate Marketplace",
+    "twitterDescription": "Ontdek de beste trending producten en exclusieve aanbiedingen. Meer dan 100K+ producten van vertrouwde merken."
+  },
+  "navigation": {
+    "home": "Home",
+    "products": "Producten",
+    "articles": "Artikelen",
+    "about": "Over ons",
+    "contact": "Contact",
+    "search": "Zoeken",
+    "menu": "Menu",
+    "close": "Sluiten",
+    "language": "Taal",
+    "currency": "Valuta"
+  },
+  "home": {
+    "hero": {
+      "title": "Ontdek de Beste Trending Producten",
+      "subtitle": "AllAdsMarket - Uw Premium Affiliate Marketplace",
+      "description": "Vind de nieuwste en meest populaire producten van vertrouwde merken. Meer dan 100K+ producten wachten op u.",
+      "cta": "Begin Nu",
+      "learnMore": "Meer Informatie"
+    },
+    "features": {
+      "title": "Waarom AllAdsMarket?",
+      "subtitle": "De beste keuze voor uw online shopping",
+      "feature1": {
+        "title": "100K+ Producten",
+        "description": "Uitgebreide selectie van kwaliteitsproducten"
+      },
+      "feature2": {
+        "title": "Exclusieve Aanbiedingen",
+        "description": "Toegang tot speciale deals en kortingen"
+      },
+      "feature3": {
+        "title": "Vertrouwde Merken",
+        "description": "Alleen producten van geverifieerde merken"
+      },
+      "feature4": {
+        "title": "24/7 Support",
+        "description": "Altijd beschikbare klantenservice"
+      }
+    },
+    "trending": {
+      "title": "Trending Producten",
+      "subtitle": "De meest populaire producten van dit moment",
+      "viewAll": "Bekijk Alle"
+    },
+    "categories": {
+      "title": "Shop per Categorie",
+      "subtitle": "Vind wat u zoekt in onze georganiseerde categorieën"
+    },
+    "testimonials": {
+      "title": "Wat Onze Klanten Zeggen",
+      "subtitle": "Echte ervaringen van tevreden klanten"
+    }
+  },
+  "products": {
+    "title": "Producten",
+    "subtitle": "Ontdek onze uitgebreide collectie",
+    "filter": "Filter",
+    "sort": "Sorteren",
+    "view": "Weergave",
+    "grid": "Raster",
+    "list": "Lijst",
+    "price": "Prijs",
+    "rating": "Beoordeling",
+    "availability": "Beschikbaarheid",
+    "inStock": "Op voorraad",
+    "outOfStock": "Uitverkocht",
+    "limitedStock": "Beperkte voorraad",
+    "addToCart": "Toevoegen aan winkelwagen",
+    "buyNow": "Nu Kopen",
+    "quickView": "Snelle weergave",
+    "addToFavorites": "Toevoegen aan favorieten",
+    "removeFromFavorites": "Verwijderen uit favorieten",
+    "share": "Delen",
+    "compare": "Vergelijken",
+    "specifications": "Specificaties",
+    "reviews": "Beoordelingen",
+    "relatedProducts": "Gerelateerde producten",
+    "recentlyViewed": "Recent bekeken",
+    "recommended": "Aanbevolen",
+    "newArrivals": "Nieuwe aanwinsten",
+    "bestSellers": "Bestsellers",
+    "onSale": "In de aanbieding",
+    "clearance": "Uitverkoop"
+  },
+  "footer": {
+    "about": "Over AllAdsMarket",
+    "description": "Uw betrouwbare partner voor premium affiliate marketing en e-commerce oplossingen.",
+    "quickLinks": "Snelle Links",
+    "categories": "Categorieën",
+    "support": "Ondersteuning",
+    "legal": "Juridisch",
+    "newsletter": {
+      "title": "Nieuwsbrief",
+      "description": "Ontvang de laatste updates en exclusieve aanbiedingen",
+      "placeholder": "Uw e-mailadres",
+      "subscribe": "Abonneren"
+    },
+    "social": "Volg Ons",
+    "copyright": "© 2024 AllAdsMarket. Alle rechten voorbehouden.",
+    "privacy": "Privacybeleid",
+    "terms": "Algemene Voorwaarden",
+    "cookies": "Cookiebeleid"
+  },
+  "common": {
+    "loading": "Laden...",
+    "error": "Fout",
+    "success": "Succes",
+    "cancel": "Annuleren",
+    "save": "Opslaan",
+    "edit": "Bewerken",
+    "delete": "Verwijderen",
+    "search": "Zoeken",
+    "filter": "Filter",
+    "close": "Sluiten",
+    "back": "Terug",
+    "next": "Volgende",
+    "previous": "Vorige",
+    "submit": "Verzenden",
+    "confirm": "Bevestigen",
+    "yes": "Ja",
+    "no": "Nee",
+    "selectLanguage": "Selecteer Taal",
+    "selectCurrency": "Selecteer Valuta",
+    "view": "Bekijken",
+    "seePrice": "Prijs Bekijken",
+    "buyNow": "Nu Kopen",
+    "quickView": "Snelle Weergave",
+    "addToFavorites": "Toevoegen aan Favorieten",
+    "removeFromFavorites": "Verwijderen uit Favorieten",
+    "share": "Delen",
+    "bookmark": "Bladwijzer",
+    "like": "Like",
+    "unlike": "Unlike",
+    "readMore": "Lees Meer",
+    "showLess": "Minder Tonen",
+    "showAll": "Alles Tonen",
+    "hide": "Verbergen",
+    "expand": "Uitklappen",
+    "collapse": "Inklappen",
+    "refresh": "Vernieuwen",
+    "reload": "Herladen",
+    "retry": "Opnieuw Proberen",
+    "continue": "Doorgaan",
+    "finish": "Voltooien",
+    "complete": "Voltooid",
+    "done": "Klaar",
+    "ok": "OK",
+    "apply": "Toepassen",
+    "reset": "Resetten",
+    "clear": "Wissen",
+    "select": "Selecteren",
+    "choose": "Kiezen",
+    "pick": "Kiezen",
+    "upload": "Uploaden",
+    "download": "Downloaden",
+    "print": "Afdrukken",
+    "copy": "Kopiëren",
+    "paste": "Plakken",
+    "cut": "Knippen",
+    "undo": "Ongedaan Maken",
+    "redo": "Opnieuw Doen",
+    "sort": "Sorteren",
+    "order": "Bestellen",
+    "arrange": "Rangschikken",
+    "organize": "Organiseren",
+    "manage": "Beheren",
+    "control": "Besturen",
+    "settings": "Instellingen",
+    "preferences": "Voorkeuren",
+    "options": "Opties",
+    "configuration": "Configuratie",
+    "customize": "Aanpassen",
+    "personalize": "Personaliseren",
+    "profile": "Profiel",
+    "account": "Account",
+    "user": "Gebruiker",
+    "customer": "Klant",
+    "client": "Client",
+    "guest": "Gast",
+    "visitor": "Bezoeker"
+  }
+}

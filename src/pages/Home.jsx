@@ -16,6 +16,11 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const loadHomeData = () => {
       setLoading(true);
@@ -55,8 +60,8 @@ const Home = () => {
     return (
       <div className="loading-container">
         <div className="loading-spinner-large"></div>
-        <h3>Chargement de produits incroyables...</h3>
-        <p>Découverte des meilleures offres pour vous</p>
+        <h3>{t('home.loading')}</h3>
+        <p>{t('home.loadingSubtitle')}</p>
       </div>
     );
   }
@@ -64,7 +69,7 @@ const Home = () => {
   return (
     <div className="products-page">
       <SEOHead 
-        title="Accueil - Le Marché des Annonces"
+        title={t('home.title')}
         description="Découvrez une sélection soigneusement choisie de produits exceptionnels. Trouvez les meilleures offres, des produits de qualité et des marques de confiance."
         keywords="produits tendances, offres exclusives, deals, shopping en ligne, e-commerce, marques premium, bonnes affaires, produits populaires, qualité, sélection"
         url="/"
@@ -76,10 +81,10 @@ const Home = () => {
         <div className="container">
           <div className="intro-content">
             <h1 className="intro-title">
-              {t('home.welcomeTitle')} <span className="intro-highlight">{t('home.welcomeHighlight')}</span>
+              {t('home.welcome')} <span className="intro-highlight">AllAdsMarket</span>
             </h1>
             <p className="intro-description">
-              {t('home.welcomeDescription')}
+              {t('home.introDescription')}
             </p>
             <div className="intro-stats">
               <div className="intro-stat">
@@ -92,7 +97,7 @@ const Home = () => {
               </div>
               <div className="intro-stat">
                 <span className="stat-number">50K+</span>
-                <span className="stat-label">{t('home.statsCustomers')}</span>
+                <span className="stat-label">{t('home.statsClients')}</span>
               </div>
             </div>
           </div>
@@ -103,37 +108,37 @@ const Home = () => {
       {/* Quick Categories */}
       <section className="quick-categories">
         <div className="container">
-            <h2 className="section-title">{t('home.shopByCategory')}</h2>
+            <h2 className="section-title">{t('home.buyByCategory')}</h2>
           <div className="categories-grid">
             <Link to="/products?category=electronics" className="category-card">
               <div className="category-icon">📱</div>
-              <h3>{t('home.electronics')}</h3>
-              <p>{t('home.electronicsDesc')}</p>
+              <h3>{t('home.categoryElectronics')}</h3>
+              <p>{t('home.categoryElectronicsDesc')}</p>
             </Link>
             <Link to="/products?category=fashion" className="category-card">
               <div className="category-icon">👕</div>
-              <h3>{t('home.fashion')}</h3>
-              <p>{t('home.fashionDesc')}</p>
+              <h3>{t('home.categoryFashion')}</h3>
+              <p>{t('home.categoryFashionDesc')}</p>
             </Link>
             <Link to="/products?category=home" className="category-card">
               <div className="category-icon">🏠</div>
-              <h3>{t('home.homeGarden')}</h3>
-              <p>{t('home.homeGardenDesc')}</p>
+              <h3>{t('home.categoryHome')}</h3>
+              <p>{t('home.categoryHomeDesc')}</p>
             </Link>
             <Link to="/products?category=sports" className="category-card">
               <div className="category-icon">⚽</div>
-              <h3>{t('home.sports')}</h3>
-              <p>{t('home.sportsDesc')}</p>
+              <h3>{t('home.categorySports')}</h3>
+              <p>{t('home.categorySportsDesc')}</p>
             </Link>
             <Link to="/products?category=beauty" className="category-card">
               <div className="category-icon">💄</div>
-              <h3>{t('home.beauty')}</h3>
-              <p>{t('home.beautyDesc')}</p>
+              <h3>{t('home.categoryBeauty')}</h3>
+              <p>{t('home.categoryBeautyDesc')}</p>
             </Link>
             <Link to="/products?category=books" className="category-card">
               <div className="category-icon">📚</div>
-              <h3>{t('home.books')}</h3>
-              <p>{t('home.booksDesc')}</p>
+              <h3>{t('home.categoryBooks')}</h3>
+              <p>{t('home.categoryBooksDesc')}</p>
             </Link>
           </div>
         </div>
@@ -153,7 +158,7 @@ const Home = () => {
                 <p className="section-subtitle">{t('home.trendingSubtitle')}</p>
               </div>
               <Link to="/trending" className="section-link">
-                {t('home.viewAllTrending')}
+                {t('home.viewAllTrends')}
                 <ArrowRight size={16} />
               </Link>
             </div>

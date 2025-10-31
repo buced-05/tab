@@ -8,7 +8,7 @@ export const authors = {
     id: 'team-alladsmarket',
     name: 'Team AllAdsMarket',
     bio: 'Équipe d\'experts en marketing digital et e-commerce',
-    avatar: '/logo.png',
+    avatar: 'https://www.tradersdna.com/wp-content/uploads/2019/07/markets-1920x1310.jpg',
     social: {
       website: 'https://alladsmarket.com',
       linkedin: 'https://linkedin.com/company/alladsmarket',
@@ -88,6 +88,48 @@ export const authors = {
     verified: true,
     articlesCount: 20,
     followers: 13400
+  },
+  'expert-ia': {
+    id: 'expert-ia',
+    name: 'Expert IA',
+    bio: 'Expert en Intelligence Artificielle et Technologies Émergentes',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face',
+    social: {
+      linkedin: 'https://linkedin.com/in/expert-ia',
+      twitter: 'https://twitter.com/expert_ia'
+    },
+    expertise: ['IA', 'ChatGPT', 'Machine Learning', 'Service Client Digital'],
+    verified: true,
+    articlesCount: 15,
+    followers: 10200
+  },
+  'expert-cybersecurite': {
+    id: 'expert-cybersecurite',
+    name: 'Dr. Sarah Chen',
+    bio: 'Experte en Cybersécurité Avancée et Cryptographie Post-Quantique',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face',
+    social: {
+      linkedin: 'https://linkedin.com/in/sarah-chen-cybersecurite',
+      twitter: 'https://twitter.com/sarah_chen_sec'
+    },
+    expertise: ['Cybersécurité', 'Cryptographie Post-Quantique', 'IA Sécurité', 'Informatique Quantique'],
+    verified: true,
+    articlesCount: 8,
+    followers: 15600
+  },
+  'expert-quantique': {
+    id: 'expert-quantique',
+    name: 'Prof. David Kumar',
+    bio: 'Expert en Informatique Quantique et Technologies Émergentes',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face',
+    social: {
+      linkedin: 'https://linkedin.com/in/david-kumar-quantum',
+      twitter: 'https://twitter.com/david_kumar_qc'
+    },
+    expertise: ['Informatique Quantique', 'Qubits', 'Téléportation Quantique', 'Quantum Computing'],
+    verified: true,
+    articlesCount: 12,
+    followers: 18900
   }
 };
 

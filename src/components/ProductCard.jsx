@@ -462,17 +462,17 @@ const ProductCard = ({ product, onProductClick }) => {
           <button
             className="quick-view-button quick-view-desktop"
             onClick={handleQuickViewClick}
-            title={t('products.quickView')}
+            title="Aperçu Rapide"
           >
             <Eye size={16} />
-            <span className="quick-view-text">{t('products.quickView')}</span>
+            <span className="quick-view-text">Aperçu Rapide</span>
           </button>
           <button
             className="buy-button buy-button-desktop"
             onClick={handleSeePriceClick}
           >
             <ExternalLink size={16} />
-            <span className="buy-button-text">{t('products.seePrice')}</span>
+            <span className="buy-button-text">Voir le Prix</span>
           </button>
         </div>
         

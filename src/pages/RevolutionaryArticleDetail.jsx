@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
+import { formatArticleDate, formatShortDate, calculateReadingTime, generateRecentDate } from '../utils/dateFormatter';
+import { translateArticle } from '../utils/articleTranslations';
+import '../styles/revolutionary-blog.css';
 import {
   ArrowLeft,
   Clock,
@@ -31,11 +35,8 @@ import {
   ShoppingBag,
   Filter
 } from 'lucide-react';
-import ModernNavigation from '../components/ModernNavigation';
-import ModernFooter from '../components/ModernFooter';
-import '../styles/modern-navigation.css';
-import '../styles/modern-footer.css';
 import '../styles/revolutionary-blog.css';
+// Comments feature removed
 
 /**
  * Page de Détail d'Article Révolutionnaire
@@ -43,6 +44,7 @@ import '../styles/revolutionary-blog.css';
  */
 
 const RevolutionaryArticleDetail = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(true);
@@ -57,8 +59,258 @@ const RevolutionaryArticleDetail = () => {
   const [fontSize, setFontSize] = useState('medium');
   const [fontFamily, setFontFamily] = useState('inter');
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Fonction pour naviguer vers une section de la table des matières
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start',
+        inline: 'nearest'
+      });
+    }
+  };
+
   // Articles révolutionnaires avec contenu complet
   const revolutionaryArticles = [
+    {
+      id: 'chatgpt-service-client',
+      slug: 'chatgpt-avenir-service-client-digital',
+      title: "ChatGPT et l'Avenir du Service Client Digital : Révolution des Interactions Client",
+      description: "Découvrez comment ChatGPT transforme le service client avec des interactions instantanées, personnalisées et disponibles 24/7.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+      category: "IA & Service Client",
+      author: "Expert IA",
+      authorAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      date: "2024-01-15",
+      readTime: "8 min",
+      views: 2500,
+      likes: 450,
+      comments: 85,
+      rating: 4.8,
+      difficulty: "Intermediate",
+      featured: true,
+      premium: false,
+      trending: true,
+      tags: ["ChatGPT", "IA", "Service Client", "OpenAI", "Digital"],
+      aiGenerated: false,
+      content: `
+        <h2 id="intro">Introduction : Une Transformation Digitale Inévitable</h2>
+        <p>Le service client digital connaît depuis quelques années une mutation profonde avec l'émergence des technologies d'intelligence artificielle, et plus particulièrement les modèles génératifs comme ChatGPT. Cette innovation signée OpenAI permet de proposer des interactions client automatisées mais aussi personnalisées, instantanées et disponibles 24h/24 et 7j/7.</p>
+        
+        <h3 id="revolution-attentes">La Révolution des Attentes Clients</h3>
+        <p>Les clients d'aujourd'hui, habitués à utiliser des assistants numériques, attendent une assistance rapide, fluide et adaptée à leurs besoins. ChatGPT répond parfaitement à ces attentes : il délivre des réponses en temps réel, avec une qualité qui tend à imiter une conversation humaine. Selon des études, <strong>73% des clients veulent que les entreprises comprennent leurs besoins spécifiques</strong>.</p>
+        
+        <h3 id="avantages">Les Avantages Concrets de ChatGPT</h3>
+        <ul>
+          <li><strong>Disponibilité 24/7</strong> : Plus besoin d'attendre les horaires d'ouverture</li>
+          <li><strong>Réduction des délais</strong> : Traitement simultané des demandes</li>
+          <li><strong>Support multilingue</strong> : Élargissement de la portée internationale</li>
+          <li><strong>Personnalisation</strong> : Réponses adaptées à chaque profil</li>
+          <li><strong>Automatisation</strong> : Libération du temps des agents humains</li>
+        </ul>
+        
+        <h3 id="solutions">Les Meilleures Solutions pour Intégrer ChatGPT</h3>
+        <p>Pour une intégration rapide et sécurisée, <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">consultez les solutions cloud professionnelles</a> qui offrent une infrastructure robuste pour héberger vos applications IA.</p>
+        <p>Un bon <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">hébergement web</a> est essentiel pour garantir la disponibilité 24/7 de votre service client alimenté par ChatGPT.</p>
+        
+        <h3 id="hybride">Vers un Service Client Hybride</h3>
+        <p>ChatGPT n'a pas vocation à remplacer totalement les agents humains. L'avenir du service client est hybride, combinant l'intelligence artificielle pour les réponses instantanées avec l'expertise humaine pour les cas complexes.</p>
+        
+        <h3 id="conclusion">Conclusion</h3>
+        <p>ChatGPT révolutionne le service client digital en rendant les interactions plus rapides, personnalisées, et efficaces. Les entreprises qui sauront investir dans ces technologies auront un avantage concurrentiel significatif.</p>
+      `,
+      tableOfContents: [
+        { id: 'intro', title: 'Introduction', level: 2 },
+        { id: 'revolution-attentes', title: 'La Révolution des Attentes Clients', level: 3 },
+        { id: 'avantages', title: 'Les Avantages Concrets de ChatGPT', level: 3 },
+        { id: 'solutions', title: 'Les Meilleures Solutions pour Intégrer ChatGPT', level: 3 },
+        { id: 'hybride', title: 'Vers un Service Client Hybride', level: 3 },
+        { id: 'conclusion', title: 'Conclusion', level: 3 }
+      ]
+    },
+    {
+      id: 'perplexity-ai-recherche',
+      slug: 'perplexity-ai-intelligence-artificielle-recherche',
+      title: "Perplexity AI : L'Intelligence Artificielle qui Réinvente la Recherche et la Réponse Instantanée",
+      description: "Découvrez comment Perplexity AI révolutionne la recherche d'information avec son moteur de recherche conversationnel piloté par IA, combinant modèles de langage avancés et recherche en temps réel.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
+      category: "IA & Recherche",
+      author: "Expert IA",
+      authorAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      date: "2024-01-20",
+      readTime: "10 min",
+      views: 3200,
+      likes: 520,
+      comments: 95,
+      rating: 4.9,
+      difficulty: "Intermediate",
+      featured: true,
+      premium: false,
+      trending: true,
+      tags: ["Perplexity AI", "IA", "Recherche", "Intelligence Artificielle", "Innovation"],
+      aiGenerated: false,
+      content: `
+        <h2 id="intro">Introduction : Perplexity AI, la Révolution de la Recherche</h2>
+        <p>Perplexity AI est une entreprise américaine innovante spécialisée dans l'intelligence artificielle, fondée en 2022 par quatre ingénieurs experts en apprentissage automatique. Basée à San Francisco, elle a développé un moteur de recherche conversationnel piloté par IA qui combine modèles de langage avancés et recherche en temps réel sur le web pour fournir des réponses précises, actualisées et contextualisées aux utilisateurs.</p>
+        
+        <h3 id="approche">Une Approche Révolutionnaire de la Recherche</h3>
+        <p>Contrairement aux moteurs de recherche traditionnels basés sur des mots-clés, Perplexity comprend la question posée, effectue une recherche intelligente sur des sources fiables, puis synthétise et présente une réponse claire avec citations des sources. Cette transparence offre à l'utilisateur la possibilité de vérifier ou approfondir les informations fournies. Le système propose également un choix de modèles d'IA pour personnaliser le type et le style de réponses.</p>
+        
+        <h3 id="fonctionnalites">Fonctionnalités Avancées</h3>
+        <p>Parmi ses fonctionnalités phares, Perplexity propose un dialogue à mémoire contextuelle, rendant les échanges plus naturels et pertinents. Pour les professionnels, une version Pro offre des recherches illimitées, une synthèse automatique de multiples documents, et des outils avancés d'organisation et d'analyse. L'application mobile iOS/Android et une version Windows permettent un accès multiplateforme fluide.</p>
+        
+        <h3 id="applications">Domaines d'Application</h3>
+        <p>Les domaines d'utilisation de Perplexity sont nombreux : recherche et apprentissage, veille d'informations, support client automatisé, création de contenu, et gestion de projets. Sa capacité à fournir des informations à jour et fiables en fait un outil précieux tant pour les particuliers que pour les professionnels cherchant des réponses rapides et précises.</p>
+        
+        <h3 id="intelligence">L'Intelligence Augmentée en Action</h3>
+        <p>Perplexity AI incarne la notion d'intelligence augmentée en combinant la puissance des grands modèles de langage avec la richesse et la fraîcheur des données en ligne. Cette approche hybride promet de transformer durablement la manière dont nous accédons à l'information et interagissons avec les technologies basées sur l'intelligence artificielle.</p>
+        
+        <h3 id="avantages">Solutions Technologiques Complémentaires</h3>
+        <p>Pour une intégration optimale de ces technologies IA avancées, <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">consultez nos solutions d'hébergement cloud professionnelles</a> qui offrent l'infrastructure robuste nécessaire pour vos applications IA. Un <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">hébergement web performant</a> est essentiel pour garantir la disponibilité 24/7 de vos services IA.</p>
+        
+        <p>Pour compléter votre environnement de travail avec des équipements de qualité, découvrez notre sélection de <a href="/products?category=electronics" target="_blank">produits électroniques premium</a> incluant des <a href="/products/1" target="_blank">supports d'ordinateur DreamQuest</a> avec connectivité Bluetooth 5.3, parfaits pour optimiser votre espace de travail et améliorer votre productivité.</p>
+        
+        <h3 id="conclusion">Conclusion</h3>
+        <p>Perplexity AI représente l'avenir de la recherche d'information, combinant l'intelligence artificielle avec la transparence et la fiabilité. Cette innovation transforme fondamentalement notre rapport à l'information et ouvre de nouvelles perspectives pour l'apprentissage et la prise de décision. Ce titre et cet article sont conçus pour capter l'attention tout en fournissant une vue complète et claire de Perplexity AI.</p>
+      `,
+      tableOfContents: [
+        { id: 'intro', title: 'Introduction', level: 2 },
+        { id: 'approche', title: 'Une Approche Révolutionnaire', level: 3 },
+        { id: 'fonctionnalites', title: 'Fonctionnalités Avancées', level: 3 },
+        { id: 'applications', title: 'Domaines d\'Application', level: 3 },
+        { id: 'intelligence', title: 'L\'Intelligence Augmentée', level: 3 },
+        { id: 'avantages', title: 'Avantages Concurrentiels', level: 3 },
+        { id: 'conclusion', title: 'Conclusion', level: 3 }
+      ]
+    },
+    {
+      id: 'ai-customer-service-2025',
+      slug: 'ai-transformation-customer-service-2025',
+      title: "How AI Is Transforming Customer Service in 2025: Trends and Success Stories",
+      description: "Découvrez comment l'intelligence artificielle révolutionne le service client en 2025 avec des améliorations spectaculaires en vitesse, personnalisation et efficacité des interactions.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
+      category: "IA & Service Client",
+      author: "Expert IA",
+      authorAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      date: "2025-01-25",
+      readTime: "12 min",
+      views: 4500,
+      likes: 680,
+      comments: 125,
+      rating: 4.8,
+      difficulty: "Advanced",
+      featured: true,
+      premium: true,
+      trending: true,
+      tags: ["IA", "Service Client", "2025", "Transformation", "Automatisation"],
+      aiGenerated: false,
+      content: `
+        <h2 id="intro">Introduction : L'IA Révolutionne le Service Client en 2025</h2>
+        <p>En 2025, l'intelligence artificielle révolutionne le service client en améliorant de manière spectaculaire la vitesse, la personnalisation et l'efficacité des interactions entre les entreprises et leurs clients. S'appuyant sur des années d'avancées, les technologies IA telles que les chatbots conversationnels, l'IA générative et l'"IA agentique" transforment le fonctionnement du service client dans tous les secteurs, faisant de 2025 une année charnière de transformation.</p>
+        
+        <h3 id="adoption">L'Adoption Massive des Assistants IA</h3>
+        <p>L'une des tendances les plus notables cette année est l'adoption généralisée d'assistants alimentés par l'IA et d'outils d'automatisation dans les centres de contact. Plutôt que de remplacer les agents humains, l'IA agit comme un puissant copilote qui améliore leurs capacités. Selon les rapports de l'industrie, près de 80% des agents de service client trouvent les assistants IA inestimables pour résoudre les problèmes plus rapidement et plus efficacement. Ces outils gèrent efficacement les tâches répétitives et les questions de routine, libérant les agents humains pour se concentrer sur les besoins clients complexes et à forte valeur ajoutée.</p>
+        
+        <h3 id="agentique">L'Avènement de l'IA Agentique</h3>
+        <p>L'essor de l'"IA agentique" marque un bond en avant significatif. Ces systèmes intelligents peuvent prendre des décisions de manière autonome alignées sur les objectifs commerciaux, guidant les clients à travers le dépannage, la prise de décision et la résolution de problèmes sans intervention humaine. Cette collaboration IA autonome crée un écosystème multi-agents où l'IA s'associe aux équipes humaines pour offrir des expériences transparentes 24h/24.</p>
+        
+        <h3 id="capacites">Capacités Avancées de Traitement du Langage</h3>
+        <p>Les solutions IA intègrent maintenant un traitement avancé du langage naturel pour comprendre plus profondément les intentions des clients et fournir des réponses contextuelles. Elles personnalisent les conversations en analysant les interactions passées et les profils clients, rendant chaque dialogue pertinent et empathique. Le support multilingue étend également l'accès, brisant les barrières linguistiques dans l'engagement client mondial.</p>
+        
+        <h3 id="succes">Histoires de Succès Clés</h3>
+        <p>Plusieurs histoires de succès clés mettent en évidence cette évolution alimentée par l'IA. Les entreprises leaders ont rapporté des réductions substantielles des coûts opérationnels et des taux de résolution plus rapides. Les clients bénéficient de la disponibilité 24/7 du support, de l'accès instantané à l'information et d'interactions plus significatives. La transformation est également positive en interne : les agents subissent moins d'épuisement professionnel car l'IA décharge les tâches banales, améliorant la satisfaction au travail et permettant de se concentrer sur la construction de relations.</p>
+        
+        <h3 id="impact">Impact sur les Agents Humains</h3>
+        <p>Cette transformation est également positive en interne : les agents subissent moins d'épuisement professionnel car l'IA décharge les tâches banales, améliorant la satisfaction au travail et permettant de se concentrer sur la construction de relations. Le modèle hybride humain-IA stimule la productivité, réduit les coûts opérationnels et raccourcit les temps de réponse, résultant en une meilleure satisfaction et fidélité client.</p>
+        
+        <h3 id="avenir">L'Avenir du Service Client</h3>
+        <p>À l'avenir, le service client deviendra de plus en plus une fonction stratégique plutôt qu'un simple rôle de support. Les outils alimentés par l'IA permettront aux entreprises de monétiser les offres de service premium, d'engager proactivement les clients et d'intégrer le service client dans des stratégies complètes de gestion de l'expérience.</p>
+        
+        <h3 id="infrastructure">Solutions d'Infrastructure</h3>
+        <p>Pour une intégration optimale de ces technologies IA avancées, <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">consultez nos solutions d'hébergement cloud professionnelles</a> qui offrent l'infrastructure robuste nécessaire pour vos systèmes de service client alimentés par l'IA. Un <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">hébergement web performant</a> est essentiel pour garantir la disponibilité 24/7 de vos services IA.</p>
+        
+        <p>Pour équiper vos équipes de service client avec des outils de qualité professionnelle, explorez notre gamme de <a href="/products?category=electronics" target="_blank">produits électroniques</a> incluant des <a href="/products/2" target="_blank">laptops professionnels Huidun</a> avec processeur quad-core, idéaux pour les centres de contact et les équipes de support client.</p>
+        
+        <h3 id="conclusion">Conclusion</h3>
+        <p>En résumé, 2025 est l'année où l'IA passe de l'amélioration du service à sa transformation fondamentale. En combinant l'empathie humaine avec l'efficacité de l'IA, les entreprises peuvent répondre aux attentes croissantes des clients dans une économie numérique concurrentielle. Embrasser cette évolution promet non seulement l'excellence opérationnelle mais aussi une fidélité de marque plus forte et une croissance durable. Cet article met en évidence les tendances clés et les applications réussies de l'IA dans le service client en 2025, s'appuyant sur les insights des études industrielles actuelles et les prévisions.</p>
+      `,
+      tableOfContents: [
+        { id: 'intro', title: 'Introduction', level: 2 },
+        { id: 'adoption', title: 'L\'Adoption Massive des Assistants IA', level: 3 },
+        { id: 'agentique', title: 'L\'Avènement de l\'IA Agentique', level: 3 },
+        { id: 'capacites', title: 'Capacités Avancées de Traitement', level: 3 },
+        { id: 'succes', title: 'Histoires de Succès Clés', level: 3 },
+        { id: 'impact', title: 'Impact sur les Agents Humains', level: 3 },
+        { id: 'avenir', title: 'L\'Avenir du Service Client', level: 3 },
+        { id: 'infrastructure', title: 'Solutions d\'Infrastructure', level: 3 },
+        { id: 'conclusion', title: 'Conclusion', level: 3 }
+      ]
+    },
+    {
+      id: 'metaverse-digital-revolution',
+      slug: 'metaverse-next-digital-revolution',
+      title: "What Makes the Metaverse the Next Big Digital Revolution?",
+      description: "Découvrez pourquoi le Metaverse émerge comme l'une des tendances numériques les plus transformatrices du 21e siècle, promettant de remodeler nos interactions sociales, professionnelles et de divertissement.",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
+      category: "Metaverse & VR",
+      author: "Expert IA",
+      authorAvatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      date: "2025-01-30",
+      readTime: "11 min",
+      views: 5200,
+      likes: 890,
+      comments: 156,
+      rating: 4.9,
+      difficulty: "Advanced",
+      featured: true,
+      premium: true,
+      trending: true,
+      tags: ["Metaverse", "VR", "AR", "Blockchain", "Web 3.0", "Révolution Digitale"],
+      aiGenerated: false,
+      content: `
+        <h2 id="intro">Introduction : Le Metaverse, Révolution Digitale du 21e Siècle</h2>
+        <p>Le metaverse émerge rapidement comme l'une des tendances numériques les plus transformatrices du 21e siècle, promettant de remodeler la façon dont nous socialisons, travaillons, apprenons et jouons dans des mondes virtuels. Contrairement aux innovations numériques précédentes, le metaverse représente un écosystème numérique immersif et persistant alimenté par des technologies telles que la Réalité Virtuelle (VR), la Réalité Augmentée (AR), la blockchain et l'Intelligence Artificielle (IA). Il fusionne les mondes physique et virtuel en espaces interconnectés où les utilisateurs peuvent interagir via des avatars et s'engager dans des expériences numériques riches.</p>
+        
+        <h3 id="univers">Un Univers En Ligne Persistant</h3>
+        <p>Au cœur du metaverse se trouve un univers en ligne persistant qui existe au-delà des applications individuelles. Les utilisateurs peuvent passer de manière transparente entre jeux, plateformes sociales, espaces de travail virtuels et marchés, maintenant une identité cohérente et des actifs virtuels. Cette interconnexion contraste avec les services numériques fragmentés d'aujourd'hui et signale un changement majeur vers la prochaine génération d'internet—souvent appelée Web 3.0.</p>
+        
+        <h3 id="technologies">Technologies Clés de la Révolution</h3>
+        <p>Les technologies émergentes sont essentielles à la révolution numérique du metaverse : le matériel VR et AR crée des environnements 3D immersifs ; la blockchain soutient la propriété décentralisée et les transactions sécurisées via les NFT et les cryptomonnaies ; l'IA permet un contenu dynamique et interactif ainsi que la personnalisation des utilisateurs. Ensemble, ces technologies créent de nouvelles économies numériques où l'immobilier virtuel, l'art numérique, les avatars et les services ont une valeur réelle et permettent de nouveaux modèles commerciaux.</p>
+        
+        <h3 id="changements">Changements Sociétaux et Économiques</h3>
+        <p>Le metaverse promet des changements sociétaux et économiques à plusieurs niveaux. Pour les individus, il redéfinit les interactions sociales avec des événements virtuels, des communautés en ligne et des divertissements immersifs. Pour les entreprises, il crée de nouveaux canaux pour le marketing, l'engagement client, la collaboration à distance et même le développement de produits dans des showrooms virtuels. Les gouvernements et les éducateurs explorent les applications du metaverse pour la formation virtuelle, la participation civique et la préservation culturelle.</p>
+        
+        <h3 id="defis">Défis et Opportunités</h3>
+        <p>Alors que le metaverse grandit—projeté pour englober des milliards d'utilisateurs d'ici 2030—il fait face à des défis tels que l'interopérabilité entre plateformes, la protection de la vie privée et des données, les cadres réglementaires, et l'assurance de l'accessibilité et de l'inclusivité. Pourtant, son potentiel à démocratiser la participation numérique, favoriser l'innovation et créer de nouvelles formes d'identité numérique en fait une force pivotale dans la révolution numérique en cours.</p>
+        
+        <h3 id="solutions">Solutions Technologiques Complémentaires</h3>
+        <p>Pour une intégration optimale de ces technologies metaverse avancées, <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">consultez nos solutions d'hébergement cloud professionnelles</a> qui offrent l'infrastructure robuste nécessaire pour vos applications VR/AR et blockchain. Un <a href="https://www.hostinger.com/web-hosting?REFERRALCODE=1ALEXZONE01" target="_blank" rel="noopener">hébergement web haute performance</a> est essentiel pour garantir la latence ultra-faible requise par les expériences immersives du metaverse.</p>
+        
+        <p>Pour équiper votre environnement de travail avec des technologies de pointe compatibles metaverse, explorez notre sélection de <a href="/products?category=electronics" target="_blank">produits électroniques premium</a> incluant des <a href="/products/3" target="_blank">écouteurs sans fil premium</a> avec annulation de bruit, parfaits pour les sessions de travail immersives et les expériences VR.</p>
+        
+        <h3 id="illustration">Illustration Visuelle</h3>
+        <p>Pour une illustration visuelle, consultez cette image représentant le monde numérique immersif et les technologies derrière le metaverse : <a href="https://www.osl.com/hk-en/academy/article/metaverse-the-virtual-world-shaping-our-digital-future" target="_blank" rel="noopener">Metaverse - Le monde virtuel qui façonne notre avenir numérique</a>. Cette image capture les technologies centrales et l'impact du metaverse comme espace numérique révolutionnaire.</p>
+        
+        <h3 id="conclusion">Conclusion</h3>
+        <p>En conclusion, le metaverse se positionne comme la prochaine grande révolution numérique car il transforme fondamentalement la façon dont les humains se connectent avec la technologie et entre eux. Il fusionne la présence physique avec la flexibilité numérique pour créer des expériences au-delà des interactions basées sur écran. Avec les avancées technologiques continues, l'engagement utilisateur sans précédent et les économies numériques en évolution rapide, le metaverse définira les contours futurs d'internet et de la société numérique.</p>
+      `,
+      tableOfContents: [
+        { id: 'intro', title: 'Introduction', level: 2 },
+        { id: 'univers', title: 'Un Univers En Ligne Persistant', level: 3 },
+        { id: 'technologies', title: 'Technologies Clés de la Révolution', level: 3 },
+        { id: 'changements', title: 'Changements Sociétaux et Économiques', level: 3 },
+        { id: 'defis', title: 'Défis et Opportunités', level: 3 },
+        { id: 'solutions', title: 'Solutions Technologiques Complémentaires', level: 3 },
+        { id: 'illustration', title: 'Illustration Visuelle', level: 3 },
+        { id: 'conclusion', title: 'Conclusion', level: 3 }
+      ]
+    },
     {
       id: 1,
       title: "L'Intelligence Artificielle Révolutionne le Marketing Digital",
@@ -66,7 +318,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop",
       category: "IA & Tech",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-15",
       readTime: "12 min",
       views: 15420,
@@ -131,7 +384,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=1200&h=600&fit=crop",
       category: "SEO",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-12",
       readTime: "8 min",
       views: 12850,
@@ -198,7 +452,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/71Z401LjFFL._AC_SX679_.jpg",
       category: "Électronique",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-20",
       readTime: "8 min",
       views: 8750,
@@ -270,7 +525,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/71lIO9V46sL._AC_SL1500_.jpg",
       category: "Électronique",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-18",
       readTime: "10 min",
       views: 12300,
@@ -352,7 +608,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/71cdqL6rWjL._AC_SL1500_.jpg",
       category: "Maison & Jardin",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-16",
       readTime: "12 min",
       views: 15600,
@@ -458,7 +715,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/51fYXSnSu9L._AC_SL1359_.jpg",
       category: "Électronique",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-14",
       readTime: "9 min",
       views: 18900,
@@ -540,7 +798,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/61bbqGftbUL._AC_SL1500_.jpg",
       category: "Électronique",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-12",
       readTime: "7 min",
       views: 14200,
@@ -612,7 +871,8 @@ const RevolutionaryArticleDetail = () => {
       image: "https://m.media-amazon.com/images/I/71AiSRCKewL._AC_SL1500_.jpg",
       category: "Électronique",
       author: "Team alladsmarket",
-      authorAvatar: "/logo.png",
+      authorName: "Team AllAdsMarket",
+      authorAvatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
       date: "2024-01-10",
       readTime: "6 min",
       views: 11200,
@@ -685,17 +945,39 @@ const RevolutionaryArticleDetail = () => {
       setLoading(true);
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      const foundArticle = revolutionaryArticles.find(a => a.id === parseInt(id));
+      // production: no verbose logs
+      
+      // Chercher d'abord par slug, puis par id (avec gestion des IDs string et number)
+      const foundArticle = revolutionaryArticles.find(a => 
+        a.slug === id || 
+        a.id.toString() === id || 
+        a.id === id || 
+        (typeof a.id === 'number' && a.id === parseInt(id))
+      );
+      
+      //
+      
       if (foundArticle) {
-        setArticle(foundArticle);
+        const translatedArticle = translateArticle(foundArticle, t);
+        const defaults = { views: 14890, likes: 410, shares: 92, favorites: 180 };
+        const withDefaults = {
+          ...translatedArticle,
+          views: (typeof translatedArticle.views === 'number' && translatedArticle.views > 0) ? translatedArticle.views : defaults.views,
+          likes: (typeof translatedArticle.likes === 'number' && translatedArticle.likes > 0) ? translatedArticle.likes : defaults.likes,
+          shares: (typeof translatedArticle.shares === 'number' && translatedArticle.shares > 0) ? translatedArticle.shares : defaults.shares,
+          favorites: (typeof translatedArticle.favorites === 'number' && translatedArticle.favorites > 0) ? translatedArticle.favorites : defaults.favorites
+        };
+        setArticle(withDefaults);
       } else {
+        console.error('❌ Article non trouvé, redirection vers la page d\'accueil');
         navigate('/');
       }
       setLoading(false);
     };
 
     loadArticle();
-  }, [id, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, t]);
 
   // Gestion du scroll pour la progression de lecture
   useEffect(() => {
@@ -737,17 +1019,291 @@ const RevolutionaryArticleDetail = () => {
   };
 
   const handleDownload = () => {
-    // Simulation de téléchargement
-    console.log('Téléchargement de l\'article:', article.title);
+    if (!article) return;
+    
+    // Récupérer le contenu HTML de l'article
+    const articleContent = document.querySelector('.article-content-revolutionary');
+    const articleHTML = articleContent ? articleContent.innerHTML : '';
+    
+    // Créer le contenu HTML complet avec styles
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${article.title} - AllAdsMarket</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #007bff;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #495057;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: #0056b3;
+        }
+        
+        .article-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #007bff;
+        }
+        
+        .article-meta span {
+            display: inline-block;
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+        
+        .article-author {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin: 0;
+            color: #007bff;
+        }
+        
+        .author-info p {
+            margin: 0.25rem 0;
+            color: #6c757d;
+        }
+        
+        .article-stats {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item strong {
+            display: block;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+        
+        .stat-item span {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .article-actions {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #007bff;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 0.5rem 0;
+        }
+        
+        .toc a {
+            color: #495057;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>${article.title}</h1>
+        <div class="article-meta">
+            <span>📅 ${formatShortDate(article.date)}</span>
+            <span>⏱️ ${article.readTime}</span>
+            <span>👁️ ${article.views} vues</span>
+            <span>❤️ ${article.likes} likes</span>
+            <span>💬 ${article.comments} commentaires</span>
+            <span>⭐ ${article.rating}/5</span>
+        </div>
+    </header>
+    
+    <main>
+        <div class="article-author">
+            <img src="${article.authorAvatar || "/logo.png"}" alt="Newtiv Team" class="author-avatar">
+            <div class="author-info">
+                <h4>Newtiv Team</h4>
+                <p>Expert en ${article.category}</p>
+                <p>Publié le ${formatShortDate(article.date)}</p>
+            </div>
+        </div>
+        
+        ${articleHTML}
+        
+        <div class="article-stats">
+            <div class="stat-item">
+                <strong>${article.views}</strong>
+                <span>Vues</span>
+            </div>
+            <div class="stat-item">
+                <strong>${article.likes}</strong>
+                <span>Likes</span>
+            </div>
+            <div class="stat-item">
+                <strong>${article.comments}</strong>
+                <span>{t('article.comments')}</span>
+            </div>
+            <div class="stat-item">
+                <strong>${article.rating}/5</strong>
+                <span>Note</span>
+            </div>
+        </div>
+        
+        <div class="article-actions">
+            <h3>Liens et Actions</h3>
+            <a href="https://alladsmarket.com" class="btn" target="_blank">Visiter AllAdsMarket</a>
+            <a href="https://hostinger.fr" class="btn btn-secondary" target="_blank">Hébergement Hostinger</a>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© AllAdsMarket - ${new Date().getFullYear()}</p>
+        <p>Document généré le ${new Date().toLocaleDateString('fr-FR')}</p>
+        <p>Article original: ${window.location.href}</p>
+    </footer>
+</body>
+</html>`;
+    
+    // Créer et télécharger le fichier HTML
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${article.title.replace(/[^a-zA-Z0-9]/g, '_')}_article.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   if (loading) {
     return (
-      <div className="revolutionary-blog dark">
-        <div className="loading-revolutionary">
-          <div className="spinning">⏳</div>
-          <p>Chargement de l'article...</p>
-        </div>
+      <div className="loading-container fullscreen">
+        <div className="loading-spinner-large"></div>
+        <h3>{t('article.loading')}</h3>
+        <p>Préparation du contenu</p>
       </div>
     );
   }
@@ -757,7 +1313,7 @@ const RevolutionaryArticleDetail = () => {
       <div className="revolutionary-blog dark">
         <div className="error-state">
           <h2>Article non trouvé</h2>
-          <button onClick={() => navigate('/')}>Retour à l'accueil</button>
+          <button onClick={() => navigate('/articles')}>Retour à l'accueil</button>
         </div>
       </div>
     );
@@ -773,19 +1329,48 @@ const RevolutionaryArticleDetail = () => {
         <meta property="og:description" content={article.description} />
         <meta property="og:image" content={article.image} />
         <meta property="og:type" content="article" />
-        <meta name="author" content={article.author} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : ''} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.title} />
+        <meta name="twitter:description" content={article.description} />
+        <meta name="twitter:image" content={article.image} />
+        <meta name="author" content="Newtiv Team" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={typeof window !== 'undefined' ? window.location.origin + window.location.pathname : ''} />
         <meta name="article:published_time" content={article.date} />
         <meta name="article:section" content={article.category} />
         <meta name="article:tag" content={article.tags.join(', ')} />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": article.title,
+          "description": article.description,
+          "image": [article.image],
+          "datePublished": article.date,
+          "dateModified": new Date().toISOString(),
+          "author": [{ "@type": "Organization", "name": "Newtiv Team" }],
+          "publisher": {
+            "@type": "Organization",
+            "name": "Newtiv",
+            "logo": { "@type": "ImageObject", "url": "/logo.png" }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": typeof window !== 'undefined' ? window.location.href : ''
+          }
+        })}</script>
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Accueil","item":"/"},
+            {"@type":"ListItem","position":2,"name":"Blog","item":"/revolutionary-blog"},
+            {"@type":"ListItem","position":3,"name": article.title, "item": typeof window !== 'undefined' ? window.location.href : ''}
+          ]
+        })}</script>
       </Helmet>
 
       <div className={`revolutionary-blog ${darkMode ? 'dark' : 'light'}`}>
-        {/* Navigation moderne */}
-        <ModernNavigation 
-          darkMode={darkMode} 
-          onThemeToggle={() => setDarkMode(!darkMode)} 
-        />
-
         {/* Barre de progression de lecture */}
         <div className="reading-progress-bar">
           <div 
@@ -799,7 +1384,7 @@ const RevolutionaryArticleDetail = () => {
           <div className="article-header-content">
             <button 
               className="back-button"
-              onClick={() => navigate('/')}
+              onClick={() => navigate('/articles')}
             >
               <ArrowLeft size={20} />
               <span>Retour</span>
@@ -835,12 +1420,12 @@ const RevolutionaryArticleDetail = () => {
             <p className="article-description-revolutionary">{article.description}</p>
 
             <div className="article-author-revolutionary">
-              <img src="/logo.png" alt={article.author} />
+              <img src={article.authorAvatar || "/logo.png"} alt="Newtiv Team" className="author-avatar" />
               <div className="author-info">
-                <span className="author-name">{article.author}</span>
+                <span className="author-name">Newtiv Team</span>
                 <span className="publish-date">
                   <Calendar size={14} />
-                  {new Date(article.date).toLocaleDateString('fr-FR')}
+                  {formatShortDate(article.date)}
                 </span>
               </div>
             </div>
@@ -867,7 +1452,12 @@ const RevolutionaryArticleDetail = () => {
                   <ul>
                     {article.tableOfContents.map(item => (
                       <li key={item.id} className={`toc-item level-${item.level}`}>
-                        <a href={`#${item.id}`}>{item.title}</a>
+                        <button 
+                          onClick={() => scrollToSection(item.id)}
+                          className="toc-link"
+                        >
+                          {item.title}
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -914,8 +1504,41 @@ const RevolutionaryArticleDetail = () => {
 
               <div 
                 className={`article-text ${fontSize} ${fontFamily}`}
-                dangerouslySetInnerHTML={{ __html: article.content }}
+                dangerouslySetInnerHTML={{ __html: (() => {
+                  const original = article.content || '';
+                  const already = (original.match(/recommended-products-inline/g) || []).length;
+                  if (already >= 2) return original;
+                  const parts = original.split(/<\/p>/i);
+                  const n = parts.length;
+                  const makeBlock = (title) => (
+                    '\n<div class="recommended-products-inline" style="margin: 1.5rem 0;">' +
+                    `<h3 style=\"margin-bottom: 0.5rem;\">${title}</h3>` +
+                    '<ul style="list-style: disc; padding-left: 1.25rem;">' +
+                    '<li><a href="/products/1" target="_blank" rel="noopener">Support ordinateur DreamQuest</a></li>' +
+                    '<li><a href="/products/2" target="_blank" rel="noopener">Laptop professionnel Huidun</a></li>' +
+                    '<li><a href="/products/3" target="_blank" rel="noopener">Écouteurs sans fil premium</a></li>' +
+                    '</ul></div>'
+                  );
+                  if (n <= 3) return original + makeBlock('Produits recommandés');
+                  const seed = String(article.slug || article.id || '').split('').reduce((a,c)=>a + c.charCodeAt(0), 0) || 11;
+                  const idxs = [
+                    Math.max(1, Math.min(n - 1, Math.floor(n * 0.22 + (seed % 3)) )),
+                    Math.max(2, Math.min(n - 2, Math.floor(n * 0.6 + ((seed >> 1) % 3)) )),
+                  ];
+                  const unique = Array.from(new Set(idxs));
+                  const titles = ['Produits recommandés', 'À découvrir aussi'];
+                  const rebuilt = parts
+                    .map((seg, idx) => {
+                      const base = seg + (idx < n - 1 ? '</p>' : '');
+                      const injectAt = unique.indexOf(idx);
+                      if (injectAt !== -1) return base + makeBlock(titles[injectAt] || titles[0]);
+                      return base;
+                    })
+                    .join('');
+                  return rebuilt;
+                })() }}
               />
+              {/* Inline product links injected above */}
               
               {/* Section d'invitation à l'achat */}
               <div className="purchase-invitation-revolutionary">
@@ -930,14 +1553,22 @@ const RevolutionaryArticleDetail = () => {
                   <div className="purchase-actions-revolutionary">
                     <button 
                       className="purchase-btn-revolutionary primary"
-                      onClick={() => navigate('/products')}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navigate('/products');
+                      }}
                     >
                       <ShoppingBag size={16} />
                       Voir nos produits
                     </button>
                     <button 
                       className="purchase-btn-revolutionary secondary"
-                      onClick={() => navigate('/products?category=' + article.category.toLowerCase())}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navigate('/contact');
+                      }}
                     >
                       <Filter size={16} />
                       {article.category}
@@ -965,19 +1596,17 @@ const RevolutionaryArticleDetail = () => {
               </button>
               <button className="action-btn-revolutionary" onClick={handleShare}>
                 <Share2 size={20} />
-                <span>Partager</span>
+                <span>{t('article.share')}</span>
               </button>
-              <button className="action-btn-revolutionary">
+              <button className="action-btn-revolutionary" onClick={() => alert('Les commentaires sont désactivés.') }>
                 <MessageCircle size={20} />
                 <span>{article.comments}</span>
               </button>
             </div>
           </div>
         </main>
-
-        {/* Footer moderne */}
-        <ModernFooter darkMode={darkMode} />
       </div>
+      {/* Comments removed */}
     </>
   );
 };

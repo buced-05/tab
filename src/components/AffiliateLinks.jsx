@@ -102,8 +102,8 @@ const AffiliateLinks = () => {
       <div className="visited-items-empty">
         <div className="empty-state">
           <Eye size={48} className="empty-icon" />
-          <h3>{t('affiliateLinks.noVisitedItems')}</h3>
-          <p>{t('affiliateLinks.noVisitedItemsDescription')}</p>
+          <h3>Aucun élément visité</h3>
+          <p>Vous n'avez pas encore visité d'éléments. Commencez à explorer nos produits !</p>
         </div>
       </div>
     );
@@ -112,8 +112,8 @@ const AffiliateLinks = () => {
   return (
     <div className="visited-items">
       <div className="visited-items-header">
-        <h2>{t('affiliateLinks.title')}</h2>
-        <p>{t('affiliateLinks.description')}</p>
+        <h2>Éléments Visités</h2>
+        <p>Retrouvez tous les produits que vous avez consultés récemment</p>
       </div>
 
       <div className="visited-items-list">
@@ -148,15 +148,15 @@ const AffiliateLinks = () => {
                 <button
                   className="visit-link-btn primary"
                   onClick={() => handleOpenLink(link.affiliateUrl)}
-                  title={t('affiliateLinks.visitProduct')}
+                  title="Visiter le produit"
                 >
                   <ExternalLink size={16} />
-                  {t('affiliateLinks.visitProduct')}
+                  Visiter le produit
                 </button>
                 <button
                   className="remove-item-btn"
                   onClick={() => handleRemoveLink(link.productId, link.productName)}
-                  title={t('affiliateLinks.removeItem')}
+                  title="Supprimer l'élément"
                 >
                   <Trash2 size={16} />
                 </button>

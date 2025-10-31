@@ -109,7 +109,8 @@
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 1200px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: var(--space-2xl);
   display: grid;
@@ -370,7 +371,7 @@
 }
 
 .article-content {
-  padding: var(--space-lg);
+  padding: 0;
 }
 
 .article-meta {
@@ -616,7 +617,8 @@
    ======================================== */
 
 .section-container {
-  max-width: 1200px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-lg);
 }
@@ -673,7 +675,7 @@
 
 .featured-image {
   position: relative;
-  height: 200px;
+  height: 140px;
   overflow: hidden;
 }
 

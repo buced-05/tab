@@ -332,22 +332,27 @@
 /* Header integration - Hyper Modern */
 .header .language-selector {
   margin-left: auto;
-  margin-right: 16px;
+  margin-right: 24px;
 }
 
 .header .language-selector-button {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  background: linear-gradient(135deg, #f59e0b, #fbbf24) !important; /* gold */
+  border: 2px solid rgba(245, 158, 11, 0.6) !important;
+  color: #111827 !important; /* dark text for contrast */
   backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 24px rgba(245, 158, 11, 0.35);
 }
 
 .header .language-selector-button:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #fbbf24, #fde68a) !important;
+  border-color: rgba(245, 158, 11, 0.75) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 16px 36px rgba(245, 158, 11, 0.45);
+}
+
+.header .language-name,
+.header .language-code {
+  color: #111827 !important;
 }
 
 /* Footer integration */

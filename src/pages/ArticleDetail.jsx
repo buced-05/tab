@@ -20,7 +20,7 @@ import {
 } from 'lucide-react';
 import { getSampleProducts } from '../utils/sampleData';
 import SEOHead from '../components/SEOHead';
-import CommentSection from '../components/CommentSection';
+// Comments feature removed
 import InvitationDialog from '../components/InvitationDialog';
 import CitationGenerator from '../components/CitationGenerator';
 import '../styles/academic-article-detail.css';
@@ -226,48 +226,192 @@ const ArticleDetail = () => {
     }
   };
 
-  // Télécharger PDF
+  // Télécharger PDF avec styles et liens
   const downloadPDF = () => {
     if (!product) return;
     
     const metadata = generateAcademicMetadata(product);
     const citation = generateCitation('apa');
     
-    // Créer le contenu PDF
-    const pdfContent = `
-      ${product.name}
-      Analyse Technique - AllAdsMarket
-      
-      DOI: ${metadata.doi}
-      Publié: ${metadata.publicationDate}
-      Volume: ${metadata.volume}, Numéro: ${metadata.issue}
-      Pages: ${metadata.pages}
-      
-      RÉSUMÉ
-      Cette étude présente une analyse approfondie du produit ${product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché.
-      
-      MÉTADONNÉES
-      - Marque: ${product.brand}
-      - Catégorie: ${product.category}
-      - Note moyenne: ${product.rating.average}/5 étoiles
-      - Nombre d'avis: ${product.rating.count}
-      - Prix: ${product.price}€
-      
-      CITATION
-      ${citation}
-      
-      LIEN VERS LE PRODUIT
-      ${product.affiliateUrl}
-      
-      © AllAdsMarket - ${new Date().getFullYear()}
-    `;
+    // Récupérer le contenu HTML de l'article
+    const articleContent = document.querySelector('.article-main');
+    const articleHTML = articleContent ? articleContent.innerHTML : '';
     
-    // Créer et télécharger le fichier
-    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    // Créer le contenu HTML complet avec styles
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${product.name} - Analyse Technique</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            color: #2c3e50;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: #007bff;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: #495057;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        
+        a:hover {
+            color: #0056b3;
+        }
+        
+        .article-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #007bff;
+        }
+        
+        .article-meta span {
+            display: inline-block;
+            margin-right: 1rem;
+            font-weight: 600;
+        }
+        
+        .article-stats {
+            background: #e9ecef;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .article-actions {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #dee2e6;
+            text-align: center;
+            color: #6c757d;
+        }
+        
+        @media print {
+            body {
+                margin: 0;
+                padding: 15px;
+            }
+            
+            .btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>${product.name}</h1>
+        <div class="article-meta">
+            <span>DOI: ${metadata.doi}</span>
+            <span>Publié: ${metadata.publicationDate}</span>
+            <span>Volume: ${metadata.volume}</span>
+            <span>Numéro: ${metadata.issue}</span>
+            <span>Pages: ${metadata.pages}</span>
+        </div>
+    </header>
+    
+    <main>
+        ${articleHTML}
+        
+        <div class="article-stats">
+            <h3>Métadonnées du Produit</h3>
+            <p><strong>Marque:</strong> ${product.brand}</p>
+            <p><strong>Catégorie:</strong> ${product.category}</p>
+            <p><strong>Note moyenne:</strong> ${product.rating.average}/5 étoiles</p>
+            <p><strong>Nombre d'avis:</strong> ${product.rating.count}</p>
+            <p><strong>Prix:</strong> ${product.price}€</p>
+        </div>
+        
+        <div class="article-actions">
+            <h3>Liens et Actions</h3>
+            <a href="${product.affiliateUrl}" class="btn" target="_blank">Voir le produit sur Amazon</a>
+            <a href="https://alladsmarket.com" class="btn btn-secondary" target="_blank">Visiter AllAdsMarket</a>
+        </div>
+        
+        <div class="citation-section">
+            <h3>Citation</h3>
+            <p><strong>APA:</strong> ${citation}</p>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>© AllAdsMarket - ${new Date().getFullYear()}</p>
+        <p>Document généré le ${new Date().toLocaleDateString('fr-FR')}</p>
+    </footer>
+</body>
+</html>`;
+    
+    // Créer et télécharger le fichier HTML
+    const blob = new Blob([htmlContent], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${product.name.replace(/[^a-zA-Z0-9]/g, '_')}_analyse.pdf`;
+    a.download = `${product.name.replace(/[^a-zA-Z0-9]/g, '_')}_analyse.html`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -409,7 +553,7 @@ Cordialement
                   </button>
                   <button className="sidebar-btn" onClick={downloadPDF}>
                     <Download size={16} />
-                    PDF
+                    HTML
                   </button>
                   <button className="sidebar-btn" onClick={sendByEmail}>
                     <Mail size={16} />
@@ -517,7 +661,7 @@ Cordialement
                   
                   <button className="btn-secondary" onClick={downloadPDF}>
                     <Download size={16} />
-                    Télécharger PDF
+                    Télécharger HTML
                   </button>
                   
                   <button className="btn-tertiary" onClick={shareArticle}>
@@ -559,10 +703,7 @@ Cordialement
               {/* Section de citation avec auteurs réels */}
               <CitationGenerator product={product} />
 
-              {/* Section commentaires */}
-              <section className="comments-section">
-                <CommentSection productId={product._id} productName={product.name} />
-              </section>
+              {/* Comments removed */}
             </main>
           </div>
         </div>

@@ -11,6 +11,11 @@ const Products = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
@@ -151,8 +156,9 @@ const Products = () => {
   if (loading) {
     return (
       <div className="loading-container">
-        <div className="loading-spinner" />
-        <p>Loading products...</p>
+        <div className="loading-spinner-large"></div>
+        <h3>Chargement de produits...</h3>
+        <p>Découverte des meilleures offres pour vous</p>
       </div>
     );
   }

@@ -245,6 +245,8 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
   flex-wrap: wrap;
 }
 
@@ -291,6 +293,9 @@
   font-weight: 700;
   color: #2c3e50;
   margin-bottom: 1.5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 2rem;
   line-height: 1.2;
 }
 
@@ -299,6 +304,8 @@
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
   font-size: 1.1rem;
   color: #6c757d;
   font-style: italic;
@@ -310,6 +317,8 @@
   border-radius: 8px;
   border-left: 4px solid #007bff;
   margin-bottom: 2rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 .article-abstract-preview p {
@@ -324,6 +333,8 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  margin-left: 4rem;
+  margin-right: 4rem;
 }
 
 .stat {
@@ -369,6 +380,8 @@
   font-size: 1.5rem;
   color: #2c3e50;
   margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   font-weight: 600;
 }
 
@@ -394,6 +407,8 @@
   font-size: 1.8rem;
   color: #2c3e50;
   margin-bottom: 1.5rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   font-weight: 600;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid #e9ecef;
@@ -403,6 +418,8 @@
   font-size: 1.4rem;
   color: #495057;
   margin: 2rem 0 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
   font-weight: 600;
 }
 

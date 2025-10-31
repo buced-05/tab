@@ -210,8 +210,8 @@ const Articles = () => {
   return (
     <>
       <SEOHead 
-        title={t('articles.title') + ' - AllAdsMarket'}
-        description={t('articles.subtitle') + '. Archives permanentes et consultation libre.'}
+        title="Articles - AllAdsMarket"
+        description="Archives permanentes et consultation libre des articles scientifiques. Analyses approfondies et guides experts."
         keywords="publications scientifiques, articles académiques, recherche, DOI, citations"
       />
       
@@ -284,7 +284,7 @@ const Articles = () => {
                 <Search size={20} className="search-icon" />
                 <input
                   type="text"
-                  placeholder={t('articles.searchPlaceholder')}
+                  placeholder="Rechercher dans les articles..."
                   value={searchTerm}
                   onChange={(e) => {
                     console.log('Recherche changée:', e.target.value);
@@ -302,7 +302,7 @@ const Articles = () => {
                 }}
               >
                 <Filter size={20} />
-{t('articles.advancedFilters')}
+                Filtres Avancés
               </button>
             </div>
 
@@ -315,7 +315,7 @@ const Articles = () => {
                     value={selectedCategory} 
                     onChange={(e) => setSelectedCategory(e.target.value)}
                   >
-                    <option value="all">{t('articles.allCategories')}</option>
+                    <option value="all">Toutes les catégories</option>
                     {categories.map(category => (
                       <option key={category} value={category}>{category}</option>
                     ))}
@@ -323,12 +323,12 @@ const Articles = () => {
                 </div>
 
                 <div className="filter-group">
-                  <label>{t('articles.year')}</label>
+                  <label>Année</label>
                   <select 
                     value={selectedYear} 
                     onChange={(e) => setSelectedYear(e.target.value)}
                   >
-                    <option value="all">{t('articles.allYears')}</option>
+                    <option value="all">Toutes les années</option>
                     {years.map(year => (
                       <option key={year} value={year}>{year}</option>
                     ))}

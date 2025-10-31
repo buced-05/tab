@@ -1,6 +1,11 @@
 /* CSS Custom Properties (Variables) */
 
 :root {
+  /* Theme Colors - Browser Theme Color Support */
+  --theme-color: #667eea;
+  --theme-color-dark: #4c1d95;
+  --app-theme-color: var(--theme-color);
+  
   /* Colors - Primary */
   --primary-50: #eff6ff;
   --primary-100: #dbeafe;
@@ -105,16 +110,16 @@
   --spacing-24: 6rem;     /* 96px */
   --spacing-32: 8rem;     /* 128px */
 
-  /* Font Sizes */
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 1.875rem;  /* 30px */
-  --font-size-4xl: 2.25rem;   /* 36px */
-  --font-size-5xl: 3rem;      /* 48px */
+  /* Font Sizes - Increased for better readability */
+  --font-size-xs: 0.875rem;    /* 14px (was 12px) */
+  --font-size-sm: 1rem;       /* 16px (was 14px) */
+  --font-size-base: 1.125rem; /* 18px (was 16px) */
+  --font-size-lg: 1.25rem;    /* 20px (was 18px) */
+  --font-size-xl: 1.375rem;   /* 22px (was 20px) */
+  --font-size-2xl: 1.625rem;  /* 26px (was 24px) */
+  --font-size-3xl: 2rem;      /* 32px (was 30px) */
+  --font-size-4xl: 2.5rem;    /* 40px (was 36px) */
+  --font-size-5xl: 3.25rem;   /* 52px (was 48px) */
 
   /* Font Weights */
   --font-weight-light: 300;

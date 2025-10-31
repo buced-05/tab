@@ -1,0 +1,264 @@
+{
+  "authors": {
+    "team-alladsmarket": {
+      "name": "የ AllAdsMarket ቡድን",
+      "bio": "የዲጂታል ግብይት እና ኢ-ኮመርስ ባለሙያዎች ቡድን"
+    },
+    "marie-dubois": {
+      "name": "Marie Dubois",
+      "bio": "AI እና የግብይት አውቶማቲክ ባለሙያ"
+    },
+    "pierre-martin": {
+      "name": "Pierre Martin",
+      "bio": "SEO እና የይዘት ግብይት ባለሙያ"
+    },
+    "sophie-bernard": {
+      "name": "Sophie Bernard",
+      "bio": "ኢ-ኮመርስ እና የመቀየሪያ ማሻሻያ ኮንሰልታንት"
+    },
+    "alexandre-roux": {
+      "name": "Alexandre Roux",
+      "bio": "Blockchain እና አዲስ ቴክኖሎጂዎች ባለሙያ"
+    },
+    "laura-petit": {
+      "name": "Laura Petit",
+      "bio": "የውሂብ ተንታኝ እና የንግድ አስተዋይነት ባለሙያ"
+    }
+  },
+  "article": {
+    "author": "ደራሲ",
+    "published": "ተለቀቀ",
+    "readTime": "የንባብ ጊዜ",
+    "views": "እይታዎች",
+    "likes": "የሚወዱ",
+    "comments": "አስተያየቶች",
+    "rating": "ደረጃ",
+    "difficulty": "አስቸጋሪነት",
+    "tags": "ጠቋሚዎች",
+    "category": "ምድብ",
+    "featured": "ተለይቶ የተመረጠ",
+    "premium": "Premium",
+    "trending": "ተወዳጅ",
+    "aiGenerated": "AI የተፈጠረ",
+    "readMore": "ተጨማሪ አንብብ",
+    "share": "አጋራ",
+    "bookmark": "መጽሐፍ ምልክት",
+    "like": "ወድድ",
+    "comment": "አስተያየት ስጥ",
+    "download": "አውርድ",
+    "relatedArticles": "የተዛመዱ ጽሑፎች",
+    "authorBio": "ስለ ደራሲው",
+    "expertise": "ባለሙያነት",
+    "articlesCount": "የተለቀቁ ጽሑፎች",
+    "followers": "ተከታዮች",
+    "verified": "ተረጋግጧል"
+  },
+  "categories": {
+    "all": "ሁሉም ምድቦች",
+    "ia-tech": "AI & Tech",
+    "seo": "SEO",
+    "ecommerce": "ኢ-ኮመርስ",
+    "blockchain": "Blockchain",
+    "analytics": "ትንተና",
+    "content": "የይዘት ግብይት",
+    "electronics": "ኤሌክትሮኒክስ",
+    "home-garden": "ቤት እና የተክል ስፍራ"
+  },
+  "difficulty": {
+    "beginner": "ጀማሪ",
+    "intermediate": "መካከለኛ",
+    "advanced": "ላቀ",
+    "expert": "ባለሙያ"
+  },
+  "seo": {
+    "metaTitle": "የዲጂታል ግብይት ጽሑፎች | AllAdsMarket Blog",
+    "metaDescription": "በዲጂታል ግብይት፣ SEO፣ ኢ-ኮመርስ እና AI ውስጥ የቅርብ ጊዜ አዝማሚያዎችን ያግኙ። ከ AllAdsMarket ባለሙያዎች የተገኙ ባለሙያ ጽሑፎች።",
+    "keywords": "ዲጂታል ግብይት, SEO, ኢ-ኮመርስ, AI, የይዘት ግብይት, blockchain, ትንተና",
+    "ogTitle": "AllAdsMarket - የምርት ሽያጭ ማርኬት",
+    "ogDescription": "በጣም ተወዳጅ የሆኑ ምርቶችን እና ልዩ ቅናሾችን ያግኙ። ከ 100K+ በላይ አስተማማኝ ምርቶች።",
+    "twitterTitle": "AllAdsMarket - የምርት ሽያጭ ማርኬት",
+    "twitterDescription": "በጣም ተወዳጅ የሆኑ ምርቶችን እና ልዩ ቅናሾችን ያግኙ። ከ 100K+ በላይ አስተማማኝ ምርቶች።"
+  },
+  "navigation": {
+    "home": "ቤት",
+    "products": "ምርቶች",
+    "articles": "ጽሑፎች",
+    "about": "ስለ እኛ",
+    "contact": "አግኝን",
+    "search": "ፍለጋ",
+    "menu": "ምናሌ",
+    "close": "ዝጋ",
+    "language": "ቋንቋ",
+    "currency": "ምንዛሪ"
+  },
+  "home": {
+    "hero": {
+      "title": "በጣም ተወዳጅ የሆኑ ምርቶችን ያግኙ",
+      "subtitle": "AllAdsMarket - የእርስዎ የምርት ሽያጭ ማርኬት",
+      "description": "ከአስተማማኝ ምርቶች የቅርብ ጊዜ እና በጣም ተወዳጅ ምርቶችን ያግኙ። ከ 100K+ በላይ ምርቶች እየጠበቁዎት ነው።",
+      "cta": "አሁን ጀምር",
+      "learnMore": "ተጨማሪ ተማር"
+    },
+    "features": {
+      "title": "ለምን AllAdsMarket?",
+      "subtitle": "ለኦንላይን ግዢዎ በጣም የተሻለ ምርጫ",
+      "feature1": {
+        "title": "100K+ ምርቶች",
+        "description": "የጥራት ምርቶች ተሟላ ምርጫ"
+      },
+      "feature2": {
+        "title": "ልዩ ቅናሾች",
+        "description": "ልዩ ቅናሾች እና ቅናሾች ወደ መድረሻ"
+      },
+      "feature3": {
+        "title": "አስተማማኝ ምርቶች",
+        "description": "ከተረጋገጡ ምርቶች ብቻ ምርቶች"
+      },
+      "feature4": {
+        "title": "24/7 ድጋፍ",
+        "description": "ሁልጊዜ የሚገኝ የደንበኛ አገልግሎት"
+      }
+    },
+    "trending": {
+      "title": "ተወዳጅ ምርቶች",
+      "subtitle": "በአሁኑ ጊዜ በጣም ተወዳጅ የሆኑ ምርቶች",
+      "viewAll": "ሁሉንም ተመልከት"
+    },
+    "categories": {
+      "title": "በምድብ ይግዙ",
+      "subtitle": "በተደራጁ ምድቦቻችን ውስጥ የሚፈልጉትን ያግኙ"
+    },
+    "testimonials": {
+      "title": "ደንበኞቻችን ምን ይላሉ",
+      "subtitle": "ከደስተኛ ደንበኞች እውነተኛ ልምዶች"
+    }
+  },
+  "products": {
+    "title": "ምርቶች",
+    "subtitle": "የተሟላ ስብስባችንን ያግኙ",
+    "filter": "አጣራ",
+    "sort": "ደርድር",
+    "view": "እይታ",
+    "grid": "ፍርግርግ",
+    "list": "ዝርዝር",
+    "price": "ዋጋ",
+    "rating": "ደረጃ",
+    "availability": "መገኘት",
+    "inStock": "በመጋዘን ውስጥ",
+    "outOfStock": "የተጠናቀቀ",
+    "limitedStock": "የተገደበ ክምችት",
+    "addToCart": "ወደ ጋሪ ጨምር",
+    "buyNow": "አሁን ግዝ",
+    "quickView": "ፈጣን እይታ",
+    "addToFavorites": "ወደ ተወዳጆች ጨምር",
+    "removeFromFavorites": "ከተወዳጆች አስወግድ",
+    "share": "አጋራ",
+    "compare": "አወዳውር",
+    "specifications": "ዝርዝሮች",
+    "reviews": "ግምገማዎች",
+    "relatedProducts": "የተዛመዱ ምርቶች",
+    "recentlyViewed": "በቅርብ ጊዜ የተመለከቱ",
+    "recommended": "የተመከሩ",
+    "newArrivals": "አዲስ የመጡ",
+    "bestSellers": "በጣም የሚሸጡ",
+    "onSale": "በሽያጭ",
+    "clearance": "ማጽዳት"
+  },
+  "footer": {
+    "about": "ስለ AllAdsMarket",
+    "description": "ለዲጂታል ግብይት እና ኢ-ኮመርስ አፈታት የእርስዎ አስተማማኝ አጋር።",
+    "quickLinks": "ፈጣን አገናኞች",
+    "categories": "ምድቦች",
+    "support": "ድጋፍ",
+    "legal": "ሕጋዊ",
+    "newsletter": {
+      "title": "የዜና ደብተር",
+      "description": "የቅርብ ጊዜ ማሻሻያዎችን እና ልዩ ቅናሾችን ያግኙ",
+      "placeholder": "የኢሜይል አድራሻዎ",
+      "subscribe": "ይመዝገቡ"
+    },
+    "social": "እንከተለን",
+    "copyright": "© 2024 AllAdsMarket. ሁሉም መብቶች የተጠበቁ ናቸው።",
+    "privacy": "የግላዊነት ፖሊሲ",
+    "terms": "የአጠቃቀም ውሎች",
+    "cookies": "የኩኪ ፖሊሲ"
+  },
+  "common": {
+    "loading": "በመጫን ላይ...",
+    "error": "ስህተት",
+    "success": "ስኬት",
+    "cancel": "አስቀር",
+    "save": "አስቀምስ",
+    "edit": "አርትዖት",
+    "delete": "ሰርዝ",
+    "search": "ፍለጋ",
+    "filter": "አጣራ",
+    "close": "ዝጋ",
+    "back": "ተመለስ",
+    "next": "ቀጣይ",
+    "previous": "ቀዳሚ",
+    "submit": "ላክ",
+    "confirm": "አረጋግጥ",
+    "yes": "አዎ",
+    "no": "አይ",
+    "selectLanguage": "ቋንቋ ይምረጡ",
+    "selectCurrency": "ምንዛሪ ይምረጡ",
+    "view": "ተመልከት",
+    "seePrice": "ዋጋ ተመልከት",
+    "buyNow": "አሁን ግዝ",
+    "quickView": "ፈጣን እይታ",
+    "addToFavorites": "ወደ ተወዳጆች ጨምር",
+    "removeFromFavorites": "ከተወዳጆች አስወግድ",
+    "share": "አጋራ",
+    "bookmark": "መጽሐፍ ምልክት",
+    "like": "ወድድ",
+    "unlike": "አትወድ",
+    "readMore": "ተጨማሪ አንብብ",
+    "showLess": "ትንሽ አሳይ",
+    "showAll": "ሁሉንም አሳይ",
+    "hide": "ደብቅ",
+    "expand": "ዘርጋ",
+    "collapse": "ጠፋ",
+    "refresh": "አድስ",
+    "reload": "እንደገና ጫን",
+    "retry": "እንደገና ሞክር",
+    "continue": "ቀጥል",
+    "finish": "ጨርስ",
+    "complete": "ተጠናቋል",
+    "done": "ተጠናቋል",
+    "ok": "እሺ",
+    "apply": "ተግብር",
+    "reset": "እንደገና አቀና",
+    "clear": "አጽዳ",
+    "select": "ይምረጡ",
+    "choose": "ይምረጡ",
+    "pick": "ይምረጡ",
+    "upload": "ጫን",
+    "download": "አውርድ",
+    "print": "አትም",
+    "copy": "ኮፒ",
+    "paste": "ጣብ",
+    "cut": "ተቆርጦ",
+    "undo": "አስቀር",
+    "redo": "እንደገና አድርግ",
+    "sort": "ደርድር",
+    "order": "ይዘዙ",
+    "arrange": "ያስተካክሉ",
+    "organize": "ያስተካክሉ",
+    "manage": "ያስተዳድሩ",
+    "control": "ያስተዳድሩ",
+    "settings": "ቅንብሮች",
+    "preferences": "ምርጫዎች",
+    "options": "አማራጮች",
+    "configuration": "ውቅር",
+    "customize": "ብጁ አድርግ",
+    "personalize": "የግል አድርግ",
+    "profile": "መገለጫ",
+    "account": "መለያ",
+    "user": "ተጠቃሚ",
+    "customer": "ደንበኛ",
+    "client": "ደንበኛ",
+    "guest": "እንግዳ",
+    "visitor": "ተጎብኚ"
+  }
+}

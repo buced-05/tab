@@ -14,6 +14,11 @@ import ru from './locales/ru-complete.json';
 import ja from './locales/ja-complete.json';
 import de from './locales/de-complete.json';
 import it from './locales/it-complete.json';
+import nl from './locales/nl-complete.json';
+import sv from './locales/sv-complete.json';
+import no from './locales/no-complete.json';
+import sw from './locales/sw-complete.json';
+import am from './locales/am-complete.json';
 
 // Import product translations
 import productsEn from './locales/products-en.json';
@@ -72,6 +77,26 @@ const resources = {
   it: { 
     translation: it,
     products: productsIt
+  },
+  nl: { 
+    translation: nl,
+    products: productsEn // Utiliser les produits anglais comme fallback
+  },
+  sv: { 
+    translation: sv,
+    products: productsEn
+  },
+  no: { 
+    translation: no,
+    products: productsEn
+  },
+  sw: { 
+    translation: sw,
+    products: productsEn
+  },
+  am: { 
+    translation: am,
+    products: productsEn
   }
 };
 
@@ -100,7 +125,7 @@ i18n
     },
 
     // Ensure all languages are properly loaded
-    supportedLngs: ['en', 'zh', 'hi', 'es', 'fr', 'ar', 'pt', 'ru', 'ja', 'de', 'it'],
+    supportedLngs: ['en', 'zh', 'hi', 'es', 'fr', 'ar', 'pt', 'ru', 'ja', 'de', 'it', 'nl', 'sv', 'no', 'sw', 'am'],
     nonExplicitSupportedLngs: true
   });
 

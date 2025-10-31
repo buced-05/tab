@@ -1,0 +1,95 @@
+/* CSS Compatibility Fixes - Support Cross-Browser */
+/* Fix pour text-size-adjust */
+html {
+  /* Support standard moderne */
+  text-size-adjust: 100%;
+  /* Support webkit (Safari, Chrome anciens) */
+  -webkit-text-size-adjust: 100%;
+  /* Support MS (IE/Edge anciens) */
+  -ms-text-size-adjust: 100%;
+}
+
+/* Fix pour backdrop-filter - Safari support */
+@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+  /* Les règles avec backdrop-filter doivent avoir -webkit-backdrop-filter AVANT */
+  [class*="backdrop-filter"],
+  [style*="backdrop-filter"] {
+    -webkit-backdrop-filter: inherit;
+    backdrop-filter: inherit;
+  }
+}
+
+/* Fix pour image-rendering crisp-edges - Edge support */
+img {
+  image-rendering: -webkit-optimize-contrast; /* Chrome/Safari */
+  image-rendering: crisp-edges; /* Standard */
+  image-rendering: -webkit-optimize-contrast; /* Edge fallback */
+}
+
+/* Fix pour scrollbar - Safari fallback */
+.custom-scrollbar,
+[class*="scrollbar"] {
+  /* Standard pour Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  
+  /* Webkit pour Chrome/Safari */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.8);
+  }
+}
+
+/* Fix pour min-height auto - Firefox */
+* {
+  min-height: 0; /* Firefox fallback */
+  min-height: auto; /* Standard moderne */
+}
+
+/* Performance: Utiliser transform au lieu de width/height dans animations */
+@keyframes professionalSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* Accessibilité: Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+

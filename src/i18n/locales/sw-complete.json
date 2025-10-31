@@ -1,0 +1,264 @@
+{
+  "authors": {
+    "team-alladsmarket": {
+      "name": "Timu ya AllAdsMarket",
+      "bio": "Timu ya wataalamu wa uuzaji wa kidijitali na biashara ya mtandaoni"
+    },
+    "marie-dubois": {
+      "name": "Marie Dubois",
+      "bio": "Mtaalamu wa AI na Uuzaji wa Kiotomatiki"
+    },
+    "pierre-martin": {
+      "name": "Pierre Martin",
+      "bio": "Mtaalamu wa SEO na Uuzaji wa Maudhui"
+    },
+    "sophie-bernard": {
+      "name": "Sophie Bernard",
+      "bio": "Mshauri wa Biashara ya Mtandaoni na Uboreshaji wa Uongofu"
+    },
+    "alexandre-roux": {
+      "name": "Alexandre Roux",
+      "bio": "Mtaalamu wa Blockchain na Teknolojia za Kipekee"
+    },
+    "laura-petit": {
+      "name": "Laura Petit",
+      "bio": "Mchambuzi wa Data na Mtaalamu wa Ujasiriamali wa Biashara"
+    }
+  },
+  "article": {
+    "author": "Mwandishi",
+    "published": "Imechapishwa",
+    "readTime": "Muda wa kusoma",
+    "views": "maoni",
+    "likes": "vipendelezo",
+    "comments": "maoni",
+    "rating": "Kipimo",
+    "difficulty": "Ugumu",
+    "tags": "Vitambulisho",
+    "category": "Kategoria",
+    "featured": "Kipekee",
+    "premium": "Premium",
+    "trending": "Inayopendwa",
+    "aiGenerated": "Imetengenezwa na AI",
+    "readMore": "Soma zaidi",
+    "share": "Shiriki",
+    "bookmark": "Weka alama",
+    "like": "Penda",
+    "comment": "Toa maoni",
+    "download": "Pakua",
+    "relatedArticles": "Makala zinazohusiana",
+    "authorBio": "Kuhusu mwandishi",
+    "expertise": "Utaalamu",
+    "articlesCount": "makala zilizochapishwa",
+    "followers": "wafuasi",
+    "verified": "Imethibitishwa"
+  },
+  "categories": {
+    "all": "Kategoria zote",
+    "ia-tech": "AI & Tech",
+    "seo": "SEO",
+    "ecommerce": "Biashara ya mtandaoni",
+    "blockchain": "Blockchain",
+    "analytics": "Uchambuzi",
+    "content": "Uuzaji wa Maudhui",
+    "electronics": "Vifaa vya umeme",
+    "home-garden": "Nyumbani na Bustani"
+  },
+  "difficulty": {
+    "beginner": "Mwanzo",
+    "intermediate": "Kati",
+    "advanced": "Juu",
+    "expert": "Mtaalamu"
+  },
+  "seo": {
+    "metaTitle": "Makala ya Uuzaji wa Kidijitali | AllAdsMarket Blog",
+    "metaDescription": "Gundua mienendo ya hivi karibuni katika uuzaji wa kidijitali, SEO, biashara ya mtandaoni na AI. Makala za wataalamu kutoka kwa wataalamu wa AllAdsMarket.",
+    "keywords": "uuzaji wa kidijitali, SEO, biashara ya mtandaoni, AI, uuzaji wa maudhui, blockchain, uchambuzi",
+    "ogTitle": "AllAdsMarket - Soko la Premium la Ushirika",
+    "ogDescription": "Gundua bidhaa bora zaidi zinazopendwa na matoleo ya kipekee. Zaidi ya bidhaa 100K+ kutoka kwa chapa za kuegemea.",
+    "twitterTitle": "AllAdsMarket - Soko la Premium la Ushirika",
+    "twitterDescription": "Gundua bidhaa bora zaidi zinazopendwa na matoleo ya kipekee. Zaidi ya bidhaa 100K+ kutoka kwa chapa za kuegemea."
+  },
+  "navigation": {
+    "home": "Nyumbani",
+    "products": "Bidhaa",
+    "articles": "Makala",
+    "about": "Kuhusu sisi",
+    "contact": "Wasiliana",
+    "search": "Tafuta",
+    "menu": "Menyu",
+    "close": "Funga",
+    "language": "Lugha",
+    "currency": "Sarafu"
+  },
+  "home": {
+    "hero": {
+      "title": "Gundua Bidhaa Bora zaidi zinazopendwa",
+      "subtitle": "AllAdsMarket - Soko lako la Premium la Ushirika",
+      "description": "Pata bidhaa za hivi karibuni na zinazopendwa zaidi kutoka kwa chapa za kuegemea. Zaidi ya bidhaa 100K+ zinasubiri wewe.",
+      "cta": "Anza Sasa",
+      "learnMore": "Jifunze Zaidi"
+    },
+    "features": {
+      "title": "Kwa nini AllAdsMarket?",
+      "subtitle": "Chaguo bora zaidi kwa ununuzi wako wa mtandaoni",
+      "feature1": {
+        "title": "Bidhaa 100K+",
+        "description": "Uchaguzi wa kina wa bidhaa za kiwango cha juu"
+      },
+      "feature2": {
+        "title": "Matoleo ya Kipekee",
+        "description": "Ufikiaji wa makubaliano maalum na punguzo"
+      },
+      "feature3": {
+        "title": "Chapa za Kuegemea",
+        "description": "Bidhaa tu kutoka kwa chapa zilizothibitishwa"
+      },
+      "feature4": {
+        "title": "Msaada 24/7",
+        "description": "Huduma ya wateja inayopatikana kila wakati"
+      }
+    },
+    "trending": {
+      "title": "Bidhaa zinazopendwa",
+      "subtitle": "Bidhaa zinazopendwa zaidi kwa sasa",
+      "viewAll": "Ona Zote"
+    },
+    "categories": {
+      "title": "Nunua kwa Kategoria",
+      "subtitle": "Pata unachotafuta katika kategoria zetu zilizopangwa"
+    },
+    "testimonials": {
+      "title": "Wateja Wetu Wanasema Nini",
+      "subtitle": "Uzoefu wa kweli kutoka kwa wateja walioridhika"
+    }
+  },
+  "products": {
+    "title": "Bidhaa",
+    "subtitle": "Gundua mkusanyiko wetu wa kina",
+    "filter": "Chuja",
+    "sort": "Panga",
+    "view": "Mwonekano",
+    "grid": "Gridi",
+    "list": "Orodha",
+    "price": "Bei",
+    "rating": "Kipimo",
+    "availability": "Upatikanaji",
+    "inStock": "Ipo kwenye hifadhi",
+    "outOfStock": "Imeisha",
+    "limitedStock": "Hifadhi ndogo",
+    "addToCart": "Ongeza kwenye gari",
+    "buyNow": "Nunua Sasa",
+    "quickView": "Mwonekano wa haraka",
+    "addToFavorites": "Ongeza kwenye vipendwa",
+    "removeFromFavorites": "Ondoa kutoka vipendwa",
+    "share": "Shiriki",
+    "compare": "Linganisha",
+    "specifications": "Vipimo",
+    "reviews": "Ukaguzi",
+    "relatedProducts": "Bidhaa zinazohusiana",
+    "recentlyViewed": "Zilizotazamwa hivi karibuni",
+    "recommended": "Zinazopendekezwa",
+    "newArrivals": "Zilizofika mpya",
+    "bestSellers": "Zinazouzwa zaidi",
+    "onSale": "Kwenye uuzaji",
+    "clearance": "Uuzaji wa mwisho"
+  },
+  "footer": {
+    "about": "Kuhusu AllAdsMarket",
+    "description": "Mshirika wako wa kuegemea kwa uuzaji wa kidijitali wa kiwango cha juu na ufumbuzi wa biashara ya mtandaoni.",
+    "quickLinks": "Viungo vya Haraka",
+    "categories": "Kategoria",
+    "support": "Msaada",
+    "legal": "Kisheria",
+    "newsletter": {
+      "title": "Barua pepe",
+      "description": "Pata sasisho za hivi karibuni na matoleo ya kipekee",
+      "placeholder": "Anwani yako ya barua pepe",
+      "subscribe": "Jiandikishe"
+    },
+    "social": "Tufuate",
+    "copyright": "© 2024 AllAdsMarket. Haki zote zimehifadhiwa.",
+    "privacy": "Sera ya Faragha",
+    "terms": "Masharti ya Matumizi",
+    "cookies": "Sera ya Vidakuzi"
+  },
+  "common": {
+    "loading": "Inapakia...",
+    "error": "Hitilafu",
+    "success": "Mafanikio",
+    "cancel": "Ghairi",
+    "save": "Hifadhi",
+    "edit": "Hariri",
+    "delete": "Futa",
+    "search": "Tafuta",
+    "filter": "Chuja",
+    "close": "Funga",
+    "back": "Rudi",
+    "next": "Ifuatayo",
+    "previous": "Iliyotangulia",
+    "submit": "Wasilisha",
+    "confirm": "Thibitisha",
+    "yes": "Ndiyo",
+    "no": "Hapana",
+    "selectLanguage": "Chagua Lugha",
+    "selectCurrency": "Chagua Sarafu",
+    "view": "Ona",
+    "seePrice": "Ona Bei",
+    "buyNow": "Nunua Sasa",
+    "quickView": "Mwonekano wa Haraka",
+    "addToFavorites": "Ongeza kwenye Vipendwa",
+    "removeFromFavorites": "Ondoa kutoka Vipendwa",
+    "share": "Shiriki",
+    "bookmark": "Weka Alama",
+    "like": "Penda",
+    "unlike": "Usipende",
+    "readMore": "Soma Zaidi",
+    "showLess": "Onyesha Kidogo",
+    "showAll": "Onyesha Zote",
+    "hide": "Ficha",
+    "expand": "Panua",
+    "collapse": "Kunjamana",
+    "refresh": "Sasisha",
+    "reload": "Pakia Upya",
+    "retry": "Jaribu Tena",
+    "continue": "Endelea",
+    "finish": "Maliza",
+    "complete": "Imekamilika",
+    "done": "Imekamilika",
+    "ok": "Sawa",
+    "apply": "Tumia",
+    "reset": "Weka Upya",
+    "clear": "Safisha",
+    "select": "Chagua",
+    "choose": "Chagua",
+    "pick": "Chagua",
+    "upload": "Pakia",
+    "download": "Pakua",
+    "print": "Chapisha",
+    "copy": "Nakili",
+    "paste": "Bandika",
+    "cut": "Kata",
+    "undo": "Rudisha",
+    "redo": "Fanya Tena",
+    "sort": "Panga",
+    "order": "Amuru",
+    "arrange": "Panga",
+    "organize": "Panga",
+    "manage": "Simamia",
+    "control": "Dhibiti",
+    "settings": "Mipangilio",
+    "preferences": "Mapendeleo",
+    "options": "Chaguzi",
+    "configuration": "Usanidi",
+    "customize": "Badilisha",
+    "personalize": "Binafsisha",
+    "profile": "Wasifu",
+    "account": "Akaunti",
+    "user": "Mtumiaji",
+    "customer": "Mteja",
+    "client": "Mteja",
+    "guest": "Mgeni",
+    "visitor": "Mtembezi"
+  }
+}

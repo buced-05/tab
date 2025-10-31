@@ -1,29 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemaps optimisés
 Sitemap: https://alladsmarket.com/sitemap.xml
-Sitemap: https://alladsmarket.com/sitemap-pages.xml
-Sitemap: https://alladsmarket.com/sitemap-articles.xml
-Sitemap: https://alladsmarket.com/sitemap-categories.xml
-Sitemap: https://alladsmarket.com/sitemap-authors.xml
-Sitemap: https://alladsmarket.com/sitemap-images.xml
-
-# Crawl delay optimisé
-Crawl-delay: 1
-
-# Zones protégées
-Disallow: /admin/
-Disallow: /api/
-Disallow: /private/
-Disallow: /_next/
-Disallow: /node_modules/
-
-# Pages importantes autorisées
-Allow: /articles/
-Allow: /products/
-Allow: /authors/
-Allow: /categories/
-
-# Optimisations SEO
-Host: https://alladsmarket.com

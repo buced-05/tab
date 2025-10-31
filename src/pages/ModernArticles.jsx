@@ -23,10 +23,6 @@ import {
   Eye,
   ThumbsUp
 } from 'lucide-react';
-import ModernNavigation from '../components/ModernNavigation';
-import ModernFooter from '../components/ModernFooter';
-import '../styles/modern-navigation.css';
-import '../styles/modern-footer.css';
 
 /**
  * Page d'articles ultra moderne avec IA de vibe coding
@@ -426,12 +422,6 @@ const ModernArticlesPage = () => {
       </Helmet>
 
       <div className={`modern-homepage ${darkMode ? 'dark' : 'light'}`}>
-        {/* Navigation moderne */}
-        <ModernNavigation 
-          darkMode={darkMode} 
-          onThemeToggle={() => setDarkMode(!darkMode)} 
-        />
-
         {/* Hero section avec animation */}
         <section className="hero-section">
           <div className="hero-content">
@@ -549,17 +539,10 @@ const ModernArticlesPage = () => {
         {/* Feed d'articles avec animations */}
         <main className="articles-feed" ref={feedRef}>
           {loading ? (
-            <div className="loading-grid">
-              {[...Array(6)].map((_, index) => (
-                <div key={index} className="skeleton-card">
-                  <div className="skeleton-image" />
-                  <div className="skeleton-content">
-                    <div className="skeleton-title" />
-                    <div className="skeleton-text" />
-                    <div className="skeleton-text short" />
-                  </div>
-                </div>
-              ))}
+            <div className="loading-container">
+              <div className="loading-spinner-large"></div>
+              <h3>Chargement des articles...</h3>
+              <p>Découverte des meilleurs articles pour vous</p>
             </div>
           ) : (
             <div className="articles-grid">
@@ -594,9 +577,6 @@ const ModernArticlesPage = () => {
         
         {/* Modal IA */}
         <AIModal />
-        
-        {/* Footer moderne */}
-        <ModernFooter darkMode={darkMode} />
         
         {/* Overlay pour sidebar */}
         {sidebarOpen && (

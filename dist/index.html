@@ -5,10 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- SEO Meta Tags -->
+    <!-- SEO Meta Tags Multilingues -->
     <title>AllAdsMarket - Marketplace d'Affiliation Premium</title>
     <meta name="description" content="Découvrez AllAdsMarket, votre marketplace d'affiliation premium. Trouvez les meilleurs produits tendances, offres exclusives et deals incroyables. Plus de 100K+ produits de marques de confiance." />
-    <meta name="keywords" content="marketplace, affiliation, produits tendances, offres exclusives, deals, shopping en ligne, e-commerce, marques premium, produits populaires, bonnes affaires" />
+    <meta name="keywords" content="marketplace, affiliation, produits tendances, offres exclusives, deals, shopping en ligne, e-commerce, marques premium, produits populaires, bonnes affaires, Europe, Amérique, Afrique" />
     <meta name="author" content="AllAdsMarket" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
@@ -17,7 +17,28 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://alladsmarket.com" />
     
-    <!-- Open Graph Meta Tags -->
+    <!-- Balises hreflang pour SEO international -->
+    <link rel="alternate" hreflang="fr" href="https://alladsmarket.com" />
+    <link rel="alternate" hreflang="en" href="https://alladsmarket.com/en" />
+    <link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB" />
+    <link rel="alternate" hreflang="de" href="https://alladsmarket.com/de" />
+    <link rel="alternate" hreflang="es" href="https://alladsmarket.com/es" />
+    <link rel="alternate" hreflang="it" href="https://alladsmarket.com/it" />
+    <link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt" />
+    <link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR" />
+    <link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl" />
+    <link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv" />
+    <link rel="alternate" hreflang="no" href="https://alladsmarket.com/no" />
+    <link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru" />
+    <link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja" />
+    <link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh" />
+    <link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi" />
+    <link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar" />
+    <link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw" />
+    <link rel="alternate" hreflang="am" href="https://alladsmarket.com/am" />
+    <link rel="alternate" hreflang="x-default" href="https://alladsmarket.com" />
+    
+    <!-- Open Graph Meta Tags Multilingues -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="AllAdsMarket - Marketplace d'Affiliation Premium" />
     <meta property="og:description" content="Découvrez les meilleurs produits tendances et offres exclusives sur AllAdsMarket. Plus de 100K+ produits de marques de confiance." />
@@ -28,6 +49,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="AllAdsMarket - Marketplace d'Affiliation Premium" />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="en_US,en_GB,de_DE,es_ES,it_IT,pt_PT,pt_BR,nl_NL,sv_SE,no_NO,ru_RU,ja_JP,zh_CN,hi_IN,ar_SA,sw_KE,am_ET" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -36,18 +58,111 @@
     <meta name="twitter:image" content="https://alladsmarket.com/twitter-card.jpg" />
     <meta name="twitter:image:alt" content="AllAdsMarket - Marketplace d'Affiliation Premium" />
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json" />
+    
     <!-- Additional SEO Meta Tags -->
-    <meta name="theme-color" content="#667eea" />
+    <!-- theme-color: Supported by Chrome, Edge, Safari, Opera. Firefox fallback via CSS and manifest.json -->
+    <!-- Meta tags will be added dynamically via JavaScript for browsers that support them -->
     <meta name="msapplication-TileColor" content="#667eea" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="AllAdsMarket" />
+    
+    <!-- Dynamic theme-color meta tags - Only added for browsers that support them -->
+    <script>
+      // Only add theme-color meta tags for browsers that support them (not Firefox)
+      (function() {
+        try {
+          // Detect if browser supports theme-color meta tag
+          // Firefox user agent contains 'Firefox' but we can also check by creating a test meta tag
+          const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+          
+          if (!isFirefox) {
+            // Create and add theme-color meta tags for supported browsers
+            const lightMeta = document.createElement('meta');
+            lightMeta.name = 'theme-color';
+            lightMeta.content = '#667eea';
+            lightMeta.setAttribute('media', '(prefers-color-scheme: light)');
+            document.head.appendChild(lightMeta);
+            
+            const darkMeta = document.createElement('meta');
+            darkMeta.name = 'theme-color';
+            darkMeta.content = '#4c1d95';
+            darkMeta.setAttribute('media', '(prefers-color-scheme: dark)');
+            document.head.appendChild(darkMeta);
+          }
+        } catch (error) {
+          console.warn('Theme color meta tags error:', error);
+        }
+      })();
+    </script>
+    
+    <!-- Firefox Theme Color Alternative via CSS and JavaScript -->
+    <style>
+      :root {
+        --theme-color: #667eea;
+        --theme-color-dark: #4c1d95;
+        --app-theme-color: var(--theme-color);
+      }
+      
+      /* Universal theme color application via CSS variables */
+      @media (prefers-color-scheme: light) {
+        :root {
+          --app-theme-color: var(--theme-color);
+        }
+      }
+      
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --app-theme-color: var(--theme-color-dark);
+        }
+      }
+      
+      /* Scrollbar styling - Firefox only (scrollbar-color and scrollbar-width) */
+      @supports (scrollbar-color: auto) {
+        * {
+          scrollbar-width: thin;
+          scrollbar-color: var(--theme-color) #f1f5f9;
+        }
+      }
+      
+      /* Webkit scrollbar (Chrome, Edge, Safari) */
+      *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      
+      *::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      
+      *::-webkit-scrollbar-thumb {
+        background-color: var(--theme-color);
+        border-radius: 4px;
+      }
+      
+      *::-webkit-scrollbar-thumb:hover {
+        background-color: var(--theme-color-dark);
+      }
+      
+      /* Focus outline styling for all browsers */
+      *:focus-visible {
+        outline-color: var(--theme-color);
+        outline-width: 2px;
+        outline-style: solid;
+      }
+    </style>
     
     <!-- Preconnect to external domains for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
     
     <!-- DNS Prefetch for better performance -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
@@ -106,16 +221,57 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="./assets/js/index-D-QuCneP.js"></script>
+    <script type="module" crossorigin src="./assets/js/index-D13zYWus.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/js/react-vendor-DtOhX2xw.js">
     <link rel="modulepreload" crossorigin href="./assets/js/toast-vendor-CWiWmSYj.js">
     <link rel="modulepreload" crossorigin href="./assets/js/react-router-OANrnnZb.js">
     <link rel="modulepreload" crossorigin href="./assets/js/i18n-vendor-Cd_Lb8h5.js">
-    <link rel="modulepreload" crossorigin href="./assets/js/ui-vendor-Fqz-bpwz.js">
-    <link rel="stylesheet" crossorigin href="./assets/css/index-4Xb9O9wc.css">
+    <link rel="modulepreload" crossorigin href="./assets/js/ui-vendor-r9ZgFwkT.js">
+    <link rel="stylesheet" crossorigin href="./assets/css/index-DBDzfBuB.css">
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- JavaScript fallback for Firefox theme color application - Loaded after main app -->
+    <script defer>
+      // Apply theme color dynamically for all browsers - Run after DOM is ready
+      (function() {
+        function applyThemeColor() {
+          try {
+            if (!document.documentElement) return;
+            
+            // Detect color scheme preference
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const themeColor = prefersDark ? '#4c1d95' : '#667eea';
+            
+            // Set CSS variables for universal access
+            document.documentElement.style.setProperty('--theme-color', '#667eea');
+            document.documentElement.style.setProperty('--theme-color-dark', '#4c1d95');
+            document.documentElement.style.setProperty('--app-theme-color', themeColor);
+            document.documentElement.style.setProperty('--scrollbar-thumb', themeColor);
+            
+            // Listen for color scheme changes
+            if (window.matchMedia) {
+              window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+                const newThemeColor = e.matches ? '#4c1d95' : '#667eea';
+                document.documentElement.style.setProperty('--app-theme-color', newThemeColor);
+                document.documentElement.style.setProperty('--scrollbar-thumb', newThemeColor);
+              });
+            }
+          } catch (error) {
+            console.warn('Theme color script error:', error);
+          }
+        }
+        
+        // Run when DOM is ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', applyThemeColor);
+        } else {
+          // Use setTimeout to ensure React has loaded
+          setTimeout(applyThemeColor, 100);
+        }
+      })();
+    </script>
   </body>
 </html>
 

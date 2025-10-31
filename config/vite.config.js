@@ -15,7 +15,16 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
-    open: true
+    open: true,
+    // Headers pour améliorer la compatibilité
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'SAMEORIGIN',
+      // Note: Content-Type est géré automatiquement par Vite pour chaque type de fichier
+      // Ne pas définir Content-Type ici car cela forcerait tous les fichiers à être servis comme HTML
+    },
+    // Middleware pour définir les Content-Type corrects
+    middlewareMode: false
   },
 
   // Production build optimization
@@ -134,6 +143,13 @@ export default defineConfig({
   preview: {
     port: 3000,
     host: true,
-    open: true
+    open: true,
+    // Headers pour améliorer la compatibilité
+    headers: {
+      'X-Content-Type-Options': 'nosniff',
+      'X-Frame-Options': 'SAMEORIGIN',
+      // Note: Content-Type est géré automatiquement par Vite pour chaque type de fichier
+      // Ne pas définir Content-Type ici car cela forcerait tous les fichiers à être servis comme HTML
+    }
   }
 })
