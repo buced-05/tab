@@ -37,17 +37,22 @@ const SEOHead = ({
   const ogImage = image || `${baseUrl}/og-image.jpg`;
   const twitterImage = image || `${baseUrl}/twitter-card.jpg`;
   
-  // Génération automatique des mots-clés SEO
-  const seoKeywords = keywords || [
+  // Génération automatique des mots-clés SEO (avec focus sur "télécharger gratuit")
+  const baseKeywords = [
     'marketing digital',
     'SEO',
     'e-commerce',
     'intelligence artificielle',
-    'blockchain',
-    'analytics',
     'content marketing',
+    'télécharger',
+    'télécharger gratuit',
+    'téléchargement gratuit',
+    'PDF gratuit',
+    'guide gratuit',
     'alladsmarket'
-  ].join(', ');
+  ];
+  const mergedKeywords = (keywords ? `${keywords}, ${baseKeywords.join(', ')}` : baseKeywords.join(', '));
+  const seoKeywords = mergedKeywords;
   
   // Données structurées par défaut
   const defaultStructuredData = {
@@ -118,7 +123,7 @@ const SEOHead = ({
       <meta property="article:published_time" content={publishedTime} />
       <meta property="article:modified_time" content={modifiedTime || publishedTime} />
       <meta property="article:section" content={section} />
-      {tags.map((tag, index) => (
+      {[...(tags || []), 'télécharger', 'télécharger gratuit', 'PDF gratuit', 'guide gratuit'].map((tag, index) => (
         <meta key={index} property="article:tag" content={tag} />
       ))}
       

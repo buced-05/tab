@@ -26,15 +26,45 @@ const staticPages = [
     lastmod: new Date().toISOString()
   },
   {
+    path: '/ai-articles',
+    priority: 0.9,
+    changefreq: 'daily',
+    lastmod: new Date().toISOString()
+  },
+  {
     path: '/products',
     priority: 0.9,
     changefreq: 'daily',
     lastmod: new Date().toISOString()
   },
   {
+    path: '/trending',
+    priority: 0.85,
+    changefreq: 'daily',
+    lastmod: new Date().toISOString()
+  },
+  {
+    path: '/featured',
+    priority: 0.8,
+    changefreq: 'daily',
+    lastmod: new Date().toISOString()
+  },
+  {
+    path: '/categories',
+    priority: 0.7,
+    changefreq: 'weekly',
+    lastmod: new Date().toISOString()
+  },
+  {
     path: '/articles',
     priority: 0.8,
     changefreq: 'daily',
+    lastmod: new Date().toISOString()
+  },
+  {
+    path: '/revolutionary-blog',
+    priority: 0.6,
+    changefreq: 'weekly',
     lastmod: new Date().toISOString()
   },
   {

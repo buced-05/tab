@@ -177,6 +177,14 @@
   --container-2xl: 1536px;
 }
 
+/* Responsive header height to match actual menu container */
+@media (max-width: 991px) {
+  :root { --header-height: 72px; }
+}
+@media (max-width: 575px) {
+  :root { --header-height: 60px; }
+}
+
 /* Dark mode variables (if needed in the future) */
 @media (prefers-color-scheme: dark) {
   :root {

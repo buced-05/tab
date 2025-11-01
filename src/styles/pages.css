@@ -8,7 +8,8 @@
 .home-page {
   min-height: 100vh;
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  padding-top: var(--header-height);
+  /* Avoid double top spacing: main already adds header offset */
+  padding-top: 0;
 }
 
 .hero-section {
@@ -51,7 +52,7 @@
 /* Site Introduction Section */
 .site-introduction {
   background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-  padding: var(--spacing-20) 0;
+  padding: var(--spacing-12) 0; /* reduced top/bottom to tighten header gap */
   position: relative;
   overflow: hidden;
 }
@@ -391,7 +392,7 @@
   }
   
   .site-introduction {
-    padding: var(--spacing-12) 0;
+    padding: var(--spacing-8) 0; /* tighter on tablets/phones */
   }
   
   .intro-title {
@@ -472,7 +473,7 @@
   }
   
   .site-introduction {
-    padding: var(--spacing-10) 0;
+    padding: var(--spacing-6) 0; /* tightest on small phones */
   }
   
   .intro-title {

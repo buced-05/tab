@@ -562,7 +562,26 @@ const AIArticleDetail = () => {
           <style>
             * {
               box-sizing: border-box;
+              user-select: text;
+              -webkit-user-select: text; /* Safari 3+ support */
             }
+            /* Ensure links are visible and clickable in the PDF */
+            a[href] {
+              color: #1a0dab !important;
+              text-decoration: underline !important;
+              pointer-events: auto !important;
+              position: relative;
+            }
+            /* Neutralize any fixed/sticky overlays that could cover links */
+            [style*="position:fixed"], .fixed, .sticky, [style*="position: sticky"] {
+              position: static !important;
+              top: auto !important;
+              left: auto !important;
+              right: auto !important;
+              bottom: auto !important;
+            }
+            /* Avoid giant overlays covering the page */
+            [style*="z-index"] { z-index: auto !important; }
             
             body {
               font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
@@ -857,8 +876,17 @@ const AIArticleDetail = () => {
           html2canvas: { 
             scale: 2,
             useCORS: true,
+            allowTaint: true,
             letterRendering: true,
-            backgroundColor: '#ffffff'
+            backgroundColor: '#ffffff',
+            // Ensure links detection works reliably
+            onclone: (doc) => {
+              doc.querySelectorAll('a[href]').forEach(a => {
+                a.style.pointerEvents = 'auto';
+                a.style.display = 'inline';
+                a.style.maxWidth = '100%';
+              });
+            }
           },
           jsPDF: { 
             unit: 'in', 
@@ -871,10 +899,22 @@ const AIArticleDetail = () => {
         };
 
         // Utiliser un élément DOM plutôt qu'une string pour mieux préserver les liens
-        const wrapper = document.createElement('div');
-        wrapper.innerHTML = htmlContent;
-        // S'assurer que tous les liens sont absolus et cliquables
-        wrapper.querySelectorAll('a[href]').forEach(a => {
+        // Render into an off-screen iframe to ensure full document semantics
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'fixed';
+        iframe.style.left = '-10000px';
+        iframe.style.top = '0';
+        iframe.style.width = '820px';
+        iframe.style.height = '1200px';
+        iframe.setAttribute('sandbox', 'allow-same-origin allow-top-navigation-by-user-activation');
+        document.body.appendChild(iframe);
+
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        iframeDoc.open();
+        iframeDoc.write(htmlContent);
+        iframeDoc.close();
+        // S'assurer que tous les liens sont absolus et cliquables dans l'iframe
+        Array.from(iframeDoc.querySelectorAll('a[href]')).forEach(a => {
           const href = a.getAttribute('href');
           if (href && href.startsWith('/')) {
             a.setAttribute('href', window.location.origin + href);
@@ -884,7 +924,25 @@ const AIArticleDetail = () => {
           a.style.pointerEvents = 'auto';
         });
 
-        await window.html2pdf().set(opt).from(wrapper).save();
+        try {
+          // Wait for iframe content to layout
+          await new Promise(r => setTimeout(r, 250));
+          const sourceNode = iframeDoc.body;
+          await window.html2pdf().set(opt).from(sourceNode).save();
+          // If we reach here, download succeeded
+        } catch (e) {
+          console.error('html2pdf generation failed, falling back to HTML:', e);
+          const element = document.createElement('a');
+          const file = new Blob([htmlContent], {type: 'text/html'});
+          element.href = URL.createObjectURL(file);
+          element.download = `${article.slug}.html`;
+          document.body.appendChild(element);
+          element.click();
+          document.body.removeChild(element);
+        } finally {
+          // Cleanup hidden iframe
+          document.body.removeChild(iframe);
+        }
       } else {
         // Fallback: télécharger en HTML si html2pdf n'est pas disponible
         const element = document.createElement('a');

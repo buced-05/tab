@@ -27,3 +27,10 @@
 
 /* Responsive Design */
 @import './responsive.css';
+
+/* Global compatibility adjustments */
+html, body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}

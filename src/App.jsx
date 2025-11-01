@@ -93,7 +93,28 @@ const AppContent = () => {
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://tse2.mm.bing.net" crossOrigin="anonymous" />
         <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-        <link rel="canonical" href={window.location.href.split('#')[0].split('?')[0]} />
+        {/* Canonical et alternates multilingues */}
+        {(() => {
+          const fullUrl = window.location.href.split('#')[0].split('?')[0];
+          const url = new URL(fullUrl);
+          const supported = ['fr','en','en-GB','de','es','it','pt','pt-BR','nl','sv','no','ru','ja','zh','hi','ar','sw','am'];
+          const pathname = url.pathname.replace(/\/$/, '') || '/';
+          const parts = pathname.split('/').filter(Boolean);
+          const hasLangPrefix = parts.length > 0 && supported.includes(parts[0]);
+          const basePath = hasLangPrefix ? `/${parts.slice(1).join('/')}` || '/' : pathname;
+          const origin = url.origin;
+          const links = [];
+          // Canonical: langue courante (déduite de l'URL ou i18n)
+          links.push(<link key="canonical" rel="canonical" href={fullUrl} />);
+          // Alternates pour chaque langue
+          supported.forEach((lang) => {
+            const href = lang === 'fr' ? `${origin}${basePath}` : `${origin}/${lang}${basePath === '/' ? '' : basePath}`;
+            links.push(<link key={`alt-${lang}`} rel="alternate" hrefLang={lang} href={href} />);
+          });
+          // x-default
+          links.push(<link key="alt-xdefault" rel="alternate" hrefLang="x-default" href={`${origin}${basePath}`} />);
+          return links;
+        })()}
         <meta name="keywords" content="articles professionnels, guides, IA, e‑commerce, logiciels, marketing digital, tutoriels, analyses" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="AllAdsMarket — Articles et Guides Professionnels" />

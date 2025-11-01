@@ -5,46 +5,23 @@
 }
 
 /* Page Header */
-.page-header {
-  background: var(--gradient-ocean);
-  height: 20vh;
-  position: relative;
-  border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.1);
+/* Remove decorative banner only on Products page */
+.products-page .page-header {
+  height: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
-.header-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: var(--spacing-sm);
-  align-items: center;
-  width: 100%;
-  z-index: 1;
-}
+/* Hide previous header content area on Products page */
+.products-page .header-content { display: none; }
 
 .header-text {
   max-width: 600px;
 }
 
-.page-title {
-  position: absolute;
-  top: 50%;
-  left: var(--spacing-md);
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.1;
-  color: white;
-  margin-bottom: 0;
-  letter-spacing: -0.01em;
-  z-index: 2;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
+.products-page .page-title { display: none; }
 
 .title-highlight {
   background: var(--gradient-forest);
@@ -53,18 +30,7 @@
   background-clip: text;
 }
 
-.page-description {
-  position: absolute;
-  top: 60%;
-  left: var(--spacing-md);
-  transform: translateY(-50%);
-  font-size: 0.65rem;
-  line-height: 1.1;
-  color: white;
-  margin-bottom: 0;
-  opacity: 0.9;
-  z-index: 2;
-}
+.products-page .page-description { display: none; }
 
 .header-stats {
   display: flex;
