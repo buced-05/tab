@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useLocation } from 'react-router-dom';
+import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import ProductList from '../components/ProductList';
 // import apiService from '../services/apiService'; // Removed unused service
 import { getFeaturedProducts, getTrendingProducts, getAllProducts } from '../utils/sampleData';
@@ -8,6 +8,7 @@ const Products = () => {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -111,8 +112,10 @@ const Products = () => {
   }, [searchParams, location.pathname]);
 
   const handleProductClick = (product) => {
-    // Navigate to product detail page
-    window.location.href = `/products/${product._id}`;
+    // Navigate to product detail page using client-side routing
+    if (product && product._id) {
+      navigate(`/products/${product._id}`);
+    }
   };
 
   const getPageTitle = () => {

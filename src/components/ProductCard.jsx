@@ -54,6 +54,11 @@ const ProductCard = ({ product, onProductClick }) => {
 
   const handleProductClick = async (clickSource = 'card') => {
     if (!product) return;
+    // For card clicks, prefer parent-provided navigation (e.g., to product detail)
+    if (clickSource === 'card' && typeof onProductClick === 'function') {
+      onProductClick(product);
+      return;
+    }
     
     // Capturer le clic immédiatement
     const productImage = product.images?.find(img => img.isPrimary)?.url || product.images?.[0]?.url;

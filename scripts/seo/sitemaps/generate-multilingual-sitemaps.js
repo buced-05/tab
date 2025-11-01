@@ -14,7 +14,8 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const baseUrl = 'https://alladsmarket.com';
-const outputDir = path.join(__dirname, '../dist');
+// Always write to the project root dist directory
+const outputDir = path.resolve(__dirname, '../../../dist');
 
 // Pages statiques
 const staticPages = [
@@ -96,14 +97,6 @@ function generateMainSitemap() {
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>${baseUrl}/sitemap-pages.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemap-products.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemap-articles.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>
   <sitemap>
@@ -319,6 +312,8 @@ async function generateAllSitemaps() {
     // Générer le sitemap principal
     const mainSitemap = generateMainSitemap();
     fs.writeFileSync(path.join(outputDir, 'sitemap.xml'), mainSitemap);
+    // Also write a duplicate as sitemap-index.xml for compatibility
+    fs.writeFileSync(path.join(outputDir, 'sitemap-index.xml'), mainSitemap);
     console.log('✅ sitemap.xml généré');
 
     // Générer le sitemap des pages
