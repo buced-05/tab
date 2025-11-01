@@ -916,12 +916,24 @@ const AIArticleDetail = () => {
         // S'assurer que tous les liens sont absolus et cliquables dans l'iframe
         Array.from(iframeDoc.querySelectorAll('a[href]')).forEach(a => {
           const href = a.getAttribute('href');
-          if (href && href.startsWith('/')) {
+          if (!href) return;
+          // Convert relative to absolute
+          if (href.startsWith('/')) {
             a.setAttribute('href', window.location.origin + href);
           }
+          // Force https for our domain and for Amazon shortener
+          try {
+            const u = new URL(a.getAttribute('href'), window.location.origin);
+            if (u.hostname.endsWith('alladsmarket.com') || u.hostname === 'amzn.to' || u.hostname.includes('amazon')) {
+              u.protocol = 'https:';
+              a.setAttribute('href', u.toString());
+            }
+          } catch {}
           a.setAttribute('target', '_blank');
           a.setAttribute('rel', 'noopener noreferrer');
           a.style.pointerEvents = 'auto';
+          a.style.display = 'inline';
+          a.style.textDecoration = 'underline';
         });
 
         try {
