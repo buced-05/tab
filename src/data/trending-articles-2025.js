@@ -6254,7 +6254,7 @@ Les entreprises qui adoptent la blockchain aujourd'hui se positionnent pour tire
     ]
   },
   {
-    id: 'trending-042-repetiteur-pro-cote-ivoire',
+    id: 'trending-043-repetiteur-pro-cote-ivoire',
     title: 'Une Innovation Éducative au Service des Élèves Ivoiriens : Repetiteur Pro',
     slug: 'innovation-educative-eleves-ivoiriens-repetiteur-pro',
     excerpt: 'Découvrez Repetiteur Pro, la plateforme révolutionnaire créée par ASSOA KOUAME pour démocratiser l\'accompagnement scolaire en Côte d\'Ivoire. Une solution innovante qui transforme l\'éducation des jeunes du primaire, collège et secondaire.',
