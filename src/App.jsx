@@ -87,6 +87,17 @@ const AppContent = () => {
     };
   }, [isProfilePage, t, i18n]);
 
+  // Track page views with Google Analytics
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'G-G21WK948XL', {
+        page_path: location.pathname + location.search,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    }
+  }, [location]);
+
   return (
     <>
       <Helmet>
