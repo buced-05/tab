@@ -74,21 +74,11 @@ const ProductDetail = () => {
   };
 
   const handleShareClick = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: product.name,
-          text: product.description,
-          url: window.location.href,
-        });
-      } catch (error) {
-        // Error sharing product
-      }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(window.location.href);
-      // Link copied to clipboard - could show a toast notification here
-    }
+    const { shareLink } = await import('../utils/shareUtils');
+    await shareLink({
+      title: product.name,
+      text: product.description
+    });
   };
 
   const formatPrice = (price) => {

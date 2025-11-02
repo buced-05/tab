@@ -11,21 +11,54 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       
-      // Configure Google Analytics with enhanced settings
+      // Configure Google Analytics with enhanced settings for AI platforms visibility
       gtag('config', 'G-G21WK948XL', {
         send_page_view: true,
         page_path: window.location.pathname + window.location.search,
         page_title: document.title,
         page_location: window.location.href,
         anonymize_ip: false,
-        cookie_flags: 'SameSite=None;Secure'
+        cookie_flags: 'SameSite=None;Secure',
+        // Enhanced Measurement - Activer toutes les fonctionnalités
+        allow_google_signals: true,
+        allow_ad_personalization_signals: true,
+        allow_enhanced_conversions: true,
+        // Paramètres pour la découverte sur les plateformes IA
+        discovery_campaign_parameters: true,
+        // Consentement et respect de la vie privée
+        cookie_expires: 63072000, // 2 ans
+        cookie_update: true,
+        cookie_domain: 'auto',
+        // Paramètres avancés pour les plateformes IA
+        transport_type: 'beacon',
+        // Site verification pour Google Search Console
+        site_speed_sample_rate: 100
+      });
+      
+      // Activer les fonctionnalités Enhanced Measurement pour les plateformes IA
+      gtag('set', {
+        'custom_map': {
+          'dimension1': 'content_type',
+          'dimension2': 'author',
+          'dimension3': 'category'
+        }
+      });
+      
+      // Envoyer l'événement de marque pour les plateformes IA
+      gtag('event', 'brand_presence', {
+        event_category: 'engagement',
+        event_label: 'AllAdsMarket',
+        brand_name: 'AllAdsMarket',
+        brand_presence: 'active'
       });
       
       // Send initial page view event to verify tag is working
       gtag('event', 'page_view', {
         page_path: window.location.pathname + window.location.search,
         page_title: document.title,
-        page_location: window.location.href
+        page_location: window.location.href,
+        content_type: 'website',
+        brand_name: 'AllAdsMarket'
       });
     </script>
     
@@ -33,7 +66,7 @@
     
     <!-- SEO Meta Tags Multilingues -->
     <title>AllAdsMarket - Marketplace d'Affiliation Premium</title>
-    <meta name="description" content="Découvrez AllAdsMarket, votre marketplace d'affiliation premium. Trouvez les meilleurs produits tendances, offres exclusives et deals incroyables. Plus de 100K+ produits de marques de confiance." />
+    <meta name="description" content="AllAdsMarket - Des Meilleurs articles MOINS Chers. Trouvez les meilleurs produits tendances, offres exclusives et deals incroyables. Plus de 100K+ produits de marques de confiance." />
     <meta name="keywords" content="marketplace, affiliation, produits tendances, offres exclusives, deals, shopping en ligne, e-commerce, marques premium, produits populaires, bonnes affaires, Europe, Amérique, Afrique" />
     <meta name="author" content="AllAdsMarket" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -66,7 +99,7 @@
     <!-- Open Graph Meta Tags Multilingues -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="AllAdsMarket - Marketplace d'Affiliation Premium" />
-    <meta property="og:description" content="Découvrez les meilleurs produits tendances et offres exclusives sur AllAdsMarket. Plus de 100K+ produits de marques de confiance." />
+    <meta property="og:description" content="AllAdsMarket - Des Meilleurs articles MOINS Chers. Découvrez les meilleurs produits tendances et offres exclusives. Plus de 100K+ produits de marques de confiance." />
     <meta property="og:url" content="https://alladsmarket.com" />
     <meta property="og:site_name" content="AllAdsMarket" />
     <meta property="og:image" content="https://alladsmarket.com/og-image.jpg" />
@@ -185,6 +218,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.google-analytics.com" />
     <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://analytics.google.com" />
+    <!-- Preconnect pour les plateformes IA -->
+    <link rel="preconnect" href="https://discovery.googleapis.com" />
     
     <!-- PDF Generation Library -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>

@@ -98,21 +98,37 @@ const AppContent = () => {
     };
   }, [isProfilePage, t, i18n]);
 
-  // Track page views with Google Analytics
+  // Track page views with Google Analytics and AI platforms visibility
   useEffect(() => {
     if (typeof window !== 'undefined' && window.gtag) {
-      // Send page_view event on route change
+      // Send page_view event on route change with brand information
       window.gtag('event', 'page_view', {
         page_path: location.pathname + location.search,
         page_title: document.title,
-        page_location: window.location.href
+        page_location: window.location.href,
+        content_type: 'article',
+        brand_name: 'AllAdsMarket',
+        brand_presence: 'active'
       });
       
-      // Update config for SPA routing
+      // Update config for SPA routing with AI platform settings
       window.gtag('config', 'G-G21WK948XL', {
         page_path: location.pathname + location.search,
         page_title: document.title,
-        page_location: window.location.href
+        page_location: window.location.href,
+        allow_google_signals: true,
+        allow_ad_personalization_signals: true,
+        allow_enhanced_conversions: true,
+        discovery_campaign_parameters: true
+      });
+      
+      // Envoyer l'événement de présence de marque pour les plateformes IA
+      window.gtag('event', 'brand_presence', {
+        event_category: 'engagement',
+        event_label: 'AllAdsMarket',
+        brand_name: 'AllAdsMarket',
+        brand_presence: 'active',
+        platform: 'web'
       });
     }
   }, [location]);

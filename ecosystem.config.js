@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'alladsmarket-backend',
       script: 'bestserver/index.js',
-      cwd: '/var/www/alladsmarket',
+      cwd: process.env.APP_DIR || '/var/www/tab',
       instances: 1,
       autorestart: true,
       watch: false,

@@ -353,6 +353,7 @@ export const getSampleProducts = () => {
         { url: 'https://m.media-amazon.com/images/I/916LI2I2lNL._AC_SL1500_.jpg', alt: 'Pet Grooming Gloves Package', isPrimary: false }
       ],
       rating: { average: 4.6, count: 15643 },
+      price: 9.97,
       isFeatured: true,
       isTrending: false,
       brand: 'KENNELS & KATS',
@@ -372,8 +373,7 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'pet',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/41wL-4ptktL._AC_SL1000_.jpg', alt: 'Febreze Pet Odor Fighter', isPrimary: true },
-        { url: 'https://m.media-amazon.com/images/I/41wL-4ptktL._AC_SL1000_.jpg', alt: 'Febreze Pet Odor Fighter Detail', isPrimary: false }
+        { url: 'https://m.media-amazon.com/images/I/41wL-4ptktL._AC_US40_.jpg', alt: 'Febreze Pet Odor Fighter', isPrimary: true }
       ],
       rating: { average: 4.7, count: 5340 },
       isFeatured: false,
@@ -571,7 +571,8 @@ export const getSampleProducts = () => {
       originalPrice: 0,
       category: 'pet',
       images: [
-        { url: 'https://m.media-amazon.com/images/I/71b2zgKQRWL._AC_SX522_.jpg', alt: 'Dog Bed Cover Anti-Slip', isPrimary: true }
+        { url: 'https://m.media-amazon.com/images/I/71b2zgKQRWL._AC_SX522_.jpg', alt: 'Dog Bed Cover Anti-Slip', isPrimary: true },
+        { url: 'https://m.media-amazon.com/images/I/71b2zgKQRWL._AC_SX522_.jpg', alt: 'Dog Bed Cover Anti-Slip Detail', isPrimary: false }
       ],
       rating: { average: 4.6, count: 9400 },
       isFeatured: false,
@@ -2399,8 +2400,8 @@ export const getSampleProducts = () => {
       name: 'Lenovo IdeaPad 5X 2-in-1 Copilot+ Extra-Long Battery Life 14" WUXGA FHD+ OLED Touch Display 16GB Memory 512GB Storage Snapdragon X Plus 8-core Processor Windows 11 Home, Pen Included, Luna Gray',
       slug: 'lenovo-ideapad-5x-2-in-1-copilot-extra-long-battery-life-14-wuxga-fhd-oled-touch-display-16gb-memory-512gb-storage-snapdragon-x-plus-8-core-processor-windows-11-home-pen-included-luna-gray',
       description: 'Versatile 2-in-1 laptop with Snapdragon X Plus processor, 16GB RAM, 512GB storage, 14" WUXGA FHD+ OLED touch display, and extra-long battery life. Includes pen and Windows 11 Home.',
-      price: 32,
-      originalPrice: 32,
+      price: 821,
+      originalPrice: 821,
       category: 'electronics',
       images: [
         { url: 'https://m.media-amazon.com/images/I/61oHbqqqvJL._AC_SX679_.jpg', alt: 'Lenovo IdeaPad 5X Front', isPrimary: true },
@@ -2660,7 +2661,7 @@ export const getSampleProducts = () => {
       brand: 'LISEN',
       inStock: true,
       tags: ['electronics', 'car-charger', 'usb-c', 'fast-charging', 'retractable', 'gift'],
-      affiliateUrl: 'https://amzn.to/4qrVRFw'
+      affiliateUrl: 'https://amzn.to/4no9N0G'
     },
 
     // Product 19 - The Very Hungry Caterpillar
@@ -2781,7 +2782,7 @@ export const getSampleProducts = () => {
       brand: 'Sandra Boynton',
       inStock: true,
       tags: ['books', 'children', 'bedtime', 'sleep', 'gentle', 'wind-down'],
-      affiliateUrl: 'https://amzn.to/49kyJTb'
+      affiliateUrl: 'https://amzn.to/47GFjSE'
     },
 
     // Product 24 - 16 inch Screen Magnifier
@@ -4462,7 +4463,7 @@ export const getSampleProducts = () => {
       brand: 'boeemi',
       inStock: true,
       tags: ['home', 'bathroom', 'decor', 'toilet', 'glow-in-dark', 'cute', 'accessories', 'frog'],
-      affiliateUrl: 'https://www.amazon.com/dp/B0DRJFF6JV?ref=t_ac_view_request_product_image&campaignId=amzn1.campaign.UNQZBZVUUU2H&linkCode=tr1&tag=adsmarket08-20&linkId=amzn1.campaign.UNQZBZVUUU2H_1761352685947'
+      affiliateUrl: 'https://amzn.to/4hocaio'
     },
 
     // Product 30 - YRU True Military-Grade Car Phone Holder

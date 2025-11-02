@@ -1234,34 +1234,24 @@ ${article.content ? article.content.replace(/<[^>]*>/g, '') : 'Contenu non dispo
     document.body.classList.toggle('reading-mode', !showReadingMode);
   };
 
-  const handleShareArticle = (article) => {
+  const handleShareArticle = async (article) => {
     console.log('📤 Partage de l\'article:', article.title);
     
+    const { shareLink } = await import('../utils/shareUtils');
     const articleIdentifier = article.slug || article.id;
     const articleUrl = `${window.location.origin}/article/${articleIdentifier}`;
-    const shareText = `Découvrez cet article : "${article.title}"\n\n${article.description}\n\nLire l'article : ${articleUrl}`;
     
-    // Essayer l'API de partage native si disponible
-    if (navigator.share) {
-      navigator.share({
-        title: article.title,
-        text: article.description,
-        url: articleUrl
-      }).then(() => {
-        addNotification({
-          type: 'success',
-          message: '📤 Article partagé avec succès',
-          time: 'Maintenant'
-        });
-      }).catch((error) => {
-        console.log('Erreur de partage:', error);
-        // Fallback vers la copie
-        copyToClipboard(shareText);
-      });
-    } else {
-      // Fallback : copier dans le presse-papiers
-      copyToClipboard(shareText);
-    }
+    await shareLink({
+      title: article.title,
+      text: article.description,
+      url: articleUrl
+    });
+    
+    addNotification({
+      type: 'success',
+      message: '📤 Article partagé avec succès',
+      time: 'Maintenant'
+    });
   };
 
   const copyToClipboard = (text) => {

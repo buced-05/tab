@@ -12,6 +12,9 @@ export { safeRedirect } from './redirectUtils';
 // Performance Monitoring
 export { default as performanceMonitor } from './performanceMonitor';
 
+// Share Utilities - Use these for all future links
+export { shareLink, getLinkText, hideRawUrls, APP_SLOGAN } from './shareUtils';
+
 
 
 

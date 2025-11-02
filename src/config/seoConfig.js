@@ -16,12 +16,20 @@ export const seoConfig = {
     'produits tech',
     'électronique',
     'mode',
-    'maison'
+    'maison',
+    'Amazon FBA',
+    'intelligence artificielle',
+    'IA marketing',
+    'SEO 2025',
+    'e-commerce',
+    'affiliate marketing',
+    'télécharger PDF',
+    'téléchargement gratuit'
   ],
   
   // Mots-clés longue traîne
   longTailKeywords: [
-    'meilleurs produits électroniques 2024',
+    'meilleurs produits électroniques 2025',
     'offres exclusives produits tech',
     'marketplace produits tendance France',
     'avis produits qualité prix',
@@ -30,7 +38,15 @@ export const seoConfig = {
     'produits mode tendance',
     'déco maison moderne',
     'avis produits Amazon',
-    'comparatif produits tech'
+    'comparatif produits tech',
+    'Amazon FBA guide complet',
+    'maximiser ventes Amazon FBA',
+    'IA e-commerce 2025',
+    'SEO 2025 nouvelles règles',
+    'stratégies marketing digital',
+    'télécharger article PDF gratuit',
+    'guide marketing affiliation',
+    'optimiser référencement naturel'
   ],
   
   // Configuration des moteurs de recherche

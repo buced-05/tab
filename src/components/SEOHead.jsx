@@ -166,7 +166,7 @@ const SEOHead = ({
           "@type": "WebSite",
           "name": "AllAdsMarket",
           "url": baseUrl,
-          "description": "Plateforme premium de marketing digital et e-commerce",
+          "description": "AllAdsMarket - Des Meilleurs articles MOINS Chers",
           "potentialAction": {
             "@type": "SearchAction",
             "target": `${baseUrl}/search?q={search_term_string}`,
@@ -225,7 +225,7 @@ const SEOHead = ({
             "worstRating": "1"
           },
           "numberOfEmployees": "10-50",
-          "slogan": "Votre plateforme premium pour découvrir et acheter les meilleurs produits"
+          "slogan": "Des Meilleurs articles MOINS Chers"
         })}
       </script>
     </Helmet>

@@ -3,24 +3,54 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.25) 0%, 
+    rgba(139, 92, 246, 0.22) 25%,
+    rgba(168, 85, 247, 0.2) 50%,
+    rgba(139, 92, 246, 0.22) 75%,
+    rgba(99, 102, 241, 0.25) 100%);
+  border-radius: 16px;
+  border: 3px solid rgba(99, 102, 241, 0.4);
+  backdrop-filter: blur(12px) saturate(1.2);
   font-family: 'Courier New', monospace;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 8px 24px rgba(99, 102, 241, 0.3),
+    0 4px 12px rgba(139, 92, 246, 0.25),
+    0 2px 6px rgba(168, 85, 247, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(99, 102, 241, 0.2);
   position: relative;
+  overflow: hidden;
 }
 
 .realtime-clock::before {
-  content: '🕐';
+  content: '';
   position: absolute;
-  top: -8px;
-  right: -8px;
-  font-size: 1.2rem;
-  animation: pulse 2s ease-in-out infinite;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.15) 100%);
+  animation: shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100%) translateY(100%);
+    opacity: 1;
+  }
 }
 
 .clock-pulse-indicator {
@@ -48,9 +78,20 @@
 }
 
 .realtime-clock:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.32) 0%, 
+    rgba(139, 92, 246, 0.28) 25%,
+    rgba(168, 85, 247, 0.26) 50%,
+    rgba(139, 92, 246, 0.28) 75%,
+    rgba(99, 102, 241, 0.32) 100%);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 12px 32px rgba(99, 102, 241, 0.4),
+    0 6px 16px rgba(139, 92, 246, 0.3),
+    0 3px 8px rgba(168, 85, 247, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(99, 102, 241, 0.3);
 }
 
 .realtime-clock.compact {
@@ -77,6 +118,8 @@
   flex-direction: column;
   gap: 0.25rem;
   margin-left: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .clock-time-wrapper {
@@ -86,14 +129,19 @@
 }
 
 .clock-time {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1.2;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+  letter-spacing: 0.8px;
   animation: timeUpdate 1s ease-in-out;
   font-family: 'Courier New', monospace;
+  position: relative;
+  z-index: 2;
 }
 
 .live-badge {
@@ -154,7 +202,7 @@
 
 .clock-date {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: #475569;
   line-height: 1.2;
 }
 

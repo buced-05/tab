@@ -2,8 +2,8 @@
 
 .revolutionary-article-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.7;
 }
@@ -59,11 +59,11 @@
   gap: 8px;
   margin-bottom: 24px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #666666;
 }
 
 .breadcrumb-revolutionary a {
-  color: rgba(255, 255, 255, 0.7);
+  color: #666666;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -86,7 +86,7 @@
 
 .article-subtitle-revolutionary {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: #333333;
   margin-bottom: 40px;
   line-height: 1.6;
 }
@@ -98,10 +98,9 @@
   flex-wrap: wrap;
   gap: 24px;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #f8f9fa;
   border-radius: 16px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #e1e5e9;
 }
 
 .author-info-revolutionary {
@@ -125,13 +124,13 @@
 
 .author-name-revolutionary {
   font-weight: 600;
-  color: #ffffff;
+  color: #000000;
   font-size: 16px;
 }
 
 .author-title-revolutionary {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: #666666;
 }
 
 .article-stats-revolutionary {
@@ -145,7 +144,7 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
+  color: #666666;
 }
 
 /* Article Content */
@@ -162,11 +161,10 @@
 }
 
 .main-content-revolutionary {
-  background: rgba(255, 255, 255, 0.02);
+  background: #ffffff;
   border-radius: 20px;
   padding: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  border: 1px solid #e1e5e9;
 }
 
 .content-section-revolutionary {
@@ -177,7 +175,7 @@
   font-size: 2.25rem;
   font-weight: 700;
   margin-bottom: 24px;
-  color: #ffffff;
+  color: #000000;
   line-height: 1.3;
 }
 
@@ -185,20 +183,20 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin: 32px 0 16px;
-  color: #6366f1;
+  color: #667eea;
 }
 
 .content-section-revolutionary h4 {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 24px 0 12px;
-  color: #8b5cf6;
+  color: #764ba2;
 }
 
 .content-section-revolutionary p {
   font-size: 1.1rem;
   margin-bottom: 20px;
-  color: rgba(255, 255, 255, 0.9);
+  color: #000000;
   line-height: 1.8;
 }
 
@@ -227,7 +225,7 @@
 
 .highlight-content-revolutionary p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: #333333;
 }
 
 /* Feature Lists */
@@ -243,9 +241,9 @@
   gap: 12px;
   margin-bottom: 16px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #f8f9fa;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid #e1e5e9;
 }
 
 .check-icon-revolutionary {
@@ -263,26 +261,27 @@
 .comparison-table {
   width: 100%;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.02);
+  background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
+  border: 1px solid #e1e5e9;
 }
 
 .comparison-table th,
 .comparison-table td {
   padding: 16px;
   text-align: left;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #e1e5e9;
 }
 
 .comparison-table th {
-  background: rgba(99, 102, 241, 0.1);
+  background: #f8f9fa;
   font-weight: 600;
-  color: #6366f1;
+  color: #667eea;
 }
 
 .comparison-table td {
-  color: rgba(255, 255, 255, 0.9);
+  color: #000000;
 }
 
 /* Feature Grid */
@@ -295,16 +294,16 @@
 
 .feature-card-revolutionary {
   padding: 24px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #e1e5e9;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card-revolutionary:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
 }
 
 .feature-icon-revolutionary {
@@ -314,13 +313,13 @@
 
 .feature-card-revolutionary h4 {
   margin: 0 0 12px;
-  color: #ffffff;
+  color: #000000;
   font-size: 1.1rem;
 }
 
 .feature-card-revolutionary p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: #333333;
   font-size: 0.95rem;
 }
 
@@ -334,14 +333,14 @@
 
 .model-card-revolutionary {
   padding: 20px;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid #e1e5e9;
 }
 
 .model-card-revolutionary h4 {
   margin: 0 0 16px;
-  color: #6366f1;
+  color: #667eea;
   font-size: 1.1rem;
 }
 
@@ -353,7 +352,7 @@
 
 .model-card-revolutionary li {
   padding: 4px 0;
-  color: rgba(255, 255, 255, 0.8);
+  color: #333333;
   font-size: 0.9rem;
 }
 

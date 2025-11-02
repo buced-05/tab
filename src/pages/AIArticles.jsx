@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Calendar, Clock, Eye, Heart, Share2, Star, User, Tag, Bookmark } from 'lucide-react';
+import { Calendar, Clock, Eye, Heart, Share2, Star, User, Tag, Bookmark, Search, X, BookOpen } from 'lucide-react';
 import { getAllPremiumAIArticlesWithDynamicDates } from '../data/premium-ai-articles';
+import { shareLink } from '../utils/shareUtils';
 import RealtimeClock from '../components/RealtimeClock';
 import { Helmet } from 'react-helmet-async';
 import ArticleDate from '../components/ArticleDate';
 import Pagination from '../components/Pagination';
 import '../styles/ai-articles.css';
+import '../styles/premium-animations.css';
 import '../styles/realtime-clock.css';
 import '../styles/article-date.css';
 import '../styles/pagination.css';
@@ -20,6 +22,7 @@ const AIArticlesPage = () => {
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState('recent');
   const [stats, setStats] = useState(null);
@@ -29,11 +32,72 @@ const AIArticlesPage = () => {
   const [likedArticles, setLikedArticles] = useState(new Set());
   const [bookmarkedArticles, setBookmarkedArticles] = useState(new Set());
   const [viewedArticles, setViewedArticles] = useState(new Set());
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   
   // États pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const [paginatedArticles, setPaginatedArticles] = useState([]);
+  
+  // Debounce pour la recherche (améliore les performances)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+  
+  // Générer des suggestions de recherche basées sur les articles
+  useEffect(() => {
+    if (searchTerm.length >= 2 && articles.length > 0) {
+      const suggestions = [];
+      const searchLower = searchTerm.toLowerCase();
+      
+      // Suggestions basées sur les titres
+      articles.forEach(article => {
+        if (article.title.toLowerCase().includes(searchLower)) {
+          suggestions.push({
+            type: 'title',
+            text: article.title,
+            articleId: article.id
+          });
+        }
+      });
+      
+      // Suggestions basées sur les tags
+      articles.forEach(article => {
+        article.tags?.forEach(tag => {
+          if (tag.toLowerCase().includes(searchLower) && 
+              !suggestions.some(s => s.text === tag)) {
+            suggestions.push({
+              type: 'tag',
+              text: tag
+            });
+        }
+        });
+      });
+      
+      // Suggestions basées sur les catégories
+      const categories = [...new Set(articles.map(a => a.category))];
+      categories.forEach(cat => {
+        if (cat.toLowerCase().includes(searchLower) && 
+            !suggestions.some(s => s.text === cat)) {
+          suggestions.push({
+            type: 'category',
+            text: cat
+          });
+        }
+      });
+      
+      setSearchSuggestions(suggestions.slice(0, 8));
+      setShowSuggestions(suggestions.length > 0);
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [searchTerm, articles]);
   
   // Charger les états depuis localStorage
   useEffect(() => {
@@ -80,7 +144,8 @@ const AIArticlesPage = () => {
         const v = (typeof a.views === 'number' && a.views > 0) ? a.views : (12000 + ((seed * 137) % 6000));
         const l = (typeof a.likes === 'number' && a.likes > 0) ? a.likes : (300 + ((seed * 7) % 250));
         const s = (typeof a.shares === 'number' && a.shares > 0) ? a.shares : (70 + ((seed * 3) % 120));
-        return { ...a, views: v, likes: l, shares: s };
+        const f = (typeof a.favorites === 'number' && a.favorites > 0) ? a.favorites : (140 + ((seed * 5) % 100));
+        return { ...a, views: v, likes: l, shares: s, favorites: f };
       });
 
       setArticles(withCounts);
@@ -105,16 +170,93 @@ const AIArticlesPage = () => {
     loadArticles();
   }, []);
 
+  // Fonction de recherche améliorée - recherche dans tout le contenu
+  const searchInArticle = (article, searchTerms) => {
+    const searchLower = searchTerms.toLowerCase();
+    const titleLower = (article.title || '').toLowerCase();
+    const excerptLower = (article.excerpt || '').toLowerCase();
+    const contentLower = (article.content || '').toLowerCase();
+    const authorLower = (article.authorName || article.author || '').toLowerCase();
+    const categoryLower = (article.category || '').toLowerCase();
+    const tagsLower = (article.tags || []).map(tag => tag.toLowerCase()).join(' ');
+    const metaKeywordsLower = (article.metaKeywords || '').toLowerCase();
+    
+    // Séparer les termes de recherche multiples
+    const terms = searchLower.split(/\s+/).filter(term => term.length > 0);
+    
+    // Calculer un score de pertinence
+    let score = 0;
+    
+    terms.forEach(term => {
+      // Titre = score le plus élevé (priorité maximale)
+      if (titleLower.includes(term)) {
+        score += 10;
+        // Si le terme est au début du titre, bonus
+        if (titleLower.startsWith(term)) {
+          score += 5;
+        }
+      }
+      
+      // Tags = score élevé
+      if (tagsLower.includes(term)) {
+        score += 8;
+      }
+      
+      // Catégorie = score moyen-élevé
+      if (categoryLower.includes(term)) {
+        score += 6;
+      }
+      
+      // Meta keywords = score moyen
+      if (metaKeywordsLower.includes(term)) {
+        score += 5;
+      }
+      
+      // Auteur = score moyen
+      if (authorLower.includes(term)) {
+        score += 4;
+      }
+      
+      // Excerpt = score moyen
+      if (excerptLower.includes(term)) {
+        score += 3;
+      }
+      
+      // Contenu = score faible mais présent
+      if (contentLower.includes(term)) {
+        score += 1;
+      }
+    });
+    
+    // Vérifier si tous les termes sont présents (recherche AND)
+    const allTermsMatch = terms.every(term =>
+      titleLower.includes(term) ||
+      excerptLower.includes(term) ||
+      contentLower.includes(term) ||
+      tagsLower.includes(term) ||
+      categoryLower.includes(term) ||
+      metaKeywordsLower.includes(term) ||
+      authorLower.includes(term)
+    );
+    
+    return { matches: allTermsMatch, score };
+  };
+
   useEffect(() => {
     let filtered = [...articles];
 
-    // Filtrage par recherche
-    if (searchTerm) {
-      filtered = filtered.filter(article =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
+    // Filtrage par recherche amélioré
+    if (debouncedSearchTerm) {
+      const searchResults = filtered
+        .map(article => ({
+          article,
+          ...searchInArticle(article, debouncedSearchTerm)
+        }))
+        .filter(result => result.matches)
+        .sort((a, b) => b.score - a.score) // Trier par score de pertinence
+        .map(result => result.article);
+      
+      filtered = searchResults;
     }
 
     // Filtrage par catégorie
@@ -145,7 +287,9 @@ const AIArticlesPage = () => {
     }
 
     setFilteredArticles(filtered);
-  }, [articles, searchTerm, selectedCategory, sortBy]);
+    // Réinitialiser la page à 1 lors d'un changement de filtre
+    setCurrentPage(1);
+  }, [articles, debouncedSearchTerm, selectedCategory, sortBy]);
 
   // Effet pour la pagination
   useEffect(() => {
@@ -179,7 +323,9 @@ const AIArticlesPage = () => {
   // Fonctions pour les interactions
   const handleLike = (articleId) => {
     const newLikedArticles = new Set(likedArticles);
-    if (newLikedArticles.has(articleId)) {
+    const wasLiked = newLikedArticles.has(articleId);
+    
+    if (wasLiked) {
       newLikedArticles.delete(articleId);
     } else {
       newLikedArticles.add(articleId);
@@ -187,9 +333,32 @@ const AIArticlesPage = () => {
     setLikedArticles(newLikedArticles);
     localStorage.setItem('likedArticles', JSON.stringify([...newLikedArticles]));
     
+    // Mettre à jour les likes de l'article
+    const updatedArticles = articles.map(a => {
+      if (a.id === articleId) {
+        return { 
+          ...a, 
+          likes: Math.max(0, (a.likes || 0) + (wasLiked ? -1 : 1))
+        };
+      }
+      return a;
+    });
+    setArticles(updatedArticles);
+    setFilteredArticles(prevFiltered => {
+      return prevFiltered.map(a => {
+        if (a.id === articleId) {
+          return { 
+            ...a, 
+            likes: Math.max(0, (a.likes || 0) + (wasLiked ? -1 : 1))
+          };
+        }
+        return a;
+      });
+    });
+    
     // Mettre à jour les stats
     if (stats) {
-      const increment = newLikedArticles.has(articleId) ? 1 : -1;
+      const increment = wasLiked ? -1 : 1;
       setStats({
         ...stats,
         totalLikes: Math.max(0, stats.totalLikes + increment)
@@ -199,13 +368,38 @@ const AIArticlesPage = () => {
 
   const handleBookmark = (articleId) => {
     const newBookmarkedArticles = new Set(bookmarkedArticles);
-    if (newBookmarkedArticles.has(articleId)) {
+    const wasBookmarked = newBookmarkedArticles.has(articleId);
+    
+    if (wasBookmarked) {
       newBookmarkedArticles.delete(articleId);
     } else {
       newBookmarkedArticles.add(articleId);
     }
     setBookmarkedArticles(newBookmarkedArticles);
     localStorage.setItem('bookmarkedArticles', JSON.stringify([...newBookmarkedArticles]));
+    
+    // Mettre à jour l'article si nécessaire
+    const updatedArticles = articles.map(a => {
+      if (a.id === articleId) {
+        return { 
+          ...a, 
+          favorites: Math.max(0, (a.favorites || 0) + (wasBookmarked ? -1 : 1))
+        };
+      }
+      return a;
+    });
+    setArticles(updatedArticles);
+    setFilteredArticles(prevFiltered => {
+      return prevFiltered.map(a => {
+        if (a.id === articleId) {
+          return { 
+            ...a, 
+            favorites: Math.max(0, (a.favorites || 0) + (wasBookmarked ? -1 : 1))
+          };
+        }
+        return a;
+      });
+    });
   };
 
   const handleView = (articleId) => {
@@ -235,13 +429,33 @@ const AIArticlesPage = () => {
       const newLikedArticles = new Set();
       setLikedArticles(newLikedArticles);
       localStorage.setItem('likedArticles', '[]');
-      setStats({ ...stats, totalLikes: 0 });
+      
+      // Mettre à jour les likes de tous les articles
+      const updatedArticles = articles.map(a => ({
+        ...a,
+        likes: Math.max(0, (a.likes || 0) - 1)
+      }));
+      setArticles(updatedArticles);
+      
+      // Calculer le total des likes mis à jour
+      const newTotalLikes = updatedArticles.reduce((sum, a) => sum + (a.likes || 0), 0);
+      setStats({ ...stats, totalLikes: newTotalLikes });
     } else {
       // Liker tous
       const newLikedArticles = new Set(allArticleIds);
       setLikedArticles(newLikedArticles);
       localStorage.setItem('likedArticles', JSON.stringify([...newLikedArticles]));
-      setStats({ ...stats, totalLikes: stats.totalLikes + allArticleIds.length });
+      
+      // Mettre à jour les likes de tous les articles
+      const updatedArticles = articles.map(a => ({
+        ...a,
+        likes: (a.likes || 0) + (likedArticles.has(a.id) ? 0 : 1)
+      }));
+      setArticles(updatedArticles);
+      
+      // Calculer le total des likes mis à jour
+      const newTotalLikes = updatedArticles.reduce((sum, a) => sum + (a.likes || 0), 0);
+      setStats({ ...stats, totalLikes: newTotalLikes });
     }
   };
 
@@ -254,10 +468,24 @@ const AIArticlesPage = () => {
       const newBookmarkedArticles = new Set();
       setBookmarkedArticles(newBookmarkedArticles);
       localStorage.setItem('bookmarkedArticles', '[]');
+      
+      // Mettre à jour les favoris de tous les articles
+      const updatedArticles = articles.map(a => ({
+        ...a,
+        favorites: Math.max(0, (a.favorites || 0) - 1)
+      }));
+      setArticles(updatedArticles);
     } else {
       const newBookmarkedArticles = new Set(allArticleIds);
       setBookmarkedArticles(newBookmarkedArticles);
       localStorage.setItem('bookmarkedArticles', JSON.stringify([...newBookmarkedArticles]));
+      
+      // Mettre à jour les favoris de tous les articles
+      const updatedArticles = articles.map(a => ({
+        ...a,
+        favorites: (a.favorites || 0) + (bookmarkedArticles.has(a.id) ? 0 : 1)
+      }));
+      setArticles(updatedArticles);
     }
   };
 
@@ -281,39 +509,51 @@ const AIArticlesPage = () => {
   const handleShare = async (article) => {
     if (!article) {
       // Partage de toute la page
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: 'Articles Intelligence Artificielle',
-            text: 'Découvrez notre collection d\'articles experts sur l\'IA',
-            url: window.location.href,
-          });
-        } catch (err) {
-          console.log('Erreur lors du partage:', err);
-        }
-      } else {
-        navigator.clipboard.writeText(window.location.href);
-        alert('Lien copié dans le presse-papiers !');
+      await shareLink({
+        title: 'Articles Intelligence Artificielle',
+        text: 'Découvrez notre collection d\'articles experts sur l\'IA'
+      });
+      
+      // Mettre à jour les stats globales
+      if (stats) {
+        setStats({
+          ...stats,
+          totalShares: (stats.totalShares || 0) + 1
+        });
       }
       return;
     }
     
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: article.title,
-          text: article.excerpt,
-          url: `${window.location.origin}/ai-article/${article.slug}`,
-        });
-      } catch (err) {
-        console.log('Erreur lors du partage:', err);
+    // Mettre à jour les partages de l'article
+    const updatedArticles = articles.map(a => {
+      if (a.id === article.id) {
+        return { ...a, shares: (a.shares || 0) + 1 };
       }
-    } else {
-      // Fallback: copier l'URL dans le presse-papiers
-      const url = `${window.location.origin}/ai-article/${article.slug}`;
-      navigator.clipboard.writeText(url);
-      alert('Lien copié dans le presse-papiers !');
+      return a;
+    });
+    setArticles(updatedArticles);
+    setFilteredArticles(prevFiltered => {
+      return prevFiltered.map(a => {
+        if (a.id === article.id) {
+          return { ...a, shares: (a.shares || 0) + 1 };
+        }
+        return a;
+      });
+    });
+    
+    // Mettre à jour les stats globales
+    if (stats) {
+      setStats({
+        ...stats,
+        totalShares: (stats.totalShares || 0) + 1
+      });
     }
+    
+    await shareLink({
+      title: article.title,
+      text: article.excerpt,
+      url: `${window.location.origin}/ai-article/${article.slug}`
+    });
   };
 
 
@@ -358,67 +598,136 @@ const AIArticlesPage = () => {
               <RealtimeClock showSeconds={true} showDate={true} />
             </div>
             
-            {stats && (
-              <div className="stats-grid">
-                <button 
-                  className={`stat-item clickable ${viewedArticles.size === articles.length ? 'active' : ''}`}
-                  onClick={handleHeaderView}
-                  title="Marquer tous les articles comme vus"
-                >
-                  <Eye size={24} />
-                  <div className="stat-content">
-                    <span className="stat-value">{formatNumber(stats.totalViews)}</span>
-                    <span className="stat-label">vues</span>
-                  </div>
-                </button>
-                <button 
-                  className={`stat-item clickable ${likedArticles.size === articles.length ? 'active' : ''}`}
-                  onClick={handleHeaderLike}
-                  title="Aimer tous les articles"
-                >
-                  <Heart size={24} className={likedArticles.size === articles.length ? 'liked' : ''} fill={likedArticles.size === articles.length ? 'currentColor' : 'none'} />
-                  <div className="stat-content">
-                    <span className="stat-value">{formatNumber(stats.totalLikes)}</span>
-                    <span className="stat-label">likes</span>
-                  </div>
-                </button>
-                <button 
-                  className={`stat-item clickable ${bookmarkedArticles.size === articles.length ? 'active' : ''}`}
-                  onClick={handleHeaderBookmark}
-                  title="Sauvegarder tous les articles"
-                >
-                  <Bookmark size={24} className={bookmarkedArticles.size === articles.length ? 'bookmarked' : ''} fill={bookmarkedArticles.size === articles.length ? 'currentColor' : 'none'} />
-                  <div className="stat-content">
-                    <span className="stat-value">{formatNumber(bookmarkedArticles.size)}</span>
-                    <span className="stat-label">favoris</span>
-                  </div>
-                </button>
-                <button 
-                  className="stat-item clickable"
-                  onClick={() => handleShare(null)}
-                  title="Partager cette page"
-                >
-                  <Share2 size={24} />
-                  <div className="stat-content">
-                    <span className="stat-value">{formatNumber(stats.totalShares || 0)}</span>
-                    <span className="stat-label">partages</span>
-                  </div>
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
         {/* Filtres et recherche */}
         <div className="articles-filters" id="articles-filters-container">
-          <div className="search-box" id="search-box-container">
+          <div className="search-box" id="search-box-container" style={{ position: 'relative' }}>
+            <Search size={20} className="search-icon-input" style={{ 
+              position: 'absolute', 
+              left: '16px', 
+              top: '50%', 
+              transform: 'translateY(-50%)',
+              color: '#64748b',
+              pointerEvents: 'none',
+              zIndex: 1
+            }} />
             <input
               type="text"
               id="search-input"
-              placeholder="Rechercher dans les articles IA..."
+              placeholder="Rechercher dans les articles (titre, contenu, tags, auteur, catégorie)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              onFocus={() => setShowSuggestions(searchSuggestions.length > 0)}
+              onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+              style={{
+                paddingLeft: '48px',
+                paddingRight: searchTerm ? '48px' : '16px',
+                width: '100%',
+                fontSize: '1rem',
+                border: '2px solid #e2e8f0',
+                borderRadius: '12px',
+                paddingTop: '14px',
+                paddingBottom: '14px',
+                transition: 'all 0.3s ease',
+                background: '#ffffff'
+              }}
             />
+            {searchTerm && (
+              <button
+                onClick={() => {
+                  setSearchTerm('');
+                  setSearchSuggestions([]);
+                }}
+                style={{
+                  position: 'absolute',
+                  right: '12px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#64748b',
+                  zIndex: 1
+                }}
+                title="Effacer la recherche"
+              >
+                <X size={18} />
+              </button>
+            )}
+            
+            {/* Suggestions de recherche */}
+            {showSuggestions && searchSuggestions.length > 0 && (
+              <div className="search-suggestions" style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                background: '#ffffff',
+                border: '1px solid #e2e8f0',
+                borderRadius: '12px',
+                marginTop: '8px',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                zIndex: 1000,
+                maxHeight: '300px',
+                overflowY: 'auto'
+              }}>
+                {searchSuggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setSearchTerm(suggestion.text);
+                      setShowSuggestions(false);
+                    }}
+                    style={{
+                      padding: '12px 16px',
+                      cursor: 'pointer',
+                      borderBottom: index < searchSuggestions.length - 1 ? '1px solid #f1f5f9' : 'none',
+                      transition: 'background 0.2s',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#f8fafc'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#ffffff'}
+                  >
+                    {suggestion.type === 'title' && <BookOpen size={16} style={{ color: '#667eea' }} />}
+                    {suggestion.type === 'tag' && <Tag size={16} style={{ color: '#8b5cf6' }} />}
+                    {suggestion.type === 'category' && <Star size={16} style={{ color: '#10b981' }} />}
+                    <span style={{ 
+                      color: '#1e293b',
+                      fontSize: '0.95rem',
+                      fontWeight: suggestion.type === 'title' ? 600 : 500
+                    }}>
+                      {suggestion.text}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Affichage du nombre de résultats */}
+            {debouncedSearchTerm && (
+              <div style={{
+                marginTop: '8px',
+                fontSize: '0.875rem',
+                color: '#64748b',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <Search size={14} />
+                <span>
+                  {filteredArticles.length} {filteredArticles.length === 1 ? 'résultat trouvé' : 'résultats trouvés'}
+                  {debouncedSearchTerm && ` pour "${debouncedSearchTerm}"`}
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="filters-row" id="filters-row-container">
@@ -507,10 +816,6 @@ const AIArticlesPage = () => {
                 <div className="article-meta" id={`article-meta-${article.id}`}>
                   <span className="category-tag" id={`category-tag-${article.id}`}>{article.category}</span>
                   <div className="meta-info" id={`meta-info-${article.id}`}>
-                    <span className="meta-item" id={`meta-date-${article.id}`}>
-                      <ArticleDate date={article.publishDate || article.date} showFullDate={true} showRelative={true} />
-                    </span>
-                    {/* Removed read time to avoid unrealistic minutes */}
                     <span className="meta-item" id={`meta-author-${article.id}`}>
                       <User size={14} />
                       Newtiv Team
@@ -550,7 +855,7 @@ const AIArticlesPage = () => {
                       id={`stat-like-${article.id}`}
                     >
                       <Heart size={16} fill={likedArticles.has(article.id) ? 'currentColor' : 'none'} />
-                      {formatNumber(article.likes + (likedArticles.has(article.id) ? 1 : 0))}
+                      {formatNumber(article.likes)}
                     </button>
                     <button 
                       className={`stat-btn ${bookmarkedArticles.has(article.id) ? 'bookmarked' : ''}`} 

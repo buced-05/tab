@@ -17,6 +17,10 @@
     "seo:generate": "npm run generate-sitemaps",
     "git:clean": "node scripts/git/clean-generated-files.js",
     "git:pre-merge": "npm run git:clean",
+    "git:pull-safe": "bash scripts/vps/git-pull-safe.sh",
+    "git:update-vps": "bash scripts/vps/git-update-vps.sh",
+    "vps:start": "bash scripts/vps/start-all-services.sh",
+    "test:ga": "bash scripts/test-google-analytics.sh",
     "prepull": "npm run git:clean",
     "premerge": "npm run git:clean"
   },

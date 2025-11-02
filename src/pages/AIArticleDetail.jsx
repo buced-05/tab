@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
-import { 
-  ArrowLeft, 
-  Calendar, 
-  Clock, 
-  Eye, 
-  Heart, 
-  Share2, 
-  User, 
+import {
+  ArrowLeft,
+  Calendar,
+  Clock,
+  Eye,
+  Heart,
+  Share2,
+  User,
   Tag,
   Star,
   BookOpen,
@@ -22,10 +22,11 @@ import {
   List,
   ChevronRight
 } from 'lucide-react';
-import { getPremiumAIArticleBySlug, getAllPremiumAIArticles } from '../data/premium-ai-articles';
+import { getPremiumAIArticleBySlug, getAllPremiumAIArticles, getAllPremiumAIArticlesWithDynamicDates } from '../data/premium-ai-articles';
 import { formatShortDate } from '../utils/dateFormatter';
 import { getAllProducts } from '../utils/sampleData';
 import { translateArticle } from '../utils/articleTranslations';
+import { shareLink, getLinkText } from '../utils/shareUtils';
 import ArticleDate from '../components/ArticleDate';
 import '../styles/ai-article-detail.css';
 import '../styles/loading.css';
@@ -45,11 +46,86 @@ const AIArticleDetail = () => {
   const [showTOC, setShowTOC] = useState(true);
 
   useEffect(() => {
-    try {
-      const allArticles = getAllPremiumAIArticles();
-      if (allArticles && Array.isArray(allArticles) && allArticles.length > 0) {
-        const foundArticle = allArticles.find(art => art.slug === slug) || allArticles.find(art => art.id === slug);
+    const loadArticle = async () => {
+      setLoading(true);
+      try {
+        // Normaliser le slug (décode URL si nécessaire)
+        const normalizedSlug = slug ? decodeURIComponent(slug) : null;
+
+        // Logger le slug reçu pour debug
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[AIArticleDetail] Chargement de l\'article avec slug:', {
+            original: slug,
+            normalized: normalizedSlug
+          });
+        }
+
+        if (!normalizedSlug) {
+          console.warn('[AIArticleDetail] Slug manquant ou invalide');
+          setArticle(null);
+          setLoading(false);
+          return;
+        }
+
+        // Méthode 1: Utiliser getPremiumAIArticleBySlug directement
+        let foundArticle = getPremiumAIArticleBySlug(normalizedSlug);
+
+        // Méthode 2: Si pas trouvé, utiliser getAllPremiumAIArticlesWithDynamicDates
+        if (!foundArticle) {
+          const allArticles = getAllPremiumAIArticlesWithDynamicDates();
+
+          if (process.env.NODE_ENV === 'development' && allArticles.length > 0) {
+            console.log('[AIArticleDetail] Recherche dans', allArticles.length, 'articles');
+            // Logger quelques slugs pour debug
+            const sampleSlugs = allArticles.slice(0, 5).map(a => ({ id: a.id, slug: a.slug }));
+            console.log('[AIArticleDetail] Exemples de slugs:', sampleSlugs);
+          }
+
+          // Recherche exacte par slug
+          foundArticle = allArticles.find(art => art.slug === normalizedSlug);
+
+          // Si pas trouvé, essayer par ID
+          if (!foundArticle) {
+            foundArticle = allArticles.find(art => art.id === normalizedSlug);
+          }
+
+          // Si pas trouvé, essayer insensible à la casse
+          if (!foundArticle) {
+            foundArticle = allArticles.find(art =>
+              art.slug?.toLowerCase() === normalizedSlug?.toLowerCase()
+            );
+          }
+
+          // Si pas trouvé, essayer une correspondance partielle (pour les slugs similaires)
+          if (!foundArticle) {
+            foundArticle = allArticles.find(art =>
+              art.slug && normalizedSlug && (
+                art.slug.includes(normalizedSlug.substring(0, Math.min(20, normalizedSlug.length))) ||
+                normalizedSlug.includes(art.slug.substring(0, Math.min(20, art.slug.length)))
+              )
+            );
+          }
+        }
+
+        // Méthode 3: Fallback avec getAllPremiumAIArticles (sans dates dynamiques)
+        if (!foundArticle) {
+          const allArticles = getAllPremiumAIArticles();
+          foundArticle = allArticles.find(art =>
+            art.slug === normalizedSlug ||
+            art.slug?.toLowerCase() === normalizedSlug?.toLowerCase() ||
+            art.id === normalizedSlug
+          );
+        }
+
         if (foundArticle) {
+          if (process.env.NODE_ENV === 'development') {
+            console.log('[AIArticleDetail] Article trouvé:', {
+              id: foundArticle.id,
+              slug: foundArticle.slug,
+              title: foundArticle.title?.substring(0, 50)
+            });
+          }
+
           const translatedArticle = translateArticle(foundArticle, t);
           const defaults = { views: 12450, likes: 320, shares: 75, favorites: 140 };
           const withDefaults = {
@@ -62,15 +138,57 @@ const AIArticleDetail = () => {
           setArticle(withDefaults);
           const toc = generateTableOfContents(foundArticle.content);
           setTableOfContents(toc);
+        } else {
+          // Article non trouvé - logger pour debug
+          console.warn('[AIArticleDetail] Article non trouvé pour slug:', {
+            original: slug,
+            normalized: normalizedSlug
+          });
+          const allArticles = getAllPremiumAIArticlesWithDynamicDates();
+          console.log('[AIArticleDetail] Articles disponibles:', allArticles.length);
+          if (allArticles.length > 0) {
+            console.log('[AIArticleDetail] Premiers slugs disponibles:', allArticles.slice(0, 10).map(a => ({
+              id: a.id,
+              slug: a.slug,
+              match: a.slug === normalizedSlug || a.slug?.toLowerCase() === normalizedSlug?.toLowerCase()
+            })));
+
+            // Chercher des slugs similaires
+            const similarSlugs = allArticles
+              .filter(a => a.slug && normalizedSlug && (
+                a.slug.includes(normalizedSlug.substring(0, 10)) ||
+                normalizedSlug.includes(a.slug.substring(0, 10))
+              ))
+              .map(a => a.slug);
+
+            if (similarSlugs.length > 0) {
+              console.log('[AIArticleDetail] Slugs similaires trouvés:', similarSlugs);
+            }
+          }
+          setArticle(null);
         }
-      } else {
-        // no articles
+      } catch (error) {
+        console.error('[AIArticleDetail] Erreur lors du chargement de l\'article:', error);
+        console.error('[AIArticleDetail] Stack trace:', error.stack);
+        setArticle(null);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      // load error
+    };
+
+    // Charger l'article uniquement si slug est défini
+    if (slug) {
+      loadArticle();
+    } else {
+      console.warn('[AIArticleDetail] Slug manquant, redirection vers /ai-articles');
+      setLoading(false);
+      setArticle(null);
+      // Rediriger vers la page des articles si pas de slug
+      setTimeout(() => {
+        navigate('/ai-articles', { replace: true });
+      }, 100);
     }
-    setLoading(false);
-  }, [slug, t]);
+  }, [slug, t, navigate]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,35 +216,36 @@ const AIArticleDetail = () => {
           const scrollTop = window.pageYOffset;
           const windowHeight = window.innerHeight;
           const documentHeight = document.documentElement.scrollHeight;
-          
+
           // Calculer la position de la table des matières basée sur le scroll
           const maxScroll = documentHeight - windowHeight;
           const scrollProgress = Math.min(scrollTop / maxScroll, 1);
-          
+
           // Appliquer un mouvement progressif subtil avec effet de parallaxe
           const translateY = scrollProgress * 8; // Mouvement de 8px maximum
           const scale = 1 - (scrollProgress * 0.008); // Légère réduction d'échelle
           const opacity = 1 - (scrollProgress * 0.02); // Légère réduction d'opacité
           const blur = scrollProgress * 0.2; // Effet de flou progressif
           const rotate = scrollProgress * 0.3; // Rotation subtile
-          
+
           // Effet de couleur progressif
           const hue = 240 + (scrollProgress * 20); // Changement de teinte
           const saturation = 100 - (scrollProgress * 10); // Réduction de saturation
-          
+
           tocElement.style.transform = `translateY(${translateY}px) scale(${scale}) rotate(${rotate}deg)`;
           tocElement.style.opacity = Math.max(opacity, 0.98);
           tocElement.style.filter = `blur(${blur}px) hue-rotate(${hue}deg) saturate(${saturation}%)`;
-          
+
           // Mettre à jour la section active
           handleScroll();
         }
       };
-      
+
       window.addEventListener('scroll', handleTOCScroll);
       return () => window.removeEventListener('scroll', handleTOCScroll);
     }
   }, [tableOfContents]);
+
 
   const handleLike = () => {
     setIsLiked(!isLiked);
@@ -184,7 +303,7 @@ const AIArticleDetail = () => {
   const handleScroll = () => {
     const sections = tableOfContents.map(item => document.getElementById(item.id)).filter(Boolean);
     const scrollPosition = window.scrollY + 100;
-    
+
     for (let i = sections.length - 1; i >= 0; i--) {
       const section = sections[i];
       if (section.offsetTop <= scrollPosition) {
@@ -198,8 +317,8 @@ const AIArticleDetail = () => {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth', 
+      element.scrollIntoView({
+        behavior: 'smooth',
         block: 'start',
         inline: 'nearest'
       });
@@ -210,9 +329,28 @@ const AIArticleDetail = () => {
   const convertMarkdownToHTML = (markdown) => {
     if (!markdown) return '';
 
-    // Si HTML déjà présent, retourner tel quel
-    if (/<\s*(h[1-6]|p|img|ul|ol|li|div|br|strong|em|a)\b/i.test(markdown)) {
+    // Si HTML déjà présent, on doit quand même traiter les images markdown qui pourraient être mélangées
+    const hasHTML = /<\s*(h[1-6]|p|img|ul|ol|li|div|br|strong|em|a)\b/i.test(markdown);
+
+    // Si c'est du HTML pur sans markdown, retourner tel quel
+    if (hasHTML && !markdown.includes('![')) {
       return markdown;
+    }
+
+    // Si HTML avec markdown (images), traiter le markdown d'abord
+    if (hasHTML) {
+      // Convertir les images markdown en HTML même dans du contenu HTML
+      markdown = markdown.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (match, alt, url) => {
+        const caption = alt && alt.trim() ? alt.trim() : 'Image de l\'article';
+        return `<figure class="article-image-wrapper" style="margin: 40px 0; text-align: center; width: 100%; display: block; visibility: visible; opacity: 1;">
+          <img src="${url}" alt="${caption}" loading="lazy" decoding="async" style="max-width: 100%; max-height: 800px; width: auto; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: block; margin: 0 auto; visibility: visible; opacity: 1; object-fit: contain;" />
+          <figcaption style="margin-top: 12px; font-size: 0.9rem; color: #64748b; font-style: italic; line-height: 1.5;">${caption}</figcaption>
+        </figure>`;
+      });
+      // Si après conversion il n'y a plus de markdown pur, retourner
+      if (!/^#\s+/.test(markdown) && !/^[-*]\s+/.test(markdown)) {
+        return markdown;
+      }
     }
 
     // Utiliser un parseur simple basé ligne par ligne
@@ -266,9 +404,24 @@ const AIArticleDetail = () => {
       const h6 = !h1 && !h2 && !h3 && !h4 && !h5 && line.match(/^######\s+(.*)$/);
       if (h1 || h2 || h3 || h4 || h5 || h6) {
         closeListIfOpen();
-        const title = (h1||h2||h3||h4||h5||h6)[1];
-        const level = h1?1:h2?2:h3?3:h4?4:h5?5:6;
+        const title = (h1 || h2 || h3 || h4 || h5 || h6)[1];
+        const level = h1 ? 1 : h2 ? 2 : h3 ? 3 : h4 ? 4 : h5 ? 5 : 6;
         htmlParts.push(renderHeading(level, renderInline(title)));
+        continue;
+      }
+
+      // Images markdown sur une ligne seule ![alt](url) - PRIORITÉ: Détecter AVANT les autres patterns
+      const imgMatch = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+      if (imgMatch) {
+        closeListIfOpen();
+        const alt = imgMatch[1] || 'Image de l\'article';
+        const caption = alt.trim() || 'Image de l\'article';
+        const url = imgMatch[2];
+        // Créer un wrapper avec des styles pour garantir la visibilité et bonne résolution + légende
+        htmlParts.push(`<figure class="article-image-wrapper" style="margin: 40px 0; text-align: center; width: 100%; display: block; visibility: visible; opacity: 1;">
+          <img src="${url}" alt="${caption}" loading="lazy" decoding="async" style="max-width: 100%; max-height: 800px; width: auto; height: auto; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); display: block; margin: 0 auto; visibility: visible; opacity: 1; object-fit: contain;" />
+          <figcaption style="margin-top: 12px; font-size: 0.9rem; color: #64748b; font-style: italic; line-height: 1.5;">${caption}</figcaption>
+        </figure>`);
         continue;
       }
 
@@ -365,7 +518,7 @@ const AIArticleDetail = () => {
       );
     };
 
-    const buildGrid = (items, positionClass, title='À découvrir aussi') => {
+    const buildGrid = (items, positionClass, title = 'À découvrir aussi') => {
       const cards = items.map(p => {
         const img = p?.images?.[0]?.url || '';
         const alt = p?.images?.[0]?.alt || p?.name || 'Produit';
@@ -377,7 +530,7 @@ const AIArticleDetail = () => {
             </div>
           </div>`
         );
-      }).join('');
+      }).filter(Boolean).join('');
       return `\n<div class="recommended-product-${positionClass}" style="margin: 1.5rem 0;">
         <h3 style="margin:0 0 10px;">${title}</h3>
         <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap:12px;">
@@ -403,6 +556,7 @@ const AIArticleDetail = () => {
         return base;
       })
       .join('');
+
     return rebuilt;
   };
 
@@ -443,21 +597,10 @@ const AIArticleDetail = () => {
   };
 
   const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: article.title,
-          text: article.excerpt,
-          url: window.location.href,
-        });
-      } catch (err) {
-        console.log('Erreur lors du partage:', err);
-      }
-    } else {
-      // Fallback: copier l'URL dans le presse-papiers
-      navigator.clipboard.writeText(window.location.href);
-      alert('Lien copié dans le presse-papiers !');
-    }
+    await shareLink({
+      title: article.title,
+      text: article.excerpt
+    });
   };
 
   const handlePrint = () => {
@@ -466,31 +609,16 @@ const AIArticleDetail = () => {
 
   const handleDownload = async () => {
     try {
-      // Attendre que html2pdf.js soit chargé si nécessaire
-      let retries = 0;
-      while (!window.html2pdf && retries < 10) {
-        await new Promise(resolve => setTimeout(resolve, 200));
-        retries++;
-      }
-      
       // Créer le contenu HTML pour le PDF - récupérer tout le contenu de l'article
       const articleContent = document.querySelector('.article-text');
       if (!articleContent) {
         console.error('Contenu de l\'article non trouvé');
-        alert('Erreur: Impossible de récupérer le contenu de l\'article. Veuillez réessayer.');
         return;
       }
-      
-      // Vérifier que le contenu n'est pas vide
-      if (!articleContent.innerHTML || articleContent.innerHTML.trim().length < 50) {
-        console.error('Contenu de l\'article vide ou trop court:', articleContent.innerHTML);
-        alert('Erreur: Le contenu de l\'article semble vide. Veuillez réessayer.');
-        return;
-      }
-      
+
       // S'assurer que tout le contenu est récupéré, y compris les éléments cachés
       const fullContent = articleContent.cloneNode(true);
-      
+
       // Rendre tous les liens cliquables dans le contenu cloné
       const allLinksInContent = fullContent.querySelectorAll('a');
       allLinksInContent.forEach(link => {
@@ -507,16 +635,13 @@ const AIArticleDetail = () => {
       const allLinks = tempDiv.querySelectorAll('a');
       const productLinks = [];
       const amazonLink = 'http://amzn.to/47uWNjT';
-      
+
       allLinks.forEach(link => {
         let href = link.getAttribute('href');
-        // Convertir les liens relatifs en absolus pour le PDF
-        if (href && href.startsWith('/')) {
-          href = window.location.origin + href;
-          link.setAttribute('href', href);
-        }
+        if (!href) return;
+
         const text = link.textContent.trim();
-        if (href && (href.includes('amazon') || href.includes('amzn.to') || href.includes('/products') || href.includes('http'))) {
+        if (href && (href.includes('amazon') || href.includes('amzn.to') || href.includes('/products'))) {
           productLinks.push({ href, text: text || href });
         }
       });
@@ -524,9 +649,9 @@ const AIArticleDetail = () => {
       // Ajouter le lien Amazon principal s'il n'existe pas déjà
       const hasMainAmazonLink = productLinks.some(link => link.href === amazonLink);
       if (!hasMainAmazonLink) {
-        productLinks.unshift({ 
-          href: amazonLink, 
-          text: '🔗 Découvrir les produits Amazon recommandés' 
+        productLinks.unshift({
+          href: amazonLink,
+          text: '🔗 Découvrir les produits Amazon recommandés'
         });
       }
 
@@ -535,20 +660,23 @@ const AIArticleDetail = () => {
         <div class="product-links-section">
           <h2>🔗 Liens Produits et Références</h2>
           <div class="product-links-grid">
-            ${productLinks.map((link, index) => `
+            ${productLinks.map((link, index) => {
+        // Utiliser l'URL EXACTEMENT telle qu'elle est fournie, sans AUCUNE modification
+        const href = link.href; // Garder l'URL exacte sans modification
+        return `
               <div class="product-link-item">
-                <a href="${link.href}" target="_blank" rel="noopener noreferrer" class="product-link-btn">
+                <a href="${href}" target="_blank" rel="noopener noreferrer" class="product-link-btn" data-product-link="true">
                   <span class="link-number">${index + 1}</span>
                   <span class="link-text">${link.text}</span>
-                  <span class="link-url">${link.href}</span>
                 </a>
               </div>
-            `).join('')}
+            `;
+      }).join('')}
           </div>
           <div class="amazon-cta">
             <h3>🛒 Visitez Amazon pour découvrir nos produits recommandés</h3>
             <a href="${amazonLink}" target="_blank" rel="noopener noreferrer" class="amazon-link-main">
-              Accéder à Amazon → ${amazonLink}
+              Accéder à Amazon →
             </a>
             <p class="cta-description">En cliquant sur ce lien, vous serez redirigé vers Amazon où vous pourrez découvrir une sélection de produits soigneusement choisis et recommandés.</p>
           </div>
@@ -559,7 +687,7 @@ const AIArticleDetail = () => {
           <div class="amazon-cta">
             <h3>🛒 Visitez Amazon pour découvrir nos produits recommandés</h3>
             <a href="${amazonLink}" target="_blank" rel="noopener noreferrer" class="amazon-link-main">
-              Accéder à Amazon → ${amazonLink}
+              Accéder à Amazon →
             </a>
             <p class="cta-description">En cliquant sur ce lien, vous serez redirigé vers Amazon où vous pourrez découvrir une sélection de produits soigneusement choisis et recommandés.</p>
           </div>
@@ -582,10 +710,32 @@ const AIArticleDetail = () => {
             }
             /* Ensure links are visible and clickable in the PDF */
             a[href] {
-              color: #1a0dab !important;
+              color: #2563eb !important;
               text-decoration: underline !important;
               pointer-events: auto !important;
-              position: relative;
+              position: static !important;
+              display: inline !important;
+              cursor: pointer !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+            }
+            
+            /* Liens produits - FORCER block display pour meilleure détection */
+            a.product-link-btn,
+            a[data-product-link] {
+              display: block !important;
+              padding: 18px 20px !important;
+              text-decoration: underline !important;
+              border: 2px solid #2563eb !important;
+              color: #2563eb !important;
+              background: #ffffff !important;
+              border-radius: 8px !important;
+              margin: 10px 0 !important;
+              cursor: pointer !important;
+              pointer-events: auto !important;
+              position: static !important;
+              visibility: visible !important;
+              opacity: 1 !important;
             }
             /* Neutralize any fixed/sticky overlays that could cover links */
             [style*="position:fixed"], .fixed, .sticky, [style*="position: sticky"] {
@@ -639,6 +789,8 @@ const AIArticleDetail = () => {
               color: #111827;
               border-bottom: 3px solid #2563eb; 
               padding-bottom: 16px; 
+              page-break-after: avoid;
+              page-break-inside: avoid;
             }
             
             h2 { 
@@ -647,24 +799,164 @@ const AIArticleDetail = () => {
               margin-top: 42px;
               border-bottom: 2px solid #e5e7eb;
               padding-bottom: 12px;
+              page-break-after: avoid;
+              page-break-inside: avoid;
             }
             
             h3 { 
               font-size: 1.5em; 
               color: #334155;
               margin-top: 30px;
+              page-break-after: avoid;
+              page-break-inside: avoid;
             }
             p {
               font-size: 1.1em;
               margin-bottom: 20px;
               text-align: justify;
               color: #000;
+              font-weight: normal;
+              page-break-inside: avoid;
+              orphans: 3;
+              widows: 3;
             }
-            img { max-width: 100%; height: auto; border-radius: 10px; }
+            
+            /* Éviter les coupures de phrases aux changements de page */
+            p:not(:last-child) {
+              page-break-after: avoid;
+            }
+            img { 
+              max-width: 100%; 
+              max-height: 800px;
+              width: auto;
+              height: auto; 
+              border-radius: 10px;
+              page-break-inside: avoid !important;
+              page-break-after: avoid !important;
+              page-break-before: avoid !important;
+              display: block;
+              margin: 20px auto;
+              object-fit: contain;
+              image-rendering: -webkit-optimize-contrast;
+              image-rendering: crisp-edges;
+            }
+            
+            /* Éviter la coupure des images aux changements de page */
+            figure.article-image-wrapper,
+            .article-image-wrapper,
+            .article-image-wrapper img {
+              page-break-inside: avoid !important;
+              page-break-after: avoid !important;
+              page-break-before: avoid !important;
+              break-inside: avoid !important;
+              max-height: 800px !important;
+              object-fit: contain !important;
+            }
+            
+            /* Styles pour les légendes d'images */
+            figure.article-image-wrapper figcaption,
+            .article-image-wrapper figcaption {
+              margin-top: 12px !important;
+              font-size: 0.9rem !important;
+              color: #64748b !important;
+              font-style: italic !important;
+              line-height: 1.5 !important;
+              text-align: center !important;
+              page-break-inside: avoid !important;
+              break-inside: avoid !important;
+            }
             blockquote { border-left: 4px solid #e5e7eb; padding: 10px 16px; background: #f8fafc; color: #334155; }
             code, pre { background: #0f172a; color: #e2e8f0; border-radius: 6px; padding: 2px 6px; }
             table { width: 100%; border-collapse: collapse; margin: 14px 0; }
             th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
+            
+            /* Styles pour les listes - NETTES ET VISIBLES SUR FOND BLANC - MÊME COULEUR QUE LE TEXTE */
+            ul, ol {
+              color: #000000 !important;
+              font-weight: normal !important;
+              font-size: 1.1em !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              margin: 20px 0 !important;
+              padding-left: 35px !important;
+              list-style-position: outside !important;
+              list-style-color: #000000 !important;
+              line-height: 1.8 !important;
+              page-break-inside: avoid !important;
+              orphans: 3 !important;
+              widows: 3 !important;
+              background: transparent !important;
+              border: none !important;
+              filter: none !important;
+              text-shadow: none !important;
+              -webkit-text-fill-color: #000000 !important;
+            }
+            
+            ul {
+              list-style-type: disc !important;
+              list-style-color: #000000 !important;
+            }
+            
+            ol {
+              list-style-type: decimal !important;
+              list-style-color: #000000 !important;
+            }
+            
+            li {
+              color: #000000 !important;
+              font-weight: normal !important;
+              font-size: 1.1em !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              margin: 8px 0 !important;
+              padding-left: 8px !important;
+              padding-right: 8px !important;
+              line-height: 1.8 !important;
+              display: list-item !important;
+              page-break-inside: avoid !important;
+              orphans: 3 !important;
+              widows: 3 !important;
+              background: transparent !important;
+              border: none !important;
+              filter: none !important;
+              text-shadow: none !important;
+              -webkit-text-fill-color: #000000 !important;
+              list-style-color: #000000 !important;
+            }
+            
+            /* Forcer la visibilité des puces et numéros - NOIRS ET NETTS */
+            li::marker {
+              color: #000000 !important;
+              font-weight: normal !important;
+              opacity: 1 !important;
+              visibility: visible !important;
+              filter: none !important;
+            }
+            
+            /* Forcer la couleur noire pour tout le texte des listes */
+            ul *:not(a), ol *:not(a) {
+              color: #000000 !important;
+            }
+            
+            ul li, ol li {
+              color: #000000 !important;
+              -webkit-text-fill-color: #000000 !important;
+            }
+            
+            /* Liens dans les produits recommandés - 100% cliquables */
+            .recommended-product-top a,
+            .recommended-product-middle a,
+            .recommended-product-bottom a,
+            [class*="recommended-product"] a {
+              color: #2563eb !important;
+              text-decoration: underline !important;
+              cursor: pointer !important;
+              display: inline-block !important;
+              pointer-events: auto !important;
+              position: static !important;
+              visibility: visible !important;
+              opacity: 1 !important;
+            }
             .product-link {
               color: #111827;
               text-decoration: underline;
@@ -727,38 +1019,45 @@ const AIArticleDetail = () => {
             }
             
             .product-link-btn {
-              display: flex;
-              align-items: center;
-              gap: 15px;
+              display: block !important;
               padding: 18px 20px;
-              text-decoration: none !important;
-              border: none !important;
-              color: #1a1a1a !important;
+              text-decoration: underline !important;
+              border: 2px solid #2563eb !important;
+              color: #2563eb !important;
+              background: #ffffff !important;
+              border-radius: 8px;
+              cursor: pointer !important;
+              pointer-events: auto !important;
+              position: relative !important;
+            }
+            
+            .product-link-btn:hover {
+              background: #eff6ff !important;
+              color: #1d4ed8 !important;
             }
             
             .link-number {
+              display: inline-block;
               background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
               color: white;
               width: 35px;
               height: 35px;
               border-radius: 50%;
-              display: flex;
-              align-items: center;
-              justify-content: center;
+              text-align: center;
+              line-height: 35px;
               font-weight: 700;
-              flex-shrink: 0;
+              margin-right: 12px;
+              vertical-align: middle;
             }
             
             .link-text {
-              flex: 1;
+              display: inline;
               font-weight: 600;
+              vertical-align: middle;
             }
             
             .link-url {
-              font-size: 0.85em;
-              color: #667eea;
-              font-family: 'Courier New', monospace;
-              word-break: break-all;
+              display: none !important;
             }
             
             .amazon-cta {
@@ -847,13 +1146,13 @@ const AIArticleDetail = () => {
             <h1>${article.title}</h1>
             <div class="article-meta">
               <p><strong>📝 Auteur:</strong> ${article.author || 'Équipe AllAdsMarket'}</p>
-              <p><strong>📅 Date de publication:</strong> ${article.date ? new Date(article.date).toLocaleDateString('fr-FR', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              }) : new Date().toLocaleDateString('fr-FR')}</p>
+              <p><strong>📅 Date de publication:</strong> ${article.date ? new Date(article.date).toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }) : new Date().toLocaleDateString('fr-FR')}</p>
               <p><strong>⏱️ Temps de lecture:</strong> ${article.readTime || '15 min'}</p>
-              <p><strong>🌐 Source:</strong> <a href="${window.location.href}">${window.location.href}</a></p>
+              <p><strong>🌐 Source:</strong> <a href="${window.location.href}">AllAdsMarket.com</a></p>
               ${article.category ? `<p><strong>📂 Catégorie:</strong> ${article.category}</p>` : ''}
             </div>
           </div>
@@ -867,15 +1166,15 @@ const AIArticleDetail = () => {
           <div style="margin-top: 50px; padding-top: 30px; border-top: 3px solid #e0e0e0; text-align: center; color: #718096; font-size: 0.9em;">
             <p><strong>© ${new Date().getFullYear()} AllAdsMarket</strong></p>
             <p>Cet article a été généré automatiquement par AllAdsMarket.com</p>
-            <p>Pour plus d'articles, analyses et ressources e-commerce, visitez <a href="https://alladsmarket.com">alladsmarket.com</a></p>
+            <p>Pour plus d'articles, analyses et ressources e-commerce, visitez <a href="https://alladsmarket.com">AllAdsMarket</a></p>
             <p style="margin-top: 15px; font-size: 0.85em; color: #a0aec0;">
-              Document généré le ${new Date().toLocaleDateString('fr-FR', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-              })}
+              Document généré le ${new Date().toLocaleDateString('fr-FR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })}
             </p>
           </div>
         </body>
@@ -888,24 +1187,114 @@ const AIArticleDetail = () => {
           margin: 0.5,
           filename: `${article.slug}.pdf`,
           image: { type: 'jpeg', quality: 1.0 },
-          html2canvas: { 
+          html2canvas: {
             scale: 2,
             useCORS: true,
-            allowTaint: true,
+            allowTaint: false, // Permettre le chargement des images cross-origin
             letterRendering: true,
             backgroundColor: '#ffffff',
+            logging: false,
+            imageTimeout: 15000,
             // Ensure links detection works reliably
-            onclone: (doc) => {
-              doc.querySelectorAll('a[href]').forEach(a => {
+            onclone: (clonedDoc) => {
+              // FORCER LES STYLES DES LISTES POUR ÉVITER LE FLou ET L'INVISIBILITÉ
+              clonedDoc.querySelectorAll('ul, ol').forEach(list => {
+                // Forcer les styles pour garantir la visibilité et la netteté
+                list.style.color = '#000';
+                list.style.fontWeight = 'normal';
+                list.style.fontSize = '1.1em';
+                list.style.opacity = '1';
+                list.style.visibility = 'visible';
+                list.style.filter = 'none';
+                list.style.textShadow = 'none';
+                list.style.background = 'transparent';
+                list.style.border = 'none';
+                list.style.listStyleColor = '#000';
+                list.style.listStylePosition = 'outside';
+                list.style.lineHeight = '1.8';
+                list.style.margin = '20px 0';
+                list.style.paddingLeft = '35px';
+
+                // S'assurer que les puces/numéros sont visibles
+                if (list.tagName === 'UL') {
+                  list.style.listStyleType = 'disc';
+                } else if (list.tagName === 'OL') {
+                  list.style.listStyleType = 'decimal';
+                }
+              });
+
+              // FORCER LES STYLES DES ÉLÉMENTS LI
+              clonedDoc.querySelectorAll('li').forEach(li => {
+                // Forcer les styles pour garantir la visibilité et la netteté
+                li.style.color = '#000';
+                li.style.fontWeight = 'normal';
+                li.style.fontSize = '1.1em';
+                li.style.opacity = '1';
+                li.style.visibility = 'visible';
+                li.style.filter = 'none';
+                li.style.textShadow = 'none';
+                li.style.webkitTextFillColor = '#000';
+                li.style.background = 'transparent';
+                li.style.border = 'none';
+                li.style.display = 'list-item';
+                li.style.lineHeight = '1.8';
+                li.style.margin = '8px 0';
+                li.style.paddingLeft = '8px';
+                li.style.paddingRight = '8px';
+
+                // Forcer le style du marqueur (puce/numéro)
+                const style = li.ownerDocument.defaultView.getComputedStyle(li, '::marker');
+                if (li.ownerDocument.defaultView.getComputedStyle) {
+                  // S'assurer que le marqueur est noir
+                  li.style.setProperty('list-style-color', '#000', 'important');
+                }
+              });
+
+              // Traiter tous les liens dans le document cloné pour garantir qu'ils sont cliquables
+              clonedDoc.querySelectorAll('a[href]').forEach(a => {
+                let href = a.getAttribute('href');
+                if (!href) return;
+
+                // Normaliser l'URL si nécessaire
+                if (!href.startsWith('http://') && !href.startsWith('https://') &&
+                  !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('#')) {
+                  if (href.startsWith('/')) {
+                    href = window.location.origin + href;
+                  } else {
+                    href = 'https://' + href;
+                  }
+                  a.setAttribute('href', href);
+                }
+
+                // Forcer les styles pour garantir la détection par html2pdf
+                const isProductLink = a.classList.contains('product-link-btn') || a.hasAttribute('data-product-link');
+                const isRecommendedProduct = a.closest('.recommended-product-top') || a.closest('.recommended-product-middle') ||
+                  a.closest('.recommended-product-bottom') || a.closest('[class*="recommended-product"]');
+
+                // FORCER TOUS LES STYLES POUR GARANTIR LA CLIQUABILITÉ
                 a.style.pointerEvents = 'auto';
-                a.style.display = 'inline';
-                a.style.maxWidth = '100%';
+                a.style.display = (isProductLink) ? 'block' : (isRecommendedProduct ? 'inline-block' : 'inline');
+                a.style.textDecoration = 'underline';
+                a.style.color = '#2563eb';
+                a.style.cursor = 'pointer';
+                a.style.visibility = 'visible';
+                a.style.opacity = '1';
+                a.style.position = 'static';
+                a.style.background = 'transparent';
+                a.style.border = 'none';
+                a.style.fontWeight = 'normal';
+
+                // S'assurer que le lien a du contenu texte visible
+                if (!a.textContent.trim() && !a.innerText.trim() && !a.querySelector('img')) {
+                  const hrefAttr = a.getAttribute('href');
+                  a.textContent = getLinkText(hrefAttr);
+                }
               });
             }
           },
-          jsPDF: { 
-            unit: 'in', 
-            format: 'a4', 
+          jsPDF: {
+            unit: 'in',
+            format: 'a4',
             orientation: 'portrait',
             compress: true
           },
@@ -928,39 +1317,480 @@ const AIArticleDetail = () => {
         iframeDoc.open();
         iframeDoc.write(htmlContent);
         iframeDoc.close();
-        // S'assurer que tous les liens sont absolus et cliquables dans l'iframe
+        // S'assurer que TOUS les liens produits sont absolus, valides et 100% cliquables
         Array.from(iframeDoc.querySelectorAll('a[href]')).forEach(a => {
-          const href = a.getAttribute('href');
-          if (!href) return;
-          // Convert relative to absolute
-          if (href.startsWith('/')) {
-            a.setAttribute('href', window.location.origin + href);
-          }
-          // Force https for our domain and for Amazon shortener
-          try {
-            const u = new URL(a.getAttribute('href'), window.location.origin);
-            if (u.hostname.endsWith('alladsmarket.com') || u.hostname === 'amzn.to' || u.hostname.includes('amazon')) {
-              u.protocol = 'https:';
-              a.setAttribute('href', u.toString());
+          let href = a.getAttribute('href');
+          if (!href) {
+            // Supprimer les liens sans href
+            const parent = a.parentNode;
+            if (parent) {
+              const text = a.textContent || a.innerText;
+              parent.replaceChild(document.createTextNode(text), a);
             }
-          } catch {}
+            return;
+          }
+
+          // Identifier si c'est un lien produit (ne PAS le modifier)
+          const isProductLink = a.classList.contains('product-link-btn') ||
+            a.hasAttribute('data-product-link') ||
+            a.classList.contains('amazon-link-main') ||
+            a.closest('.recommended-product-top') ||
+            a.closest('.recommended-product-middle') ||
+            a.closest('.recommended-product-bottom') ||
+            a.closest('[class*="recommended-product"]') ||
+            href.includes('amazon') ||
+            href.includes('amzn.to') ||
+            href.includes('/products');
+
+          // Pour les liens produits : NE RIEN MODIFIER - garder l'URL exactement comme fournie
+          // Pour les autres liens : convertir seulement les liens relatifs en absolus
+          if (!isProductLink) {
+            // Seulement pour les liens NON-produits : convertir les liens relatifs en absolus
+            if (href.startsWith('/')) {
+              href = window.location.origin + href;
+              a.setAttribute('href', href);
+            } else if (!href.startsWith('http://') && !href.startsWith('https://') &&
+              !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('#')) {
+              href = 'https://' + href;
+              a.setAttribute('href', href);
+            }
+            // Forcer HTTPS seulement pour les liens NON-produits
+            if (href.startsWith('http://')) {
+              href = href.replace('http://', 'https://');
+              a.setAttribute('href', href);
+            }
+          }
+          // Les liens produits gardent leur href exact sans modification
+
+          // ÉTAPE 4: Configurer tous les attributs pour garantir la cliquabilité
           a.setAttribute('target', '_blank');
           a.setAttribute('rel', 'noopener noreferrer');
+
+          // ÉTAPE 5: Forcer les styles pour garantir la visibilité et la cliquabilité
           a.style.pointerEvents = 'auto';
-          a.style.display = 'inline';
+          a.style.display = 'inline-block'; // inline-block au lieu de flex pour compatibilité PDF
           a.style.textDecoration = 'underline';
+          a.style.color = '#2563eb';
+          a.style.cursor = 'pointer';
+          a.style.position = 'static'; // Pas de position absolue/fixe
+          a.style.visibility = 'visible';
+          a.style.opacity = '1';
+          a.style.zIndex = 'auto';
+
+          // ÉTAPE 6: Pour les liens produits ET produits recommandés, convertir la structure flex en structure inline
+          const isRecommendedProduct = a.closest('.recommended-product-top') || a.closest('.recommended-product-middle') ||
+            a.closest('.recommended-product-bottom') || a.closest('[class*="recommended-product"]');
+
+          if (isProductLink || isRecommendedProduct) {
+            const linkText = a.textContent.trim() || a.innerText.trim() || href;
+
+            // S'assurer que le lien a du contenu visible
+            if (!linkText || linkText === '') {
+              // Ne pas exposer l'URL brute, utiliser un texte descriptif
+              a.textContent = getLinkText(href);
+            }
+
+            // Forcer les styles spécifiques pour les liens produits et recommandés
+            if (isProductLink) {
+              // Liens produits normaux - block
+              a.style.display = 'block';
+              a.style.padding = '18px 20px';
+              a.style.border = '2px solid #2563eb';
+              a.style.borderRadius = '8px';
+            } else {
+              // Liens produits recommandés - inline-block
+              a.style.display = 'inline-block';
+            }
+            a.style.textDecoration = 'underline';
+            a.style.color = '#2563eb';
+            a.style.background = '#ffffff';
+            a.style.cursor = 'pointer';
+
+            // S'assurer que les enfants sont inline
+            Array.from(a.children).forEach(child => {
+              child.style.display = 'inline';
+              child.style.position = 'static';
+            });
+          }
+
+          // ÉTAPE 7: S'assurer que le lien a du contenu texte (requis pour html2pdf.js)
+          // NE PAS exposer les URLs brutes - utiliser uniquement le texte cliquable
+          if (!a.textContent.trim() && !a.innerText.trim() && !a.querySelector('img')) {
+            // Utiliser la fonction utilitaire pour obtenir un texte descriptif
+            a.textContent = getLinkText(href);
+          }
+
+          // Masquer les URLs brutes si elles sont visibles dans le texte
+          const linkText = a.textContent.trim();
+          // Vérifier si le texte contient l'URL brute (y compris dans les liens Amazon)
+          if (linkText === href ||
+            linkText.includes('http://') ||
+            linkText.includes('https://') ||
+            linkText.includes('amzn.to') ||
+            (a.classList.contains('amazon-link-main') && linkText.includes('amzn.to'))) {
+            // Remplacer par un texte descriptif
+            a.textContent = getLinkText(href);
+          }
+
+          // Spécifiquement pour les liens amazon-link-main, s'assurer qu'ils n'exposent pas l'URL
+          if (a.classList.contains('amazon-link-main')) {
+            const currentText = a.textContent.trim();
+            if (currentText.includes(href) || currentText.includes('amzn.to') || currentText.includes('amazon.com')) {
+              // Garder seulement "Accéder à Amazon →" sans l'URL
+              a.textContent = 'Accéder à Amazon →';
+            }
+          }
+        });
+
+        // FORCER LES STYLES DES LISTES DANS L'IFRAME POUR ÉVITER LE FLou ET L'INVISIBILITÉ
+        Array.from(iframeDoc.querySelectorAll('ul, ol')).forEach(list => {
+          // Forcer les styles pour garantir la visibilité et la netteté
+          list.style.color = '#000';
+          list.style.fontWeight = 'normal';
+          list.style.fontSize = '1.1em';
+          list.style.opacity = '1';
+          list.style.visibility = 'visible';
+          list.style.filter = 'none';
+          list.style.textShadow = 'none';
+          list.style.background = 'transparent';
+          list.style.border = 'none';
+          list.style.listStyleColor = '#000';
+          list.style.listStylePosition = 'outside';
+          list.style.lineHeight = '1.8';
+          list.style.margin = '20px 0';
+          list.style.paddingLeft = '35px';
+
+          // S'assurer que les puces/numéros sont visibles
+          if (list.tagName === 'UL') {
+            list.style.listStyleType = 'disc';
+          } else if (list.tagName === 'OL') {
+            list.style.listStyleType = 'decimal';
+          }
+        });
+
+        // FORCER LES STYLES DES ÉLÉMENTS LI DANS L'IFRAME
+        Array.from(iframeDoc.querySelectorAll('li')).forEach(li => {
+          // Forcer les styles pour garantir la visibilité et la netteté
+          li.style.color = '#000';
+          li.style.fontWeight = 'normal';
+          li.style.fontSize = '1.1em';
+          li.style.opacity = '1';
+          li.style.visibility = 'visible';
+          li.style.filter = 'none';
+          li.style.textShadow = 'none';
+          li.style.webkitTextFillColor = '#000';
+          li.style.background = 'transparent';
+          li.style.border = 'none';
+          li.style.display = 'list-item';
+          li.style.lineHeight = '1.8';
+          li.style.margin = '8px 0';
+          li.style.paddingLeft = '8px';
+          li.style.paddingRight = '8px';
+
+          // Forcer le style du marqueur (puce/numéro)
+          li.style.setProperty('list-style-color', '#000', 'important');
         });
 
         try {
-          // Wait for iframe content to layout
-          await new Promise(r => setTimeout(r, 250));
+          // Attendre que le contenu de l'iframe soit complètement chargé
+          await new Promise(r => setTimeout(r, 500));
+
+          // VÉRIFICATION FINALE: S'assurer que tous les liens sont correctement formatés et cliquables
+          const finalLinks = Array.from(iframeDoc.querySelectorAll('a[href], a[data-product-link]'));
+          finalLinks.forEach(a => {
+            let href = a.getAttribute('href');
+            if (!href) {
+              // Si pas d'href, supprimer le lien ou extraire l'URL du texte
+              const linkText = a.textContent || a.innerText || '';
+              const urlMatch = linkText.match(/(https?:\/\/[^\s]+)/);
+              if (urlMatch) {
+                href = urlMatch[1];
+              } else {
+                return; // Pas de href valide, passer au suivant
+              }
+            }
+
+            // Identifier si c'est un lien produit AVANT toute normalisation (ne PAS le modifier)
+            const isProductLinkValidate = a.classList.contains('product-link-btn') ||
+              a.hasAttribute('data-product-link') ||
+              a.classList.contains('amazon-link-main') ||
+              a.closest('.recommended-product-top') ||
+              a.closest('.recommended-product-middle') ||
+              a.closest('.recommended-product-bottom') ||
+              a.closest('[class*="recommended-product"]') ||
+              href.includes('amazon') ||
+              href.includes('amzn.to') ||
+              href.includes('/products');
+
+            // Pour les liens produits : NE RIEN MODIFIER - garder l'URL exactement comme fournie
+            // PAS de normalisation, PAS de new URL(), PAS de modification
+            if (!isProductLinkValidate) {
+              // Seulement pour les liens NON-produits : convertir les liens relatifs en absolus
+              if (!href.startsWith('http://') && !href.startsWith('https://') &&
+                !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('#')) {
+                if (href.startsWith('/')) {
+                  href = window.location.origin + href;
+                  a.setAttribute('href', href);
+                } else {
+                  href = 'https://' + href;
+                  a.setAttribute('href', href);
+                }
+              }
+
+              // Forcer HTTPS seulement pour les liens NON-produits
+              if (href.startsWith('http://') && !href.startsWith('mailto:') && !href.startsWith('tel:')) {
+                href = href.replace('http://', 'https://');
+                a.setAttribute('href', href);
+              }
+
+              // PAS de new URL() pour éviter toute modification des URLs produits
+              // Les liens produits gardent leur href exact tel quel
+            }
+            // Les liens produits gardent leur href exact sans AUCUNE modification
+
+            // CRITIQUE: S'assurer que le lien a tous les attributs nécessaires pour html2pdf.js
+            a.setAttribute('target', '_blank');
+            a.setAttribute('rel', 'noopener noreferrer');
+
+            // Forcer les styles finaux pour garantir la cliquabilité dans le PDF
+            a.style.pointerEvents = 'auto';
+            a.style.cursor = 'pointer';
+            a.style.visibility = 'visible';
+            a.style.opacity = '1';
+            a.style.textDecoration = 'underline';
+            a.style.color = '#2563eb';
+            a.style.position = 'static';
+            a.style.zIndex = 'auto';
+            a.style.background = 'transparent';
+            a.style.border = 'none';
+            a.style.fontWeight = 'normal';
+
+            // Pour les liens produits et produits recommandés, s'assurer qu'ils sont correctement formatés
+            const isProductLink = a.classList.contains('product-link-btn') || a.hasAttribute('data-product-link');
+            const isRecommendedProduct = a.closest('.recommended-product-top') || a.closest('.recommended-product-middle') ||
+              a.closest('.recommended-product-bottom') || a.closest('[class*="recommended-product"]');
+
+            if (isProductLink) {
+              a.style.display = 'block';
+            } else if (isRecommendedProduct) {
+              a.style.display = 'inline-block';
+            } else {
+              a.style.display = 'inline';
+            }
+
+            // CRITIQUE: S'assurer que le lien a du contenu texte visible (requis pour html2pdf.js)
+            if (!a.textContent.trim() && !a.innerText.trim() && !a.querySelector('img')) {
+              // Utiliser la fonction utilitaire pour obtenir un texte descriptif
+              a.textContent = getLinkText(href);
+            }
+
+            // Masquer les URLs brutes si elles sont visibles dans le texte
+            const linkText = a.textContent.trim();
+            if (linkText === href || linkText.includes('http://') || linkText.includes('https://')) {
+              a.textContent = getLinkText(href);
+            }
+
+            // VÉRIFICATION FINALE: Le href doit être absolu et valide
+            const finalHref = a.getAttribute('href');
+            if (!finalHref || (!finalHref.startsWith('http') && !finalHref.startsWith('mailto') && !finalHref.startsWith('tel') && !finalHref.startsWith('#'))) {
+              console.warn('Lien invalide détecté après normalisation:', a, finalHref);
+            }
+          });
+
           const sourceNode = iframeDoc.body;
-          await window.html2pdf().set(opt).from(sourceNode).save();
+
+          // Collecter toutes les informations sur les liens AVANT la génération du PDF
+          // pour pouvoir les ajouter manuellement après
+          const linkPositions = [];
+          const allLinks = Array.from(iframeDoc.querySelectorAll('a[href]'));
+
+          // Attendre un peu pour que le rendu soit complet
+          await new Promise(resolve => setTimeout(resolve, 200));
+
+          allLinks.forEach((link) => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            // Identifier si c'est un lien produit (ne PAS le modifier)
+            const isProductLink = link.classList.contains('product-link-btn') ||
+              link.hasAttribute('data-product-link') ||
+              link.classList.contains('amazon-link-main') ||
+              link.closest('.recommended-product-top') ||
+              link.closest('.recommended-product-middle') ||
+              link.closest('.recommended-product-bottom') ||
+              link.closest('[class*="recommended-product"]') ||
+              href.includes('amazon') ||
+              href.includes('amzn.to') ||
+              href.includes('/products');
+
+            // Pour les liens produits : garder l'URL EXACTEMENT comme fournie, sans modification
+            let normalizedHref = href; // Garder l'URL originale par défaut
+            if (!isProductLink) {
+              // Seulement pour les liens NON-produits
+              if (!href.startsWith('http://') && !href.startsWith('https://') &&
+                !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('#')) {
+                if (href.startsWith('/')) {
+                  normalizedHref = window.location.origin + href;
+                } else {
+                  normalizedHref = 'https://' + href;
+                }
+              }
+              // Forcer HTTPS seulement pour les liens NON-produits
+              if (normalizedHref.startsWith('http://')) {
+                normalizedHref = normalizedHref.replace('http://', 'https://');
+              }
+            }
+            // Les liens produits gardent leur href exact sans modification
+
+            try {
+              const rect = link.getBoundingClientRect();
+              const bodyRect = iframeDoc.body.getBoundingClientRect();
+
+              // Stocker les informations du lien avec sa position
+              linkPositions.push({
+                href: normalizedHref,
+                x: rect.left - bodyRect.left,
+                y: rect.top - bodyRect.top,
+                width: rect.width,
+                height: rect.height,
+                page: Math.floor((rect.top - bodyRect.top) / (210 * 3.779527559)) + 1 // Estimer la page (A4 height en mm converti en pixels)
+              });
+            } catch (e) {
+              console.warn('Erreur lors de la récupération de la position du lien:', e);
+            }
+          });
+
+          // Générer le PDF avec enableLinks activé et ajouter les liens manuellement
+          // html2pdf.js peut avoir des problèmes avec enableLinks, donc on utilise une approche hybride
+
+          // D'abord, obtenir les positions exactes des liens avec html2canvas
+          const canvas = await window.html2canvas(sourceNode, {
+            scale: opt.html2canvas.scale || 2,
+            useCORS: opt.html2canvas.useCORS || true,
+            allowTaint: opt.html2canvas.allowTaint || false,
+            letterRendering: opt.html2canvas.letterRendering || true,
+            backgroundColor: opt.html2canvas.backgroundColor || '#ffffff',
+            logging: opt.html2canvas.logging || false,
+            onclone: (clonedDoc) => {
+              // Dans le clone, obtenir les positions finales des liens
+              const clonedLinks = clonedDoc.querySelectorAll('a[href]');
+              linkPositions.length = 0; // Réinitialiser
+
+              clonedLinks.forEach((link) => {
+                const href = link.getAttribute('href');
+                if (!href) return;
+
+                try {
+                  const rect = link.getBoundingClientRect();
+
+                  // Identifier si c'est un lien produit (ne PAS le modifier)
+                  const isProductLinkClone = link.classList.contains('product-link-btn') ||
+                    link.hasAttribute('data-product-link') ||
+                    link.classList.contains('amazon-link-main') ||
+                    link.closest('.recommended-product-top') ||
+                    link.closest('.recommended-product-middle') ||
+                    link.closest('.recommended-product-bottom') ||
+                    link.closest('[class*="recommended-product"]') ||
+                    href.includes('amazon') ||
+                    href.includes('amzn.to') ||
+                    href.includes('/products');
+
+                  // Pour les liens produits : garder l'URL EXACTEMENT comme fournie, sans modification
+                  let normalizedHref = href; // Garder l'URL originale par défaut
+                  if (!isProductLinkClone) {
+                    // Seulement pour les liens NON-produits
+                    if (!href.startsWith('http://') && !href.startsWith('https://') &&
+                      !href.startsWith('mailto:') && !href.startsWith('tel:') && !href.startsWith('#')) {
+                      if (href.startsWith('/')) {
+                        normalizedHref = window.location.origin + href;
+                      } else {
+                        normalizedHref = 'https://' + href;
+                      }
+                    }
+                    // Forcer HTTPS seulement pour les liens NON-produits
+                    if (normalizedHref.startsWith('http://')) {
+                      normalizedHref = normalizedHref.replace('http://', 'https://');
+                    }
+                  }
+                  // Les liens produits gardent leur href exact sans modification
+
+                  linkPositions.push({
+                    href: normalizedHref,
+                    x: rect.left,
+                    y: rect.top,
+                    width: rect.width,
+                    height: rect.height
+                  });
+                } catch (e) {
+                  console.warn('Erreur lors de la récupération de la position du lien dans le clone:', e);
+                }
+              });
+            }
+          });
+
+          // Maintenant, générer le PDF et ajouter les liens manuellement
+          const worker = window.html2pdf().set({
+            ...opt,
+            enableLinks: true // Activer les liens automatiques (si ça fonctionne)
+          });
+
+          // Utiliser outputPdf('pdf') pour obtenir le document jsPDF directement
+          // Cela évite de générer le PDF deux fois
+          const pdf = await worker.from(sourceNode).outputPdf('pdf');
+
+          // Ajouter les liens au PDF en utilisant les positions depuis le canvas
+          // Note: Les positions du canvas doivent être converties en unités PDF
+          // html2pdf.js utilise le format A4 avec des marges
+          linkPositions.forEach((linkPos) => {
+            try {
+              // Convertir les positions canvas en unités PDF (points)
+              // html2pdf utilise généralement un format A4 (8.27" x 11.69" = 595.28 x 841.89 points)
+              // Le canvas a été généré avec scale: 2, donc les dimensions sont doublées
+              const margin = opt.margin || 0.5; // margin en inches
+              const marginPoints = margin * 72; // Convertir en points (72 points = 1 inch)
+
+              // Dimensions de la page PDF en points (A4)
+              const pdfPageWidth = pdf.internal.pageSize.getWidth(); // En points
+              const pdfPageHeight = pdf.internal.pageSize.getHeight(); // En points
+
+              // Zone de contenu (page - marges)
+              const contentWidth = pdfPageWidth - (2 * marginPoints);
+              const contentHeight = pdfPageHeight - (2 * marginPoints);
+
+              // Ratio de conversion canvas -> PDF (en tenant compte des marges)
+              const scale = opt.html2canvas.scale || 2;
+              const canvasContentWidth = canvas.width;
+              const canvasContentHeight = canvas.height;
+
+              const ratioX = contentWidth / canvasContentWidth;
+              const ratioY = contentHeight / canvasContentHeight;
+
+              // Position relative au canvas (en pixels)
+              // Convertir en position PDF (en points) avec marges
+              const x = (linkPos.x * ratioX) + marginPoints;
+              const y = (linkPos.y * ratioY) + marginPoints;
+              const width = linkPos.width * ratioX;
+              const height = linkPos.height * ratioY;
+
+              // Vérifier que les coordonnées sont valides
+              if (x >= 0 && y >= 0 && x + width <= pdfPageWidth && y + height <= pdfPageHeight) {
+                // Ajouter le lien cliquable au PDF
+                pdf.link(x, y, width, height, { url: linkPos.href });
+              } else {
+                console.warn('Position du lien hors limites:', { x, y, width, height, href: linkPos.href });
+              }
+            } catch (e) {
+              console.warn('Erreur lors de l\'ajout du lien dans le PDF:', linkPos.href, e);
+            }
+          });
+
+          // Sauvegarder le PDF avec tous les liens cliquables
+          pdf.save(`${article.slug}.pdf`);
           // If we reach here, download succeeded
         } catch (e) {
           console.error('html2pdf generation failed, falling back to HTML:', e);
           const element = document.createElement('a');
-          const file = new Blob([htmlContent], {type: 'text/html'});
+          const file = new Blob([htmlContent], { type: 'text/html' });
           element.href = URL.createObjectURL(file);
           element.download = `${article.slug}.html`;
           document.body.appendChild(element);
@@ -973,7 +1803,7 @@ const AIArticleDetail = () => {
       } else {
         // Fallback: télécharger en HTML si html2pdf n'est pas disponible
         const element = document.createElement('a');
-        const file = new Blob([htmlContent], {type: 'text/html'});
+        const file = new Blob([htmlContent], { type: 'text/html' });
         element.href = URL.createObjectURL(file);
         element.download = `${article.slug}.html`;
         document.body.appendChild(element);
@@ -998,17 +1828,48 @@ const AIArticleDetail = () => {
     );
   }
 
-  if (!article) {
+  if (!article && !loading) {
+    // Article non trouvé après le chargement
     return (
-      <div className="ai-article-detail-error">
-        <h1>Article non trouvé</h1>
-        <p>L'article que vous recherchez n'existe pas.</p>
-        <Link to="/ai-articles" className="back-button">
-          <ArrowLeft size={20} />
-          Retour aux articles IA
-        </Link>
-      </div>
+      <>
+        <Helmet>
+          <title>Article non trouvé | AllAdsMarket</title>
+          <meta name="robots" content="noindex, nofollow" />
+        </Helmet>
+        <div className="ai-article-detail-error">
+          <div className="error-content">
+            <h1>Article non trouvé</h1>
+            <p>L'article que vous recherchez n'existe pas ou a été déplacé.</p>
+            {slug && (
+              <div className="error-details">
+                <p className="error-slug">
+                  <strong>Slug recherché:</strong> <code>{slug}</code>
+                </p>
+                {process.env.NODE_ENV === 'development' && (
+                  <p className="error-help">
+                    Vérifiez la console pour plus de détails sur les slugs disponibles.
+                  </p>
+                )}
+              </div>
+            )}
+            <div className="error-actions">
+              <Link to="/ai-articles" className="back-button">
+                <ArrowLeft size={20} />
+                Retour aux articles IA
+              </Link>
+              <Link to="/" className="home-button">
+                Retour à l'accueil
+              </Link>
+            </div>
+          </div>
+        </div>
+      </>
     );
+  }
+
+  // Si on est toujours en chargement, ne rien afficher (le loader est déjà affiché)
+  if (!article) {
+    return null;
   }
 
   return (
@@ -1020,13 +1881,13 @@ const AIArticleDetail = () => {
         <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
         <meta property="og:site_name" content="AllAdsMarket" />
         <link rel="canonical" href={window.location.href.split('#')[0].split('?')[0]} />
-        
+
         {/* Download-specific SEO */}
         <meta name="download" content="PDF disponible" />
         <meta name="pdf-available" content="true" />
         <meta name="document-format" content="PDF, HTML" />
         <meta name="download-format" content="PDF" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content={article.title} />
         <meta property="og:description" content={`${article.excerpt} - Téléchargez gratuitement en PDF`} />
@@ -1035,19 +1896,19 @@ const AIArticleDetail = () => {
         <meta property="og:url" content={window.location.href} />
         <meta property="og:article:section" content="E-commerce" />
         <meta property="og:article:tag" content="télécharger, PDF, guide, e-commerce" />
-        
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={article.title} />
         <meta name="twitter:description" content={`${article.excerpt} - Téléchargez gratuitement en PDF`} />
         <meta name="twitter:image" content={article.image} />
-        
+
         {/* Article specific */}
         <meta name="article:author" content={article.author} />
         <meta name="article:published_time" content={article.publishDate} />
         <meta name="article:section" content={article.category} />
         <meta name="article:tag" content={article.tags.join(', ')} />
-        
+
         {/* Structured Data for Downloads */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -1095,9 +1956,9 @@ const AIArticleDetail = () => {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {"@type":"ListItem","position":1,"name":"Accueil","item":"/"},
-              {"@type":"ListItem","position":2,"name":"Articles","item":"/ai-articles"},
-              {"@type":"ListItem","position":3,"name": article.title, "item": window.location.href.split('#')[0].split('?')[0]}
+              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "/" },
+              { "@type": "ListItem", "position": 2, "name": "Articles", "item": "/ai-articles" },
+              { "@type": "ListItem", "position": 3, "name": article.title, "item": window.location.href.split('#')[0].split('?')[0] }
             ]
           })}
         </script>
@@ -1106,7 +1967,7 @@ const AIArticleDetail = () => {
       <div className="ai-article-detail">
         {/* Barre de progression de lecture */}
         <div className="reading-progress-bar">
-          <div 
+          <div
             className="progress-fill"
             style={{ width: `${readingProgress}%` }}
           ></div>
@@ -1114,7 +1975,7 @@ const AIArticleDetail = () => {
 
         {/* Navigation */}
         <div className="article-navigation">
-          <button 
+          <button
             className="back-button"
             onClick={() => navigate('/ai-articles')}
           >
@@ -1147,7 +2008,7 @@ const AIArticleDetail = () => {
           </div>
 
           <h1 className="article-title">{article.title}</h1>
-          
+
           <div className="article-excerpt">{article.excerpt}</div>
 
           <div className="article-info">
@@ -1162,31 +2023,31 @@ const AIArticleDetail = () => {
 
           {/* Actions */}
           <div className="article-actions">
-            <button 
+            <button
               className={`action-button ${isLiked ? 'liked' : ''}`}
               onClick={handleLike}
               title="Aimer cet article"
             >
               <Heart size={20} />
             </button>
-            
-            <button 
+
+            <button
               className={`action-button ${isBookmarked ? 'bookmarked' : ''}`}
               onClick={handleBookmark}
               title={isBookmarked ? 'Retirer des sauvegardes' : 'Sauvegarder cet article'}
             >
               <Bookmark size={20} />
             </button>
-            
-            <button 
-              className="action-button" 
+
+            <button
+              className="action-button"
               onClick={handleShare}
               title={t('article.shareArticle')}
             >
               <Share2 size={20} />
             </button>
-            
-            <button 
+
+            <button
               className="action-button download-pdf-btn"
               onClick={handleDownload}
               title={t('article.downloadPDF')}
@@ -1194,8 +2055,8 @@ const AIArticleDetail = () => {
               <Download size={20} />
               <span className="download-badge">PDF</span>
             </button>
-            
-            <button 
+
+            <button
               className="action-button"
               onClick={handlePrint}
               title="Imprimer cet article"
@@ -1227,26 +2088,26 @@ const AIArticleDetail = () => {
             {tableOfContents.length > 0 && (
               <aside className="table-of-contents">
                 <div className="toc-header">
-                  <button 
+                  <button
                     className="toc-toggle"
                     onClick={() => setShowTOC(!showTOC)}
                     title={showTOC ? 'Masquer la table des matières' : 'Afficher la table des matières'}
                   >
                     <List size={16} />
                     <span>{t('article.tableOfContents')}</span>
-                    <ChevronRight 
-                      size={16} 
+                    <ChevronRight
+                      size={16}
                       className={`toc-chevron ${showTOC ? 'open' : ''}`}
                     />
                   </button>
                 </div>
-                
+
                 {showTOC && (
                   <nav className="toc-nav">
                     <ul className="toc-list">
                       {tableOfContents.map((item, index) => (
-                        <li 
-                          key={index} 
+                        <li
+                          key={index}
                           className={`toc-item level-${item.level} ${activeSection === item.id ? 'active' : ''}`}
                         >
                           <button
@@ -1264,37 +2125,37 @@ const AIArticleDetail = () => {
               </aside>
             )}
 
-          {/* Contenu principal */}
-          <div className="content-wrapper">
-            {/* Section de téléchargement PDF */}
-            <div className="download-section" id="download">
-              <div className="download-card">
-                <div className="download-icon">
-                  <Download size={32} />
-                </div>
-                <div className="download-content">
-                  <h3>Téléchargez cet article en PDF</h3>
-                  <p>Conservez cet article pour le consulter hors ligne. Le PDF est mis en page pour une lecture et une impression confortables.</p>
-                  <button 
-                    className="download-pdf-btn-large"
-                    onClick={handleDownload}
-                  >
-                    <Download size={20} />
-                    {t('article.downloadPDFFree')}
-                  </button>
+            {/* Contenu principal */}
+            <div className="content-wrapper">
+              {/* Section de téléchargement PDF */}
+              <div className="download-section" id="download">
+                <div className="download-card">
+                  <div className="download-icon">
+                    <Download size={32} />
+                  </div>
+                  <div className="download-content">
+                    <h3>Téléchargez cet article en PDF</h3>
+                    <p>Conservez cet article pour le consulter hors ligne. Le PDF est mis en page pour une lecture et une impression confortables.</p>
+                    <button
+                      className="download-pdf-btn-large"
+                      onClick={handleDownload}
+                    >
+                      <Download size={20} />
+                      {t('article.downloadPDFFree')}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-            
-          <div 
-            className="article-text"
-            dangerouslySetInnerHTML={{ 
-              __html: injectProductLinks(convertMarkdownToHTML(article.content), article.slug || article.id, article)
-            }}
-          />
 
-          {/* Inline product links injected above */}
-          </div>
+              <div
+                className="article-text"
+                dangerouslySetInnerHTML={{
+                  __html: injectProductLinks(convertMarkdownToHTML(article.content), article.slug || article.id, article)
+                }}
+              />
+
+              {/* Inline product links injected above */}
+            </div>
           </div>
         </main>
 
@@ -1303,32 +2164,32 @@ const AIArticleDetail = () => {
         {/* Footer de l'article */}
         <footer className="article-footer">
           <div className="article-stats-footer">
-            <button 
-              className="stat-group clickable" 
+            <button
+              className="stat-group clickable"
               onClick={() => handleStatsClick('views')}
               title="Revenir en haut de l'article"
             >
               <Eye size={20} />
               <span>{article.views.toLocaleString()} vues</span>
             </button>
-            <button 
-              className="stat-group clickable" 
+            <button
+              className="stat-group clickable"
               onClick={() => handleStatsClick('likes')}
               title="Aimer cet article"
             >
               <Heart size={20} className={isLiked ? 'liked' : ''} />
               <span>{isLiked ? (article.likes + 1).toLocaleString() : article.likes.toLocaleString()} likes</span>
             </button>
-            <button 
-              className="stat-group clickable" 
+            <button
+              className="stat-group clickable"
               onClick={() => handleStatsClick('shares')}
               title={t('article.shareArticle')}
             >
               <Share2 size={20} />
               <span>{article.shares.toLocaleString()} partages</span>
             </button>
-            <button 
-              className="stat-group clickable" 
+            <button
+              className="stat-group clickable"
               onClick={() => handleStatsClick('comments')}
               title={t('article.viewComments')}
             >

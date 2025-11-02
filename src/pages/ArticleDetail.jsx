@@ -435,8 +435,8 @@ DOI: ${metadata.doi}
 Résumé:
 Cette étude présente une analyse approfondie du produit ${product.name}, examinant ses caractéristiques techniques, ses performances et son impact sur le marché.
 
-Lien vers l'article: ${window.location.href}
-Lien vers le produit: ${product.affiliateUrl}
+Article: ${product.name}
+Produit disponible sur Amazon
 
 Cordialement
     `);
@@ -449,23 +449,11 @@ Cordialement
   const shareArticle = async () => {
     if (!product) return;
     
-    const shareData = {
+    const { shareLink } = await import('../utils/shareUtils');
+    await shareLink({
       title: `${product.name} - Analyse Technique`,
-      text: `Découvrez cette analyse approfondie du ${product.name}`,
-      url: window.location.href
-    };
-    
-    try {
-      if (navigator.share) {
-        await navigator.share(shareData);
-      } else {
-        // Fallback: copier le lien
-        await navigator.clipboard.writeText(window.location.href);
-        alert('Lien copié dans le presse-papiers !');
-      }
-    } catch (err) {
-      console.error('Erreur lors du partage:', err);
-    }
+      text: `Découvrez cette analyse approfondie du ${product.name}`
+    });
   };
 
   // Ouvrir la boîte de dialogue

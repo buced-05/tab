@@ -1,0 +1,190 @@
+/* Reading Tips - Pop-ups de conseils élégants */
+.reading-tips-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.reading-tip {
+  position: fixed;
+  max-width: 320px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(102, 126, 234, 0.2);
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  pointer-events: auto;
+  cursor: pointer;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  backdrop-filter: blur(10px);
+  transform-origin: center;
+  animation: tipSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  transition: all 0.3s ease;
+}
+
+.reading-tip:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2), 0 6px 18px rgba(102, 126, 234, 0.3);
+}
+
+.reading-tip-top-right {
+  top: 100px;
+  right: 20px;
+  animation: tipSlideInRight 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.reading-tip-top-left {
+  top: 100px;
+  left: 20px;
+  animation: tipSlideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.reading-tip-bottom-right {
+  bottom: 100px;
+  right: 20px;
+  animation: tipSlideInRight 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.reading-tip-bottom-left {
+  bottom: 100px;
+  left: 20px;
+  animation: tipSlideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.reading-tip-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  animation: iconPulse 2s ease-in-out infinite;
+}
+
+.reading-tip-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.reading-tip-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.reading-tip-message {
+  font-size: 13px;
+  color: #4a5568;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.reading-tip-close {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.reading-tip-close:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+  transform: rotate(90deg);
+}
+
+@keyframes tipSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes tipSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 8px rgba(102, 126, 234, 0);
+  }
+}
+
+.reading-tip-enter {
+  animation: tipSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes tipSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reading-tip {
+    max-width: calc(100vw - 40px);
+    padding: 14px 18px;
+  }
+
+  .reading-tip-top-right,
+  .reading-tip-bottom-right {
+    right: 20px;
+    left: auto;
+  }
+
+  .reading-tip-top-left,
+  .reading-tip-bottom-left {
+    left: 20px;
+    right: auto;
+  }
+
+  .reading-tip-title {
+    font-size: 13px;
+  }
+
+  .reading-tip-message {
+    font-size: 12px;
+  }
+}
+

@@ -27,7 +27,7 @@ const Footer = () => {
           <div className="footer-section">
             <Logo size="small" showText={true} className="footer-logo" />
             <p className="footer-description">
-              AllAdsMarket est votre plateforme e-commerce premium pour découvrir et acheter les meilleurs produits du marché. 
+              AllAdsMarket - Des Meilleurs articles MOINS Chers. 
               Nous proposons une sélection soigneusement choisie d'articles de qualité supérieure pour une expérience d'achat exceptionnelle.
             </p>
             <div className="social-links">

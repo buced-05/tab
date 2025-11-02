@@ -13,6 +13,13 @@
   --ai-accent-secondary-dark: #6b3790;
   --ai-accent-secondary-light: #8b5cf6;
   
+  /* Animations premium */
+  --animation-speed-fast: 0.3s;
+  --animation-speed-normal: 0.6s;
+  --animation-speed-slow: 1s;
+  --easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  
   /* Couleurs d'action harmonisées */
   --ai-success: #10b981;
   --ai-success-dark: #059669;
@@ -69,20 +76,42 @@
 
 /* Header avec statistiques - Design Ultra-Moderne avec Couleurs Élégantes */
 .articles-header {
-  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
-  color: white;
-  padding: 1.5rem 2rem;
-  border-radius: 16px;
-  margin-bottom: 2rem;
+  background: linear-gradient(135deg, 
+    #ffffff 0%, 
+    #f8faff 15%,
+    #f0f4ff 30%,
+    #e8eeff 45%,
+    #e0e8ff 60%,
+    #f0f4ff 75%,
+    #f8faff 90%,
+    #ffffff 100%);
+  color: #000000;
+  padding: 3rem 3.5rem;
+  border-radius: 40px;
+  margin-bottom: 2.5rem;
   box-shadow: 
-    0 20px 40px rgba(30, 27, 75, 0.3),
-    0 8px 16px rgba(76, 29, 149, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 30px 80px rgba(99, 102, 241, 0.18),
+    0 15px 40px rgba(139, 92, 246, 0.15),
+    0 5px 15px rgba(168, 85, 247, 0.1),
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    inset 0 2px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -2px 0 rgba(99, 102, 241, 0.12);
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  backdrop-filter: blur(20px);
-  border: none;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  animation: headerFadeIn 0.8s ease-out;
+}
+
+@keyframes headerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Effet de verre (Glassmorphism) élégant */
@@ -94,12 +123,14 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.25) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+    radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.12) 0%, transparent 60%),
+    radial-gradient(circle at 60% 40%, rgba(139, 92, 246, 0.1) 0%, transparent 55%);
   pointer-events: none;
   animation: gradientFlow 20s ease infinite;
-  opacity: 0.8;
+  opacity: 1;
+  z-index: 0;
 }
 
 /* Animation de flux de gradient sophistiquée */
@@ -157,26 +188,36 @@
 .articles-header .header-content {
   position: relative;
   z-index: 2;
-  backdrop-filter: blur(10px);
+  width: 100%;
+}
+
+.articles-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+}
+
+.header-top > div:first-child {
+  flex: 1;
 }
 
 /* Titre élégant avec effets subtils */
 .articles-header h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 800;
   margin-bottom: 0.4rem;
-  background: linear-gradient(135deg, 
-    #ffffff 0%, 
-    #e0e7ff 40%, 
-    #c7d2fe 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  animation: textShimmer 10s ease infinite;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
   position: relative;
 }
 
@@ -218,55 +259,50 @@
   opacity: 0.9;
   margin-bottom: 0.75rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.9);
+  color: #333333;
   letter-spacing: 0.01em;
   line-height: 1.4;
-}
-
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.75rem;
-  gap: 2rem;
-  position: relative;
-}
-
-.header-top > div:first-child {
-  flex: 1;
-  position: relative;
 }
 
 /* Barre décorative élégante */
 .header-top > div:first-child::before {
   content: '';
   position: absolute;
-  bottom: -0.5rem;
+  bottom: -0.75rem;
   left: 0;
-  width: 50px;
-  height: 2px;
+  width: 60px;
+  height: 3px;
   background: linear-gradient(90deg, 
-    rgba(139, 92, 246, 0.6), 
-    rgba(99, 102, 241, 0.4), 
+    #6366f1 0%,
+    #8b5cf6 50%,
+    #a855f7 100%,
     transparent);
   border-radius: 2px;
   animation: barExpand 3s ease infinite;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.4);
 }
 
 @keyframes barExpand {
   0%, 100% {
-    width: 50px;
-    opacity: 0.7;
+    width: 60px;
+    opacity: 0.8;
   }
   50% {
-    width: 70px;
+    width: 80px;
     opacity: 1;
   }
 }
 
 .header-top .realtime-clock {
   flex-shrink: 0;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.25)) drop-shadow(0 2px 6px rgba(139, 92, 246, 0.2));
+  transform: scale(1.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-top .realtime-clock:hover {
+  transform: scale(1.08) translateY(-2px);
+  filter: drop-shadow(0 6px 16px rgba(99, 102, 241, 0.35)) drop-shadow(0 3px 8px rgba(139, 92, 246, 0.25));
 }
 
 /* Grille de statistiques élégante */
@@ -309,18 +345,15 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(255, 255, 255, 0.08);
+  background: #f8f9fa;
   padding: 0.75rem 1rem;
   border-radius: 12px;
-  backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid #e1e5e9;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: default;
   position: relative;
   overflow: hidden;
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .stat-item::before {
@@ -364,13 +397,12 @@
 }
 
 .stat-item.clickable:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: #e9ecef;
+  border-color: #667eea;
   transform: translateY(-3px);
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.15),
-    0 4px 8px rgba(139, 92, 246, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 4px 8px rgba(102, 126, 234, 0.2);
 }
 
 .stat-item.clickable:active {
@@ -379,11 +411,10 @@
 }
 
 .stat-item.clickable.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: #e9ecef;
+  border-color: #667eea;
   box-shadow: 
-    0 6px 20px rgba(139, 92, 246, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 6px 20px rgba(102, 126, 234, 0.25);
 }
 
 .stat-item svg {
@@ -427,10 +458,7 @@
   font-size: 1.35rem;
   font-weight: 800;
   line-height: 1;
-  background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #000000;
   letter-spacing: -0.01em;
   animation: valuePulse 4s ease infinite;
 }
@@ -450,7 +478,7 @@
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #666666;
 }
 
 @media (max-width: 768px) {
@@ -469,7 +497,7 @@
   }
   
   .articles-header h1 {
-    font-size: 1.75rem;
+    font-size: 2.25rem;
     margin-bottom: 0.4rem;
   }
   
@@ -661,12 +689,12 @@
 }
 
 .article-card {
-  background: var(--ai-bg-card-dark);
+  background: #ffffff;
   border-radius: 0;
   overflow: hidden;
-  box-shadow: none;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all var(--animation-speed-normal) var(--easing-smooth);
+  border: 1px solid #e1e5e9;
   position: relative;
   margin: 0;
   width: 100%;
@@ -674,6 +702,8 @@
   display: flex;
   flex-direction: column;
   height: auto; /* shrink-wrap to content */
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
 }
 
 .article-card::before {
@@ -689,8 +719,11 @@
 }
 
 .article-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--ai-shadow-xl);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 10px 20px rgba(102, 126, 234, 0.2),
+    var(--ai-shadow-xl);
   border-color: rgba(102, 126, 234, 0.3);
 }
 
@@ -843,13 +876,13 @@
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  color: #d1d5db;
+  color: #666666;
   font-size: 0.875rem;
   font-weight: 500;
 }
 
 .ai-articles-page .article-title {
-  color: #ffffff !important;
+  color: #000000 !important;
   margin-bottom: 0.5rem;
   font-weight: 700;
   font-size: 1.1rem;
@@ -857,7 +890,7 @@
 }
 
 .article-title a {
-  color: #ffffff !important;
+  color: #000000 !important;
   text-decoration: none;
   font-size: inherit;
   font-weight: inherit;
@@ -866,11 +899,11 @@
 }
 
 .article-title a:hover {
-  color: #ffffff !important;
+  color: #667eea !important;
 }
 
 .article-excerpt {
-  color: #e5e7eb;
+  color: #333333;
   line-height: 1.6;
   margin-bottom: 0;
   display: -webkit-box;
@@ -972,10 +1005,10 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.3rem 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #f8f9fa;
+  border: 1px solid #e1e5e9;
   border-radius: 6px;
-  color: #d1d5db;
+  color: #333333;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
@@ -1008,11 +1041,11 @@
 }
 
 .stat-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
-  color: #ffffff;
+  background: #e9ecef;
+  border-color: #667eea;
+  color: #000000;
   transform: translateY(-2px);
-  box-shadow: var(--ai-shadow-md);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
 }
 
 .stat-btn:active {
@@ -1435,7 +1468,7 @@
   }
   
   .articles-header h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .stats-grid {
@@ -1520,10 +1553,9 @@
   display: flex !important;
   flex-direction: column !important;
   border-radius: 18px !important;
-  background: linear-gradient(180deg, rgba(49,46,129,0.35) 0%, rgba(28,25,75,0.6) 100%),
-              radial-gradient(120% 120% at 100% -10%, rgba(76,29,149,0.32), transparent 60%);
-  border: 1px solid var(--royal-border) !important;
-  box-shadow: 0 24px 80px rgba(17,24,39,.45), inset 0 1px 0 rgba(255,255,255,.08) !important;
+  background: #ffffff !important;
+  border: 1px solid #e1e5e9 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Remove desktop split-layout previously added */
