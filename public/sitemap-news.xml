@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  
+  <!-- Recent Articles -->
+  <url>
+    <loc>https://alladsmarket.com/articles</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr</news:language>
+      </news:publication>
+      <news:publication_date>2025-10-27T15:22:52.769Z</news:publication_date>
+      <news:title>Articles & Publications Scientifiques</news:title>
+      <news:keywords>articles, publications, scientifiques, analyses, produits</news:keywords>
+    </news:news>
+  </url>
+  
+</urlset>

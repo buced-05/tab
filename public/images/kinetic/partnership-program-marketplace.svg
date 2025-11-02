@@ -1,0 +1,191 @@
+<!-- Image 2: Freelance Marketplace -->
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="topGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB6C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bottomGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#AFEEEE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0FFFF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background with wavy division -->
+  <rect width="800" height="300" fill="url(#topGradient)"/>
+  <rect x="0" y="300" width="800" height="300" fill="url(#bottomGradient)"/>
+  
+  <!-- Wavy line -->
+  <path d="M0,300 Q200,280 400,300 T800,300" stroke="#FFFFFF" stroke-width="3" fill="none" opacity="0.7"/>
+  
+  <!-- Top section decorative elements -->
+  <!-- Dotted patterns -->
+  <g fill="#FFFFFF" opacity="0.3">
+    <circle cx="100" cy="80" r="3"/>
+    <circle cx="150" cy="120" r="2"/>
+    <circle cx="200" cy="90" r="4"/>
+    <circle cx="250" cy="110" r="3"/>
+    <circle cx="300" cy="85" r="2"/>
+    <circle cx="350" cy="115" r="3"/>
+    <circle cx="400" cy="95" r="2"/>
+    <circle cx="450" cy="125" r="4"/>
+    <circle cx="500" cy="100" r="3"/>
+    <circle cx="550" cy="130" r="2"/>
+    <circle cx="600" cy="105" r="3"/>
+    <circle cx="650" cy="135" r="2"/>
+    <circle cx="700" cy="110" r="4"/>
+  </g>
+  
+  <!-- Abstract rounded shapes -->
+  <g fill="#FFFFFF" opacity="0.2">
+    <ellipse cx="120" cy="60" rx="25" ry="15"/>
+    <ellipse cx="300" cy="70" rx="30" ry="20"/>
+    <ellipse cx="500" cy="65" rx="20" ry="25"/>
+    <ellipse cx="680" cy="75" rx="35" ry="18"/>
+  </g>
+  
+  <!-- Top section icons -->
+  <!-- Pencil with plus sign (top left) -->
+  <circle cx="100" cy="100" r="25" fill="#FF0000"/>
+  <g transform="translate(100, 100)">
+    <line x1="-8" y1="-8" x2="8" y2="8" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="-8" y1="8" x2="8" y2="-8" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="-12" y1="-12" x2="-8" y2="-8" stroke="#FFFFFF" stroke-width="2"/>
+    <line x1="-10" y1="-14" x2="-6" y2="-10" stroke="#FFFFFF" stroke-width="2"/>
+  </g>
+  
+  <!-- Dashboard/Monitor (left of text) -->
+  <circle cx="250" cy="100" r="25" fill="#FFD700"/>
+  <g transform="translate(250, 100)">
+    <!-- Monitor -->
+    <rect x="-15" y="-8" width="30" height="20" fill="#FFFFFF" rx="2"/>
+    <rect x="-12" y="-5" width="24" height="14" fill="#000000" rx="1"/>
+    <!-- Dashboard bars -->
+    <rect x="-8" y="-2" width="3" height="2" fill="#00FF00"/>
+    <rect x="-4" y="-1" width="3" height="3" fill="#00FF00"/>
+    <rect x="0" y="-3" width="3" height="5" fill="#00FF00"/>
+    <rect x="4" y="-2" width="3" height="2" fill="#00FF00"/>
+    <!-- Small figures -->
+    <circle cx="-6" cy="4" r="1" fill="#FFFFFF"/>
+    <circle cx="-2" cy="4" r="1" fill="#FFFFFF"/>
+    <circle cx="2" cy="4" r="1" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Lightbulb (right of center) -->
+  <circle cx="450" cy="100" r="25" fill="#FFD700"/>
+  <g transform="translate(450, 100)">
+    <!-- Lightbulb -->
+    <ellipse cx="0" cy="0" rx="8" ry="12" fill="#FFFFFF"/>
+    <rect x="-2" y="8" width="4" height="6" fill="#FFFFFF"/>
+    <rect x="-1" y="12" width="2" height="3" fill="#FFFFFF"/>
+    <!-- Filament -->
+    <path d="M-3,-5 Q0,-8 3,-5" stroke="#000000" stroke-width="1" fill="none"/>
+    <path d="M-3,-3 Q0,-6 3,-3" stroke="#000000" stroke-width="1" fill="none"/>
+  </g>
+  
+  <!-- Magnifying glass with gear (right) -->
+  <circle cx="600" cy="100" r="25" fill="#FF0000"/>
+  <g transform="translate(600, 100)">
+    <!-- Magnifying glass -->
+    <circle cx="0" cy="0" r="8" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+    <line x1="6" y1="6" x2="12" y2="12" stroke="#FFFFFF" stroke-width="3"/>
+    <!-- Gear inside -->
+    <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+    <rect x="-1" y="-6" width="2" height="3" fill="#FF0000"/>
+    <rect x="-1" y="3" width="2" height="3" fill="#FF0000"/>
+    <rect x="-6" y="-1" width="3" height="2" fill="#FF0000"/>
+    <rect x="3" y="-1" width="3" height="2" fill="#FF0000"/>
+  </g>
+  
+  <!-- Standalone gear (upper right) -->
+  <g transform="translate(700, 80)">
+    <circle cx="0" cy="0" r="15" fill="#87CEEB"/>
+    <rect x="-2" y="-12" width="4" height="6" fill="#FFFFFF"/>
+    <rect x="-2" y="6" width="4" height="6" fill="#FFFFFF"/>
+    <rect x="-12" y="-2" width="6" height="4" fill="#FFFFFF"/>
+    <rect x="6" y="-2" width="6" height="4" fill="#FFFFFF"/>
+    <circle cx="0" cy="0" r="6" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Decorative stars and bursts -->
+  <g fill="#FFFFFF" opacity="0.4">
+    <!-- Stars -->
+    <g transform="translate(150, 50)">
+      <polygon points="0,-5 -2,-2 -5,-2 -3,0 -2,3 0,1 2,3 3,0 5,-2 2,-2" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(350, 40)">
+      <polygon points="0,-4 -1.5,-1.5 -4,-1.5 -2.5,0 -1.5,2.5 0,1 1.5,2.5 2.5,0 4,-1.5 1.5,-1.5" fill="#FFFFFF"/>
+    </g>
+    <g transform="translate(550, 45)">
+      <polygon points="0,-3 -1,-1 -3,-1 -2,0 -1,2 0,1 1,2 2,0 3,-1 1,-1" fill="#FFFFFF"/>
+    </g>
+  </g>
+  
+  <!-- Main text: FREELANCE MARKETPLACE -->
+  <text x="400" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#8B0000">FREELANCE MARKETPLACE</text>
+  
+  <!-- Bottom section workspace -->
+  <!-- Central figure (woman) -->
+  <g transform="translate(200, 450)">
+    <!-- Woman -->
+    <circle cx="0" cy="-20" r="18" fill="#8B4513"/>
+    <rect x="-12" y="-2" width="24" height="35" fill="#87CEEB" rx="3"/>
+    <rect x="-15" y="33" width="30" height="20" fill="#2F4F4F" rx="3"/>
+    <!-- Glasses -->
+    <circle cx="-6" cy="-20" r="6" fill="none" stroke="#000000" stroke-width="2"/>
+    <circle cx="6" cy="-20" r="6" fill="none" stroke="#000000" stroke-width="2"/>
+    <line x1="0" y1="-20" x2="0" y2="-20" stroke="#000000" stroke-width="2"/>
+    <!-- Yellow blazer -->
+    <rect x="-10" y="-2" width="20" height="25" fill="#FFD700" rx="2"/>
+    <!-- Laptop -->
+    <rect x="40" y="10" width="60" height="40" fill="#C0C0C0" rx="3"/>
+    <rect x="45" y="15" width="50" height="30" fill="#000000" rx="2"/>
+    <rect x="65" y="50" width="10" height="5" fill="#C0C0C0" rx="1"/>
+  </g>
+  
+  <!-- Speech bubble with gear -->
+  <g transform="translate(300, 380)">
+    <ellipse cx="0" cy="0" rx="20" ry="12" fill="#FFFFFF" stroke="#FF0000" stroke-width="2"/>
+    <polygon points="0,12 -8,20 8,20" fill="#FFFFFF"/>
+    <!-- Gear inside -->
+    <circle cx="0" cy="0" r="6" fill="#FF0000"/>
+    <rect x="-1" y="-8" width="2" height="4" fill="#FFFFFF"/>
+    <rect x="-1" y="4" width="2" height="4" fill="#FFFFFF"/>
+    <rect x="-8" y="-1" width="4" height="2" fill="#FFFFFF"/>
+    <rect x="4" y="-1" width="4" height="2" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Potted plant -->
+  <g transform="translate(120, 420)">
+    <ellipse cx="0" cy="0" rx="8" ry="6" fill="#8B4513"/>
+    <ellipse cx="0" cy="-5" rx="12" ry="8" fill="#32CD32"/>
+    <ellipse cx="-5" cy="-8" rx="6" ry="4" fill="#228B22"/>
+    <ellipse cx="5" cy="-8" rx="6" ry="4" fill="#228B22"/>
+  </g>
+  
+  <!-- Rocket -->
+  <g transform="translate(350, 420)">
+    <ellipse cx="0" cy="0" rx="6" ry="4" fill="#FFFFFF"/>
+    <rect x="-4" y="-15" width="8" height="15" fill="#FF0000"/>
+    <rect x="-2" y="-20" width="4" height="5" fill="#C0C0C0"/>
+    <!-- Wavy base -->
+    <path d="M-8,5 Q-4,2 0,5 Q4,2 8,5" stroke="#FF0000" stroke-width="3" fill="none"/>
+  </g>
+  
+  <!-- Structural element with figure -->
+  <g transform="translate(600, 400)">
+    <!-- Structure -->
+    <rect x="-2" y="0" width="4" height="80" fill="#000000"/>
+    <rect x="-8" y="75" width="16" height="5" fill="#000000"/>
+    <!-- Gear in middle -->
+    <circle cx="0" cy="40" r="8" fill="#C0C0C0"/>
+    <rect x="-1" y="32" width="2" height="6" fill="#000000"/>
+    <rect x="-1" y="42" width="2" height="6" fill="#000000"/>
+    <rect x="-6" y="38" width="6" height="4" fill="#000000"/>
+    <rect x="0" y="38" width="6" height="4" fill="#000000"/>
+    <!-- Figure on platform -->
+    <rect x="-6" y="70" width="12" height="15" fill="#4169E1"/>
+    <circle cx="0" cy="65" r="4" fill="#8B4513"/>
+    <rect x="-8" y="85" width="16" height="8" fill="#2F4F4F" rx="2"/>
+  </g>
+</svg>

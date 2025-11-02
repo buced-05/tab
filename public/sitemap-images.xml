@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://alladsmarket.com</loc>
+    <image:image>
+      <image:loc>https://alladsmarket.com/logo.png</image:loc>
+      <image:caption>Logo AllAdsMarket</image:caption>
+      <image:title>AllAdsMarket Logo</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com</loc>
+    <image:image>
+      <image:loc>https://alladsmarket.com/og-image.jpg</image:loc>
+      <image:caption>Image Open Graph AllAdsMarket</image:caption>
+      <image:title>AllAdsMarket Social Media Image</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com</loc>
+    <image:image>
+      <image:loc>https://alladsmarket.com/twitter-card.jpg</image:loc>
+      <image:caption>Twitter Card AllAdsMarket</image:caption>
+      <image:title>AllAdsMarket Twitter Card</image:title>
+    </image:image>
+  </url>
+</urlset>
