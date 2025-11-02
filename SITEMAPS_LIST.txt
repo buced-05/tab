@@ -1,0 +1,57 @@
+============================================================
+LISTE COMPLÈTE DES SITEMAPS - ALLADSMARKET
+============================================================
+
+🎯 Sitemap Principal
+------------------------------------------
+https://alladsmarket.com/sitemap.xml
+
+📄 Sitemaps par Catégorie
+------------------------------------------
+https://alladsmarket.com/sitemap-pages.xml       (Pages statiques)
+https://alladsmarket.com/sitemap-articles.xml    (62 articles)
+https://alladsmarket.com/sitemap-products.xml    (191 produits)
+https://alladsmarket.com/sitemap-images.xml      (Images)
+
+🌍 Sitemaps Multilingues (19 langues)
+------------------------------------------
+https://alladsmarket.com/sitemap-fr.xml      (Français)
+https://alladsmarket.com/sitemap-en.xml      (Anglais US)
+https://alladsmarket.com/sitemap-en-GB.xml   (Anglais UK)
+https://alladsmarket.com/sitemap-de.xml      (Allemand)
+https://alladsmarket.com/sitemap-es.xml      (Espagnol)
+https://alladsmarket.com/sitemap-it.xml      (Italien)
+https://alladsmarket.com/sitemap-pt.xml      (Portugais)
+https://alladsmarket.com/sitemap-pt-BR.xml   (Portugais Brésil)
+https://alladsmarket.com/sitemap-nl.xml      (Néerlandais)
+https://alladsmarket.com/sitemap-sv.xml      (Suédois)
+https://alladsmarket.com/sitemap-no.xml      (Norvégien)
+https://alladsmarket.com/sitemap-ru.xml      (Russe)
+https://alladsmarket.com/sitemap-ja.xml      (Japonais)
+https://alladsmarket.com/sitemap-zh.xml      (Chinois)
+https://alladsmarket.com/sitemap-hi.xml      (Hindi)
+https://alladsmarket.com/sitemap-ar.xml      (Arabe)
+https://alladsmarket.com/sitemap-sw.xml      (Swahili)
+https://alladsmarket.com/sitemap-am.xml      (Amharique)
+
+📋 Sitemaps Supplémentaires
+------------------------------------------
+https://alladsmarket.com/sitemap-index.xml     (Index alternatif)
+https://alladsmarket.com/sitemap-authors.xml   (Auteurs)
+https://alladsmarket.com/sitemap-categories.xml (Catégories)
+https://alladsmarket.com/sitemap-news.xml      (Actualités)
+
+============================================================
+TOTAL : 22 sitemaps
+============================================================
+
+Dernière mise à jour : 2 Novembre 2025, 21:33 UTC
+Contenu indexé : 62 articles + 191 produits
+Langues supportées : 19
+Status : ✅ Tous à jour
+
+============================================================
+Pour soumettre à Google Search Console :
+https://alladsmarket.com/sitemap.xml
+============================================================
+
