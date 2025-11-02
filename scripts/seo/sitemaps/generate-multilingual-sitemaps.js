@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +16,18 @@ const __dirname = path.dirname(__filename);
 const baseUrl = 'https://alladsmarket.com';
 // Always write to the project root dist directory
 const outputDir = path.resolve(__dirname, '../../../dist');
+
+// Importer les articles dynamiques
+let allAIArticles = [];
+try {
+  // Dynamically import the articles data
+  const articlesModuleUrl = pathToFileURL(path.resolve(__dirname, '../../../src/data/premium-ai-articles.js')).href;
+  const articlesModule = await import(articlesModuleUrl);
+  allAIArticles = articlesModule.getAllPremiumAIArticles ? articlesModule.getAllPremiumAIArticles() : [];
+  console.log(`📚 ${allAIArticles.length} articles IA chargés pour le sitemap`);
+} catch (error) {
+  console.log('⚠️  Impossible de charger les articles IA, utilisation des articles statiques uniquement');
+}
 
 // Pages statiques
 const staticPages = [
@@ -130,6 +142,10 @@ function generateMainSitemap() {
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>
   <sitemap>
+    <loc>${baseUrl}/sitemap-articles.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>${baseUrl}/sitemap-images.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>
@@ -187,6 +203,48 @@ function generatePagesSitemap() {
     // Balise hreflang x-default
     sitemap += `
     <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${page.path}" />`;
+
+    sitemap += `
+  </url>`;
+  });
+
+  sitemap += `
+</urlset>`;
+  return sitemap;
+}
+
+// Générer le sitemap des articles IA
+function generateArticlesSitemap() {
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">`;
+
+  // Ajouter tous les articles IA dynamiquement chargés
+  allAIArticles.forEach(article => {
+    const lastmod = article.publishDate ? new Date(article.publishDate).toISOString() : new Date().toISOString();
+    const priority = article.trending ? 0.9 : (article.featured ? 0.85 : 0.8);
+    const changefreq = 'weekly';
+
+    sitemap += `
+  <url>
+    <loc>${baseUrl}/ai-article/${article.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>`;
+
+    // Balises hreflang pour toutes les langues
+    supportedLanguages.forEach(lang => {
+      const langConfig = languageConfig[lang];
+      if (langConfig) {
+        const langPath = lang === 'fr' ? `/ai-article/${article.slug}` : `/${lang}/ai-article/${article.slug}`;
+        sitemap += `
+    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
+      }
+    });
+
+    // Balise hreflang x-default
+    sitemap += `
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/ai-article/${article.slug}" />`;
 
     sitemap += `
   </url>`;
@@ -350,6 +408,11 @@ async function generateAllSitemaps() {
     const pagesSitemap = generatePagesSitemap();
     fs.writeFileSync(path.join(outputDir, 'sitemap-pages.xml'), pagesSitemap);
     console.log('✅ sitemap-pages.xml généré');
+
+    // Générer le sitemap des articles IA
+    const articlesSitemap = generateArticlesSitemap();
+    fs.writeFileSync(path.join(outputDir, 'sitemap-articles.xml'), articlesSitemap);
+    console.log('✅ sitemap-articles.xml généré');
 
     // Générer le sitemap des images
     const imagesSitemap = generateImagesSitemap();
