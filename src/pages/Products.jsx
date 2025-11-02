@@ -112,9 +112,13 @@ const Products = () => {
   }, [searchParams, location.pathname]);
 
   const handleProductClick = (product) => {
-    // Navigate to product detail page using client-side routing
-    if (product && product._id) {
-      navigate(`/products/${product._id}`);
+    // Navigate to product detail page using client-side routing with slug
+    if (product) {
+      if (product.slug) {
+        navigate(`/products/${product.slug}`);
+      } else if (product._id) {
+        navigate(`/products/${product._id}`); // Fallback to id
+      }
     }
   };
 

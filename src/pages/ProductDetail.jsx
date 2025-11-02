@@ -15,7 +15,7 @@ import {
 import { productAPI, analyticsAPI } from '../services/minimalAPI';
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const { slug, id } = useParams(); // Support both slug and id
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,11 +30,12 @@ const ProductDetail = () => {
         setLoading(true);
         setError(null);
 
-        const response = await productAPI.getProduct(id);
+        const identifier = slug || id; // Use slug first, fallback to id
+        const response = await productAPI.getProduct(identifier);
         setProduct(response.data.data);
 
         // Track product view
-        await analyticsAPI.trackEvent('view', { productId: id }, id);
+        await analyticsAPI.trackEvent('view', { productId: identifier }, identifier);
       } catch (error) {
         setError('Product not found or failed to load');
         // Error loading product
@@ -43,18 +44,19 @@ const ProductDetail = () => {
       }
     };
 
-    if (id) {
+    if (slug || id) {
       loadProduct();
     }
-  }, [id]);
+  }, [slug, id]);
 
   const handleBuyClick = async () => {
     setIsBuying(true);
     
     try {
+      const identifier = slug || id; // Use slug first, fallback to id
       // Track the click in analytics
-      await productAPI.trackClick(id);
-      await analyticsAPI.trackEvent('click', { productId: id }, id);
+      await productAPI.trackClick(identifier);
+      await analyticsAPI.trackEvent('click', { productId: identifier }, identifier);
       
       // Google security compliant: Same-window redirect
       window.location.href = product.affiliateUrl;

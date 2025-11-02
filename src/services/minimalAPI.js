@@ -47,12 +47,13 @@ export const productAPI = {
     }
   },
 
-  getProduct: async (id) => {
+  getProduct: async (idOrSlug) => {
     try {
       await delay(50);
       
       const products = getAllProducts();
-      const product = products.find(p => p._id === id);
+      // Try to find by slug first, then by id
+      const product = products.find(p => p.slug === idOrSlug || p._id === idOrSlug);
       
       if (!product) {
         return {

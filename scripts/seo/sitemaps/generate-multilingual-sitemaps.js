@@ -278,10 +278,13 @@ function generateProductsSitemap() {
     const lastmod = new Date().toISOString();
     const priority = product.isFeatured ? 0.85 : (product.isTrending ? 0.8 : 0.75);
     const changefreq = 'weekly';
+    
+    // Use slug for SEO-friendly URLs, fallback to _id if no slug
+    const productSlug = product.slug || product._id;
 
     sitemap += `
   <url>
-    <loc>${baseUrl}/products/${product._id}</loc>
+    <loc>${baseUrl}/products/${productSlug}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
@@ -290,7 +293,7 @@ function generateProductsSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? `/products/${product._id}` : `/${lang}/products/${product._id}`;
+        const langPath = lang === 'fr' ? `/products/${productSlug}` : `/${lang}/products/${productSlug}`;
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -298,7 +301,7 @@ function generateProductsSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/products/${product._id}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/products/${productSlug}" />`;
 
     sitemap += `
   </url>`;
