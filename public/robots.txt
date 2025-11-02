@@ -1,4 +1,138 @@
+# ===========================================
+# ROBOTS.TXT - ALLADSMARKET
+# Optimisé pour indexation maximale
+# ===========================================
+
+# Autoriser TOUS les crawlers (Google, Bing, IA)
 User-agent: *
 Allow: /
 
+# Crawler-delay optimisé (non bloquant)
+Crawl-delay: 1
+
+# ===========================================
+# CRAWLERS IA SPÉCIFIQUES
+# Autorisation explicite pour Perplexity, ChatGPT, Claude, etc.
+# ===========================================
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 1
+
+# OpenAI ChatGPT
+User-agent: ChatGPT-User
+Allow: /
+User-agent: GPTBot
+Allow: /
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /
+User-agent: claude-web
+Allow: /
+
+# Google AI
+User-agent: Google-Extended
+Allow: /
+User-agent: Google-InspectionTool
+Allow: /
+
+# Bing AI (Microsoft Copilot)
+User-agent: msnbot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# Apple GPT
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon Titan
+User-agent: Amazonbot
+Allow: /
+
+# Google Scholar
+User-agent: GoogleScholar
+Allow: /
+
+# Facebook AI
+User-agent: facebookexternalhit
+Allow: /
+User-agent: facebot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# Twitter/X
+User-agent: Twitterbot
+Allow: /
+
+# Pinterest
+User-agent: Pinterestbot
+Allow: /
+
+# Reddit
+User-agent: RedditBot
+Allow: /
+
+# Slack
+User-agent: Slackbot
+Allow: /
+
+# ===========================================
+# ZONES AUTORISÉES (explicites pour SEO)
+# ===========================================
+
+Allow: /articles/
+Allow: /ai-articles/
+Allow: /revolutionary-blog/
+Allow: /products/
+Allow: /trending/
+Allow: /featured/
+Allow: /categories/
+Allow: /about
+Allow: /contact
+Allow: /privacy
+Allow: /terms
+
+# ===========================================
+# ZONES PROTÉGÉES (à ne jamais indexer)
+# ===========================================
+
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /dist/
+Disallow: /build/
+
+# ===========================================
+# SITEMAPS
+# ===========================================
+
 Sitemap: https://alladsmarket.com/sitemap.xml
+Sitemap: https://alladsmarket.com/sitemap-index.xml
+Sitemap: https://alladsmarket.com/sitemap-pages.xml
+Sitemap: https://alladsmarket.com/sitemap-images.xml
+Sitemap: https://alladsmarket.com/sitemap-news.xml
+
+# ===========================================
+# HOST (optionnel, mais recommandé)
+# ===========================================
+
+Host: https://alladsmarket.com
+
+# ===========================================
+# NOTES IMPORTANTES
+# ===========================================
+# - Ce fichier permet explicitement l'indexation par tous les moteurs de recherche et IA
+# - Les délais de crawl sont minimaux pour un indexage rapide
+# - Toutes les pages publiques sont autorisées
+# - Les zones sensibles sont protégées
+# ===========================================

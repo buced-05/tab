@@ -18,7 +18,7 @@ module.exports = {
     max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
   },
   
-  // Security
+  // Security - Optimisé pour SEO et bots IA
   security: {
     helmet: {
       contentSecurityPolicy: {
@@ -27,8 +27,9 @@ module.exports = {
           styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
           fontSrc: ["'self'", "https://fonts.gstatic.com"],
           imgSrc: ["'self'", "data:", "https:", "http:"],
-          scriptSrc: ["'self'"],
-          connectSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
+          connectSrc: ["'self'", "https://alladsmarket.com"],
+          frameSrc: ["'self'", "https:"],
         },
       },
     }

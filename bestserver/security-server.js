@@ -36,16 +36,17 @@ const SECURITY_CONFIG = {
     'http://localhost:3001'
   ],
   
-  // Headers de sécurité
+  // Headers de sécurité - Optimisés pour SEO et bots IA
   SECURITY_HEADERS: {
     'X-Content-Type-Options': 'nosniff',
-    'X-Frame-Options': 'DENY',
-    'X-XSS-Protection': '1; mode=block',
+    'X-Frame-Options': 'SAMEORIGIN', // Changé de DENY à SAMEORIGIN pour bots
+    // Note: X-XSS-Protection obsolète, protection moderne via CSP
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Permissions-Policy': 'geolocation=(), microphone=(), camera=()',
-    'Cross-Origin-Embedder-Policy': 'require-corp',
-    'Cross-Origin-Opener-Policy': 'same-origin',
-    'Cross-Origin-Resource-Policy': 'same-origin'
+    // Cross-Origin headers désactivés pour permettre l'indexation par les bots IA
+    // 'Cross-Origin-Embedder-Policy': 'require-corp',
+    // 'Cross-Origin-Opener-Policy': 'same-origin',
+    // 'Cross-Origin-Resource-Policy': 'same-origin'
   }
 };
 
@@ -76,21 +77,24 @@ const pool = mysql.createPool(dbConfig);
 function createSecurityMiddleware() {
   const app = express();
   
-  // 1. Helmet pour les headers de sécurité
+  // 1. Helmet pour les headers de sécurité - Optimisé pour SEO et bots IA
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "https://cdnjs.cloudflare.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:", "https:", "http:"],
-        connectSrc: ["'self'"],
-        frameSrc: ["'none'"],
+        imgSrc: ["'self'", "data:", "https:", "http:", "blob:"],
+        connectSrc: ["'self'", "https://alladsmarket.com"],
+        frameSrc: ["'self'", "https:"], // Changé de 'none' à permettre les frames pour bots IA
         objectSrc: ["'none'"],
-        upgradeInsecureRequests: []
+        // upgradeInsecureRequests: [] // Désactivé pour compatibilité avec certains bots
       }
     },
+    crossOriginEmbedderPolicy: false, // Désactivé pour bots IA
+    crossOriginOpenerPolicy: false, // Désactivé pour bots IA
+    crossOriginResourcePolicy: false, // Désactivé pour bots IA
     hsts: {
       maxAge: 31536000,
       includeSubDomains: true,
