@@ -466,10 +466,25 @@ const AIArticleDetail = () => {
 
   const handleDownload = async () => {
     try {
+      // Attendre que html2pdf.js soit chargé si nécessaire
+      let retries = 0;
+      while (!window.html2pdf && retries < 10) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+        retries++;
+      }
+      
       // Créer le contenu HTML pour le PDF - récupérer tout le contenu de l'article
       const articleContent = document.querySelector('.article-text');
       if (!articleContent) {
         console.error('Contenu de l\'article non trouvé');
+        alert('Erreur: Impossible de récupérer le contenu de l\'article. Veuillez réessayer.');
+        return;
+      }
+      
+      // Vérifier que le contenu n'est pas vide
+      if (!articleContent.innerHTML || articleContent.innerHTML.trim().length < 50) {
+        console.error('Contenu de l\'article vide ou trop court:', articleContent.innerHTML);
+        alert('Erreur: Le contenu de l\'article semble vide. Veuillez réessayer.');
         return;
       }
       
