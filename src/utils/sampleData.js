@@ -852,6 +852,7 @@ export const getSampleProducts = () => {
       _id: 'product-37',
       productNumber: 37,
       name: 'Micoson Women\'s Long Sleeve Tops Dressy Casual Fall Clothes Fashion 2025 V Neck Clothing Color Block T Shirts',
+      slug: 'micoson-womens-long-sleeve-tops-dressy-casual-fall-clothes-fashion-2025-v-neck-clothing-color-block-t-shirts',
       description: 'Fashion 2025 long sleeve tops with color block design for dressy casual wear.',
       price: 0,
       originalPrice: 0,
@@ -937,6 +938,8 @@ export const getSampleProducts = () => {
     // Product 41 - TBMPOY Men's Tracksuits
     {
       _id: 'product-41',
+      slug: 'tbmpoy-mens-tracksuits-sweatsuits-for-men-sweat-track-suits-2-piece-casual-athletic-jogging-warm-up-',
+      
       productNumber: 41,
       name: 'TBMPOY Men\'s Tracksuits Sweatsuits for Men Sweat Track Suits 2 Piece Casual Athletic Jogging Warm Up Full Zip Sets',
       description: '2-piece men\'s tracksuit set with full zip for casual athletic wear and jogging.',
@@ -959,6 +962,8 @@ export const getSampleProducts = () => {
     // Product 42 - COOFANDY Men's Tracksuits
     {
       _id: 'product-42',
+      slug: 'coofandy-mens-tracksuits-2-piece-athletic-track-suit-jogging-running-sweatsuits-casual-warm-full-zip',
+      
       productNumber: 42,
       name: 'COOFANDY Men\'s Tracksuits 2 Piece Athletic Track Suit Jogging Running Sweatsuits Casual Warm Full Zip Sports Set',
       description: 'Athletic 2-piece tracksuit for men with full zip design for jogging and running.',
@@ -981,6 +986,8 @@ export const getSampleProducts = () => {
     // Product 43 - UOUA Men's Tracksuit
     {
       _id: 'product-43',
+      slug: 'uoua-mens-tracksuit-2-piece-sets-casual-sweatsuit-with-full-zip-athletic-jogging-suits-waffle-plaid-',
+      
       productNumber: 43,
       name: 'UOUA Men\'s Tracksuit 2 Piece Sets Casual Sweatsuit with Full Zip Athletic Jogging Suits Waffle Plaid Jacquard Outfits',
       description: 'Casual 2-piece men\'s tracksuit with waffle plaid jacquard design for athletic wear.',
@@ -1003,6 +1010,8 @@ export const getSampleProducts = () => {
     // Product 44 - Men's Tracksuits Sweatsuits
     {
       _id: 'product-44',
+      slug: 'mens-tracksuits-sweatsuits-2-piece-casual-sweat-jogging-suit-set-athletic-full-zip-hoodies-and-sweat',
+      
       productNumber: 44,
       name: 'Men\'s Tracksuits Sweatsuits 2 Piece Casual Sweat Jogging Suit Set Athletic Full Zip Hoodies and Sweatpant Outfits',
       description: '2-piece casual sweat jogging suit set with full zip hoodies and sweatpants.',
@@ -1024,6 +1033,8 @@ export const getSampleProducts = () => {
     // Product 45 - COOFANDY Men's 2 Piece Tracksuit Set
     {
       _id: 'product-45',
+      slug: 'coofandy-mens-2-piece-tracksuit-set-polo-athletic-sweatsuit-quarter-zip-jogging-long-sleeve-casual-s',
+      
       productNumber: 45,
       name: 'COOFANDY Men\'s 2 Piece Tracksuit Set Polo Athletic Sweatsuit Quarter Zip Jogging Long Sleeve Casual Sports Outfits',
       description: '2-piece tracksuit set with polo design and quarter zip for athletic and casual wear.',
@@ -1045,6 +1056,8 @@ export const getSampleProducts = () => {
     // Product 46 - COOFANDY Men's Long Sleeve Henley Shirts
     {
       _id: 'product-46',
+      slug: 'coofandy-mens-long-sleeve-henley-shirts-cotton-t-shirts-casual-pullover-shirt-soft-stretch-basic-tee',
+      
       productNumber: 46,
       name: 'COOFANDY Men\'s Long Sleeve Henley Shirts Cotton T-Shirts Casual Pullover Shirt Soft Stretch Basic Tees Fall Tops',
       description: 'Long sleeve henley shirts in cotton with soft stretch for casual fall wear.',
@@ -1066,6 +1079,8 @@ export const getSampleProducts = () => {
     // Product 47 - Versace Women's Ve2168 Round
     {
       _id: 'product-47',
+      slug: 'versace-womens-ve2168-round',
+      
       productNumber: 47,
       name: 'Versace Women\'s Ve2168 Round',
       description: 'Luxury round sunglasses from Versace for women with elegant design.',
@@ -1134,6 +1149,8 @@ export const getSampleProducts = () => {
     // Product 50 - Versace Men's VE4296 Sunglasses
     {
       _id: 'product-50',
+      slug: 'versace-mens-ve4296-sunglasses-59mm',
+      
       productNumber: 50,
       name: 'Versace Men\'s VE4296 Sunglasses 59mm',
       description: 'Luxury men\'s sunglasses from Versace with 59mm lens size for premium style.',
@@ -1155,6 +1172,8 @@ export const getSampleProducts = () => {
     // Product 51 - Kattee Women's Soft Leather Tote Bag
     {
       _id: 'product-51',
+      slug: 'kattee-womens-soft-leather-tote-bag-top-satchel-purses-and-handbags',
+      
       productNumber: 51,
       name: 'Kattee Women\'s Soft Leather Tote Bag, Top Satchel Purses and Handbags',
       description: 'Soft leather tote bag for women with satchel design for elegant everyday carry.',
@@ -1220,6 +1239,8 @@ export const getSampleProducts = () => {
     // Product 54 - BOSTANTEN Women's Leather Designer Handbags
     {
       _id: 'product-54',
+      slug: 'bostanten-womens-leather-designer-handbags-tote-purses-shoulder-bucket-bags',
+      
       productNumber: 54,
       name: 'BOSTANTEN Women\'s Leather Designer Handbags Tote Purses Shoulder Bucket Bags',
       description: 'Designer leather handbags for women with tote and shoulder bucket bag styles.',
@@ -1307,6 +1328,8 @@ export const getSampleProducts = () => {
     // Product 58 - Travel Makeup Bag Women's Large Capacity
     {
       _id: 'product-58',
+      slug: 'travel-makeup-bag-womens-large-capacity-cosmetic-portable-organizer-large-opening-waterproof-storage',
+      
       productNumber: 58,
       name: 'Travel Makeup Bag Women\'s Large Capacity Cosmetic Portable Organizer Large Opening Waterproof Storage Toiletry Bags Vertical Free-Standing Brush Holder for Easy Access Black',
       description: 'Large capacity waterproof travel makeup bag with vertical brush holder for easy access.',
@@ -1506,6 +1529,8 @@ export const getSampleProducts = () => {
     // Product 67 - Dr. Seuss's Beginner Book Boxed Set Collection
     {
       _id: 'product-67',
+      slug: 'dr-seusss-beginner-book-boxed-set-collection-the-cat-in-the-hat-one-fish-two-fish-red-fish-blue-fish',
+      
       productNumber: 67,
       name: 'Dr. Seuss\'s Beginner Book Boxed Set Collection: The Cat in the Hat; One Fish Two Fish Red Fish Blue Fish; Green Eggs and Ham; Hop on Pop; Fox in Socks Hardcover – Box set',
       description: 'Complete Dr. Seuss beginner book collection with classic stories in a beautiful boxed set.',
@@ -1624,6 +1649,8 @@ export const getSampleProducts = () => {
     // Product 72 - 3 Pack Anti Breakage Baby Bottle Holder
     {
       _id: 'product-72',
+      slug: '3-pack-anti-breakage-baby-bottle-holder-silicone-sleeves-for-dr-browns-natural-glass-baby-bottles-an',
+      
       productNumber: 72,
       name: '3 Pack Anti Breakage Baby Bottle Holder, Silicone Sleeves for Dr. Brown\'s Natural Glass Baby Bottles, Anti Flow Sleeve for Infant Bottles (5 Ounce)',
       description: '3-pack silicone sleeves for Dr. Brown\'s glass baby bottles to prevent breakage and provide anti-flow protection.',
@@ -2197,6 +2224,8 @@ export const getSampleProducts = () => {
     // Product - BOSTANTEN Women's Leather Designer Handbags
     {
       _id: 'product-bostanten-handbag',
+      slug: 'bostanten-womens-leather-designer-handbags-tote-purses-shoulder-bucket-bags',
+      
       productNumber: 50,
       name: 'BOSTANTEN Women\'s Leather Designer Handbags Tote Purses Shoulder Bucket Bags',
       description: 'Elegant leather designer handbag with tote and shoulder options. Perfect for professional and casual occasions.',
@@ -2544,6 +2573,8 @@ export const getSampleProducts = () => {
     // Product 14 - Popular Girl's Bandeau Bra
     {
       _id: 'product-girls-bandeau-bra',
+      slug: 'girls-bandeau-bra',
+      
       productNumber: 14,
       name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
       description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
@@ -3534,6 +3565,8 @@ export const getSampleProducts = () => {
     // Product 14 Copy 1 - Popular Girl's Bandeau Bra (Image 2 as primary)
     {
       _id: 'product-girls-bandeau-bra-copy1',
+      slug: 'girls-bandeau-bra-copy-1',
+      
       productNumber: 14,
       name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
       description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
@@ -3558,6 +3591,8 @@ export const getSampleProducts = () => {
     // Product 14 Copy 2 - Popular Girl's Bandeau Bra (Image 3 as primary)
     {
       _id: 'product-girls-bandeau-bra-copy2',
+      slug: 'girls-bandeau-bra-copy-2',
+      
       productNumber: 14,
       name: 'Popular Girl\'s Bandeau Bra with Removable Padding - Strapless Tube Bra for Girls and Teens, Seamless',
       description: 'Strapless tube bra for girls and teens with removable padding. Seamless design provides comfort and support for young girls.',
@@ -4420,6 +4455,8 @@ export const getSampleProducts = () => {
     // Product 28 - Trendy Queen Women's Oversized Cable Knit Crewneck Sweaters
     {
       _id: 'product-trendy-queen-cable-knit-sweater',
+      slug: 'trendy-queen-cable-knit-sweater',
+      
       productNumber: 28,
       name: 'Trendy Queen Women\'s Oversized Cable Knit Crewneck Sweaters',
       description: 'Stylish oversized cable knit crewneck sweater for women. Perfect for casual wear with a trendy and comfortable design.',
