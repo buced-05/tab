@@ -24,7 +24,11 @@ export const seoConfig = {
     'e-commerce',
     'affiliate marketing',
     'télécharger PDF',
-    'téléchargement gratuit'
+    'téléchargement gratuit',
+    'repetiteur pro',
+    'éducation Côte d\'Ivoire',
+    'accompagnement scolaire',
+    'cours particuliers Abidjan'
   ],
   
   // Mots-clés longue traîne
@@ -46,7 +50,10 @@ export const seoConfig = {
     'stratégies marketing digital',
     'télécharger article PDF gratuit',
     'guide marketing affiliation',
-    'optimiser référencement naturel'
+    'optimiser référencement naturel',
+    'repetiteur pro Côte d\'Ivoire',
+    'plateforme éducation innovation',
+    'soutien scolaire en ligne Abidjan'
   ],
   
   // Configuration des moteurs de recherche
