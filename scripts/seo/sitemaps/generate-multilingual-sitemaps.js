@@ -148,10 +148,6 @@ function generateMainSitemap() {
   <sitemap>
     <loc>${baseUrl}/sitemap-images.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>${baseUrl}/sitemap-news.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>`;
 
   // Ajouter des sitemaps par langue
@@ -418,11 +414,6 @@ async function generateAllSitemaps() {
     const imagesSitemap = generateImagesSitemap();
     fs.writeFileSync(path.join(outputDir, 'sitemap-images.xml'), imagesSitemap);
     console.log('✅ sitemap-images.xml généré');
-
-    // Générer le sitemap des actualités
-    const newsSitemap = generateNewsSitemap();
-    fs.writeFileSync(path.join(outputDir, 'sitemap-news.xml'), newsSitemap);
-    console.log('✅ sitemap-news.xml généré');
 
     // Générer les sitemaps par langue
     for (const lang of supportedLanguages) {

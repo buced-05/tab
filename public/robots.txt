@@ -119,8 +119,8 @@ Disallow: /build/
 Sitemap: https://alladsmarket.com/sitemap.xml
 Sitemap: https://alladsmarket.com/sitemap-index.xml
 Sitemap: https://alladsmarket.com/sitemap-pages.xml
+Sitemap: https://alladsmarket.com/sitemap-articles.xml
 Sitemap: https://alladsmarket.com/sitemap-images.xml
-Sitemap: https://alladsmarket.com/sitemap-news.xml
 
 # ===========================================
 # HOST (optionnel, mais recommandé)
