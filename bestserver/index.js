@@ -38,15 +38,32 @@ app.use(helmet({
   },
 }));
 
-// CORS configuration for AllAdsMarket
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://alladsmarket.com', 'https://www.alladsmarket.com'] 
-    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
+// CORS configuration for AllAdsMarket - Évite les conflits dev/prod
+const corsOptions = {
+  origin: function (origin, callback) {
+    // En production, accepter seulement les domaines autorisés
+    if (process.env.NODE_ENV === 'production') {
+      const allowedOrigins = [
+        'https://alladsmarket.com',
+        'https://www.alladsmarket.com'
+      ];
+      // Autoriser aussi les requêtes sans origin (curl, Postman, etc.)
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    } else {
+      // En développement, accepter localhost et 127.0.0.1
+      callback(null, true);
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
-}));
+};
+
+app.use(cors(corsOptions));
 
 // Rate limiting
 const limiter = rateLimit({

@@ -6,13 +6,38 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Build outputs
+# Build outputs - TOUS les fichiers générés doivent être ignorés
 dist/
+dist/**
+!/dist/.gitkeep
 build/
 out/
 .next/
 .nuxt/
 .vuepress/dist/
+
+# Fichiers générés spécifiques (sitemaps, etc.)
+dist/*.xml
+dist/sitemap*.xml
+dist/sitemap-*.xml
+dist/*.html
+dist/index.html
+dist/assets/
+dist/**/*.js
+dist/**/*.css
+dist/**/*.map
+dist/**/*.json
+dist/**/*.jpg
+dist/**/*.png
+dist/**/*.svg
+dist/**/*.gif
+dist/**/*.ico
+dist/**/*.woff
+dist/**/*.woff2
+dist/**/*.ttf
+dist/**/*.eot
+dist/**/*.webp
+dist/**/*.avif
 
 # Environment variables
 .env
@@ -20,7 +45,9 @@ out/
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
 .env.*.local
+.env.production.example
 
 # IDE and Editor files
 .vscode/
@@ -140,8 +167,10 @@ secrets/
 .secrets/
 
 # Application specific
-# Ignore build artifacts
+# Ignore build artifacts - FICHIERS GÉNÉRÉS (ne jamais commit)
 dist/
+dist/**
+!/dist/.gitkeep
 build/
 
 # Ignore development files

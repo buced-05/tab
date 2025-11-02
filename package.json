@@ -14,7 +14,11 @@
     "start:all": "npm run build && npm run server",
     "dev:all": "concurrently \"npm run dev\" \"npm run server:dev\"",
     "generate-sitemaps": "node scripts/generate-multilingual-sitemaps.js",
-    "seo:generate": "npm run generate-sitemaps"
+    "seo:generate": "npm run generate-sitemaps",
+    "git:clean": "node scripts/git/clean-generated-files.js",
+    "git:pre-merge": "npm run git:clean",
+    "prepull": "npm run git:clean",
+    "premerge": "npm run git:clean"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

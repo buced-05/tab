@@ -21,23 +21,14 @@ const ProductCard = ({ product, onProductClick }) => {
 
   // Protection contre les produits invalides
   if (!product || !product._id) {
-    console.warn('ProductCard: Invalid product data', product);
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('ProductCard: Invalid product data', product);
+    }
     return null;
   }
   
   // Translate product information
   const translatedProduct = translateProduct(product, t);
-  
-  // Debug: Log translation results
-  if (product._id === 'product-1' || product._id === 'product-2') {
-    console.log('🔍 ProductCard Debug:', {
-      productId: product._id,
-      originalName: product.name,
-      translatedName: translatedProduct.name,
-      language: i18n.language,
-      isTranslated: product.name !== translatedProduct.name
-    });
-  }
   
   // Check if current language is French
   const isFrench = i18n.language === 'fr';
@@ -82,10 +73,6 @@ const ProductCard = ({ product, onProductClick }) => {
       productImage
     );
     
-    if (clickResult.success) {
-      console.log('✅ Product click captured:', clickResult.message);
-    }
-    
     // Check if mobile device
     const isMobile = window.innerWidth <= 768;
     
@@ -94,13 +81,15 @@ const ProductCard = ({ product, onProductClick }) => {
       if (affiliateUrl && affiliateUrl !== '#') {
         const redirectSuccess = safeRedirect(affiliateUrl, true);
         if (!redirectSuccess) {
-          console.warn('❌ Failed to redirect to affiliate URL:', affiliateUrl);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Failed to redirect to affiliate URL:', affiliateUrl);
+          }
           window.location.href = affiliateUrl;
-        } else {
-          console.log('✅ Successfully redirected to:', affiliateUrl);
         }
       } else {
-        console.warn('❌ No affiliate URL found for product:', product.name);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('No affiliate URL found for product:', product.name);
+        }
         window.location.href = '/';
       }
     } else {
@@ -134,14 +123,6 @@ const ProductCard = ({ product, onProductClick }) => {
     const productImage = product.images?.find(img => img.isPrimary)?.url || product.images?.[0]?.url;
     const affiliateUrl = product.affiliateUrl || product.affiliate_url || '#';
     
-    // Debug: Afficher le lien d'affiliation utilisé
-    console.log('🔍 Stars Click - Product affiliate URL:', {
-      productId: product._id,
-      productName: product.name,
-      affiliateUrl: affiliateUrl,
-      affiliateUrl_source: product.affiliateUrl ? 'affiliateUrl' : (product.affiliate_url ? 'affiliate_url' : 'fallback')
-    });
-    
     // Capturer le clic avec le service d'affiliation
     const clickResult = affiliateService.captureClick(
       product._id,
@@ -152,21 +133,19 @@ const ProductCard = ({ product, onProductClick }) => {
       productImage
     );
     
-    if (clickResult.success) {
-      console.log('✅ Stars click captured:', clickResult.message);
-    }
-    
     // Rediriger vers le lien d'affiliation
     if (affiliateUrl && affiliateUrl !== '#') {
       const redirectSuccess = safeRedirect(affiliateUrl, true);
       if (!redirectSuccess) {
-        console.warn('❌ Failed to redirect to affiliate URL:', affiliateUrl);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('Failed to redirect to affiliate URL:', affiliateUrl);
+        }
         window.location.href = affiliateUrl;
-      } else {
-        console.log('✅ Successfully redirected to:', affiliateUrl);
       }
     } else {
-      console.warn('❌ No affiliate URL found for product:', product.name);
+      if (process.env.NODE_ENV === 'development') {
+        console.warn('No affiliate URL found for product:', product.name);
+      }
     }
   };
 
@@ -178,14 +157,6 @@ const ProductCard = ({ product, onProductClick }) => {
     
     const affiliateUrl = product.affiliateUrl || product.affiliate_url || '#';
     const productImage = product.images?.find(img => img.isPrimary)?.url || product.images?.[0]?.url;
-    
-    // Debug: Afficher le lien d'affiliation utilisé
-    console.log('🔍 See Price - Product affiliate URL:', {
-      productId: product._id,
-      productName: product.name,
-      affiliateUrl: affiliateUrl,
-      affiliateUrl_source: product.affiliateUrl ? 'affiliateUrl' : (product.affiliate_url ? 'affiliate_url' : 'fallback')
-    });
     
     // Capturer le clic sur le bouton "Voir prix"
     const clickResult = affiliateService.captureClick(
@@ -269,14 +240,6 @@ const ProductCard = ({ product, onProductClick }) => {
     const productImage = product.images?.find(img => img.isPrimary)?.url || product.images?.[0]?.url;
     const affiliateUrl = product.affiliateUrl || product.affiliate_url || '#';
     
-    // Debug: Afficher le lien d'affiliation utilisé
-    console.log('🔍 Quick View - Product affiliate URL:', {
-      productId: product._id,
-      productName: product.name,
-      affiliateUrl: affiliateUrl,
-      affiliateUrl_source: product.affiliateUrl ? 'affiliateUrl' : (product.affiliate_url ? 'affiliate_url' : 'fallback')
-    });
-    
     const clickResult = affiliateService.captureClick(
       product._id,
       product.name || product.title,
@@ -286,10 +249,6 @@ const ProductCard = ({ product, onProductClick }) => {
       productImage
     );
     
-    if (clickResult.success) {
-      console.log('✅ Quick View button click captured:', clickResult.message);
-    }
-    
     // Check if mobile device
     const isMobile = window.innerWidth <= 768;
     
@@ -298,13 +257,15 @@ const ProductCard = ({ product, onProductClick }) => {
       if (affiliateUrl && affiliateUrl !== '#') {
         const redirectSuccess = safeRedirect(affiliateUrl, true);
         if (!redirectSuccess) {
-          console.warn('❌ Failed to redirect to affiliate URL:', affiliateUrl);
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('Failed to redirect to affiliate URL:', affiliateUrl);
+          }
           window.location.href = affiliateUrl;
-        } else {
-          console.log('✅ Successfully redirected to:', affiliateUrl);
         }
       } else {
-        console.warn('❌ No affiliate URL found for product:', product.name);
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('No affiliate URL found for product:', product.name);
+        }
         window.location.href = '/';
       }
     } else {

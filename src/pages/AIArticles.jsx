@@ -56,23 +56,11 @@ const AIArticlesPage = () => {
       setLoading(true);
       const allArticles = getAllPremiumAIArticlesWithDynamicDates();
       
-      // DEBUG: Logs pour vérifier les articles chargés
-      console.log('[AIArticles] Nombre total d\'articles chargés:', allArticles ? allArticles.length : 'undefined');
-      console.log('[AIArticles] Type:', typeof allArticles);
-      console.log('[AIArticles] Est un array:', Array.isArray(allArticles));
-      if (allArticles && allArticles.length > 0) {
-        console.log('[AIArticles] Premiers 5 articles:', allArticles.slice(0, 5).map(a => ({
-          id: a.id,
-          title: a.title?.substring(0, 50),
-          image: a.image ? 'présent' : 'MANQUANT',
-          category: a.category,
-          tags: a.tags?.length || 0
-        })));
-      }
-      
       // Vérification de sécurité
       if (!allArticles || !Array.isArray(allArticles)) {
-        console.error('Erreur: getAllPremiumAIArticles() retourne une valeur invalide:', allArticles);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Erreur: getAllPremiumAIArticles() retourne une valeur invalide:', allArticles);
+        }
         setArticles([]);
         setFilteredArticles([]);
         setStats({
@@ -122,20 +110,16 @@ const AIArticlesPage = () => {
 
     // Filtrage par recherche
     if (searchTerm) {
-      console.log('Recherche avec terme:', searchTerm);
       filtered = filtered.filter(article =>
         article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
       );
-      console.log('Articles trouvés après recherche:', filtered.length);
     }
 
     // Filtrage par catégorie
     if (selectedCategory !== 'all') {
-      console.log('Filtrage par catégorie:', selectedCategory);
       filtered = filtered.filter(article => article.category === selectedCategory);
-      console.log('Articles trouvés après filtrage catégorie:', filtered.length);
     }
 
     // Tri
@@ -168,21 +152,6 @@ const AIArticlesPage = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const paginated = filteredArticles.slice(startIndex, endIndex);
-    
-    // DEBUG: Logs pour vérifier la pagination
-    console.log('[AIArticles] Pagination:', {
-      totalArticles: filteredArticles.length,
-      currentPage,
-      itemsPerPage,
-      startIndex,
-      endIndex,
-      paginatedCount: paginated.length,
-      firstArticle: paginated[0] ? {
-        id: paginated[0].id,
-        title: paginated[0].title?.substring(0, 50),
-        image: paginated[0].image ? 'présent' : 'MANQUANT'
-      } : 'aucun'
-    });
     
     setPaginatedArticles(paginated);
   }, [filteredArticles, currentPage, itemsPerPage]);
@@ -347,34 +316,6 @@ const AIArticlesPage = () => {
     }
   };
 
-  // Fonction utilitaire pour le debugging des identifiants
-  const debugArticleIds = () => {
-    console.log('=== DEBUG ARTICLES IDS ===');
-    console.log('Articles chargés:', articles.length);
-    articles.forEach((article, index) => {
-      console.log(`Article ${index + 1}:`, {
-        id: article.id,
-        slug: article.slug,
-        title: article.title.substring(0, 50) + '...',
-        cardId: `article-card-${article.id}`,
-        numberId: `article-number-${article.id}`,
-        numberBadge: `#${index + 1}`,
-        orderNumber: index + 1,
-        imageId: `article-img-${article.id}`,
-        titleId: `article-title-${article.id}`,
-        linkId: `article-link-${article.id}`
-      });
-    });
-    console.log('========================');
-  };
-
-  // Appeler la fonction de debug au chargement
-  useEffect(() => {
-    if (articles.length > 0) {
-      debugArticleIds();
-      console.log('🎯 NUMÉROS D\'ORDRE GÉNÉRÉS:', articles.map((article, index) => `#${index + 1}`));
-    }
-  }, [articles]);
 
   const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
 
@@ -512,11 +453,6 @@ const AIArticlesPage = () => {
         </div>
 
         {/* Grille d'articles */}
-        {/* DEBUG: Informations sur les articles */}
-        {console.log('[AIArticles RENDER] paginatedArticles.length:', paginatedArticles.length)}
-        {console.log('[AIArticles RENDER] filteredArticles.length:', filteredArticles.length)}
-        {console.log('[AIArticles RENDER] articles.length:', articles.length)}
-        
         {paginatedArticles.length === 0 && filteredArticles.length > 0 && (
           <div className="empty-state" style={{padding: '2rem', textAlign: 'center'}}>
             <p>Aucun article à afficher sur cette page. Total articles: {filteredArticles.length}</p>
@@ -534,7 +470,9 @@ const AIArticlesPage = () => {
             const globalIndex = (currentPage - 1) * itemsPerPage + index + 1;
             // Vérification de sécurité : s'assurer que toutes les propriétés nécessaires sont présentes
             if (!article || !article.id || !article.title || !article.slug) {
-              console.warn('[AIArticles] Article invalide ignoré:', article);
+              if (process.env.NODE_ENV === 'development') {
+                console.warn('[AIArticles] Article invalide ignoré:', article);
+              }
               return null;
             }
             

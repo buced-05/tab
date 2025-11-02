@@ -40,22 +40,35 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Optimized chunk splitting
-        manualChunks: {
+        manualChunks: (id) => {
           // Core React chunks
-          'react-vendor': ['react', 'react-dom'],
-          'react-router': ['react-router-dom'],
-          
+          if (id.includes('node_modules/react') || id.includes('node_modules/react-dom')) {
+            return 'react-vendor';
+          }
+          // React Router
+          if (id.includes('node_modules/react-router')) {
+            return 'react-router';
+          }
           // UI libraries
-          'ui-vendor': ['lucide-react'],
-          
-          // Utility libraries
-          'utils-vendor': [],
-          
+          if (id.includes('node_modules/lucide-react')) {
+            return 'ui-vendor';
+          }
           // Internationalization
-          'i18n-vendor': ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
-          
+          if (id.includes('node_modules/i18next') || id.includes('node_modules/react-i18next')) {
+            return 'i18n-vendor';
+          }
           // Toast notifications
-          'toast-vendor': ['react-hot-toast']
+          if (id.includes('node_modules/react-hot-toast')) {
+            return 'toast-vendor';
+          }
+          // Helmet for SEO
+          if (id.includes('node_modules/react-helmet') || id.includes('node_modules/react-helmet-async')) {
+            return 'seo-vendor';
+          }
+          // Other node_modules
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
         
         // Optimized file naming

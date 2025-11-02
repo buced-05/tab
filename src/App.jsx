@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ModalProvider, LoadingProvider } from './contexts';
@@ -19,34 +19,45 @@ import {
   ErrorHandler,
   DeviceNavigationHandler
 } from './components';
-import DialogDemo from './components/DialogDemo';
-import FormProgressDemo from './pages/FormProgressDemo';
-import {
-      Home,
-      Products,
-      ProductDetail,
-      Articles,
-      ArticleDetail,
-      Admin,
-      AffiliateLinksPage,
-      HelpCenter,
-      ContactUs,
-      FAQ,
-      ShippingInfo,
-      Returns,
-      PrivacyPolicy,
-      TermsOfService
-    } from './pages';
-import ModernArticlesPage from './pages/ModernArticles';
-import RevolutionaryBlog from './pages/RevolutionaryBlog';
-import RevolutionaryArticleDetail from './pages/RevolutionaryArticleDetail';
-import AIArticlesPage from './pages/AIArticles';
-import AIArticleDetail from './pages/AIArticleDetail';
 import './styles/compatibility-fixes.css';
 import './App.css';
 import './styles/index.css';
 import './styles/mobile-products.css';
 import './styles/pagination.css';
+
+// Lazy load pages for code splitting
+const Home = lazy(() => import('./pages/Home'));
+const Products = lazy(() => import('./pages/Products'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Admin = lazy(() => import('./pages/Admin'));
+const AffiliateLinksPage = lazy(() => import('./pages/AffiliateLinksPage'));
+const HelpCenter = lazy(() => import('./pages/HelpCenter'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const ShippingInfo = lazy(() => import('./pages/ShippingInfo'));
+const Returns = lazy(() => import('./pages/Returns'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const DialogDemo = lazy(() => import('./components/DialogDemo'));
+const FormProgressDemo = lazy(() => import('./pages/FormProgressDemo'));
+const RevolutionaryBlog = lazy(() => import('./pages/RevolutionaryBlog'));
+const RevolutionaryArticleDetail = lazy(() => import('./pages/RevolutionaryArticleDetail'));
+const AIArticlesPage = lazy(() => import('./pages/AIArticles'));
+const AIArticleDetail = lazy(() => import('./pages/AIArticleDetail'));
+
+// Loading component for Suspense
+const PageLoader = () => (
+  <div style={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: '50vh',
+    fontSize: '18px',
+    color: '#666'
+  }}>
+    Loading...
+  </div>
+);
 
 // Inner App component
 const AppContent = () => {
@@ -90,6 +101,14 @@ const AppContent = () => {
   // Track page views with Google Analytics
   useEffect(() => {
     if (typeof window !== 'undefined' && window.gtag) {
+      // Send page_view event on route change
+      window.gtag('event', 'page_view', {
+        page_path: location.pathname + location.search,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+      
+      // Update config for SPA routing
       window.gtag('config', 'G-G21WK948XL', {
         page_path: location.pathname + location.search,
         page_title: document.title,
@@ -160,32 +179,34 @@ const AppContent = () => {
             paddingTop: isProfilePage || hideHeaderOnArticles ? '0' : 'var(--header-height)'
           }}
         >
-          <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/classic" element={<Home />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/products/:id" element={<ProductDetail />} />
-                <Route path="/articles" element={<AIArticlesPage />} />
-                <Route path="/revolutionary-blog" element={<RevolutionaryBlog />} />
-                <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
-                <Route path="/ai-articles" element={<AIArticlesPage />} />
-                <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/featured" element={<Products />} />
-                <Route path="/trending" element={<Products />} />
-                <Route path="/categories" element={<Products />} />
-                <Route path="/visited-items" element={<AffiliateLinksPage />} />
-                <Route path="/help" element={<HelpCenter />} />
-                <Route path="/contact" element={<ContactUs />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/shipping" element={<ShippingInfo />} />
-                <Route path="/returns" element={<Returns />} />
-                <Route path="/privacy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<TermsOfService />} />
-                <Route path="/demo" element={<DialogDemo />} />
-                <Route path="/form-progress-demo" element={<FormProgressDemo />} />
-                <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/classic" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/products/:id" element={<ProductDetail />} />
+                  <Route path="/articles" element={<AIArticlesPage />} />
+                  <Route path="/revolutionary-blog" element={<RevolutionaryBlog />} />
+                  <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
+                  <Route path="/ai-articles" element={<AIArticlesPage />} />
+                  <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/featured" element={<Products />} />
+                  <Route path="/trending" element={<Products />} />
+                  <Route path="/categories" element={<Products />} />
+                  <Route path="/visited-items" element={<AffiliateLinksPage />} />
+                  <Route path="/help" element={<HelpCenter />} />
+                  <Route path="/contact" element={<ContactUs />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/shipping" element={<ShippingInfo />} />
+                  <Route path="/returns" element={<Returns />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsOfService />} />
+                  <Route path="/demo" element={<DialogDemo />} />
+                  <Route path="/form-progress-demo" element={<FormProgressDemo />} />
+                  <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </main>
         {!isProfilePage && <Footer />}
         <ModalManager />

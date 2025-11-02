@@ -2,8 +2,34 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Google tag (gtag.js) - Must be first in <head> for proper detection -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G21WK948XL"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Configure Google Analytics with enhanced settings
+      gtag('config', 'G-G21WK948XL', {
+        send_page_view: true,
+        page_path: window.location.pathname + window.location.search,
+        page_title: document.title,
+        page_location: window.location.href,
+        anonymize_ip: false,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+      
+      // Send initial page view event to verify tag is working
+      gtag('event', 'page_view', {
+        page_path: window.location.pathname + window.location.search,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    </script>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <!-- SEO Meta Tags Multilingues -->
     <title>AllAdsMarket - Marketplace d'Affiliation Premium</title>
@@ -167,15 +193,6 @@
     <link rel="dns-prefetch" href="//fonts.googleapis.com" />
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G21WK948XL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-G21WK948XL');
-    </script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
