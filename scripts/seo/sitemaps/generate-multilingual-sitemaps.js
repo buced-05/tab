@@ -29,6 +29,18 @@ try {
   console.log('⚠️  Impossible de charger les articles IA, utilisation des articles statiques uniquement');
 }
 
+// Importer les produits dynamiques
+let allProducts = [];
+try {
+  // Dynamically import the products data
+  const productsModuleUrl = pathToFileURL(path.resolve(__dirname, '../../../src/utils/sampleData.js')).href;
+  const productsModule = await import(productsModuleUrl);
+  allProducts = productsModule.getAllProducts ? productsModule.getAllProducts() : [];
+  console.log(`🛍️  ${allProducts.length} produits chargés pour le sitemap`);
+} catch (error) {
+  console.log('⚠️  Impossible de charger les produits, utilisation des produits statiques uniquement');
+}
+
 // Pages statiques
 const staticPages = [
   {
@@ -146,6 +158,10 @@ function generateMainSitemap() {
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>
   <sitemap>
+    <loc>${baseUrl}/sitemap-products.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>${baseUrl}/sitemap-images.xml</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
   </sitemap>`;
@@ -241,6 +257,48 @@ function generateArticlesSitemap() {
     // Balise hreflang x-default
     sitemap += `
     <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/ai-article/${article.slug}" />`;
+
+    sitemap += `
+  </url>`;
+  });
+
+  sitemap += `
+</urlset>`;
+  return sitemap;
+}
+
+// Générer le sitemap des produits
+function generateProductsSitemap() {
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">`;
+
+  // Ajouter tous les produits dynamiquement chargés
+  allProducts.forEach(product => {
+    const lastmod = new Date().toISOString();
+    const priority = product.isFeatured ? 0.85 : (product.isTrending ? 0.8 : 0.75);
+    const changefreq = 'weekly';
+
+    sitemap += `
+  <url>
+    <loc>${baseUrl}/products/${product._id}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>`;
+
+    // Balises hreflang pour toutes les langues
+    supportedLanguages.forEach(lang => {
+      const langConfig = languageConfig[lang];
+      if (langConfig) {
+        const langPath = lang === 'fr' ? `/products/${product._id}` : `/${lang}/products/${product._id}`;
+        sitemap += `
+    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
+      }
+    });
+
+    // Balise hreflang x-default
+    sitemap += `
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/products/${product._id}" />`;
 
     sitemap += `
   </url>`;
@@ -409,6 +467,11 @@ async function generateAllSitemaps() {
     const articlesSitemap = generateArticlesSitemap();
     fs.writeFileSync(path.join(outputDir, 'sitemap-articles.xml'), articlesSitemap);
     console.log('✅ sitemap-articles.xml généré');
+
+    // Générer le sitemap des produits
+    const productsSitemap = generateProductsSitemap();
+    fs.writeFileSync(path.join(outputDir, 'sitemap-products.xml'), productsSitemap);
+    console.log('✅ sitemap-products.xml généré');
 
     // Générer le sitemap des images
     const imagesSitemap = generateImagesSitemap();
