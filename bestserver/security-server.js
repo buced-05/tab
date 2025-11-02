@@ -77,16 +77,16 @@ const pool = mysql.createPool(dbConfig);
 function createSecurityMiddleware() {
   const app = express();
   
-  // 1. Helmet pour les headers de sécurité - Optimisé pour SEO et bots IA
+  // 1. Helmet pour les headers de sécurité - Optimisé pour SEO, bots IA et Google Analytics
   app.use(helmet({
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
+        fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
         imgSrc: ["'self'", "data:", "https:", "http:", "blob:"],
-        connectSrc: ["'self'", "https://alladsmarket.com"],
+        connectSrc: ["'self'", "https://alladsmarket.com", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
         frameSrc: ["'self'", "https:"], // Changé de 'none' à permettre les frames pour bots IA
         objectSrc: ["'none'"],
         // upgradeInsecureRequests: [] // Désactivé pour compatibilité avec certains bots

@@ -18,17 +18,17 @@ module.exports = {
     max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100
   },
   
-  // Security - Optimisé pour SEO et bots IA
+  // Security - Optimisé pour SEO, bots IA et Google Analytics
   security: {
     helmet: {
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
           styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-          fontSrc: ["'self'", "https://fonts.gstatic.com"],
-          imgSrc: ["'self'", "data:", "https:", "http:"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
-          connectSrc: ["'self'", "https://alladsmarket.com"],
+          fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+          imgSrc: ["'self'", "data:", "https:", "http:", "blob:"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
+          connectSrc: ["'self'", "https://alladsmarket.com", "https://www.google-analytics.com", "https://www.googletagmanager.com"],
           frameSrc: ["'self'", "https:"],
         },
       },
