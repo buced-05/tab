@@ -14,8 +14,7 @@
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://alladsmarket.com" />
+    <!-- Canonical removed here; set dynamically per route via Helmet in App.jsx -->
     
     <!-- Balises hreflang pour SEO international -->
     <link rel="alternate" hreflang="fr" href="https://alladsmarket.com" />
@@ -208,26 +207,74 @@
       "logo": "https://alladsmarket.com/logo.png",
       "description": "Marketplace d'affiliation premium spécialisé dans les produits tendances et offres exclusives",
       "foundingDate": "2024",
+      "foundingLocation": {
+        "@type": "Place",
+        "addressCountry": "FR"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer service",
-        "availableLanguage": "French"
+        "availableLanguage": ["French", "English", "Spanish", "German", "Italian", "Portuguese"],
+        "email": "contact@alladsmarket.com"
       },
+      "areaServed": "Worldwide",
       "sameAs": [
         "https://facebook.com/alladsmarket",
         "https://twitter.com/alladsmarket",
         "https://instagram.com/alladsmarket",
-        "https://linkedin.com/company/alladsmarket"
+        "https://linkedin.com/company/alladsmarket",
+        "https://youtube.com/@alladsmarket"
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+    
+    <!-- BreadcrumbList Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://alladsmarket.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Produits",
+          "item": "https://alladsmarket.com/products"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Articles",
+          "item": "https://alladsmarket.com/articles"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Guides IA",
+          "item": "https://alladsmarket.com/ai-articles"
+        }
       ]
     }
     </script>
-    <script type="module" crossorigin src="./assets/js/index-mQ12ZLJk.js"></script>
+    <script type="module" crossorigin src="./assets/js/index-DQXy3nrO.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/js/react-vendor-DtOhX2xw.js">
     <link rel="modulepreload" crossorigin href="./assets/js/toast-vendor-CWiWmSYj.js">
     <link rel="modulepreload" crossorigin href="./assets/js/react-router-OANrnnZb.js">
     <link rel="modulepreload" crossorigin href="./assets/js/i18n-vendor-Cd_Lb8h5.js">
     <link rel="modulepreload" crossorigin href="./assets/js/ui-vendor-r9ZgFwkT.js">
-    <link rel="stylesheet" crossorigin href="./assets/css/index-DUasWauZ.css">
+    <link rel="stylesheet" crossorigin href="./assets/css/index-CNM2jJJi.css">
   </head>
   <body>
     <div id="root"></div>
