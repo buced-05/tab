@@ -32,6 +32,22 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
+# Vérifier que le dossier dist existe
+if [ ! -d "dist" ]; then
+    echo -e "${RED}❌ Dossier dist non trouvé${NC}"
+    echo "Le build n'a pas été effectué. Lancez 'npm run build' d'abord"
+    exit 1
+fi
+
+# Vérifier que dist/index.html existe
+if [ ! -f "dist/index.html" ]; then
+    echo -e "${RED}❌ dist/index.html non trouvé${NC}"
+    echo "Le build semble incomplet. Lancez 'npm run build'"
+    exit 1
+fi
+
+echo -e "${GREEN}✅ Build dist/ vérifié${NC}"
+
 # Sauvegarder la configuration existante si elle existe
 if [ -f "$TARGET_FILE" ]; then
     BACKUP_FILE="${TARGET_FILE}.backup.$(date +%Y%m%d_%H%M%S)"
