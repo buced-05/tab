@@ -51,9 +51,49 @@ export const productAPI = {
     try {
       await delay(50);
       
+      if (!idOrSlug) {
+        return {
+          success: false,
+          error: 'Product identifier missing',
+          data: null
+        };
+      }
+      
+      // Décoder l'identifiant si nécessaire (URL encoded)
+      const normalized = decodeURIComponent(idOrSlug);
       const products = getAllProducts();
-      // Try to find by slug first, then by id
-      const product = products.find(p => p.slug === idOrSlug || p._id === idOrSlug);
+      
+      // Méthode 1: Recherche exacte par slug
+      let product = products.find(p => p.slug === normalized);
+      
+      // Méthode 2: Recherche exacte par ID
+      if (!product) {
+        product = products.find(p => p._id === normalized);
+      }
+      
+      // Méthode 3: Recherche insensible à la casse par slug
+      if (!product) {
+        product = products.find(p => 
+          p.slug?.toLowerCase() === normalized?.toLowerCase()
+        );
+      }
+      
+      // Méthode 4: Recherche insensible à la casse par ID
+      if (!product) {
+        product = products.find(p => 
+          p._id?.toLowerCase() === normalized?.toLowerCase()
+        );
+      }
+      
+      // Méthode 5: Correspondance partielle (si le slug est long)
+      if (!product && normalized.length > 10) {
+        product = products.find(p =>
+          p.slug && normalized && (
+            p.slug.includes(normalized.substring(0, Math.min(20, normalized.length))) ||
+            normalized.includes(p.slug.substring(0, Math.min(20, p.slug.length)))
+          )
+        );
+      }
       
       if (!product) {
         return {

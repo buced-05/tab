@@ -13,6 +13,7 @@ import {
   Loader
 } from 'lucide-react';
 import { productAPI, analyticsAPI } from '../services/minimalAPI';
+import { getAllProducts } from '../utils/sampleData';
 
 const ProductDetail = () => {
   const { slug, id } = useParams(); // Support both slug and id
@@ -30,15 +31,79 @@ const ProductDetail = () => {
         setLoading(true);
         setError(null);
 
-        const identifier = slug || id; // Use slug first, fallback to id
-        const response = await productAPI.getProduct(identifier);
-        setProduct(response.data.data);
+        // Normaliser le slug (décode URL si nécessaire)
+        const normalizedSlug = slug ? decodeURIComponent(slug) : null;
+        const normalizedId = id ? decodeURIComponent(id) : null;
+        const identifier = normalizedSlug || normalizedId;
 
-        // Track product view
-        await analyticsAPI.trackEvent('view', { productId: identifier }, identifier);
+        if (!identifier) {
+          setError('Product identifier missing');
+          setLoading(false);
+          return;
+        }
+
+        // Méthode 1: Utiliser l'API
+        let response = await productAPI.getProduct(identifier);
+        
+        // Méthode 2: Fallback - recherche directe dans les données locales
+        if (!response.success || !response.data) {
+          const allProducts = getAllProducts();
+          
+          // Recherche exacte par slug
+          let foundProduct = allProducts.find(p => p.slug === identifier);
+          
+          // Si pas trouvé, essayer par ID
+          if (!foundProduct) {
+            foundProduct = allProducts.find(p => p._id === identifier);
+          }
+          
+          // Si pas trouvé, essayer insensible à la casse
+          if (!foundProduct) {
+            foundProduct = allProducts.find(p =>
+              p.slug?.toLowerCase() === identifier?.toLowerCase() ||
+              p._id?.toLowerCase() === identifier?.toLowerCase()
+            );
+          }
+          
+          // Si pas trouvé, essayer correspondance partielle
+          if (!foundProduct && identifier.length > 5) {
+            foundProduct = allProducts.find(p =>
+              p.slug && identifier && (
+                p.slug.includes(identifier.substring(0, Math.min(20, identifier.length))) ||
+                identifier.includes(p.slug.substring(0, Math.min(20, p.slug.length)))
+              )
+            );
+          }
+          
+          if (foundProduct) {
+            response = {
+              success: true,
+              data: foundProduct
+            };
+          }
+        }
+
+        if (response.success && response.data) {
+          setProduct(response.data);
+          
+          // Track product view
+          const productId = response.data._id || identifier;
+          await analyticsAPI.trackEvent('view', { productId }, productId);
+        } else {
+          setError('Product not found');
+          if (process.env.NODE_ENV === 'development') {
+            console.warn('[ProductDetail] Produit non trouvé pour:', {
+              originalSlug: slug,
+              originalId: id,
+              normalizedSlug,
+              normalizedId,
+              identifier
+            });
+          }
+        }
       } catch (error) {
+        console.error('[ProductDetail] Erreur lors du chargement:', error);
         setError('Product not found or failed to load');
-        // Error loading product
       } finally {
         setLoading(false);
       }
@@ -53,17 +118,21 @@ const ProductDetail = () => {
     setIsBuying(true);
     
     try {
-      const identifier = slug || id; // Use slug first, fallback to id
+      const productId = product._id || slug || id;
       // Track the click in analytics
-      await productAPI.trackClick(identifier);
-      await analyticsAPI.trackEvent('click', { productId: identifier }, identifier);
+      await productAPI.trackClick(productId);
+      await analyticsAPI.trackEvent('click', { productId }, productId);
       
       // Google security compliant: Same-window redirect
-      window.location.href = product.affiliateUrl;
+      if (product.affiliateUrl) {
+        window.location.href = product.affiliateUrl;
+      }
     } catch (error) {
       // Error tracking click
       // Still redirect even if tracking fails
-      window.location.href = product.affiliateUrl;
+      if (product.affiliateUrl) {
+        window.location.href = product.affiliateUrl;
+      }
     } finally {
       setIsBuying(false);
     }
