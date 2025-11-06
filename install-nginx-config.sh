@@ -88,6 +88,32 @@ else
     exit 1
 fi
 
+# Vérifications supplémentaires
+echo -e "${BLUE}🔍 Vérifications supplémentaires...${NC}"
+
+# Vérifier que dist/assets existe
+if [ -d "dist/assets" ]; then
+    echo -e "${GREEN}✅ Dossier dist/assets trouvé${NC}"
+else
+    echo -e "${YELLOW}⚠️  Dossier dist/assets non trouvé${NC}"
+fi
+
+# Vérifier qu'il y a des fichiers JS
+JS_COUNT=$(find dist/assets/js -name "*.js" 2>/dev/null | wc -l)
+if [ "$JS_COUNT" -gt 0 ]; then
+    echo -e "${GREEN}✅ $JS_COUNT fichiers JS trouvés${NC}"
+else
+    echo -e "${YELLOW}⚠️  Aucun fichier JS trouvé dans dist/assets/js${NC}"
+fi
+
+# Vérifier qu'il y a des sitemaps
+SITEMAP_COUNT=$(find dist -name "sitemap*.xml" 2>/dev/null | wc -l)
+if [ "$SITEMAP_COUNT" -gt 0 ]; then
+    echo -e "${GREEN}✅ $SITEMAP_COUNT sitemaps trouvés${NC}"
+else
+    echo -e "${YELLOW}⚠️  Aucun sitemap trouvé${NC}"
+fi
+
 # Afficher le statut final
 echo ""
 echo -e "${GREEN}=============================================================="
@@ -101,5 +127,8 @@ echo "Vérifications:"
 echo "  - Status Nginx: systemctl status nginx"
 echo "  - Logs: tail -f /var/log/nginx/alladsmarket.error.log"
 echo "  - Test SSL: curl -I https://alladsmarket.com"
+echo ""
+echo -e "${BLUE}💡 Pour tester la configuration:${NC}"
+echo "  ./test-nginx-config.sh"
 echo ""
 
