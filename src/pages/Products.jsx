@@ -113,11 +113,13 @@ const Products = () => {
 
   const handleProductClick = (product) => {
     // Navigate to product detail page using client-side routing with slug
+    // TOUJOURS utiliser le slug si disponible (priorité), sinon fallback sur _id
     if (product) {
-      if (product.slug) {
-        navigate(`/products/${product.slug}`);
-      } else if (product._id) {
-        navigate(`/products/${product._id}`); // Fallback to id
+      const productIdentifier = product.slug || product._id;
+      if (productIdentifier) {
+        navigate(`/products/${productIdentifier}`);
+      } else {
+        console.warn('[Products] Produit sans slug ni _id:', product);
       }
     }
   };

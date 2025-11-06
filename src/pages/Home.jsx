@@ -53,7 +53,9 @@ const Home = () => {
   }, []);
 
   const handleProductClick = (product) => {
-    window.location.href = `/products/${product._id}`;
+    // Utiliser le slug si disponible, sinon fallback sur _id
+    const productIdentifier = product.slug || product._id;
+    window.location.href = `/products/${productIdentifier}`;
   };
 
   if (loading) {

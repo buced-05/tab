@@ -196,9 +196,9 @@ export const seoArticles30 = [
       <h2>Bonnes pratiques</h2>
       <h2>Précautions</h2>
       <p>Produits recommandés pour booster votre productivité : 
-        <a href="/products/1" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
-        <a href="/products/2" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
-        <a href="/products/3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
+        <a href="/products/dreamquest-support-windows-computers-bluetooth5-3-v3" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
+        <a href="/products/huidun-laptops-computer-business-quad-core-v3" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
+        <a href="/products/cordless-robotic-pool-cleaner-150-mins-runtime-ipx8-waterproof-2200-sq-ft-coverage-powerful-automatic-pool-vacuum-robot-for-in-ground-above-ground-pools-quick-charging-dual-brushes-v3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
       </p>
     `
   }
@@ -346,9 +346,9 @@ export const seoArticles30 = [
       <h2>Applications Pratiques</h2>
       <p>Vidéos de formation et e-learning, contenu marketing, publicités personnalisées, vidéos explicatives, contenus réseaux sociaux et YouTube, présentations corporate, et vidéos promotionnelles à budget limité.</p>
       <p>Essentiels pour créer vos vidéos : 
-        <a href="/products/1" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
-        <a href="/products/2" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
-        <a href="/products/3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
+        <a href="/products/dreamquest-support-windows-computers-bluetooth5-3-v3" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
+        <a href="/products/huidun-laptops-computer-business-quad-core-v3" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
+        <a href="/products/cordless-robotic-pool-cleaner-150-mins-runtime-ipx8-waterproof-2200-sq-ft-coverage-powerful-automatic-pool-vacuum-robot-for-in-ground-above-ground-pools-quick-charging-dual-brushes-v3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
       </p>
     `
   }
@@ -506,9 +506,9 @@ export const seoArticles30 = [
 
       <p><em>Image credit source:</em> <a href="https://www.joomlart.com/images/marketing/joomlart-ai.png" target="_blank" rel="noopener">JoomlArt AI</a></p>
       <p>Recommended gear for your AI workflow: 
-        <a href="/products/1" target="_blank" rel="noopener">DreamQuest laptop stand</a>, 
-        <a href="/products/2" target="_blank" rel="noopener">Huidun pro laptop</a>, 
-        <a href="/products/3" target="_blank" rel="noopener">Premium wireless earbuds</a>.
+        <a href="/products/dreamquest-support-windows-computers-bluetooth5-3-v3" target="_blank" rel="noopener">DreamQuest laptop stand</a>, 
+        <a href="/products/huidun-laptops-computer-business-quad-core-v3" target="_blank" rel="noopener">Huidun pro laptop</a>, 
+        <a href="/products/cordless-robotic-pool-cleaner-150-mins-runtime-ipx8-waterproof-2200-sq-ft-coverage-powerful-automatic-pool-vacuum-robot-for-in-ground-above-ground-pools-quick-charging-dual-brushes-v3" target="_blank" rel="noopener">Premium wireless earbuds</a>.
       </p>
     `
   }
@@ -584,9 +584,9 @@ export const seoArticles30 = [
         <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/QOGoMIjGpUk" title="8 Règles Qui Feront de VOUS un MEILLEUR Développeur" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <p>Matériel recommandé pour bien démarrer : 
-        <a href="/products/1" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
-        <a href="/products/2" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
-        <a href="/products/3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
+        <a href="/products/dreamquest-support-windows-computers-bluetooth5-3-v3" target="_blank" rel="noopener">Support ordinateur DreamQuest</a>, 
+        <a href="/products/huidun-laptops-computer-business-quad-core-v3" target="_blank" rel="noopener">Laptop professionnel Huidun</a>, 
+        <a href="/products/cordless-robotic-pool-cleaner-150-mins-runtime-ipx8-waterproof-2200-sq-ft-coverage-powerful-automatic-pool-vacuum-robot-for-in-ground-above-ground-pools-quick-charging-dual-brushes-v3" target="_blank" rel="noopener">Écouteurs sans fil premium</a>.
       </p>
     `
   }
