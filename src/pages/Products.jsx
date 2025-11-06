@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import ProductList from '../components/ProductList';
 // import apiService from '../services/apiService'; // Removed unused service
 import { getFeaturedProducts, getTrendingProducts, getAllProducts } from '../utils/sampleData';
+import { getCanonicalUrl } from '../utils/canonicalUtils';
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -214,14 +216,27 @@ const Products = () => {
     );
   }
 
+  const canonicalUrl = getCanonicalUrl(location.pathname);
+
   return (
-    <div className="products-page">
-      <div className="container">
-        {/* Page Header */}
-        <div className="page-header">
-          <h1 className="page-title">{getPageTitle()}</h1>
-          <p className="page-description">{getPageDescription()}</p>
-        </div>
+    <>
+      <Helmet>
+        <title>{getPageTitle()} - AllAdsMarket</title>
+        <meta name="description" content={getPageDescription()} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={`${getPageTitle()} - AllAdsMarket`} />
+        <meta property="og:description" content={getPageDescription()} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      <div className="products-page">
+        <div className="container">
+          {/* Page Header */}
+          <div className="page-header">
+            <h1 className="page-title">{getPageTitle()}</h1>
+            <p className="page-description">{getPageDescription()}</p>
+          </div>
 
         {/* Products List */}
         <ProductList
@@ -233,6 +248,7 @@ const Products = () => {
         />
       </div>
     </div>
+    </>
   );
 };
 

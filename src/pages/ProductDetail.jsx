@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { 
   Star, 
   ShoppingCart, 
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 import { productAPI, analyticsAPI } from '../services/minimalAPI';
 import { getAllProducts } from '../utils/sampleData';
+import { getCanonicalUrl } from '../utils/canonicalUtils';
 
 const ProductDetail = () => {
   const { slug, id } = useParams(); // Support both slug and id
@@ -178,27 +180,48 @@ const ProductDetail = () => {
   }
 
   if (error || !product) {
+    // Page non trouvée : ajouter meta robots noindex pour éviter l'indexation
     return (
-      <div className="error-container">
-        <h2>Product Not Found</h2>
-        <p>{error || 'The product you\'re looking for doesn\'t exist.'}</p>
-        <button 
-          onClick={() => navigate('/products')} 
-          className="back-button"
-        >
-          <ArrowLeft size={16} />
-          Back to Products
-        </button>
-      </div>
+      <>
+        <Helmet>
+          <meta name="robots" content="noindex, nofollow" />
+          <title>Product Not Found - AllAdsMarket</title>
+          <link rel="canonical" href={getCanonicalUrl('/products')} />
+        </Helmet>
+        <div className="error-container">
+          <h2>Product Not Found</h2>
+          <p>{error || 'The product you\'re looking for doesn\'t exist.'}</p>
+          <button 
+            onClick={() => navigate('/products')} 
+            className="back-button"
+          >
+            <ArrowLeft size={16} />
+            Back to Products
+          </button>
+        </div>
+      </>
     );
   }
 
   const discount = calculateDiscount();
   const primaryImage = product.images?.[selectedImage] || product.images?.[0];
+  const canonicalUrl = getCanonicalUrl(`/products/${product.slug || product._id}`);
 
   return (
-    <div className="product-detail-page">
-      <div className="container">
+    <>
+      <Helmet>
+        <title>{product.name} - AllAdsMarket</title>
+        <meta name="description" content={product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={product.name} />
+        <meta property="og:description" content={product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`} />
+        <meta property="og:image" content={primaryImage?.url || '/og-image.jpg'} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="product" />
+      </Helmet>
+      <div className="product-detail-page">
+        <div className="container">
         {/* Back Button */}
         <button 
           onClick={() => navigate(-1)} 
@@ -367,6 +390,7 @@ const ProductDetail = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

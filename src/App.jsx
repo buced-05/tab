@@ -6,6 +6,7 @@ import './i18n'; // Initialize i18n
 import './styles/error-boundary.css';
 import { testTranslationLoading } from './utils/testTranslationLoading';
 import { useTranslation } from 'react-i18next';
+import { getCanonicalUrl, getHreflangTags } from './utils/canonicalUtils';
 
 // Import light security system
 import './utils/lightSecurity.js';
@@ -139,27 +140,43 @@ const AppContent = () => {
         <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://tse2.mm.bing.net" crossOrigin="anonymous" />
         <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-        {/* Canonical et alternates multilingues */}
+        {/* Canonical et alternates multilingues - Utilisation du système unifié */}
         {(() => {
-          const fullUrl = window.location.href.split('#')[0].split('?')[0];
-          const url = new URL(fullUrl);
-          const supported = ['fr','en','en-GB','de','es','it','pt','pt-BR','nl','sv','no','ru','ja','zh','hi','ar','sw','am'];
-          const pathname = url.pathname.replace(/\/$/, '') || '/';
-          const parts = pathname.split('/').filter(Boolean);
-          const hasLangPrefix = parts.length > 0 && supported.includes(parts[0]);
-          const basePath = hasLangPrefix ? `/${parts.slice(1).join('/')}` || '/' : pathname;
-          const origin = url.origin;
-          const links = [];
-          // Canonical: langue courante (déduite de l'URL ou i18n)
-          links.push(<link key="canonical" rel="canonical" href={fullUrl} />);
-          // Alternates pour chaque langue
-          supported.forEach((lang) => {
-            const href = lang === 'fr' ? `${origin}${basePath}` : `${origin}/${lang}${basePath === '/' ? '' : basePath}`;
-            links.push(<link key={`alt-${lang}`} rel="alternate" hrefLang={lang} href={href} />);
-          });
-          // x-default
-          links.push(<link key="alt-xdefault" rel="alternate" hrefLang="x-default" href={`${origin}${basePath}`} />);
-          return links;
+          try {
+            const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+            const canonicalUrl = getCanonicalUrl(pathname);
+            const hreflangTags = getHreflangTags(pathname);
+            
+            const links = [];
+            // Canonical
+            links.push(<link key="canonical" rel="canonical" href={canonicalUrl} />);
+            // Alternates pour chaque langue
+            hreflangTags.forEach((tag) => {
+              links.push(<link key={`alt-${tag.hreflang}`} rel="alternate" hrefLang={tag.hreflang} href={tag.href} />);
+            });
+            return links;
+          } catch (error) {
+            // Fallback si le système unifié n'est pas disponible (SSR ou erreur)
+            if (typeof window !== 'undefined') {
+              const fullUrl = window.location.href.split('#')[0].split('?')[0];
+              const url = new URL(fullUrl);
+              const supported = ['fr','en','en-GB','de','es','it','pt','pt-BR','nl','sv','no','ru','ja','zh','hi','ar','sw','am'];
+              const pathname = url.pathname.replace(/\/$/, '') || '/';
+              const parts = pathname.split('/').filter(Boolean);
+              const hasLangPrefix = parts.length > 0 && supported.includes(parts[0]);
+              const basePath = hasLangPrefix ? `/${parts.slice(1).join('/')}` || '/' : pathname;
+              const origin = url.origin;
+              const links = [];
+              links.push(<link key="canonical" rel="canonical" href={fullUrl} />);
+              supported.forEach((lang) => {
+                const href = lang === 'fr' ? `${origin}${basePath}` : `${origin}/${lang}${basePath === '/' ? '' : basePath}`;
+                links.push(<link key={`alt-${lang}`} rel="alternate" hrefLang={lang} href={href} />);
+              });
+              links.push(<link key="alt-xdefault" rel="alternate" hrefLang="x-default" href={`${origin}${basePath}`} />);
+              return links;
+            }
+            return null;
+          }
         })()}
         <meta name="keywords" content="articles professionnels, guides, IA, e‑commerce, logiciels, marketing digital, tutoriels, analyses" />
         <meta property="og:type" content="website" />
@@ -252,18 +269,26 @@ function App() {
 // 404 Not Found Component
 const NotFound = () => {
   return (
-    <div className="not-found">
-      <div className="container">
-        <div className="not-found-content">
-          <h1>404</h1>
-          <h2>Page Not Found</h2>
-          <p>The page you're looking for doesn't exist.</p>
-          <a href="/" className="home-button">
-            Go Home
-          </a>
+    <>
+      <Helmet>
+        <title>404 - Page Not Found | AllAdsMarket</title>
+        <meta name="description" content="La page que vous recherchez n'existe pas." />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href="https://alladsmarket.com" />
+      </Helmet>
+      <div className="not-found">
+        <div className="container">
+          <div className="not-found-content">
+            <h1>404</h1>
+            <h2>Page Not Found</h2>
+            <p>The page you're looking for doesn't exist.</p>
+            <a href="/" className="home-button">
+              Go Home
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

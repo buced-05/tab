@@ -8,6 +8,7 @@ import RealtimeClock from '../components/RealtimeClock';
 import { Helmet } from 'react-helmet-async';
 import ArticleDate from '../components/ArticleDate';
 import Pagination from '../components/Pagination';
+import { getCanonicalUrl } from '../utils/canonicalUtils';
 import '../styles/ai-articles.css';
 import '../styles/premium-animations.css';
 import '../styles/realtime-clock.css';
@@ -574,7 +575,8 @@ const AIArticlesPage = () => {
       <Helmet>
         <title>Articles et Guides Professionnels | AllAdsMarket</title>
         <meta name="description" content="Guides approfondis, analyses et tutoriels couvrant technologie, business, logiciels, IA et plus. Découvrez nos articles professionnels et ressources." />
-        <link rel="canonical" href={window.location.href.split('#')[0].split('?')[0]} />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <link rel="canonical" href={getCanonicalUrl(location.pathname)} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

@@ -27,6 +27,7 @@ import { formatShortDate } from '../utils/dateFormatter';
 import { getAllProducts } from '../utils/sampleData';
 import { translateArticle } from '../utils/articleTranslations';
 import { shareLink, getLinkText } from '../utils/shareUtils';
+import { getCanonicalUrl } from '../utils/canonicalUtils';
 import ArticleDate from '../components/ArticleDate';
 import '../styles/ai-article-detail.css';
 import '../styles/loading.css';
@@ -1896,12 +1897,14 @@ const AIArticleDetail = () => {
   }
 
   if (!article && !loading) {
-    // Article non trouvé après le chargement
+    // Article non trouvé après le chargement - Soft 404 : ajouter meta robots noindex
+    const canonicalUrl = getCanonicalUrl('/ai-articles');
     return (
       <>
         <Helmet>
           <title>Article non trouvé | AllAdsMarket</title>
           <meta name="robots" content="noindex, nofollow" />
+          <link rel="canonical" href={canonicalUrl} />
         </Helmet>
         <div className="ai-article-detail-error">
           <div className="error-content">
@@ -1947,7 +1950,7 @@ const AIArticleDetail = () => {
         <meta name="keywords" content={`${article.metaKeywords || article.tags.join(', ')}, télécharger PDF, télécharger article, PDF gratuit, guide e-commerce, ressources marketing`} />
         <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
         <meta property="og:site_name" content="AllAdsMarket" />
-        <link rel="canonical" href={window.location.href.split('#')[0].split('?')[0]} />
+        <link rel="canonical" href={getCanonicalUrl(`/ai-article/${article.slug}`)} />
 
         {/* Download-specific SEO */}
         <meta name="download" content="PDF disponible" />
