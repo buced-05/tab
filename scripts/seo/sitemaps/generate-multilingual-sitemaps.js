@@ -147,23 +147,37 @@ const languageConfig = {
 
 // Générer le sitemap principal
 function generateMainSitemap() {
+  const lastmod = new Date().toISOString();
+  
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>${baseUrl}/sitemap-pages.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-articles.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-products.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>
   <sitemap>
     <loc>${baseUrl}/sitemap-images.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-categories.xml</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-authors.xml</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/sitemap-news.xml</loc>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>`;
 
   // Ajouter des sitemaps par langue
@@ -173,7 +187,7 @@ function generateMainSitemap() {
       sitemap += `
   <sitemap>
     <loc>${baseUrl}/sitemap-${lang}.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+    <lastmod>${lastmod}</lastmod>
   </sitemap>`;
     }
   });
@@ -399,42 +413,129 @@ function generateImagesSitemap() {
   return sitemap;
 }
 
+// Générer le sitemap des catégories
+function generateCategoriesSitemap() {
+  // Catégories de produits
+  const categories = [
+    { slug: 'categories/electronics', priority: 0.8, changefreq: 'weekly' },
+    { slug: 'categories/clothing', priority: 0.8, changefreq: 'weekly' },
+    { slug: 'categories/home-garden', priority: 0.8, changefreq: 'weekly' },
+    { slug: 'categories/sports', priority: 0.7, changefreq: 'weekly' },
+    { slug: 'categories/books', priority: 0.7, changefreq: 'weekly' },
+    { slug: 'categories/toys', priority: 0.7, changefreq: 'weekly' },
+    { slug: 'categories/beauty', priority: 0.8, changefreq: 'weekly' },
+    { slug: 'categories/health', priority: 0.8, changefreq: 'weekly' }
+  ];
+
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">`;
+
+  const lastmod = new Date().toISOString();
+
+  categories.forEach(category => {
+    sitemap += `
+  <url>
+    <loc>${baseUrl}/${category.slug}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${category.changefreq}</changefreq>
+    <priority>${category.priority}</priority>`;
+
+    // Balises hreflang pour toutes les langues
+    supportedLanguages.forEach(lang => {
+      const langConfig = languageConfig[lang];
+      if (langConfig) {
+        const langPath = lang === 'fr' ? `/${category.slug}` : `/${lang}/${category.slug}`;
+        sitemap += `
+    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
+      }
+    });
+
+    // Balise hreflang x-default
+    sitemap += `
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/${category.slug}" />`;
+
+    sitemap += `
+  </url>`;
+  });
+
+  sitemap += `
+</urlset>`;
+  return sitemap;
+}
+
+// Générer le sitemap des auteurs
+function generateAuthorsSitemap() {
+  // Auteurs par défaut (peut être étendu avec des données réelles)
+  const authors = [
+    { id: 'alladsmarket', name: 'AllAdsMarket Team', priority: 0.7 },
+    { id: 'admin', name: 'Administrator', priority: 0.6 }
+  ];
+
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">`;
+
+  const lastmod = new Date().toISOString();
+
+  authors.forEach(author => {
+    sitemap += `
+  <url>
+    <loc>${baseUrl}/authors/${author.id}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>${author.priority}</priority>`;
+
+    // Balises hreflang pour toutes les langues
+    supportedLanguages.forEach(lang => {
+      const langConfig = languageConfig[lang];
+      if (langConfig) {
+        const langPath = lang === 'fr' ? `/authors/${author.id}` : `/${lang}/authors/${author.id}`;
+        sitemap += `
+    <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
+      }
+    });
+
+    // Balise hreflang x-default
+    sitemap += `
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/authors/${author.id}" />`;
+
+    sitemap += `
+  </url>`;
+  });
+
+  sitemap += `
+</urlset>`;
+  return sitemap;
+}
+
 // Générer le sitemap des actualités
 function generateNewsSitemap() {
-  const articles = [
-    {
-      path: '/article/1',
-      language: 'fr',
-      title: 'Les Tendances du Marketing Digital en 2024',
-      keywords: 'marketing digital, tendances, 2024, SEO, e-commerce',
-      publicationDate: new Date().toISOString()
-    },
-    {
-      path: '/article/2',
-      language: 'en',
-      title: 'Digital Marketing Trends in 2024',
-      keywords: 'digital marketing, trends, 2024, SEO, e-commerce',
-      publicationDate: new Date().toISOString()
-    }
-  ];
+  // Utiliser les articles récents pour le sitemap news
+  const recentArticles = allAIArticles
+    .filter(article => article.publishDate)
+    .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+    .slice(0, 10); // Limiter à 10 articles récents
 
   let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">`;
 
-  articles.forEach(article => {
-    const langConfig = languageConfig[article.language] || languageConfig['fr'];
+  recentArticles.forEach(article => {
+    const langConfig = languageConfig['fr'];
+    const publicationDate = article.publishDate ? new Date(article.publishDate).toISOString() : new Date().toISOString();
+    
     sitemap += `
   <url>
-    <loc>${baseUrl}${article.path}</loc>
+    <loc>${baseUrl}/ai-article/${article.slug}</loc>
     <news:news>
       <news:publication>
         <news:name>AllAdsMarket</news:name>
         <news:language>${langConfig.locale}</news:language>
       </news:publication>
-      <news:publication_date>${article.publicationDate}</news:publication_date>
-      <news:title>${article.title}</news:title>
-      <news:keywords>${article.keywords}</news:keywords>
+      <news:publication_date>${publicationDate}</news:publication_date>
+      <news:title>${article.title || 'Article'}</news:title>
+      <news:keywords>${article.metaKeywords || article.tags?.join(', ') || ''}</news:keywords>
     </news:news>
   </url>`;
   });
@@ -481,6 +582,21 @@ async function generateAllSitemaps() {
     fs.writeFileSync(path.join(outputDir, 'sitemap-images.xml'), imagesSitemap);
     console.log('✅ sitemap-images.xml généré');
 
+    // Générer le sitemap des catégories
+    const categoriesSitemap = generateCategoriesSitemap();
+    fs.writeFileSync(path.join(outputDir, 'sitemap-categories.xml'), categoriesSitemap);
+    console.log('✅ sitemap-categories.xml généré');
+
+    // Générer le sitemap des auteurs
+    const authorsSitemap = generateAuthorsSitemap();
+    fs.writeFileSync(path.join(outputDir, 'sitemap-authors.xml'), authorsSitemap);
+    console.log('✅ sitemap-authors.xml généré');
+
+    // Générer le sitemap des actualités
+    const newsSitemap = generateNewsSitemap();
+    fs.writeFileSync(path.join(outputDir, 'sitemap-news.xml'), newsSitemap);
+    console.log('✅ sitemap-news.xml généré');
+
     // Générer les sitemaps par langue
     for (const lang of supportedLanguages) {
       const langSitemap = generateLanguageSitemap(lang);
@@ -490,8 +606,34 @@ async function generateAllSitemaps() {
       }
     }
 
-    console.log('🎉 Tous les sitemaps multilingues ont été générés avec succès!');
-    console.log(`📁 Fichiers générés dans: ${outputDir}`);
+    // Vérifier que tous les sitemaps référencés existent
+    console.log('\n🔍 Vérification des sitemaps...');
+    const mainSitemapContent = fs.readFileSync(path.join(outputDir, 'sitemap.xml'), 'utf8');
+    const sitemapMatches = mainSitemapContent.match(/<loc>(.*?)<\/loc>/g) || [];
+    const referencedSitemaps = sitemapMatches.map(match => {
+      const url = match.replace('<loc>', '').replace('</loc>', '');
+      return url.split('/').pop();
+    });
+
+    let allFound = true;
+    for (const sitemapFile of referencedSitemaps) {
+      const filePath = path.join(outputDir, sitemapFile);
+      if (fs.existsSync(filePath)) {
+        console.log(`  ✅ ${sitemapFile} existe`);
+      } else {
+        console.log(`  ❌ ${sitemapFile} MANQUANT!`);
+        allFound = false;
+      }
+    }
+
+    if (allFound) {
+      console.log('\n🎉 Tous les sitemaps multilingues ont été générés avec succès!');
+      console.log(`📁 Fichiers générés dans: ${outputDir}`);
+      console.log(`📊 Total: ${referencedSitemaps.length} sitemaps référencés`);
+    } else {
+      console.log('\n⚠️  Certains sitemaps référencés sont manquants!');
+      process.exit(1);
+    }
 
   } catch (error) {
     console.error('❌ Erreur lors de la génération des sitemaps:', error);
