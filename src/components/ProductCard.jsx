@@ -43,11 +43,28 @@ const ProductCard = ({ product, onProductClick }) => {
   }, []);
 
 
-  const handleProductClick = async (clickSource = 'card') => {
+  const handleProductClick = async (clickSource = 'card', e) => {
     if (!product) return;
+    
+    // Empêcher la propagation si c'est un clic sur un bouton ou un lien
+    if (e) {
+      const target = e.target;
+      const isButton = target.closest('button') || target.closest('.product-actions') || target.closest('.quick-view-button') || target.closest('.buy-button');
+      if (isButton) {
+        return; // Laisser les boutons gérer leur propre clic
+      }
+    }
+    
     // For card clicks, prefer parent-provided navigation (e.g., to product detail)
+    // Cette fonction est appelée quand on clique sur la carte elle-même
     if (clickSource === 'card' && typeof onProductClick === 'function') {
-      onProductClick(product);
+      // Utiliser le slug si disponible
+      const productToNavigate = {
+        ...product,
+        // S'assurer que le slug est présent
+        slug: product.slug || product._id
+      };
+      onProductClick(productToNavigate);
       return;
     }
     
