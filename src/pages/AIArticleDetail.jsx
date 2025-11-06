@@ -49,16 +49,20 @@ const AIArticleDetail = () => {
     const loadArticle = async () => {
       setLoading(true);
       try {
-        // Normaliser le slug (décode URL si nécessaire)
-        const normalizedSlug = slug ? decodeURIComponent(slug) : null;
-
-        // Logger le slug reçu pour debug
-        if (process.env.NODE_ENV === 'development') {
-          console.log('[AIArticleDetail] Chargement de l\'article avec slug:', {
-            original: slug,
-            normalized: normalizedSlug
-          });
+        // Normaliser le slug (décode URL si nécessaire, nettoie les espaces, etc.)
+        let normalizedSlug = slug ? decodeURIComponent(slug).trim() : null;
+        
+        // Nettoyer le slug : supprimer les slashs de fin, les espaces, etc.
+        if (normalizedSlug) {
+          normalizedSlug = normalizedSlug.replace(/\/$/, '').trim();
         }
+
+        // Logger le slug reçu pour debug (toujours actif pour le debug)
+        console.log('[AIArticleDetail] Chargement de l\'article avec slug:', {
+          original: slug,
+          normalized: normalizedSlug,
+          timestamp: new Date().toISOString()
+        });
 
         if (!normalizedSlug) {
           console.warn('[AIArticleDetail] Slug manquant ou invalide');
@@ -69,61 +73,113 @@ const AIArticleDetail = () => {
 
         // Méthode 1: Utiliser getPremiumAIArticleBySlug directement
         let foundArticle = getPremiumAIArticleBySlug(normalizedSlug);
+        console.log('[AIArticleDetail] Méthode 1 (getPremiumAIArticleBySlug):', foundArticle ? '✅ Trouvé' : '❌ Non trouvé');
 
         // Méthode 2: Si pas trouvé, utiliser getAllPremiumAIArticlesWithDynamicDates
         if (!foundArticle) {
           const allArticles = getAllPremiumAIArticlesWithDynamicDates();
-
-          if (process.env.NODE_ENV === 'development' && allArticles.length > 0) {
-            console.log('[AIArticleDetail] Recherche dans', allArticles.length, 'articles');
-            // Logger quelques slugs pour debug
-            const sampleSlugs = allArticles.slice(0, 5).map(a => ({ id: a.id, slug: a.slug }));
-            console.log('[AIArticleDetail] Exemples de slugs:', sampleSlugs);
-          }
+          console.log('[AIArticleDetail] Méthode 2: Recherche dans', allArticles.length, 'articles');
 
           // Recherche exacte par slug
-          foundArticle = allArticles.find(art => art.slug === normalizedSlug);
+          foundArticle = allArticles.find(art => {
+            if (!art.slug) return false;
+            const cleanArticleSlug = art.slug.trim();
+            return cleanArticleSlug === normalizedSlug;
+          });
 
-          // Si pas trouvé, essayer par ID
-          if (!foundArticle) {
-            foundArticle = allArticles.find(art => art.id === normalizedSlug);
+          if (foundArticle) {
+            console.log('[AIArticleDetail] ✅ Trouvé par recherche exacte');
+          } else {
+            // Si pas trouvé, essayer insensible à la casse
+            foundArticle = allArticles.find(art =>
+              art.slug && art.slug.trim().toLowerCase() === normalizedSlug.toLowerCase()
+            );
+
+            if (foundArticle) {
+              console.log('[AIArticleDetail] ✅ Trouvé par recherche insensible à la casse');
+            } else {
+              // Si pas trouvé, essayer par ID
+              foundArticle = allArticles.find(art => art.id === normalizedSlug || art.id?.toLowerCase() === normalizedSlug.toLowerCase());
+
+              if (foundArticle) {
+                console.log('[AIArticleDetail] ✅ Trouvé par ID');
+              } else {
+                // Si pas trouvé, essayer une correspondance partielle (pour les slugs similaires)
+                foundArticle = allArticles.find(art => {
+                  if (!art.slug || !normalizedSlug) return false;
+                  const cleanArticleSlug = art.slug.trim();
+                  // Correspondance partielle : au moins 30 caractères identiques
+                  const minLength = Math.min(30, normalizedSlug.length, cleanArticleSlug.length);
+                  return cleanArticleSlug.substring(0, minLength) === normalizedSlug.substring(0, minLength) ||
+                         cleanArticleSlug.includes(normalizedSlug.substring(0, 20)) ||
+                         normalizedSlug.includes(cleanArticleSlug.substring(0, 20));
+                });
+
+                if (foundArticle) {
+                  console.log('[AIArticleDetail] ✅ Trouvé par correspondance partielle');
+                }
+              }
+            }
           }
 
-          // Si pas trouvé, essayer insensible à la casse
+          // Debug: Afficher les slugs disponibles si toujours pas trouvé
           if (!foundArticle) {
-            foundArticle = allArticles.find(art =>
-              art.slug?.toLowerCase() === normalizedSlug?.toLowerCase()
-            );
-          }
-
-          // Si pas trouvé, essayer une correspondance partielle (pour les slugs similaires)
-          if (!foundArticle) {
-            foundArticle = allArticles.find(art =>
-              art.slug && normalizedSlug && (
-                art.slug.includes(normalizedSlug.substring(0, Math.min(20, normalizedSlug.length))) ||
-                normalizedSlug.includes(art.slug.substring(0, Math.min(20, art.slug.length)))
-              )
-            );
+            console.warn('[AIArticleDetail] ❌ Article non trouvé après toutes les méthodes');
+            const sampleSlugs = allArticles.slice(0, 10).map(a => ({
+              id: a.id,
+              slug: a.slug,
+              slugLength: a.slug?.length || 0,
+              match: a.slug?.trim() === normalizedSlug || a.slug?.trim().toLowerCase() === normalizedSlug.toLowerCase()
+            }));
+            console.log('[AIArticleDetail] Premiers slugs disponibles:', sampleSlugs);
+            
+            // Chercher des slugs similaires
+            const similarSlugs = allArticles
+              .filter(a => {
+                if (!a.slug || !normalizedSlug) return false;
+                const cleanSlug = a.slug.trim().toLowerCase();
+                const cleanNormalized = normalizedSlug.toLowerCase();
+                return cleanSlug.includes(cleanNormalized.substring(0, 15)) ||
+                       cleanNormalized.includes(cleanSlug.substring(0, 15));
+              })
+              .map(a => ({ id: a.id, slug: a.slug, title: a.title?.substring(0, 50) }));
+            
+            if (similarSlugs.length > 0) {
+              console.log('[AIArticleDetail] Slugs similaires trouvés:', similarSlugs);
+            }
           }
         }
 
         // Méthode 3: Fallback avec getAllPremiumAIArticles (sans dates dynamiques)
         if (!foundArticle) {
+          console.log('[AIArticleDetail] Méthode 3: Fallback avec getAllPremiumAIArticles');
           const allArticles = getAllPremiumAIArticles();
-          foundArticle = allArticles.find(art =>
-            art.slug === normalizedSlug ||
-            art.slug?.toLowerCase() === normalizedSlug?.toLowerCase() ||
-            art.id === normalizedSlug
-          );
+          foundArticle = allArticles.find(art => {
+            if (!art.slug) return false;
+            const cleanSlug = art.slug.trim();
+            return cleanSlug === normalizedSlug ||
+                   cleanSlug.toLowerCase() === normalizedSlug.toLowerCase() ||
+                   art.id === normalizedSlug ||
+                   art.id?.toLowerCase() === normalizedSlug.toLowerCase();
+          });
+          
+          if (foundArticle) {
+            console.log('[AIArticleDetail] ✅ Trouvé par méthode 3 (fallback)');
+          }
         }
 
         if (foundArticle) {
-          if (process.env.NODE_ENV === 'development') {
-            console.log('[AIArticleDetail] Article trouvé:', {
-              id: foundArticle.id,
-              slug: foundArticle.slug,
-              title: foundArticle.title?.substring(0, 50)
-            });
+          console.log('[AIArticleDetail] ✅ Article trouvé avec succès:', {
+            id: foundArticle.id,
+            slug: foundArticle.slug,
+            title: foundArticle.title?.substring(0, 50),
+            hasContent: !!foundArticle.content,
+            contentLength: foundArticle.content?.length || 0
+          });
+
+          // Vérifier que l'article a du contenu
+          if (!foundArticle.content || foundArticle.content.trim().length === 0) {
+            console.warn('[AIArticleDetail] ⚠️ Article trouvé mais contenu vide!');
           }
 
           const translatedArticle = translateArticle(foundArticle, t);
@@ -139,32 +195,43 @@ const AIArticleDetail = () => {
           const toc = generateTableOfContents(foundArticle.content);
           setTableOfContents(toc);
         } else {
-          // Article non trouvé - logger pour debug
-          console.warn('[AIArticleDetail] Article non trouvé pour slug:', {
+          // Article non trouvé - logger détaillé pour debug
+          console.error('[AIArticleDetail] ❌ Article non trouvé pour slug:', {
             original: slug,
-            normalized: normalizedSlug
+            normalized: normalizedSlug,
+            normalizedLength: normalizedSlug?.length || 0
           });
+          
+          // Charger tous les articles pour debug
           const allArticles = getAllPremiumAIArticlesWithDynamicDates();
-          console.log('[AIArticleDetail] Articles disponibles:', allArticles.length);
-          if (allArticles.length > 0) {
-            console.log('[AIArticleDetail] Premiers slugs disponibles:', allArticles.slice(0, 10).map(a => ({
-              id: a.id,
-              slug: a.slug,
-              match: a.slug === normalizedSlug || a.slug?.toLowerCase() === normalizedSlug?.toLowerCase()
-            })));
-
-            // Chercher des slugs similaires
-            const similarSlugs = allArticles
-              .filter(a => a.slug && normalizedSlug && (
-                a.slug.includes(normalizedSlug.substring(0, 10)) ||
-                normalizedSlug.includes(a.slug.substring(0, 10))
-              ))
-              .map(a => a.slug);
-
-            if (similarSlugs.length > 0) {
-              console.log('[AIArticleDetail] Slugs similaires trouvés:', similarSlugs);
+          console.error('[AIArticleDetail] Total articles disponibles:', allArticles.length);
+          
+          // Vérifier si le slug existe dans les articles
+          const exactMatch = allArticles.find(a => {
+            if (!a.slug) return false;
+            return a.slug.trim() === normalizedSlug || a.slug.trim().toLowerCase() === normalizedSlug.toLowerCase();
+          });
+          
+          if (exactMatch) {
+            console.error('[AIArticleDetail] ⚠️ Article trouvé mais pas chargé! Slug:', exactMatch.slug, 'ID:', exactMatch.id);
+          } else {
+            console.error('[AIArticleDetail] Aucun article avec ce slug exact');
+            // Afficher les slugs contenant "shopify" ou "dropshipping" pour debug
+            const relatedArticles = allArticles.filter(a => 
+              a.slug?.toLowerCase().includes('shopify') || 
+              a.slug?.toLowerCase().includes('dropshipping') ||
+              a.title?.toLowerCase().includes('shopify') ||
+              a.title?.toLowerCase().includes('dropshipping')
+            );
+            if (relatedArticles.length > 0) {
+              console.error('[AIArticleDetail] Articles Shopify/Dropshipping trouvés:', relatedArticles.map(a => ({
+                id: a.id,
+                slug: a.slug,
+                title: a.title?.substring(0, 60)
+              })));
             }
           }
+          
           setArticle(null);
         }
       } catch (error) {

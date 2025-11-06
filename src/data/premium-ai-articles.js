@@ -21,8 +21,41 @@ export const getPremiumAIArticleById = (id) => {
 };
 
 export const getPremiumAIArticleBySlug = (slug) => {
+  if (!slug) return null;
+  
+  // Normaliser le slug : trim, supprimer les slashs de fin
+  const normalizedSlug = slug.trim().replace(/\/$/, '');
+  
   // Tous les articles sont maintenant dans trendingArticles2025
-  return [...trendingArticles2025, ...customArticles2025, ...seoArticles30].find(article => article.slug === slug);
+  const allArticles = [...trendingArticles2025, ...customArticles2025, ...seoArticles30];
+  
+  // Recherche exacte
+  let article = allArticles.find(article => {
+    if (!article.slug) return false;
+    return article.slug.trim() === normalizedSlug;
+  });
+  
+  // Si pas trouvé, recherche insensible à la casse
+  if (!article) {
+    article = allArticles.find(article => {
+      if (!article.slug) return false;
+      return article.slug.trim().toLowerCase() === normalizedSlug.toLowerCase();
+    });
+  }
+  
+  // Si pas trouvé, recherche avec correspondance partielle (pour les slugs similaires)
+  if (!article && normalizedSlug.length > 10) {
+    const minLength = Math.min(20, normalizedSlug.length);
+    article = allArticles.find(article => {
+      if (!article.slug) return false;
+      const cleanSlug = article.slug.trim();
+      return cleanSlug.substring(0, minLength) === normalizedSlug.substring(0, minLength) ||
+             cleanSlug.includes(normalizedSlug.substring(0, 15)) ||
+             normalizedSlug.includes(cleanSlug.substring(0, 15));
+    });
+  }
+  
+  return article || null;
 };
 
 export const getPremiumAIArticlesByCategory = (category) => {
