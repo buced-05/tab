@@ -332,7 +332,8 @@ const ProductCard = ({ product, onProductClick }) => {
     <div 
       className="product-card"
       data-product-id={product._id}
-      onClick={handleProductClick}
+      data-product-slug={product.slug || product._id}
+      onClick={(e) => handleProductClick('card', e)}
     >
       <div className="product-image-container">
         {discount > 0 && (

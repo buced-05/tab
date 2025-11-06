@@ -115,11 +115,21 @@ const Products = () => {
     // Navigate to product detail page using client-side routing with slug
     // TOUJOURS utiliser le slug si disponible (priorité), sinon fallback sur _id
     if (product) {
+      // Vérifier que le produit a un slug
+      if (!product.slug) {
+        console.warn('[Products] Produit sans slug:', {
+          id: product._id,
+          name: product.name?.substring(0, 50)
+        });
+      }
+      
       const productIdentifier = product.slug || product._id;
       if (productIdentifier) {
-        navigate(`/products/${productIdentifier}`);
+        const url = `/products/${productIdentifier}`;
+        console.log('[Products] Navigation vers:', url, { slug: product.slug, id: product._id });
+        navigate(url);
       } else {
-        console.warn('[Products] Produit sans slug ni _id:', product);
+        console.error('[Products] Produit sans slug ni _id:', product);
       }
     }
   };

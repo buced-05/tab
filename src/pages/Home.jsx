@@ -54,8 +54,27 @@ const Home = () => {
 
   const handleProductClick = (product) => {
     // Utiliser le slug si disponible, sinon fallback sur _id
+    if (!product) {
+      console.error('[Home] Produit invalide');
+      return;
+    }
+    
+    // Vérifier que le produit a un slug
+    if (!product.slug) {
+      console.warn('[Home] Produit sans slug:', {
+        id: product._id,
+        name: product.name?.substring(0, 50)
+      });
+    }
+    
     const productIdentifier = product.slug || product._id;
-    window.location.href = `/products/${productIdentifier}`;
+    if (productIdentifier) {
+      const url = `/products/${productIdentifier}`;
+      console.log('[Home] Navigation vers:', url, { slug: product.slug, id: product._id });
+      window.location.href = url;
+    } else {
+      console.error('[Home] Produit sans slug ni _id:', product);
+    }
   };
 
   if (loading) {
