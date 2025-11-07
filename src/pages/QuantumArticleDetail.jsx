@@ -337,10 +337,15 @@ Cordialement
   const shareArticle = async () => {
     if (!article) return;
     
+    // Construire l'URL de l'article avec le slug
+    const articleSlug = article.slug || articleId || article.id;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/ai-article/${articleSlug}`;
+    
     const shareData = {
       title: `${article.title}`,
       text: `Découvrez cet article sur l'informatique quantique`,
-      url: window.location.href
+      url: shareUrl
     };
     
     try {

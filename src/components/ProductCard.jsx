@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Star, Heart, Eye, Zap, ExternalLink } from 'lucide-react';
 import { productAPI, analyticsAPI } from '../services/minimalAPI';
 import affiliateService from '../services/minimalAffiliate';
@@ -13,6 +14,7 @@ import StarRating from './StarRating';
 
 const ProductCard = ({ product, onProductClick }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
@@ -243,8 +245,11 @@ const ProductCard = ({ product, onProductClick }) => {
       productImage
     );
     
-    // Ouvrir la vue rapide
-    handleProductClick('image');
+    // Naviguer vers la page produit avec le slug dans l'URL
+    const productSlug = product.slug || product._id;
+    if (productSlug) {
+      navigate(`/products/${productSlug}`);
+    }
   };
 
   const handleQuickViewClick = async (e) => {
@@ -266,43 +271,10 @@ const ProductCard = ({ product, onProductClick }) => {
       productImage
     );
     
-    // Check if mobile device
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-      // On mobile, redirect directly to affiliate link
-      if (affiliateUrl && affiliateUrl !== '#') {
-        const redirectSuccess = safeRedirect(affiliateUrl, true);
-        if (!redirectSuccess) {
-          if (process.env.NODE_ENV === 'development') {
-            console.warn('Failed to redirect to affiliate URL:', affiliateUrl);
-          }
-          window.location.href = affiliateUrl;
-        }
-      } else {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn('No affiliate URL found for product:', product.name);
-        }
-        window.location.href = '/';
-      }
-    } else {
-      // On desktop, open modal
-      openModal('quickView', product);
-      
-      // Use setTimeout to prevent blocking the UI
-      setTimeout(async () => {
-        try {
-          // Track the quick view in analytics
-          await analyticsAPI.trackEvent('quick_view', { 
-            productId: product._id,
-            affiliateId: clickResult.affiliateInfo?.affiliateId 
-          }, product._id);
-          
-        } catch (error) {
-          // Error tracking quick view
-          console.error('Quick view error:', error);
-        }
-      }, 0);
+    // Naviguer vers la page produit avec le slug dans l'URL
+    const productSlug = product.slug || product._id;
+    if (productSlug) {
+      navigate(`/products/${productSlug}`);
     }
   };
 

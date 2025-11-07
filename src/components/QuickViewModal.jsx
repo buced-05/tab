@@ -185,7 +185,11 @@ const QuickViewModal = ({ product, isOpen, onClose }) => {
   const handleSocialShare = (platform) => {
     if (!product) return;
     
-    const shareUrl = window.location.href;
+    // Construire l'URL du produit avec le slug
+    const productSlug = product.slug || product._id;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/products/${productSlug}`;
+    
     const productName = translatedProduct.name || product.name || product.title || 'Product';
     const shareText = `Check out this amazing product: ${productName}`;
     let shareLink = '';

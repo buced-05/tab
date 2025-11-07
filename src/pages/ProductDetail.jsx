@@ -146,9 +146,15 @@ const ProductDetail = () => {
 
   const handleShareClick = async () => {
     const { shareLink } = await import('../utils/shareUtils');
+    // Construire l'URL du produit avec le slug
+    const productSlug = product?.slug || slug || id || product?._id;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/products/${productSlug}`;
+    
     await shareLink({
       title: product.name,
-      text: product.description
+      text: product.description,
+      url: shareUrl
     });
   };
 

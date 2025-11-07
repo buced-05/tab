@@ -665,9 +665,15 @@ const AIArticleDetail = () => {
   };
 
   const handleShare = async () => {
+    // Construire l'URL de l'article avec le slug
+    const articleSlug = article?.slug || slug;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/ai-article/${articleSlug}`;
+    
     await shareLink({
       title: article.title,
-      text: article.excerpt
+      text: article.excerpt,
+      url: shareUrl
     });
   };
 

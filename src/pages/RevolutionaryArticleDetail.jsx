@@ -973,9 +973,15 @@ const RevolutionaryArticleDetail = () => {
 
   const handleShare = async () => {
     const shareUtils = await import('../utils/shareUtils');
+    // Construire l'URL de l'article avec le slug
+    const articleSlug = article?.slug || id;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/article/${articleSlug}`;
+    
     await shareUtils.shareLink({
       title: article.title,
-      text: article.description
+      text: article.description,
+      url: shareUrl
     });
   };
 

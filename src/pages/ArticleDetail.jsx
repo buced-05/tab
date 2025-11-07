@@ -450,9 +450,15 @@ Cordialement
     if (!product) return;
     
     const { shareLink } = await import('../utils/shareUtils');
+    // Construire l'URL du produit avec le slug
+    const productSlug = product.slug || productId || product._id;
+    const baseUrl = window.location.origin;
+    const shareUrl = `${baseUrl}/products/${productSlug}`;
+    
     await shareLink({
       title: `${product.name} - Analyse Technique`,
-      text: `Découvrez cette analyse approfondie du ${product.name}`
+      text: `Découvrez cette analyse approfondie du ${product.name}`,
+      url: shareUrl
     });
   };
 
