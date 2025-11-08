@@ -23,14 +23,21 @@ const SEOHead = ({
   canonicalUrl,
   noindex = false,
   nofollow = false,
-  structuredData = null
+  structuredData = null,
+  includeDefaultKeywords = true,
+  additionalMeta = [],
+  additionalLinkTags = []
 }) => {
   const { i18n } = useTranslation();
   const currentLocale = i18n.language || 'fr';
   
   // Génération automatique des URLs canoniques
   const baseUrl = process.env.REACT_APP_BASE_URL || 'https://alladsmarket.com';
-  const fullUrl = url ? `${baseUrl}${url}` : window.location.href;
+  const fullUrl = url
+    ? url.startsWith('http')
+      ? url
+      : `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`
+    : (typeof window !== 'undefined' ? window.location.href : baseUrl);
   const canonical = canonicalUrl || fullUrl;
   
   // Génération automatique des images
@@ -38,20 +45,26 @@ const SEOHead = ({
   const twitterImage = image || `${baseUrl}/twitter-card.jpg`;
   
   // Génération automatique des mots-clés SEO (avec focus sur "télécharger gratuit")
-  const baseKeywords = [
-    'marketing digital',
-    'SEO',
-    'e-commerce',
-    'intelligence artificielle',
-    'content marketing',
-    'télécharger',
-    'télécharger gratuit',
-    'téléchargement gratuit',
-    'PDF gratuit',
-    'guide gratuit',
-    'alladsmarket'
-  ];
-  const mergedKeywords = (keywords ? `${keywords}, ${baseKeywords.join(', ')}` : baseKeywords.join(', '));
+  const baseKeywords = includeDefaultKeywords
+    ? [
+        'marketing digital',
+        'SEO',
+        'e-commerce',
+        'intelligence artificielle',
+        'content marketing',
+        'télécharger',
+        'télécharger gratuit',
+        'téléchargement gratuit',
+        'PDF gratuit',
+        'guide gratuit',
+        'alladsmarket'
+      ]
+    : [];
+  const mergedKeywords = keywords
+    ? baseKeywords.length
+      ? `${keywords}, ${baseKeywords.join(', ')}`
+      : keywords
+    : baseKeywords.join(', ');
   const seoKeywords = mergedKeywords;
   
   // Données structurées par défaut - Optimisées pour IA et Perplexity
@@ -141,10 +154,22 @@ const SEOHead = ({
       {[...(tags || []), 'télécharger', 'télécharger gratuit', 'PDF gratuit', 'guide gratuit'].map((tag, index) => (
         <meta key={index} property="article:tag" content={tag} />
       ))}
+      {additionalMeta.map((meta, index) => {
+        if (meta.name) {
+          return <meta key={`meta-${index}-${meta.name}`} name={meta.name} content={meta.content} />;
+        }
+        if (meta.property) {
+          return <meta key={`meta-${index}-${meta.property}`} property={meta.property} content={meta.content} />;
+        }
+        return null;
+      })}
       
       {/* Langues alternatives */}
       {alternateLocales.map((locale) => (
         <link key={locale} rel="alternate" hrefLang={locale} href={`${baseUrl}/${locale}${url}`} />
+      ))}
+      {additionalLinkTags.map((link, index) => (
+        <link key={`link-${index}-${link.rel || index}`} {...link} />
       ))}
       
       {/* Meta tags techniques */}

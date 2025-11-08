@@ -29,6 +29,7 @@ import {
 import { getAIArticleById } from '../data/ai-articles';
 import { getAuthorById } from '../data/authors';
 import SEOHead from '../components/SEOHead';
+import { buildArticleSEO } from '../utils/seoHelpers';
 // Comments feature removed
 import CitationGenerator from '../components/CitationGenerator';
 import '../styles/cybersecurity-article-detail.css';
@@ -374,13 +375,16 @@ Cordialement
 
   const metadata = generateAcademicMetadata(article);
 
+  const seoConfig = buildArticleSEO(article, {
+    basePath: '/cybersecurity-article',
+    section: 'Cybersecurity',
+    locale: 'fr_FR',
+    extraKeywords: ['cybersécurité', 'sécurité informatique'],
+  });
+
   return (
     <>
-      <SEOHead 
-        title={`${article.title} | AllAdsMarket`}
-        description={article.seoDescription}
-        keywords={article.metaKeywords}
-      />
+      <SEOHead {...seoConfig} />
       
       <div className="cybersecurity-article-detail">
         {/* Navigation contextuelle */}

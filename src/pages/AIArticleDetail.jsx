@@ -28,6 +28,8 @@ import { getAllProducts } from '../utils/sampleData';
 import { translateArticle } from '../utils/articleTranslations';
 import { shareLink, getLinkText } from '../utils/shareUtils';
 import { getCanonicalUrl } from '../utils/canonicalUtils';
+import SEOHead from '../components/SEOHead';
+import { buildArticleSEO } from '../utils/seoHelpers';
 import ArticleDate from '../components/ArticleDate';
 import '../styles/ai-article-detail.css';
 import '../styles/loading.css';
@@ -45,6 +47,7 @@ const AIArticleDetail = () => {
   const [tableOfContents, setTableOfContents] = useState([]);
   const [activeSection, setActiveSection] = useState('');
   const [showTOC, setShowTOC] = useState(true);
+  const [relatedArticles, setRelatedArticles] = useState([]);
 
   useEffect(() => {
     const loadArticle = async () => {
@@ -195,6 +198,33 @@ const AIArticleDetail = () => {
           setArticle(withDefaults);
           const toc = generateTableOfContents(foundArticle.content);
           setTableOfContents(toc);
+
+          try {
+            const referenceArticles = getAllPremiumAIArticlesWithDynamicDates().filter(a => a.slug !== foundArticle.slug);
+            const mainTags = new Set((foundArticle.tags || []).map(tag => tag.toLowerCase()));
+            const related = referenceArticles
+              .map((candidate) => {
+                const candidateTags = candidate.tags || [];
+                const tagScore = candidateTags.reduce((score, tag) => {
+                  return score + (mainTags.has(tag.toLowerCase()) ? 2 : 0);
+                }, 0);
+                const categoryScore = candidate.category === foundArticle.category ? 1 : 0;
+                return {
+                  score: tagScore + categoryScore,
+                  article: candidate,
+                };
+              })
+              .filter(item => item.score > 0)
+              .sort((a, b) => b.score - a.score)
+              .slice(0, 4)
+              .map(item => (
+                translateArticle(item.article, t)
+              ));
+            setRelatedArticles(related);
+          } catch (relatedError) {
+            console.warn('[AIArticleDetail] Impossible de calculer les articles associés:', relatedError);
+            setRelatedArticles([]);
+          }
         } else {
           // Article non trouvé - logger détaillé pour debug
           console.error('[AIArticleDetail] ❌ Article non trouvé pour slug:', {
@@ -1948,97 +1978,47 @@ const AIArticleDetail = () => {
     return null;
   }
 
+  const seoConfig = {
+    ...buildArticleSEO(article, {
+      basePath: '/ai-article',
+      section: article.category || 'Intelligence Artificielle',
+      includeDownloadMeta: true,
+      locale: (article.locale && article.locale.replace('-', '_')) || 'fr_FR',
+      extraKeywords: [
+        'télécharger',
+        'PDF gratuit',
+        'guide IA',
+        'intelligence artificielle',
+        article.category,
+      ],
+      additionalMeta: [
+        { property: 'og:article:section', content: article.category || 'E-commerce' },
+        { property: 'og:article:tag', content: (article.tags || []).join(', ') },
+      ],
+      structuredDataOverrides: {
+        articleSection: article.category,
+        potentialAction: {
+          '@type': 'ReadAction',
+          target: `${process.env.REACT_APP_BASE_URL || 'https://alladsmarket.com'}/ai-article/${article.slug}`,
+        },
+        offers: {
+          '@type': 'Offer',
+          price: '0.00',
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+        },
+        additionalType: 'https://schema.org/DigitalDocument',
+      },
+    }),
+    canonicalUrl: getCanonicalUrl(`/ai-article/${article.slug}`),
+  };
+
   return (
     <>
-      <Helmet>
-        <title>{article.seoTitle || article.title}</title>
-        <meta name="description" content={article.seoDescription || article.excerpt} />
-        <meta name="keywords" content={`${article.metaKeywords || article.tags.join(', ')}, télécharger PDF, télécharger article, PDF gratuit, guide e-commerce, ressources marketing`} />
-        <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-        <meta property="og:site_name" content="AllAdsMarket" />
-        <link rel="canonical" href={getCanonicalUrl(`/ai-article/${article.slug}`)} />
-
-        {/* Download-specific SEO */}
-        <meta name="download" content="PDF disponible" />
-        <meta name="pdf-available" content="true" />
-        <meta name="document-format" content="PDF, HTML" />
-        <meta name="download-format" content="PDF" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content={article.title} />
-        <meta property="og:description" content={`${article.excerpt} - Téléchargez gratuitement en PDF`} />
-        <meta property="og:image" content={article.image} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:article:section" content="E-commerce" />
-        <meta property="og:article:tag" content="télécharger, PDF, guide, e-commerce" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={article.title} />
-        <meta name="twitter:description" content={`${article.excerpt} - Téléchargez gratuitement en PDF`} />
-        <meta name="twitter:image" content={article.image} />
-
-        {/* Article specific */}
-        <meta name="article:author" content={article.author} />
-        <meta name="article:published_time" content={article.publishDate} />
-        <meta name="article:section" content={article.category} />
-        <meta name="article:tag" content={article.tags.join(', ')} />
-
-        {/* Structured Data for Downloads */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": article.title,
-            "description": article.excerpt,
-            "author": {
-              "@type": "Person",
-              "name": article.author
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "AllAdsMarket",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://alladsmarket.com/logo.png"
-              }
-            },
-            "datePublished": article.publishDate,
-            "dateModified": new Date().toISOString(),
-            "image": article.image,
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": window.location.href
-            },
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "EUR",
-              "availability": "https://schema.org/InStock",
-              "description": "Téléchargement gratuit en PDF"
-            },
-            "distribution": {
-              "@type": "DataDownload",
-              "encodingFormat": "application/pdf",
-              "contentUrl": window.location.href + "#download",
-              "description": "Version PDF téléchargeable de l'article"
-            }
-          })}
-        </script>
-        {/* Breadcrumbs */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "/" },
-              { "@type": "ListItem", "position": 2, "name": "Articles", "item": "/ai-articles" },
-              { "@type": "ListItem", "position": 3, "name": article.title, "item": window.location.href.split('#')[0].split('?')[0] }
-            ]
-          })}
-        </script>
-      </Helmet>
+      <SEOHead
+        {...seoConfig}
+      />
 
       <div className="ai-article-detail">
         {/* Barre de progression de lecture */}
@@ -2233,6 +2213,30 @@ const AIArticleDetail = () => {
               {/* Inline product links injected above */}
             </div>
           </div>
+
+          {relatedArticles.length > 0 && (
+            <section className="related-articles-section">
+              <h2 className="related-articles-title">Articles recommandés</h2>
+              <div className="related-articles-grid">
+                {relatedArticles.map((related) => (
+                  <Link
+                    key={related.slug || related.id}
+                    to={`/ai-article/${related.slug || related.id}`}
+                    className="related-article-card"
+                  >
+                    <div className="related-article-image">
+                      <img src={related.image || article.image} alt={related.title} loading="lazy" />
+                    </div>
+                    <div className="related-article-content">
+                      <span className="related-article-tag">{related.category || 'Intelligence Artificielle'}</span>
+                      <h3>{related.title}</h3>
+                      <p>{(related.excerpt ? related.excerpt.substring(0, 140) : null) || "Découvrir l'analyse complète."}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </main>
 
         {/* Comments removed */}

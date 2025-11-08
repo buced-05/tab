@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { getSampleProducts } from '../utils/sampleData';
 import SEOHead from '../components/SEOHead';
+import { buildArticleSEO } from '../utils/seoHelpers';
 // Comments feature removed
 import InvitationDialog from '../components/InvitationDialog';
 import CitationGenerator from '../components/CitationGenerator';
@@ -495,13 +496,33 @@ Cordialement
 
   const metadata = generateAcademicMetadata(product);
 
+  const seoSource = {
+    ...product,
+    slug: product.slug || productId,
+    seoTitle: `${product.name} - Analyse Technique`,
+    seoDescription: `Analyse technique approfondie du ${product.name}. Évaluation scientifique, tests en laboratoire et recommandations d'experts.`,
+  };
+
+  const seoConfig = buildArticleSEO(seoSource, {
+    basePath: '/article',
+    section: product.category || 'Études Produits',
+    extraKeywords: [
+      product.name,
+      product.brand,
+      product.category,
+      'analyse technique',
+      'étude produit',
+    ],
+    additionalMeta: [
+      { name: 'product', content: product.name },
+      { name: 'product-brand', content: product.brand },
+      { name: 'product-category', content: product.category },
+    ],
+  });
+
   return (
     <>
-      <SEOHead 
-        title={`${product.name} - Analyse Technique | AllAdsMarket`}
-        description={`Analyse technique approfondie du ${product.name}. Évaluation scientifique, tests en laboratoire et recommandations d'experts.`}
-        keywords={`${product.name}, analyse technique, évaluation produit, ${product.category}, ${product.brand}`}
-      />
+      <SEOHead {...seoConfig} />
       
       <div className="academic-article-detail">
         {/* Navigation contextuelle */}

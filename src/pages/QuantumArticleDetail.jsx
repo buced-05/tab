@@ -30,6 +30,7 @@ import {
 import { getAllPremiumAIArticles } from '../data/premium-ai-articles';
 import { getAuthorById } from '../data/authors';
 import SEOHead from '../components/SEOHead';
+import { buildArticleSEO } from '../utils/seoHelpers';
 // Comments feature removed
 import CitationGenerator from '../components/CitationGenerator';
 import '../styles/quantum-article-detail.css';
@@ -376,13 +377,16 @@ Cordialement
 
   const metadata = generateAcademicMetadata(article);
 
+  const seoConfig = buildArticleSEO(article, {
+    basePath: '/quantum-article',
+    section: 'Quantum Computing',
+    locale: 'fr_FR',
+    extraKeywords: ['quantum computing', 'informatique quantique'],
+  });
+
   return (
     <>
-      <SEOHead 
-        title={`${article.title} | AllAdsMarket`}
-        description={article.seoDescription}
-        keywords={article.metaKeywords}
-      />
+      <SEOHead {...seoConfig} />
       
       <div className="quantum-article-detail">
         {/* Navigation contextuelle */}
