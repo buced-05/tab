@@ -582,8 +582,18 @@ const AIArticlesPage = () => {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {"@type":"ListItem","position":1,"name":"Accueil","item":"/"},
-              {"@type":"ListItem","position":2,"name":"Articles","item":"/ai-articles"}
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": getCanonicalUrl('/')
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Articles",
+                "item": getCanonicalUrl('/ai-articles')
+              }
             ]
           })}
         </script>

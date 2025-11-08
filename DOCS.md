@@ -24,13 +24,13 @@ Sources consolidated: PROGRESS_LINE_SUMMARY.md, CLEANUP_COMPLETE.md, APPLICATION
 
 ---
 
-## SEO Playbook
-- Strategy, execution checklist, verification, and submission.
-- On-page: titles, descriptions, headings, internal links, structured data (BreadcrumbList, Article), canonical and robots.
-- Off-page: sitemap submission, search console verification.
-- Image SEO: dimensions, compression, lazy/eager strategy for LCP hero.
+## SEO Playbook & Indexation
+- Stratégie globale : structuration des pages, maillage interne, balisage Schema.org, gestion des balises meta.
+- Indexation et sitemaps : plan d’action, vérifications Search Console, soumission et suivi (`sitemap-*.xml`, `robots`).
+- Résolution des incidents d’indexation (529 pages, actions immédiates, correctifs Google) et audits de résumés.
+- Outils & rapports : checklists d’optimisation, feuilles de route de trafic, actions SEO prioritaires.
 
-Sources consolidated: SEO_OPTIMIZATION_GUIDE.md, SEO_STRATEGY.md, SEO_OPTIMIZATION_COMPLETE.md, SEO_OPTIMIZATION_COMPLETE_SUMMARY.md, SEO_FINAL_REPORT.md, SEO_VERIFICATION_COMPLETE.md, SEO_SUBMISSION_REPORT.md, SITE_VISIBILITY_IMPROVEMENT_GUIDE.md, SITE_VISIBILITY_IMPROVEMENT_REPORT.md, SITEMAP_SEO_GUIDE.md, SEO_ACTION_GUIDE.md, SEO_IMPROVEMENT_COMPLETE_PLAN.md
+Sources consolidées : `SEO_OPTIMIZATION_GUIDE.md`, `SEO_STRATEGY.md`, `SEO_ACTIONS_IMMEDIATES.md`, `SEO_IMPROVEMENT_PLAN.md`, `SEO_SITEMAP_REPORT.md`, `SEO_SITEMAP_VERIFICATION_COMPLETE.md`, `SITEMAP_EXPLANATION.md`, `ACTION_IMMEDIATE_529_PAGES.md`, `FIX_529_PAGES_NON_INDEXEES.md`, `FIX_INDEXATION_GOOGLE*.md`, `INDEXATION_IMMEDIATE_AUJOURD_HUI.md`, `RESUME_INDEXATION_AUJOURD_HUI.md`, `RESUME_FINAL_2025.md`, `traffic-growth-roadmap.md`.
 
 ---
 
@@ -52,12 +52,12 @@ Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIAL
 
 ---
 
-## Deployment & Infrastructure
-- VPS and hosting notes, build pipelines, environment variables.
-- .htaccess guidance and fixes.
-- DNS and scripts overview.
+## Déploiement & Infrastructure
+- Procédures complètes de déploiement (safe mode, VPS, checklists post-start) et scripts d’automatisation.
+- Configuration Nginx/HTACCESS, sécurité serveur, pipeline de build et gestion des services (`pm2`, `systemctl`).
+- Checklists de vérification, guides de rollback et plans de maintenance.
 
-Sources consolidated: DEPLOYMENT_GUIDE.md, MYSQL_SETUP_GUIDE.md, EMAILJS_SETUP_GUIDE.md, HTACCESS_COMPLETE_GUIDE.md, HTACCESS_NEW_COMPLETE.md, HTACCESS_SIMPLIFIED.md, HTACCESS_FIX.md, HTACCESS_ERROR_FIX.md, scripts/README.md, scripts/QUICK_GUIDE.md, scripts/setup-dns.md, SCRIPTS_ORGANIZATION.md
+Sources consolidées : `DEPLOY_INSTRUCTIONS.md`, `DEPLOY_COMPLETE.md`, `DEPLOY_SAFE.md`, `DEPLOY_SAFE_VPS.md`, `VPS_DEPLOYMENT_CHECKLIST.md`, `VPS_POST_START_CHECKLIST.md`, `VPS_START_SERVICES.md`, `VPS_VERIFICATION_COMPLETE.md`, `QUICK_VPS_FIX.md`, `NGINX_CONFIGURATION_GUIDE.md`, `NGINX_SETUP_INSTRUCTIONS.md`, `SOLUTION_VPS_IMMEDIATE.md`, `SOLUTION_529_PAGES_NON_INDEXEES.md`.
 
 ---
 
@@ -78,10 +78,10 @@ Sources consolidated: SITEMAP_SEO_GUIDE.md, SEO_VERIFICATION_COMPLETE.md
 ---
 
 ## Performance & Core Web Vitals
-- LCP optimization (hero image hints), CLS avoidance (fixed dimensions), TBT reduction.
-- Lazy/eager image strategy in articles and product blocks.
+- Optimisation LCP (hero images, preloading), réduction CLS/TBT, stratégie lazy/eager des médias.
+- Tests Lighthouse, suivi des Core Web Vitals et actions correctives planifiées.
 
-Sources consolidated: SEO_OPTIMIZATION_COMPLETE.md, SEO_OPTIMIZATION_COMPLETE_SUMMARY.md
+Sources consolidées : `SEO_OPTIMIZATION_COMPLETE.md`, `SEO_OPTIMIZATION_COMPLETE_SUMMARY.md`, `Chart the performance of S&P 500 sectors most (1).md`, `OpenAI service cloud concurrent AWS Azure.md`.
 
 ---
 
@@ -89,7 +89,23 @@ Sources consolidated: SEO_OPTIMIZATION_COMPLETE.md, SEO_OPTIMIZATION_COMPLETE_SU
 - Console errors, build issues, PowerShell syntax, unexpected tokens.
 - Translation replacement misses and how to resolve.
 
-Sources consolidated: CLEANUP_SUMMARY.md, HTACCESS_ERROR_FIX.md, PROGRESS_LINE_SUMMARY.md
+Sources consolidées : `CLEANUP_SUMMARY.md`, `RECAP_FINAL_COMPLET.md`, `RESUME_SESSION.md`, `HTACCESS_ERROR_FIX.md`, `FIX_SITEMAP_GOOGLE_SEARCH_CONSOLE.md`, `SOLUTION_VPS_IMMEDIATE.md`.
+
+---
+
+## Git & Collaboration Workflows
+- Procédures pour résoudre les divergences (`git reset --hard`, merge guides, quick cheatsheets).
+- Bonnes pratiques de branches, prévention des conflits, référentiels de récupération.
+
+Sources consolidées : `GIT_RESET_HARD_GUIDE.md`, `GIT_MERGE_GUIDE.md`, `GIT_DIVERGENT_BRANCHES_GUIDE.md`.
+
+---
+
+## Articles & Contenus Internes
+- Contenus rédactionnels internes, articles de référence, résumés d’ajout produit.
+- Utilisation comme base d’exemples pour générateur d’articles IA.
+
+Sources consolidées : `ARTICLE_AJOUTE_RESUME.md`, `Ecris un article complet sur le sujet le plus en v.md`, `LISTE_SLUGS_5_PRODUITS.md`.
 
 ---
 

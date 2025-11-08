@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { formatArticleDate, formatShortDate, calculateReadingTime, generateRecentDate } from '../utils/dateFormatter';
 import { translateArticle } from '../utils/articleTranslations';
+import { getCanonicalUrl } from '../utils/canonicalUtils';
 import '../styles/revolutionary-blog.css';
 import {
   ArrowLeft,
@@ -1330,9 +1331,24 @@ const RevolutionaryArticleDetail = () => {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           "itemListElement": [
-            {"@type":"ListItem","position":1,"name":"Accueil","item":"/"},
-            {"@type":"ListItem","position":2,"name":"Blog","item":"/revolutionary-blog"},
-            {"@type":"ListItem","position":3,"name": article.title, "item": typeof window !== 'undefined' ? window.location.href : ''}
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Accueil",
+              "item": getCanonicalUrl('/')
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Blog",
+              "item": getCanonicalUrl('/revolutionary-blog')
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": article.title,
+              "item": getCanonicalUrl(`/article/${article.slug || id}`)
+            }
           ]
         })}</script>
       </Helmet>
