@@ -19,6 +19,8 @@ This single document consolidates all explanations, guides, SEO reports, deploym
 ## Overview
 - Progress summary, cleanup rationale, and production conventions.
 - Project status, environments, and contact points.
+- Architecture actuelle : front-end React (Vite) + nouveau backend Django (`/backend`) adossé par défaut à SQLite (remplacer par PostgreSQL/MySQL en production).
+- Pour accéder au panneau admin Django : `python backend/manage.py createsuperuser`, puis `python backend/manage.py runserver 0.0.0.0:8000` et se connecter sur http://localhost:8000/admin avec les identifiants créés. En production, configurer Gunicorn/Uvicorn + reverse proxy et sécuriser l’accès admin.
 
 Sources consolidated: PROGRESS_LINE_SUMMARY.md, CLEANUP_COMPLETE.md, APPLICATION_GUIDE.md, README.md, QUICK_START.md
 
@@ -47,6 +49,7 @@ Sources consolidated: docs/TRANSLATION_COMPLETE.md, docs/TRANSLATION_DEBUG.md, S
 - Project structure, coding standards, component conventions.
 - Articles (AI / Revolutionary) pages and detail views.
 - Product data source and affiliate flow (external redirects).
+- Backend Django : arborescence du projet (`backend/`), application `api`, endpoints disponibles (`/api/health/`, `/api/featured-articles/`), conventions pour ajouter de nouvelles vues ou modèles.
 
 Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIALOG_GUIDE.md, FORM_PROGRESS_GUIDE.md, KINETIC_IMAGES_INTEGRATION.md, KINETIC_IMAGES_CORRECTION.md
 
@@ -54,8 +57,9 @@ Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIAL
 
 ## Déploiement & Infrastructure
 - Procédures complètes de déploiement (safe mode, VPS, checklists post-start) et scripts d’automatisation.
-- Configuration Nginx/HTACCESS, sécurité serveur, pipeline de build et gestion des services (`pm2`, `systemctl`).
+- Configuration Nginx/HTACCESS, sécurité serveur, pipeline de build et gestion des services (`systemctl`, `gunicorn`/`uvicorn`) pour le backend Django.
 - Checklists de vérification, guides de rollback et plans de maintenance.
+- Commandes de base Django : création d’environnement virtuel, installation (`pip install -r backend/requirements.txt`), migrations (`python backend/manage.py migrate`), lancement (`python backend/manage.py runserver 0.0.0.0:8000`).
 
 Sources consolidées : `DEPLOY_INSTRUCTIONS.md`, `DEPLOY_COMPLETE.md`, `DEPLOY_SAFE.md`, `DEPLOY_SAFE_VPS.md`, `VPS_DEPLOYMENT_CHECKLIST.md`, `VPS_POST_START_CHECKLIST.md`, `VPS_START_SERVICES.md`, `VPS_VERIFICATION_COMPLETE.md`, `QUICK_VPS_FIX.md`, `NGINX_CONFIGURATION_GUIDE.md`, `NGINX_SETUP_INSTRUCTIONS.md`, `SOLUTION_VPS_IMMEDIATE.md`, `SOLUTION_529_PAGES_NON_INDEXEES.md`.
 
@@ -81,7 +85,7 @@ Sources consolidated: SITEMAP_SEO_GUIDE.md, SEO_VERIFICATION_COMPLETE.md
 - Optimisation LCP (hero images, preloading), réduction CLS/TBT, stratégie lazy/eager des médias.
 - Tests Lighthouse, suivi des Core Web Vitals et actions correctives planifiées.
 
-Sources consolidées : `SEO_OPTIMIZATION_COMPLETE.md`, `SEO_OPTIMIZATION_COMPLETE_SUMMARY.md`, `Chart the performance of S&P 500 sectors most (1).md`, `OpenAI service cloud concurrent AWS Azure.md`.
+Sources consolidées : `SEO_OPTIMIZATION_COMPLETE.md`, `SEO_OPTIMIZATION_COMPLETE_SUMMARY.md` (ainsi que notes internes supprimées lors du cleanup).
 
 ---
 
@@ -105,7 +109,7 @@ Sources consolidées : `GIT_RESET_HARD_GUIDE.md`, `GIT_MERGE_GUIDE.md`, `GIT_DI
 - Contenus rédactionnels internes, articles de référence, résumés d’ajout produit.
 - Utilisation comme base d’exemples pour générateur d’articles IA.
 
-Sources consolidées : `ARTICLE_AJOUTE_RESUME.md`, `Ecris un article complet sur le sujet le plus en v.md`, `LISTE_SLUGS_5_PRODUITS.md`.
+Sources consolidées : archives internes (articles longue forme, résumés produits, guides IA) désormais intégrées directement ici.
 
 ---
 

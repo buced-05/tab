@@ -1347,7 +1347,7 @@ const RevolutionaryArticleDetail = () => {
               "@type": "ListItem",
               "position": 3,
               "name": article.title,
-              "item": getCanonicalUrl(`/article/${article.slug || id}`)
+              "item": getCanonicalUrl(`/article/${encodeURIComponent(article.slug || id)}`)
             }
           ]
         })}</script>

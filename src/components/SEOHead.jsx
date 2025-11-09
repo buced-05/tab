@@ -102,13 +102,6 @@ const SEOHead = ({
     "wordCount": description ? description.split(' ').length : 0,
     "inLanguage": "fr-FR",
     "isAccessibleForFree": true,
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "150",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "commentCount": 25,
     "shareCount": 120
   };
@@ -242,13 +235,6 @@ const SEOHead = ({
             "https://instagram.com/alladsmarket",
             "https://youtube.com/@alladsmarket"
           ],
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.8",
-            "ratingCount": "1250",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
           "numberOfEmployees": "10-50",
           "slogan": "Des Meilleurs articles MOINS Chers"
         })}
