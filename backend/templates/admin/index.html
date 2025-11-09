@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n am_admin %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}
+
+{% block content %}
+  {% dashboard_payload as dashboard %}
+  {{ dashboard|json_script:"am-dashboard-json" }}
+
+  <div id="am-react-dashboard">
+    <noscript>
+      <div class="am-dashboard noscript">
+        <p>Activez JavaScript pour profiter du tableau de bord interactif.</p>
+      </div>
+    </noscript>
+  </div>
+
+  {{ block.super }}
+
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="{% static 'admin/js/dashboard-react.js' %}"></script>
+{% endblock %}
+

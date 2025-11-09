@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Calendar, Clock, Eye, Heart, Share2, Star, User, Tag, Bookmark, Search, X, BookOpen } from 'lucide-react';
-import { getAllPremiumAIArticlesWithDynamicDates } from '../data/premium-ai-articles';
 import { shareLink } from '../utils/shareUtils';
 import RealtimeClock from '../components/RealtimeClock';
 import { Helmet } from 'react-helmet-async';
 import ArticleDate from '../components/ArticleDate';
 import Pagination from '../components/Pagination';
 import { getCanonicalUrl } from '../utils/canonicalUtils';
+import contentService from '../services/contentService';
+import { getAllPremiumAIArticlesWithDynamicDates } from '../data/premium-ai-articles';
 import '../styles/ai-articles.css';
 import '../styles/premium-animations.css';
 import '../styles/realtime-clock.css';
@@ -35,6 +36,64 @@ const AIArticlesPage = () => {
   const [viewedArticles, setViewedArticles] = useState(new Set());
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [apiError, setApiError] = useState(null);
+
+  const ensureArticleMetrics = (items = []) => {
+    return (items || []).map((article, index) => {
+      const seed = index + 1;
+      const views =
+        typeof article.views === 'number' && article.views > 0
+          ? article.views
+          : 12000 + ((seed * 137) % 6000);
+      const likes =
+        typeof article.likes === 'number' && article.likes > 0
+          ? article.likes
+          : 300 + ((seed * 7) % 250);
+      const shares =
+        typeof article.shares === 'number' && article.shares > 0
+          ? article.shares
+          : 70 + ((seed * 3) % 120);
+      const favorites =
+        typeof article.favorites === 'number' && article.favorites > 0
+          ? article.favorites
+          : 140 + ((seed * 5) % 100);
+      const ratingValue =
+        typeof article.rating === 'number'
+          ? article.rating
+          : parseFloat(article.rating);
+      const rating =
+        !Number.isNaN(ratingValue) && ratingValue > 0
+          ? ratingValue.toFixed(1)
+          : (4 + ((seed % 5) * 0.2)).toFixed(1);
+
+      return {
+        ...article,
+        views,
+        likes,
+        shares,
+        favorites,
+        rating,
+      };
+    });
+  };
+
+  const updateStatsFromArticles = (items = []) => {
+    const totalArticles = items.length;
+    const totalViews = items.reduce((sum, article) => sum + (article.views || 0), 0);
+    const totalLikes = items.reduce((sum, article) => sum + (article.likes || 0), 0);
+    const totalShares = items.reduce((sum, article) => sum + (article.shares || 0), 0);
+    const avgRating =
+      items.reduce((sum, article) => sum + (parseFloat(article.rating) || 0), 0) /
+      (totalArticles || 1);
+
+    setStats({
+      totalArticles,
+      totalViews,
+      totalLikes,
+      totalShares,
+      avgRating: avgRating.toFixed(1),
+    });
+  };
   
   // États pour la pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,58 +176,48 @@ const AIArticlesPage = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    const loadArticles = () => {
+    let isMounted = true;
+    const loadArticles = async () => {
       setLoading(true);
-      const allArticles = getAllPremiumAIArticlesWithDynamicDates();
-      
-      // Vérification de sécurité
-      if (!allArticles || !Array.isArray(allArticles)) {
-        if (process.env.NODE_ENV === 'development') {
-          console.error('Erreur: getAllPremiumAIArticles() retourne une valeur invalide:', allArticles);
+      setApiError(null);
+      try {
+        const { results } = await contentService.getArticles({ page_size: 200 });
+        if (!isMounted) return;
+        if (!results || !Array.isArray(results) || results.length === 0) {
+          throw new Error('Aucun article renvoyé par l’API');
         }
-        setArticles([]);
-        setFilteredArticles([]);
-        setStats({
-          totalArticles: 0,
-          totalViews: 0,
-          totalLikes: 0,
-          totalShares: 0,
-          avgRating: '0.0'
-        });
-        setLoading(false);
-        return;
-      }
-      
-      // Inject default counters when missing or zero for better card display
-      const withCounts = (allArticles || []).map((a, i) => {
-        const seed = i + 1;
-        const v = (typeof a.views === 'number' && a.views > 0) ? a.views : (12000 + ((seed * 137) % 6000));
-        const l = (typeof a.likes === 'number' && a.likes > 0) ? a.likes : (300 + ((seed * 7) % 250));
-        const s = (typeof a.shares === 'number' && a.shares > 0) ? a.shares : (70 + ((seed * 3) % 120));
-        const f = (typeof a.favorites === 'number' && a.favorites > 0) ? a.favorites : (140 + ((seed * 5) % 100));
-        return { ...a, views: v, likes: l, shares: s, favorites: f };
-      });
+        const withMetrics = ensureArticleMetrics(results);
+        setArticles(withMetrics);
+        setFilteredArticles(withMetrics);
+        updateStatsFromArticles(withMetrics);
+      } catch (error) {
+        if (!isMounted) return;
+        console.error('[AIArticles] Échec du chargement via API Django:', error);
+        setApiError(error.message || 'Impossible de charger les articles depuis le backend.');
 
-      setArticles(withCounts);
-      setFilteredArticles(withCounts);
-      // Calculer les stats depuis les articles
-      const totalArticles = withCounts.length;
-      const totalViews = withCounts.reduce((sum, article) => sum + (article.views || 0), 0);
-      const totalLikes = withCounts.reduce((sum, article) => sum + (article.likes || 0), 0);
-      const totalShares = withCounts.reduce((sum, article) => sum + (article.shares || 0), 0);
-      const avgRating = withCounts.reduce((sum, article) => sum + (article.rating || 0), 0) / (totalArticles || 1);
-      
-      setStats({
-        totalArticles,
-        totalViews,
-        totalLikes,
-        totalShares,
-        avgRating: avgRating.toFixed(1)
-      });
-      setLoading(false);
+        const fallbackArticles = getAllPremiumAIArticlesWithDynamicDates();
+        if (Array.isArray(fallbackArticles) && fallbackArticles.length > 0) {
+          const withMetrics = ensureArticleMetrics(fallbackArticles);
+          setArticles(withMetrics);
+          setFilteredArticles(withMetrics);
+          updateStatsFromArticles(withMetrics);
+        } else {
+          setArticles([]);
+          setFilteredArticles([]);
+          updateStatsFromArticles([]);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
+      }
     };
 
     loadArticles();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Fonction de recherche améliorée - recherche dans tout le contenu
@@ -301,7 +350,7 @@ const AIArticlesPage = () => {
     setPaginatedArticles(paginated);
   }, [filteredArticles, currentPage, itemsPerPage]);
 
-  const categories = [...new Set(articles.map(article => article.category))];
+  const categories = [...new Set(articles.map(article => article.category).filter(Boolean))];
 
   const formatNumber = (num) => {
     if (num >= 1000) {
@@ -612,6 +661,25 @@ const AIArticlesPage = () => {
             
           </div>
         </div>
+
+        {apiError && (
+          <div
+            className="api-error-banner"
+            style={{
+              marginBottom: '24px',
+              background: '#fff4f4',
+              border: '1px solid #fca5a5',
+              color: '#b91c1c',
+              padding: '12px 16px',
+              borderRadius: '12px',
+              fontSize: '0.95rem'
+            }}
+          >
+            <p style={{ margin: 0 }}>
+              Impossible de récupérer les articles depuis le backend&nbsp;: {apiError}. Les données affichées proviennent du jeu de secours local.
+            </p>
+          </div>
+        )}
 
         {/* Filtres et recherche */}
         <div className="articles-filters" id="articles-filters-container">

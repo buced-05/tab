@@ -1,2 +1,1 @@
 """Backend Django project package."""
-

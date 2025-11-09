@@ -1,0 +1,35 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <link rel="icon" type="image/svg+xml" href="{% static 'favicon.svg' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="am-admin-branding">
+    <span class="am-admin-logo">AllAdsMarket</span>
+    <span class="am-admin-subtitle">Backoffice data &amp; IA</span>
+  </div>
+{% endblock %}
+
+{% block nav-global %}
+  <div class="am-admin-quicklinks">
+    <a href="{{ site_url }}" class="am-admin-quicklink" target="_blank" rel="noopener">
+      🚀 Voir le site public
+    </a>
+    <a href="https://analytics.google.com/" class="am-admin-quicklink" target="_blank" rel="noopener">
+      📈 Analytics
+    </a>
+    <a href="https://search.google.com/search-console" class="am-admin-quicklink" target="_blank" rel="noopener">
+      🧭 Search Console
+    </a>
+  </div>
+  {{ block.super }}
+{% endblock %}
+
