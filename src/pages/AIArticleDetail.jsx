@@ -30,6 +30,8 @@ import { shareLink, getLinkText } from '../utils/shareUtils';
 import { getCanonicalUrl } from '../utils/canonicalUtils';
 import SEOHead from '../components/SEOHead';
 import { buildArticleSEO } from '../utils/seoHelpers';
+import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
 import ArticleDate from '../components/ArticleDate';
 import '../styles/ai-article-detail.css';
 import '../styles/loading.css';
@@ -42,7 +44,6 @@ const AIArticleDetail = () => {
   const navigate = useNavigate();
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [apiError, setApiError] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
@@ -179,7 +180,6 @@ const AIArticleDetail = () => {
       }
 
       setLoading(true);
-      setApiError(null);
 
       try {
         const apiArticle = await contentService.getArticle(normalizedSlug);
@@ -192,7 +192,6 @@ const AIArticleDetail = () => {
       } catch (error) {
         if (!isMounted) return;
         console.error('[AIArticleDetail] Erreur lors du chargement via l’API Django:', error);
-        setApiError(error.message || 'Impossible de charger l’article depuis le backend.');
 
         const fallbackArticle =
           getPremiumAIArticleBySlug(normalizedSlug) ||
@@ -1243,8 +1242,10 @@ const AIArticleDetail = () => {
         </html>
       `;
 
+      const pdfGenerator = html2pdf || (typeof window !== 'undefined' ? window.html2pdf : null);
+
       // Utiliser html2pdf pour générer le PDF
-      if (window.html2pdf) {
+      if (pdfGenerator) {
         const opt = {
           margin: 0.5,
           filename: `${article.slug}.pdf`,
@@ -1726,7 +1727,7 @@ const AIArticleDetail = () => {
           // html2pdf.js peut avoir des problèmes avec enableLinks, donc on utilise une approche hybride
 
           // D'abord, obtenir les positions exactes des liens avec html2canvas
-          const canvas = await window.html2canvas(sourceNode, {
+          const canvas = await html2canvas(sourceNode, {
             scale: opt.html2canvas.scale || 2,
             useCORS: opt.html2canvas.useCORS || true,
             allowTaint: opt.html2canvas.allowTaint || false,
@@ -1791,7 +1792,7 @@ const AIArticleDetail = () => {
           });
 
           // Maintenant, générer le PDF et ajouter les liens manuellement
-          const worker = window.html2pdf().set({
+          const worker = pdfGenerator().set({
             ...opt,
             enableLinks: true // Activer les liens automatiques (si ça fonctionne)
           });
@@ -1998,22 +1999,6 @@ const AIArticleDetail = () => {
           </button>
         </div>
 
-        {apiError && (
-          <div
-            className="api-error-banner"
-            style={{
-              marginBottom: '24px',
-              background: '#fff4f4',
-              border: '1px solid #fca5a5',
-              color: '#b91c1c',
-              padding: '12px 16px',
-              borderRadius: '12px',
-              fontSize: '0.95rem'
-            }}
-          >
-            Impossible de récupérer l’article depuis le backend&nbsp;: {apiError}. Le contenu affiché provient du jeu de secours local.
-          </div>
-        )}
 
         {/* Header de l'article */}
         <header className="article-header">
