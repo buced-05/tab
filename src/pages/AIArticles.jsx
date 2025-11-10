@@ -36,7 +36,6 @@ const AIArticlesPage = () => {
   const [viewedArticles, setViewedArticles] = useState(new Set());
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [apiError, setApiError] = useState(null);
 
   const ensureArticleMetrics = (items = []) => {
     return (items || []).map((article, index) => {
@@ -179,7 +178,6 @@ const AIArticlesPage = () => {
     let isMounted = true;
     const loadArticles = async () => {
       setLoading(true);
-      setApiError(null);
       try {
         const { results } = await contentService.getArticles({ page_size: 200 });
         if (!isMounted) return;
@@ -193,7 +191,7 @@ const AIArticlesPage = () => {
       } catch (error) {
         if (!isMounted) return;
         console.error('[AIArticles] Échec du chargement via API Django:', error);
-        setApiError(error.message || 'Impossible de charger les articles depuis le backend.');
+        console.warn('[AIArticles] Impossible de charger les articles via API, fallback local:', error);
 
         const fallbackArticles = getAllPremiumAIArticlesWithDynamicDates();
         if (Array.isArray(fallbackArticles) && fallbackArticles.length > 0) {
@@ -662,24 +660,6 @@ const AIArticlesPage = () => {
           </div>
         </div>
 
-        {apiError && (
-          <div
-            className="api-error-banner"
-            style={{
-              marginBottom: '24px',
-              background: '#fff4f4',
-              border: '1px solid #fca5a5',
-              color: '#b91c1c',
-              padding: '12px 16px',
-              borderRadius: '12px',
-              fontSize: '0.95rem'
-            }}
-          >
-            <p style={{ margin: 0 }}>
-              Impossible de récupérer les articles depuis le backend&nbsp;: {apiError}. Les données affichées proviennent du jeu de secours local.
-            </p>
-          </div>
-        )}
 
         {/* Filtres et recherche */}
         <div className="articles-filters" id="articles-filters-container">
