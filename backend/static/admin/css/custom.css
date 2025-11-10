@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 :root {
   --am-primary: #1f3c88;
   --am-secondary: #2d6cdf;
@@ -5,6 +7,29 @@
   --am-neutral: #f8fafc;
   --am-border: #d9e3f5;
   --am-text: #0f172a;
+}
+
+html,
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--am-text);
+  background-color: #f5f7ff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body.grp-login::before,
+body.grp-dashboard::before,
+body.grp-change-form::before,
+body.grp-changelist::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 15% 20%, rgba(45, 108, 223, 0.08), transparent 55%),
+    radial-gradient(circle at 85% 15%, rgba(249, 115, 22, 0.08), transparent 60%),
+    radial-gradient(circle at 50% 80%, rgba(45, 108, 223, 0.05), transparent 65%);
+  z-index: -1;
 }
 
 body.grp-login {
@@ -18,6 +43,17 @@ body.grp-changelist {
   color: var(--am-text);
 }
 
+.grp-container *,
+.grp-container *::before,
+.grp-container *::after {
+  font-family: inherit;
+}
+
+.grp-header {
+  background: linear-gradient(120deg, rgba(45, 108, 223, 0.14), rgba(249, 115, 22, 0.12));
+  border-bottom: 1px solid rgba(17, 24, 39, 0.05);
+}
+
 .grp-module,
 .grp-module.grp-changelist-results,
 .grp-module.grp-changelist-filters,
@@ -27,6 +63,11 @@ body.grp-changelist {
   border: 1px solid var(--am-border);
   overflow: hidden;
   background: #ffffff;
+}
+
+.grp-module caption.big {
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
 }
 
 .grp-changelist-results thead th {
@@ -41,6 +82,30 @@ body.grp-changelist {
 
 .grp-changelist-results tbody tr:hover {
   background: rgba(99, 102, 241, 0.1);
+}
+
+.grp-changelist-results tbody tr:nth-child(odd) {
+  background: rgba(45, 108, 223, 0.05);
+}
+
+.grp-changelist-results td,
+.grp-changelist-results th {
+  padding: 14px 16px;
+  vertical-align: middle;
+}
+
+.grp-changelist-results td a {
+  color: var(--am-primary);
+  font-weight: 600;
+}
+
+.grp-changelist-results td a:hover {
+  color: var(--am-accent);
+}
+
+.grp-changelist-results .action-checkbox {
+  display: flex;
+  justify-content: center;
 }
 
 .grp-submit-row {
@@ -82,6 +147,11 @@ body.grp-changelist {
   font-weight: 600;
 }
 
+.grp-change-form .grp-row label,
+.grp-group .grp-row label {
+  font-size: 0.95rem;
+}
+
 .grp-tools a.grp-state-focus,
 .grp-tools a.grp-state-hover,
 .grp-tools a.grp-state-active {
@@ -94,6 +164,38 @@ body.grp-changelist {
 .grp-module h4 {
   color: var(--am-primary);
   font-weight: 700;
+}
+
+.grp-row label {
+  font-weight: 600;
+  color: var(--am-primary);
+  letter-spacing: 0.01em;
+}
+
+.grp-row .grp-field {
+  margin-bottom: 12px;
+}
+
+.grp-row input,
+.grp-row select,
+.grp-row textarea {
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  padding: 10px 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grp-row input:focus,
+.grp-row select:focus,
+.grp-row textarea:focus {
+  border-color: var(--am-secondary);
+  box-shadow: 0 0 0 3px rgba(45, 108, 223, 0.18);
+}
+
+.grp-help,
+.grp-description {
+  color: rgba(15, 23, 42, 0.6);
+  font-size: 0.85rem;
 }
 
 .am-admin-branding {
@@ -114,7 +216,7 @@ body.grp-changelist {
 }
 
 .am-admin-subtitle {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: rgba(148, 163, 184, 0.95);
   text-transform: uppercase;
   letter-spacing: 0.24em;
@@ -158,6 +260,36 @@ body.grp-changelist {
   color: var(--am-primary);
 }
 
+.grp-filter {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.grp-filter h2 {
+  color: var(--am-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.grp-filter li a {
+  border-radius: 10px;
+  padding: 6px 12px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.grp-filter li a:hover {
+  background: rgba(45, 108, 223, 0.15);
+  color: var(--am-primary);
+}
+
+.grp-filter li a.selected {
+  background: rgba(45, 108, 223, 0.2);
+  color: var(--am-primary);
+  font-weight: 600;
+}
+
 .am-dashboard {
   display: flex;
   flex-direction: column;
@@ -198,14 +330,14 @@ body.grp-changelist {
 }
 
 .am-hero h1 {
-  font-size: 1.95rem;
+  font-size: 2.3rem;
   margin: 0;
   font-weight: 700;
   color: var(--am-text);
 }
 
 .am-hero p {
-  font-size: 1rem;
+  font-size: 1.05rem;
   max-width: 680px;
   line-height: 1.6;
   color: rgba(15, 23, 42, 0.8);
@@ -265,7 +397,7 @@ body.grp-changelist {
 }
 
 .am-stat-card h3 {
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: rgba(241, 245, 249, 0.85);
@@ -273,7 +405,7 @@ body.grp-changelist {
 }
 
 .am-stat-value {
-  font-size: 2.1rem;
+  font-size: 2.35rem;
   font-weight: 700;
 }
 
@@ -321,7 +453,7 @@ body.grp-changelist {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .am-model-item {
@@ -359,6 +491,29 @@ body.grp-changelist {
   color: rgba(249, 115, 22, 0.9);
 }
 
+.grp-message {
+  border-radius: 12px;
+  border: 1px solid rgba(45, 108, 223, 0.22);
+  background: rgba(45, 108, 223, 0.12);
+  color: var(--am-primary);
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+.grp-message.error,
+.grp-message.error a {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: rgba(220, 38, 38, 0.22);
+  color: var(--am-danger);
+}
+
+.grp-message.success,
+.grp-message.success a {
+  background: rgba(22, 163, 74, 0.1);
+  border-color: rgba(22, 163, 74, 0.22);
+  color: var(--am-success);
+}
+
 .am-login-wrapper {
   min-height: 100vh;
   display: flex;
@@ -383,7 +538,7 @@ body.grp-changelist {
 }
 
 .am-login-panel h1 {
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   margin-bottom: 12px;
   color: var(--am-primary);
   text-align: center;
@@ -392,7 +547,8 @@ body.grp-changelist {
 .am-login-panel p.subtext {
   text-align: center;
   color: rgba(148, 163, 184, 0.9);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  font-size: 1rem;
 }
 
 .am-login-panel form .form-row {
@@ -444,6 +600,24 @@ body.grp-changelist {
   font-weight: 600;
 }
 
+.grp-pagination ul {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 35px rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+}
+
+.grp-pagination li a {
+  font-weight: 600;
+  color: var(--am-primary);
+  padding: 10px 16px;
+}
+
+.grp-pagination li.grp-selected a {
+  background: linear-gradient(135deg, var(--am-secondary), var(--am-primary));
+  color: #ffffff;
+}
+
 @media (max-width: 900px) {
   .am-stat-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -478,3 +652,13 @@ body.grp-changelist {
   }
 }
 
+.grp-submit-row .deletelink {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.28);
+  color: var(--am-danger);
+  border-radius: 10px;
+}
+
+.grp-submit-row .deletelink:hover {
+  background: rgba(220, 38, 38, 0.16);
+}

@@ -96,7 +96,7 @@ const Header = () => {
       e.preventDefault();
       setProductClickCount(0);
       setShowTripleClickHint(false);
-      navigate('/admin?tab=new-product');
+      navigate('/app-admin?tab=new-product');
     } else {
       // Allow normal navigation for first and second clicks
       // Reset counter after 2 seconds if not triple-clicked
@@ -122,7 +122,7 @@ const Header = () => {
       e.preventDefault();
       setArticleClickCount(0);
       setShowTripleClickHint(false);
-      navigate('/admin?tab=new-article');
+      navigate('/app-admin?tab=new-article');
     } else {
       // Allow normal navigation for first and second clicks
       // Reset counter after 2 seconds if not triple-clicked

@@ -156,7 +156,7 @@ export const isValidForIndexing = (url) => {
     }
     
     // Exclure certains chemins
-    const excludedPaths = ['/admin', '/api', '/_next', '/static', '/assets'];
+    const excludedPaths = ['/admin', '/app-admin', '/api', '/_next', '/static', '/assets'];
     for (const path of excludedPaths) {
       if (urlObj.pathname.startsWith(path)) {
         return false;

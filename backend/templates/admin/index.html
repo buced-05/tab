@@ -7,21 +7,68 @@
 {% endblock %}
 
 {% block content %}
-  {% dashboard_payload as dashboard %}
-  {{ dashboard|json_script:"am-dashboard-json" }}
+  {% content_stats as content_stats %}
+  {% ecommerce_stats as ecommerce_stats %}
 
-  <div id="am-react-dashboard">
-    <noscript>
-      <div class="am-dashboard noscript">
-        <p>Activez JavaScript pour profiter du tableau de bord interactif.</p>
+  <div class="am-dashboard">
+    <section class="am-hero">
+      <div class="am-hero-content">
+        <h1>Centre de pilotage AllAdsMarket</h1>
+        <p>Gérez contenus, affiliation et SEO depuis un hub unique. Les APIs React consomment automatiquement vos modifications.</p>
+        <div class="am-quick-actions">
+          <a href="{% url 'admin:content_article_add' %}" class="am-quick-action">📝 Créer un article</a>
+          <a href="{% url 'admin:ecommerce_product_add' %}" class="am-quick-action">🛍️ Ajouter un produit</a>
+          <a href="{% url 'admin:ecommerce_deal_add' %}" class="am-quick-action">🎯 Lancer une offre</a>
+          <a href="{% url 'admin:auth_user_changelist' %}" class="am-quick-action">👥 Gestion équipe</a>
+        </div>
       </div>
-    </noscript>
+    </section>
+
+    <section class="am-stat-grid">
+      <div class="am-stat-card">
+        <h3>Articles publiés</h3>
+        <div class="am-stat-value">{{ content_stats.published }}</div>
+        <small>Synchronisés avec le front React</small>
+      </div>
+      <div class="am-stat-card">
+        <h3>Produits actifs</h3>
+        <div class="am-stat-value">{{ ecommerce_stats.products }}</div>
+        <small>{{ ecommerce_stats.featured }} produits mis en avant</small>
+      </div>
+      <div class="am-stat-card">
+        <h3>Offres en cours</h3>
+        <div class="am-stat-value">{{ ecommerce_stats.deals }}</div>
+        <small>Codes promo &amp; deals publiés</small>
+      </div>
+    </section>
+
+    <section class="am-card-grid">
+      {% for app in app_list %}
+        <article class="am-app-card">
+          <h3>
+            {{ app.name }}
+            <span class="am-badge">{{ app.models|length }} modules</span>
+          </h3>
+          <ul>
+            {% for model in app.models %}
+              <li class="am-model-item">
+                <span>{{ model.name }}</span>
+                <div class="am-app-actions">
+                  {% if model.add_url %}
+                    <a href="{{ model.add_url }}" class="am-badge">+ Créer</a>
+                  {% endif %}
+                  {% if model.admin_url %}
+                    <a href="{{ model.admin_url }}" class="am-badge">Voir</a>
+                  {% endif %}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </article>
+      {% endfor %}
+    </section>
   </div>
 
   {{ block.super }}
-
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="{% static 'admin/js/dashboard-react.js' %}"></script>
 {% endblock %}
 

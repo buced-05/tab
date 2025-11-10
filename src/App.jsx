@@ -223,7 +223,7 @@ const AppContent = () => {
                   <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
                   <Route path="/ai-articles" element={<AIArticlesPage />} />
                   <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
-                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/app-admin" element={<Admin />} />
                   <Route path="/featured" element={<Products />} />
                   <Route path="/trending" element={<Products />} />
                   <Route path="/categories" element={<Products />} />

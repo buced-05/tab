@@ -241,7 +241,7 @@ const Admin = () => {
         <SEOHead 
           title="Admin Login - AllAdsMarket"
           description="Admin panel for managing products and articles"
-          url="/admin"
+          url="/app-admin"
         />
         
         <div className="login-container">
@@ -282,7 +282,7 @@ const Admin = () => {
       <SEOHead 
         title="Admin Panel - AllAdsMarket"
         description="Admin panel for managing products and articles"
-        url="/admin"
+        url="/app-admin"
       />
       
       <div className="admin-header">
