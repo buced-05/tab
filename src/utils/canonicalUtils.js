@@ -98,40 +98,49 @@ export const getCanonicalUrl = (path = null, options = {}) => {
  * @param {Array<string>} supportedLanguages - Liste des langues supportées
  * @returns {Array<Object>} Tableau d'objets { hreflang, href }
  */
-export const getHreflangTags = (path = '/', supportedLanguages = ['fr', 'en', 'en-GB', 'de', 'es', 'it', 'pt', 'pt-BR', 'nl', 'sv', 'no', 'ru', 'ja', 'zh', 'hi', 'ar', 'sw', 'am']) => {
-  // Normaliser le chemin
-  let normalizedPath = path;
+export const getHreflangTags = (
+  path = '/',
+  supportedLanguages = ['fr', 'en', 'en-GB', 'de', 'es', 'it', 'pt', 'pt-BR', 'nl', 'sv', 'no', 'ru', 'ja', 'zh', 'hi', 'ar', 'sw', 'am']
+) => {
+  let normalizedPath = path || '/';
   if (!normalizedPath.startsWith('/')) {
-    normalizedPath = '/' + normalizedPath;
+    normalizedPath = `/${normalizedPath}`;
   }
   if (normalizedPath !== '/' && normalizedPath.endsWith('/')) {
     normalizedPath = normalizedPath.slice(0, -1);
   }
-  
+
+  const supportedSet = new Set(supportedLanguages);
+  const segments = normalizedPath.split('/').filter(Boolean);
+  const hasLangPrefix = segments.length > 0 && supportedSet.has(segments[0]);
+  const baseSegments = hasLangPrefix ? segments.slice(1) : segments;
+  const basePath = baseSegments.length ? `/${baseSegments.join('/')}` : '/';
+
   const tags = [];
-  
-  // Ajouter la version française (sans préfixe)
+
+  // Version française (langue par défaut, sans préfixe)
   tags.push({
     hreflang: 'fr',
-    href: normalizeUrl(BASE_URL + normalizedPath)
+    href: normalizeUrl(BASE_URL + basePath),
   });
-  
-  // Ajouter les autres langues
-  supportedLanguages.forEach(lang => {
-    if (lang !== 'fr') {
-      tags.push({
-        hreflang: lang,
-        href: normalizeUrl(BASE_URL + '/' + lang + (normalizedPath === '/' ? '' : normalizedPath))
-      });
+
+  supportedLanguages.forEach((lang) => {
+    if (lang === 'fr') {
+      return;
     }
+    const localizedPath = basePath === '/' ? `/${lang}` : `/${lang}${basePath}`;
+    tags.push({
+      hreflang: lang,
+      href: normalizeUrl(BASE_URL + localizedPath),
+    });
   });
-  
-  // Ajouter x-default
+
+  // x-default vers la version française (valeur par défaut)
   tags.push({
     hreflang: 'x-default',
-    href: normalizeUrl(BASE_URL + normalizedPath)
+    href: normalizeUrl(BASE_URL + basePath),
   });
-  
+
   return tags;
 };
 

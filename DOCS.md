@@ -30,6 +30,13 @@ Sources consolidated: PROGRESS_LINE_SUMMARY.md, CLEANUP_COMPLETE.md, APPLICATION
 - Stratégie globale : structuration des pages, maillage interne, balisage Schema.org, gestion des balises meta.
 - Indexation et sitemaps : plan d’action, vérifications Search Console, soumission et suivi (`sitemap-*.xml`, `robots`).
 - Résolution des incidents d’indexation (529 pages, actions immédiates, correctifs Google) et audits de résumés.
+- Indexation Recovery 2025 :
+  - Exporter la liste des URLs non indexées (Search Console → export CSV) avec les motifs (duplicate canonical, soft 404, erreur serveur).
+  - Corriger les doublons de préfixe langue : chaque URL locale doit suivre `/lang/slug`; supprimer les occurrences `/lang/lang/slug` et mettre en place des redirections 301.
+  - S’assurer que chaque template rend un canonical unique cohérent avec le sitemap et que les hreflang utilisent le `basePath` sans préfixe doublé.
+  - Vérifier la disponibilité des API (`curl -I https://alladsmarket.com/api/content/articles/`) avant de lancer une validation GSC.
+  - Régénérer les sitemaps (`npm run build` met à jour `dist/sitemap-*.xml`), pousser sur le VPS, et soumettre `sitemap-index.xml` après correction.
+- Outils & rapports : checklists d’optimisation, feuilles de route de trafic, actions SEO prioritaires.
 - Outils & rapports : checklists d’optimisation, feuilles de route de trafic, actions SEO prioritaires.
 
 Sources consolidées : `SEO_OPTIMIZATION_GUIDE.md`, `SEO_STRATEGY.md`, `SEO_ACTIONS_IMMEDIATES.md`, `SEO_IMPROVEMENT_PLAN.md`, `SEO_SITEMAP_REPORT.md`, `SEO_SITEMAP_VERIFICATION_COMPLETE.md`, `SITEMAP_EXPLANATION.md`, `ACTION_IMMEDIATE_529_PAGES.md`, `FIX_529_PAGES_NON_INDEXEES.md`, `FIX_INDEXATION_GOOGLE*.md`, `INDEXATION_IMMEDIATE_AUJOURD_HUI.md`, `RESUME_INDEXATION_AUJOURD_HUI.md`, `RESUME_FINAL_2025.md`, `traffic-growth-roadmap.md`.
@@ -59,7 +66,13 @@ Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIAL
 - Procédures complètes de déploiement (safe mode, VPS, checklists post-start) et scripts d’automatisation.
 - Configuration Nginx/HTACCESS, sécurité serveur, pipeline de build et gestion des services (`systemctl`, `gunicorn`/`uvicorn`) pour le backend Django.
 - Checklists de vérification, guides de rollback et plans de maintenance.
-- Commandes de base Django : création d’environnement virtuel, installation (`pip install -r backend/requirements.txt`), migrations (`python backend/manage.py migrate`), lancement (`python backend/manage.py runserver 0.0.0.0:8000`).
+- Backend Django en production :
+  - Créer/mettre à jour le venv : `python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt`
+  - Appliquer les migrations : `.venv/bin/python backend/manage.py migrate`
+  - Collecter les statiques : `.venv/bin/python backend/manage.py collectstatic --noinput`
+  - Lancer via Gunicorn (PM2 ou systemd) : `pm2 start ecosystem.config.js --env production --update-env`
+  - Gunicorn écoute sur `127.0.0.1:8001` et Nginx reverse-proxy `/api/` vers ce port (cf. `nginx-alladsmarket-complete.conf`).
+- Pour un test rapide en local, `python backend/manage.py runserver 0.0.0.0:8000` reste disponible, mais ne doit pas être utilisé en production.
 
 Sources consolidées : `DEPLOY_INSTRUCTIONS.md`, `DEPLOY_COMPLETE.md`, `DEPLOY_SAFE.md`, `DEPLOY_SAFE_VPS.md`, `VPS_DEPLOYMENT_CHECKLIST.md`, `VPS_POST_START_CHECKLIST.md`, `VPS_START_SERVICES.md`, `VPS_VERIFICATION_COMPLETE.md`, `QUICK_VPS_FIX.md`, `NGINX_CONFIGURATION_GUIDE.md`, `NGINX_SETUP_INSTRUCTIONS.md`, `SOLUTION_VPS_IMMEDIATE.md`, `SOLUTION_529_PAGES_NON_INDEXEES.md`.
 
@@ -92,6 +105,9 @@ Sources consolidées : `SEO_OPTIMIZATION_COMPLETE.md`, `SEO_OPTIMIZATION_COMPLE
 ## Troubleshooting & Fix Logs
 - Console errors, build issues, PowerShell syntax, unexpected tokens.
 - Translation replacement misses and how to resolve.
+- 502 Bad Gateway côté front : vérifier que Gunicorn tourne (`pm2 status alladsmarket-backend`), relancer via `scripts/vps/start-all-services.sh`, confirmer `curl -I https://alladsmarket.com/api/content/articles/` → 200. Inspecter les logs Nginx (`/var/log/nginx/alladsmarket.error.log`) et Gunicorn (`backend/logs/gunicorn-error.log`) en cas d’échec répété.
+- Statics admin non chargés : `STATIC_ROOT` doit être servi par `collectstatic` et le chemin `STATICFILES_DIRS` doit pointer vers `backend/static`. S’assurer que Nginx autorise `/static/` et relancer `collectstatic` après chaque mise à jour.
+- Déduplication i18n : surveiller les URLs avec double préfixe (`/hi/hi/...`). Utiliser le plan “Indexation Recovery” (cf. section SEO) pour corriger les routes et régénérer les sitemaps.
 
 Sources consolidées : `CLEANUP_SUMMARY.md`, `RECAP_FINAL_COMPLET.md`, `RESUME_SESSION.md`, `HTACCESS_ERROR_FIX.md`, `FIX_SITEMAP_GOOGLE_SEARCH_CONSOLE.md`, `SOLUTION_VPS_IMMEDIATE.md`.
 

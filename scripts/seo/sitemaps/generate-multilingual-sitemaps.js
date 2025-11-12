@@ -119,9 +119,10 @@ const staticPages = [
 
 // Langues supportées
 const supportedLanguages = [
-  'fr', 'en', 'en-GB', 'de', 'es', 'it', 'pt', 'pt-BR', 
+  'fr', 'en', 'en-GB', 'de', 'es', 'it', 'pt', 'pt-BR',
   'nl', 'sv', 'no', 'ru', 'ja', 'zh', 'hi', 'ar', 'sw', 'am'
 ];
+const supportedLanguageSet = new Set(supportedLanguages);
 
 // Configuration des langues
 const languageConfig = {
@@ -143,6 +144,32 @@ const languageConfig = {
   'ar': { locale: 'ar_SA', region: 'SA', country: 'Saudi Arabia', priority: 0.4 },
   'sw': { locale: 'sw_KE', region: 'KE', country: 'Kenya', priority: 0.4 },
   'am': { locale: 'am_ET', region: 'ET', country: 'Ethiopia', priority: 0.4 }
+};
+
+const normalizePath = (inputPath = '/') => {
+  let normalized = inputPath || '/';
+  if (!normalized.startsWith('/')) {
+    normalized = `/${normalized}`;
+  }
+  if (normalized !== '/' && normalized.endsWith('/')) {
+    normalized = normalized.slice(0, -1);
+  }
+  const segments = normalized.split('/').filter(Boolean);
+  if (segments.length > 0 && supportedLanguageSet.has(segments[0])) {
+    segments.shift();
+  }
+  if (segments.length === 0) {
+    return '/';
+  }
+  return `/${segments.join('/')}`;
+};
+
+const buildLocalizedPath = (lang, inputPath = '/') => {
+  const sanitized = normalizePath(inputPath);
+  if (lang === 'fr') {
+    return sanitized;
+  }
+  return sanitized === '/' ? `/${lang}` : `/${lang}${sanitized}`;
 };
 
 // Générer le sitemap principal
@@ -207,11 +234,12 @@ function generatePagesSitemap() {
     const lastmod = page.lastmod || new Date().toISOString();
     const changefreq = page.changefreq || 'weekly';
     const priority = page.priority || 0.8;
+    const basePath = normalizePath(page.path);
 
     // Page par défaut (français)
     sitemap += `
   <url>
-    <loc>${baseUrl}${page.path}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
@@ -220,7 +248,7 @@ function generatePagesSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? page.path : `/${lang}${page.path}`;
+        const langPath = buildLocalizedPath(lang, page.path);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -228,7 +256,7 @@ function generatePagesSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${page.path}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -250,10 +278,11 @@ function generateArticlesSitemap() {
     const lastmod = article.publishDate ? new Date(article.publishDate).toISOString() : new Date().toISOString();
     const priority = article.trending ? 0.9 : (article.featured ? 0.85 : 0.8);
     const changefreq = 'weekly';
+    const basePath = normalizePath(`/ai-article/${article.slug}`);
 
     sitemap += `
   <url>
-    <loc>${baseUrl}/ai-article/${article.slug}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
@@ -262,7 +291,7 @@ function generateArticlesSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? `/ai-article/${article.slug}` : `/${lang}/ai-article/${article.slug}`;
+        const langPath = buildLocalizedPath(lang, `/ai-article/${article.slug}`);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -270,7 +299,7 @@ function generateArticlesSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/ai-article/${article.slug}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -295,10 +324,11 @@ function generateProductsSitemap() {
     
     // Use slug for SEO-friendly URLs, fallback to _id if no slug
     const productSlug = product.slug || product._id;
+    const basePath = normalizePath(`/products/${productSlug}`);
 
     sitemap += `
   <url>
-    <loc>${baseUrl}/products/${productSlug}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>`;
@@ -307,7 +337,7 @@ function generateProductsSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? `/products/${productSlug}` : `/${lang}/products/${productSlug}`;
+        const langPath = buildLocalizedPath(lang, `/products/${productSlug}`);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -315,7 +345,7 @@ function generateProductsSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/products/${productSlug}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -340,7 +370,8 @@ function generateLanguageSitemap(lang) {
     const changefreq = page.changefreq || 'weekly';
     const priority = (page.priority || 0.8) * langConfig.priority;
 
-    const langPath = lang === 'fr' ? page.path : `/${lang}${page.path}`;
+    const langPath = buildLocalizedPath(lang, page.path);
+    const basePath = normalizePath(page.path);
 
     sitemap += `
   <url>
@@ -353,7 +384,7 @@ function generateLanguageSitemap(lang) {
     supportedLanguages.forEach(altLang => {
       const altLangConfig = languageConfig[altLang];
       if (altLangConfig) {
-        const altLangPath = altLang === 'fr' ? page.path : `/${altLang}${page.path}`;
+        const altLangPath = buildLocalizedPath(altLang, page.path);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${altLang}" href="${baseUrl}${altLangPath}" />`;
       }
@@ -361,7 +392,7 @@ function generateLanguageSitemap(lang) {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${page.path}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -434,9 +465,10 @@ function generateCategoriesSitemap() {
   const lastmod = new Date().toISOString();
 
   categories.forEach(category => {
+    const basePath = normalizePath(category.slug);
     sitemap += `
   <url>
-    <loc>${baseUrl}/${category.slug}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>${category.changefreq}</changefreq>
     <priority>${category.priority}</priority>`;
@@ -445,7 +477,7 @@ function generateCategoriesSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? `/${category.slug}` : `/${lang}/${category.slug}`;
+        const langPath = buildLocalizedPath(lang, category.slug);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -453,7 +485,7 @@ function generateCategoriesSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/${category.slug}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -479,9 +511,10 @@ function generateAuthorsSitemap() {
   const lastmod = new Date().toISOString();
 
   authors.forEach(author => {
+    const basePath = normalizePath(`/authors/${author.id}`);
     sitemap += `
   <url>
-    <loc>${baseUrl}/authors/${author.id}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <lastmod>${lastmod}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${author.priority}</priority>`;
@@ -490,7 +523,7 @@ function generateAuthorsSitemap() {
     supportedLanguages.forEach(lang => {
       const langConfig = languageConfig[lang];
       if (langConfig) {
-        const langPath = lang === 'fr' ? `/authors/${author.id}` : `/${lang}/authors/${author.id}`;
+        const langPath = buildLocalizedPath(lang, `/authors/${author.id}`);
         sitemap += `
     <xhtml:link rel="alternate" hreflang="${lang}" href="${baseUrl}${langPath}" />`;
       }
@@ -498,7 +531,7 @@ function generateAuthorsSitemap() {
 
     // Balise hreflang x-default
     sitemap += `
-    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}/authors/${author.id}" />`;
+    <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${basePath}" />`;
 
     sitemap += `
   </url>`;
@@ -524,10 +557,11 @@ function generateNewsSitemap() {
   recentArticles.forEach(article => {
     const langConfig = languageConfig['fr'];
     const publicationDate = article.publishDate ? new Date(article.publishDate).toISOString() : new Date().toISOString();
+    const basePath = normalizePath(`/ai-article/${article.slug}`);
     
     sitemap += `
   <url>
-    <loc>${baseUrl}/ai-article/${article.slug}</loc>
+    <loc>${baseUrl}${basePath}</loc>
     <news:news>
       <news:publication>
         <news:name>AllAdsMarket</news:name>

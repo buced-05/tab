@@ -1,117 +1,81 @@
 #!/bin/bash
 
-# Script pour démarrer tous les services sur VPS
-# Utilise PM2 pour le serveur Node.js et redémarre Nginx
+# Script de démarrage unifié pour le VPS (frontend + backend Django)
 
-set -e
+set -euo pipefail
 
 echo ""
 echo "========================================"
-echo "Démarrage des Services VPS"
+echo "Démarrage des Services VPS (React + Django)"
 echo "========================================"
 echo ""
 
-# Vérifier qu'on est dans le bon répertoire
-if [ ! -f "package.json" ]; then
-    echo "❌ Erreur: Vous devez être dans le répertoire du projet"
+PROJECT_ROOT="$(pwd)"
+
+if [ ! -f "${PROJECT_ROOT}/package.json" ] || [ ! -f "${PROJECT_ROOT}/backend/manage.py" ]; then
+    echo "❌ Erreur: lancer ce script depuis la racine du dépôt (/var/www/alladsmarket)"
     exit 1
 fi
 
-# Étape 1: Rebuild l'application
-echo "[1/5] Build de l'application frontend..."
-npm run build
-echo "  ✓ Build terminé"
+VENV_DIR="${PROJECT_ROOT}/.venv"
+PYTHON_BIN="${VENV_DIR}/bin/python"
+PIP_BIN="${VENV_DIR}/bin/pip"
 
-# Étape 2: Installer les dépendances serveur si nécessaire
-echo ""
-echo "[2/5] Vérification des dépendances serveur..."
-if [ ! -d "bestserver/node_modules" ]; then
-    echo "  Installation des dépendances..."
-    cd bestserver
-    npm install
-    cd ..
-    echo "  ✓ Dépendances installées"
+if [ -d "${VENV_DIR}" ]; then
+    echo "[1/6] Environnement virtuel détecté → ${VENV_DIR}"
 else
-    echo "  ✓ Dépendances déjà installées"
+    echo "[1/6] Création de l'environnement virtuel..."
+    python3 -m venv "${VENV_DIR}"
+    echo "  ✓ venv créé"
 fi
 
-# Étape 3: Corriger le chemin dans ecosystem.config.js si nécessaire
 echo ""
-echo "[3/5] Vérification de la configuration PM2..."
-CURRENT_DIR=$(pwd)
-if [ "$CURRENT_DIR" != "/var/www/alladsmarket" ]; then
-    # Le chemin est différent, mettre à jour ecosystem.config.js
-    if [ -f "ecosystem.config.js" ]; then
-        echo "  Mise à jour du chemin dans ecosystem.config.js..."
-        # S'assurer que le chemin est correct (utilise process.env.APP_DIR maintenant)
-        export APP_DIR="$CURRENT_DIR"
-        echo "  ✓ Chemin configuré: $CURRENT_DIR"
-    fi
+echo "[2/6] Installation / mise à jour des dépendances Python..."
+"${PIP_BIN}" install --upgrade pip setuptools wheel
+"${PIP_BIN}" install -r backend/requirements.txt
+echo "  ✓ Dépendances Python à jour"
+
+echo ""
+echo "[3/6] Migrations & collectstatic..."
+"${PYTHON_BIN}" backend/manage.py makemigrations --check --dry-run || true
+"${PYTHON_BIN}" backend/manage.py migrate
+"${PYTHON_BIN}" backend/manage.py collectstatic --noinput
+echo "  ✓ Migrations & fichiers statiques à jour"
+
+echo ""
+echo "[4/6] Installation dépendances npm & build frontend..."
+if command -v npm >/dev/null 2>&1; then
+    npm ci
+    npm run build
+    echo "  ✓ Build frontend terminé"
+else
+    echo "  ❌ npm introuvable. Installer Node.js avant de relancer."
+    exit 1
 fi
 
-# Étape 4: Démarrer avec PM2
 echo ""
-echo "[4/5] Démarrage du serveur avec PM2..."
+echo "[5/6] Redémarrage du backend (Gunicorn via PM2)..."
+export APP_DIR="${PROJECT_ROOT}"
+export VENV_DIR
+export GUNICORN_BIN="${PROJECT_ROOT}/.venv/bin/gunicorn"
 
-# Arrêter l'ancien processus si existant
 pm2 delete alladsmarket-backend 2>/dev/null || true
-
-# S'assurer qu'on est dans le bon répertoire
-if [ ! -f "ecosystem.config.js" ]; then
-    echo "  ⚠️ ecosystem.config.js non trouvé dans $(pwd)"
-    echo "  Vérification du répertoire parent..."
-    if [ -f "../ecosystem.config.js" ]; then
-        cd ..
-        CURRENT_DIR=$(pwd)
-        echo "  ✓ Trouvé dans: $CURRENT_DIR"
-    else
-        echo "  ❌ ecosystem.config.js non trouvé"
-        echo "  Utilisation du démarrage direct..."
-        cd bestserver
-        APP_DIR="$CURRENT_DIR" pm2 start index.js --name alladsmarket-backend --cwd "$CURRENT_DIR" --env production
-        cd ..
-        echo "  ✓ Serveur démarré directement"
-        pm2 save
-        echo "  ✓ Configuration sauvegardée"
-        exit 0
-    fi
-fi
-
-# Démarrer avec ecosystem.config.js
-APP_DIR="$CURRENT_DIR" pm2 start ecosystem.config.js --env production --update-env
-
-# Sauvegarder la configuration
+pm2 start ecosystem.config.js --env production --update-env
 pm2 save
-echo "  ✓ Serveur démarré avec PM2"
+echo "  ✓ Backend relancé (processus PM2: alladsmarket-backend)"
 
-# Étape 5: Redémarrer Nginx
 echo ""
-echo "[5/5] Redémarrage de Nginx..."
+echo "[6/6] Redémarrage de Nginx..."
 if command -v systemctl &> /dev/null; then
-    sudo systemctl restart nginx
-    echo "  ✓ Nginx redémarré"
+    sudo systemctl reload nginx || sudo systemctl restart nginx
+    echo "  ✓ Nginx rechargé"
 else
     echo "  ⚠️ systemctl non disponible, redémarrez Nginx manuellement"
 fi
 
 echo ""
 echo "========================================"
-echo "✅ Services démarrés avec succès!"
+echo "✅ Déploiement terminé"
 echo "========================================"
 echo ""
-echo "Statut PM2:"
-pm2 status
-
-echo ""
-echo "Logs récents (20 dernières lignes):"
-pm2 logs alladsmarket-backend --lines 20 --nostream
-
-echo ""
-echo "Vérifications:"
-echo "  Port 5000:"
-sudo netstat -tlnp | grep 5000 || echo "    ⚠️ Port 5000 non détecté"
-echo ""
-echo "  Nginx:"
-sudo systemctl status nginx --no-pager -l | head -5 || echo "    ⚠️ Impossible de vérifier Nginx"
-echo ""
-
+pm2 status alladsmarket-backend
