@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://alladsmarket.com/authors/team-alladsmarket</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/authors/alladsmarket</loc>
+    <lastmod>2025-11-29T19:19:57.781Z</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/authors/alladsmarket" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/authors/alladsmarket" />
   </url>
   <url>
-    <loc>https://alladsmarket.com/authors/marie-dubois</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/authors/admin</loc>
+    <lastmod>2025-11-29T19:19:57.781Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alladsmarket.com/authors/pierre-martin</loc>
-    <lastmod>2025-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alladsmarket.com/authors/sophie-bernard</loc>
-    <lastmod>2025-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alladsmarket.com/authors/alexandre-roux</loc>
-    <lastmod>2025-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://alladsmarket.com/authors/laura-petit</loc>
-    <lastmod>2025-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/authors/admin" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/authors/admin" />
   </url>
 </urlset>

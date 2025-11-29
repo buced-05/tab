@@ -1,33 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://alladsmarket.com/products/electronics</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/categories/electronics</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/electronics" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/electronics" />
   </url>
   <url>
-    <loc>https://alladsmarket.com/products/home-garden</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/categories/clothing</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/clothing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/clothing" />
   </url>
   <url>
-    <loc>https://alladsmarket.com/articles/ia-tech</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/categories/home-garden</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/home-garden" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/home-garden" />
   </url>
   <url>
-    <loc>https://alladsmarket.com/articles/seo</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/categories/sports</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/sports" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/sports" />
   </url>
   <url>
-    <loc>https://alladsmarket.com/articles/ecommerce</loc>
-    <lastmod>2025-10-28</lastmod>
+    <loc>https://alladsmarket.com/categories/books</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/books" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/books" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/books" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/books" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/books" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/books" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/books" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/books" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/books" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/books" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/books" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/books" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/books" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/books" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/books" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/books" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/books" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/books" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/books" />
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/categories/toys</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/toys" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/toys" />
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/categories/beauty</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/beauty" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/beauty" />
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/categories/health</loc>
+    <lastmod>2025-11-29T19:19:57.778Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://alladsmarket.com/categories/health" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://alladsmarket.com/en/categories/health" />
+    <xhtml:link rel="alternate" hreflang="en-GB" href="https://alladsmarket.com/en-GB/categories/health" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://alladsmarket.com/de/categories/health" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://alladsmarket.com/es/categories/health" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://alladsmarket.com/it/categories/health" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://alladsmarket.com/pt/categories/health" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://alladsmarket.com/pt-BR/categories/health" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://alladsmarket.com/nl/categories/health" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://alladsmarket.com/sv/categories/health" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://alladsmarket.com/no/categories/health" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://alladsmarket.com/ru/categories/health" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://alladsmarket.com/ja/categories/health" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://alladsmarket.com/zh/categories/health" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://alladsmarket.com/hi/categories/health" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://alladsmarket.com/ar/categories/health" />
+    <xhtml:link rel="alternate" hreflang="sw" href="https://alladsmarket.com/sw/categories/health" />
+    <xhtml:link rel="alternate" hreflang="am" href="https://alladsmarket.com/am/categories/health" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://alladsmarket.com/categories/health" />
   </url>
 </urlset>

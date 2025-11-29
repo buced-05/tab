@@ -1,19 +1,124 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-  
-  <!-- Recent Articles -->
   <url>
-    <loc>https://alladsmarket.com/articles</loc>
+    <loc>https://alladsmarket.com/ai-article/sujets-que-tout-le-monde-cherche-2025-comment-profiter</loc>
     <news:news>
       <news:publication>
         <news:name>AllAdsMarket</news:name>
-        <news:language>fr</news:language>
+        <news:language>fr_FR</news:language>
       </news:publication>
-      <news:publication_date>2025-10-27T15:22:52.769Z</news:publication_date>
-      <news:title>Articles & Publications Scientifiques</news:title>
-      <news:keywords>articles, publications, scientifiques, analyses, produits</news:keywords>
+      <news:publication_date>2025-11-15T00:00:00.000Z</news:publication_date>
+      <news:title>Les sujets que tout le monde cherche en 2025 (et comment en profiter)</news:title>
+      <news:keywords>sujets tendances 2025, comment gagner de l&apos;argent en ligne, intelligence artificielle, business en ligne, content marketing, SEO, Afrique francophone, productivité, compétences du futur</news:keywords>
     </news:news>
   </url>
-  
+  <url>
+    <loc>https://alladsmarket.com/ai-article/americas-paralysis-global-crises-november-2025</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-08T00:00:00.000Z</news:publication_date>
+      <news:title>America&apos;s Paralysis and Global Crises: The Major Events of November 8, 2025</news:title>
+      <news:keywords>US government shutdown, flight cancellations, SNAP crisis, Typhoon Kalmaegi, Philippines disaster, Zohran Mamdani, New York mayor, climate emergency</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/amazon-fba-2025-complete-playbook-maximize-sales-profits</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-06T00:00:00.000Z</news:publication_date>
+      <news:title>Amazon FBA 2025: Complete Playbook to Maximize Sales and Profits</news:title>
+      <news:keywords>amazon fba, amazon seller, marketplace strategy, fba logistics, amazon advertising, e-commerce 2025, private label, product research</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/shopify-dropshipping-2025-blueprint-10k-month</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-06T00:00:00.000Z</news:publication_date>
+      <news:title>Shopify Dropshipping 2025: Full Blueprint to Reach $10K per Month</news:title>
+      <news:keywords>shopify dropshipping, ecommerce 2025, tiktok ads, facebook ads, winning products, ecommerce automation, d2c, paid media</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/openai-multi-cloud-strategy-aws-azure-oracle</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-06T00:00:00.000Z</news:publication_date>
+      <news:title>Comment OpenAI orchestre une stratégie multi-cloud AWS, Azure et Oracle</news:title>
+      <news:keywords>OpenAI, multi-cloud, AWS, Microsoft Azure, Oracle Cloud, infrastructure IA, AGI, GPU NVIDIA, cloud computing, stratégie cloud</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/how-openai-orchestrates-multi-cloud-strategy-aws-azure-oracle</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-06T00:00:00.000Z</news:publication_date>
+      <news:title>How OpenAI Orchestrates a Multi-Cloud Strategy with AWS, Azure, and Oracle</news:title>
+      <news:keywords>OpenAI, multi-cloud, AWS, Microsoft Azure, Oracle Cloud, AI infrastructure, AGI, NVIDIA GPUs, cloud strategy, hyperscalers</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/sp500-sector-performance-tariff-impact-recovery-trajectories-april-2025</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-11-05T00:00:00.000Z</news:publication_date>
+      <news:title>S&amp;P 500 Sector Performance: Tariff Impact and Recovery Trajectories Post-April 2025</news:title>
+      <news:keywords>S&amp;P 500, tarifs, performance secteurs, Technology, Materials, marchés financiers, analyse boursière, investissement, recovery paths, tariff impact</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/premier-league-boxing-day-single-match-2025</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-10-31T00:00:00.000Z</news:publication_date>
+      <news:title>Premier League scales back Boxing Day to single match</news:title>
+      <news:keywords>Premier League, Boxing Day, Scheduling, Broadcasting, Manchester United, Newcastle</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/how-to-update-windows-complete-professional-guide</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-10-31T00:00:00.000Z</news:publication_date>
+      <news:title>How to Update Windows: Complete Professional Guide</news:title>
+      <news:keywords>Windows 11, Updates, Troubleshooting, Security, Feature Updates</news:keywords>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://alladsmarket.com/ai-article/meta-ai-spending-spooks-investors-2025</loc>
+    <news:news>
+      <news:publication>
+        <news:name>AllAdsMarket</news:name>
+        <news:language>fr_FR</news:language>
+      </news:publication>
+      <news:publication_date>2025-10-31T00:00:00.000Z</news:publication_date>
+      <news:title>Zuckerberg loses $29B as Meta&apos;s AI spending spooks investors</news:title>
+      <news:keywords>Meta, AI Spending, Markets, Earnings, Bonds</news:keywords>
+    </news:news>
+  </url>
 </urlset>

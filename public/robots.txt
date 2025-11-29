@@ -113,6 +113,31 @@ Disallow: /dist/
 Disallow: /build/
 
 # ===========================================
+# BLOQUER LES URLs AVEC PARAMÈTRES (éviter les doublons)
+# ===========================================
+
+# Bloquer les URLs de recherche et filtres
+Disallow: /*?search=*
+Disallow: /*?q=*
+Disallow: /*?query=*
+Disallow: /*?filter=*
+Disallow: /*?filters=*
+Disallow: /*?category=*
+Disallow: /*?cat=*
+Disallow: /*?sort=*
+Disallow: /*?order=*
+Disallow: /*?page=*
+Disallow: /*?p=*
+Disallow: /*?offset=*
+Disallow: /*?limit=*
+
+# Autoriser uniquement les paramètres utiles (UTM, ref, etc.)
+Allow: /*?utm_*
+Allow: /*?ref=*
+Allow: /*?source=*
+Allow: /*?campaign=*
+
+# ===========================================
 # SITEMAPS - Tous les sitemaps disponibles
 # ===========================================
 
