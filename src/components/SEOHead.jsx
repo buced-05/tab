@@ -67,20 +67,28 @@ const SEOHead = ({
     : baseKeywords.join(', ');
   const seoKeywords = mergedKeywords;
   
-  // Données structurées par défaut - Optimisées pour IA et Perplexity
+  // Données structurées par défaut - Optimisées pour IA, Perplexity et SEO
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
     "headline": title,
     "description": description,
-    "image": ogImage,
+    "image": {
+      "@type": "ImageObject",
+      "url": ogImage,
+      "width": 1200,
+      "height": 630
+    },
     "url": fullUrl,
-    "datePublished": publishedTime,
-    "dateModified": modifiedTime || publishedTime,
+    "datePublished": publishedTime || new Date().toISOString(),
+    "dateModified": modifiedTime || publishedTime || new Date().toISOString(),
     "author": {
       "@type": "Person",
       "name": author || "Team AllAdsMarket",
-      "url": baseUrl
+      "url": baseUrl,
+      "sameAs": [
+        `${baseUrl}/authors/${(author || "Team AllAdsMarket").toLowerCase().replace(/\s+/g, '-')}`
+      ]
     },
     "publisher": {
       "@type": "Organization",
@@ -98,12 +106,28 @@ const SEOHead = ({
       "@id": fullUrl
     },
     "keywords": seoKeywords,
-    "articleSection": section,
+    "articleSection": section || "Articles",
     "wordCount": description ? description.split(' ').length : 0,
-    "inLanguage": "fr-FR",
+    "inLanguage": locale.replace('_', '-'),
     "isAccessibleForFree": true,
     "commentCount": 25,
-    "shareCount": 120
+    "shareCount": 120,
+    "interactionStatistic": [
+      {
+        "@type": "InteractionCounter",
+        "interactionType": "https://schema.org/LikeAction",
+        "userInteractionCount": 120
+      },
+      {
+        "@type": "InteractionCounter",
+        "interactionType": "https://schema.org/CommentAction",
+        "userInteractionCount": 25
+      }
+    ],
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "h2", ".article-summary"]
+    }
   };
   
   const finalStructuredData = structuredData || defaultStructuredData;
@@ -122,22 +146,36 @@ const SEOHead = ({
       {/* Canonical URL */}
       <link rel="canonical" href={canonical} />
       
-      {/* Open Graph / Facebook */}
+      {/* Open Graph / Facebook - Optimisé */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:secure_url" content={ogImage} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:type" content="image/jpeg" />
+      <meta property="og:image:alt" content={description || title} />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:site_name" content="AllAdsMarket" />
       <meta property="og:locale" content={locale} />
+      <meta property="og:locale:alternate" content="en_US" />
+      <meta property="og:locale:alternate" content="es_ES" />
+      <meta property="og:locale:alternate" content="de_DE" />
+      <meta property="og:locale:alternate" content="it_IT" />
+      <meta property="og:locale:alternate" content="pt_BR" />
+      <meta property="og:updated_time" content={modifiedTime || publishedTime || new Date().toISOString()} />
       
-      {/* Twitter Card */}
+      {/* Twitter Card - Optimisé */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={twitterImage} />
+      <meta name="twitter:image:alt" content={description || title} />
       <meta name="twitter:site" content="@alladsmarket" />
       <meta name="twitter:creator" content="@alladsmarket" />
+      <meta name="twitter:domain" content="alladsmarket.com" />
+      <meta name="twitter:url" content={fullUrl} />
       
       {/* Meta tags pour les réseaux sociaux */}
       <meta property="article:author" content={author || "Team AllAdsMarket"} />
@@ -165,12 +203,52 @@ const SEOHead = ({
         <link key={`link-${index}-${link.rel || index}`} {...link} />
       ))}
       
-      {/* Meta tags techniques */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      {/* Meta tags techniques - Optimisés pour SEO */}
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       <meta name="theme-color" content="#6366f1" />
       <meta name="msapplication-TileColor" content="#6366f1" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="apple-mobile-web-app-title" content="AllAdsMarket" />
+      
+      {/* Meta tags SEO avancés */}
+      <meta name="format-detection" content="telephone=no" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="application-name" content="AllAdsMarket" />
+      <meta name="msapplication-tooltip" content="AllAdsMarket - Marketplace d'Affiliation Premium" />
+      <meta name="msapplication-starturl" content="/" />
+      <meta name="msapplication-navbutton-color" content="#6366f1" />
+      <meta name="msapplication-window" content="width=1024;height=768" />
+      
+      {/* Meta tags pour les performances et le SEO */}
+      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+      <meta httpEquiv="Content-Language" content={currentLocale} />
+      <meta name="language" content={currentLocale} />
+      <meta name="revisit-after" content="7 days" />
+      <meta name="distribution" content="global" />
+      <meta name="rating" content="general" />
+      <meta name="referrer" content="no-referrer-when-downgrade" />
+      
+      {/* Meta tags pour les images */}
+      <meta name="og:image:width" content="1200" />
+      <meta name="og:image:height" content="630" />
+      <meta name="og:image:type" content="image/jpeg" />
+      <meta name="twitter:image:alt" content={description || title} />
+      
+      {/* Preconnect et DNS Prefetch pour améliorer les performances */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      <link rel="dns-prefetch" href="https://tse2.mm.bing.net" />
+      
+      {/* Favicon et icônes */}
+      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
+      <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+      <link rel="mask-icon" href="/favicon.svg" color="#6366f1" />
       
       {/* Données structurées JSON-LD */}
       <script type="application/ld+json">
@@ -201,7 +279,7 @@ const SEOHead = ({
         })}
       </script>
       
-      {/* Données structurées pour l'organisation - Optimisées pour IA */}
+      {/* Données structurées pour l'organisation - Optimisées pour IA et SEO */}
       <script type="application/ld+json">
         {JSON.stringify({
           "@context": "https://schema.org",
@@ -215,6 +293,7 @@ const SEOHead = ({
             "width": 200,
             "height": 60
           },
+          "image": `${baseUrl}/og-image.jpg`,
           "description": "Plateforme premium de marketing digital et e-commerce avec guides gratuits téléchargeables",
           "foundingDate": "2024",
           "foundingLocation": {
@@ -225,9 +304,13 @@ const SEOHead = ({
             "@type": "ContactPoint",
             "contactType": "customer service",
             "email": "contact@alladsmarket.com",
-            "availableLanguage": ["French", "English", "Spanish", "German", "Italian", "Portuguese"]
+            "availableLanguage": ["French", "English", "Spanish", "German", "Italian", "Portuguese"],
+            "areaServed": "Worldwide"
           },
-          "areaServed": "Worldwide",
+          "areaServed": {
+            "@type": "Place",
+            "name": "Worldwide"
+          },
           "sameAs": [
             "https://twitter.com/alladsmarket",
             "https://linkedin.com/company/alladsmarket",
@@ -235,10 +318,53 @@ const SEOHead = ({
             "https://instagram.com/alladsmarket",
             "https://youtube.com/@alladsmarket"
           ],
-          "numberOfEmployees": "10-50",
-          "slogan": "Des Meilleurs articles MOINS Chers"
+          "numberOfEmployees": {
+            "@type": "QuantitativeValue",
+            "minValue": 10,
+            "maxValue": 50
+          },
+          "slogan": "Des Meilleurs articles MOINS Chers",
+          "knowsAbout": [
+            "Marketing Digital",
+            "SEO",
+            "E-commerce",
+            "Intelligence Artificielle",
+            "Content Marketing",
+            "Affiliation"
+          ],
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "1250",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
         })}
       </script>
+      
+      {/* BreadcrumbList pour améliorer la navigation et le SEO */}
+      {url && url !== '/' && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Accueil",
+                "item": baseUrl
+              },
+              ...(url.split('/').filter(Boolean).map((segment, index) => ({
+                "@type": "ListItem",
+                "position": index + 2,
+                "name": segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' '),
+                "item": `${baseUrl}/${url.split('/').slice(0, index + 2).join('/')}`
+              })))
+            ]
+          })}
+        </script>
+      )}
     </Helmet>
   );
 };

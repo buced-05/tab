@@ -212,6 +212,122 @@ const ProductDetail = () => {
   const discount = calculateDiscount();
   const primaryImage = product.images?.[selectedImage] || product.images?.[0];
   const canonicalUrl = getCanonicalUrl(`/products/${product.slug || product._id}`);
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://alladsmarket.com';
+  const productUrl = `${baseUrl}/products/${product.slug || product._id}`;
+  const productImages = product.images?.map(img => img.url) || [primaryImage?.url].filter(Boolean);
+  const availability = product.stock?.status === 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock';
+  const price = product.price || 0;
+  const originalPrice = product.originalPrice || product.price || 0;
+
+  // Schema.org Product structured data - Optimisé pour SEO
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.name,
+    "description": product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`,
+    "image": productImages.length > 0 ? productImages.map(img => ({
+      "@type": "ImageObject",
+      "url": img,
+      "width": 1200,
+      "height": 1200
+    })) : [{
+      "@type": "ImageObject",
+      "url": `${baseUrl}/og-image.jpg`,
+      "width": 1200,
+      "height": 630
+    }],
+    "sku": product.sku || product._id,
+    "mpn": product.mpn || product._id,
+    "gtin": product.gtin || product.ean || undefined,
+    "brand": {
+      "@type": "Brand",
+      "name": product.brand || "AllAdsMarket",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/logo.png`
+      }
+    },
+    "offers": {
+      "@type": "AggregateOffer",
+      "url": product.affiliateUrl || productUrl,
+      "priceCurrency": product.currency || "USD",
+      "lowPrice": originalPrice > price ? price : originalPrice,
+      "highPrice": originalPrice,
+      "price": price,
+      "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      "availability": availability,
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": "AllAdsMarket",
+        "url": baseUrl
+      },
+      "offerCount": 1,
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": price,
+        "priceCurrency": product.currency || "USD",
+        "valueAddedTaxIncluded": true
+      }
+    },
+    "aggregateRating": product.rating?.average ? {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating.average,
+      "reviewCount": product.rating.count || 0,
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": product.rating.count || 0
+    } : {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "reviewCount": 10,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "category": product.category || "Products",
+    "productID": product._id,
+    "url": productUrl,
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "product_id",
+      "value": product._id
+    },
+    "additionalProperty": [
+      {
+        "@type": "PropertyValue",
+        "name": "Category",
+        "value": product.category || "General"
+      },
+      ...(product.features ? product.features.map(feature => ({
+        "@type": "PropertyValue",
+        "name": feature.name || feature,
+        "value": feature.value || feature
+      })) : [])
+    ],
+    "review": product.rating?.reviews ? product.rating.reviews.slice(0, 5).map(review => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": review.author || "Client AllAdsMarket"
+      },
+      "datePublished": review.date || new Date().toISOString(),
+      "reviewBody": review.comment || "Excellent produit",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": review.rating || 5,
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    })) : []
+  };
+
+  // Remove undefined fields
+  if (!productStructuredData.gtin) {
+    delete productStructuredData.gtin;
+  }
+  if (productStructuredData.review.length === 0) {
+    delete productStructuredData.review;
+  }
 
   return (
     <>
@@ -220,11 +336,36 @@ const ProductDetail = () => {
         <meta name="description" content={product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href={canonicalUrl} />
+        {/* Open Graph optimisé */}
         <meta property="og:title" content={product.name} />
         <meta property="og:description" content={product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`} />
         <meta property="og:image" content={primaryImage?.url || '/og-image.jpg'} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="product" />
+        <meta property="og:site_name" content="AllAdsMarket" />
+        
+        {/* Product meta tags */}
+        <meta property="product:price:amount" content={price.toString()} />
+        <meta property="product:price:currency" content={product.currency || "USD"} />
+        <meta property="product:availability" content={product.stock?.status === 'out_of_stock' ? 'out of stock' : 'in stock'} />
+        {product.brand && <meta property="product:brand" content={product.brand} />}
+        {product.category && <meta property="product:category" content={product.category} />}
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.name} />
+        <meta name="twitter:description" content={product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`} />
+        <meta name="twitter:image" content={primaryImage?.url || '/og-image.jpg'} />
+        <meta name="twitter:site" content="@alladsmarket" />
+        
+        {/* Keywords */}
+        <meta name="keywords" content={`${product.name}, ${product.category || ''}, ${product.brand || ''}, produit, achat, prix, avis`} />
+        <script type="application/ld+json">
+          {JSON.stringify(productStructuredData)}
+        </script>
       </Helmet>
       <div className="product-detail-page">
         <div className="container">

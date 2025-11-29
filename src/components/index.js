@@ -26,6 +26,7 @@ export { default as ErrorHandler } from './ErrorHandler';
 // Navigation
 export { default as DeviceNavigationHandler } from './DeviceNavigationHandler';
 export { default as SectionNavigationButtons } from './SectionNavigationButtons';
+export { default as InternalLinksOptimizer } from './InternalLinksOptimizer';
 
 // Debug
 export { default as DebugPanel } from './DebugPanel';

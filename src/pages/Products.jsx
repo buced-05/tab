@@ -143,20 +143,23 @@ const Products = () => {
     const featured = searchParams.get('featured');
     const trending = searchParams.get('trending');
     
-    // Route-based titles take priority
+    // Route-based titles take priority (optimisés SEO)
     if (currentPath === '/featured') {
-      return 'Featured Products';
+      return 'Produits Vedettes - Sélection Premium | AllAdsMarket';
     } else if (currentPath === '/trending') {
-      return 'Trending Products';
+      return 'Produits Tendances 2025 - Les Plus Populaires | AllAdsMarket';
     }
     const discounted = searchParams.get('discounted');
 
-    if (search) return `Search Results for "${search}"`;
-    if (featured === 'true') return 'Featured Products';
-    if (trending === 'true') return 'Trending Products';
-    if (discounted === 'true') return 'Discounted Products';
-    if (category) return `${category.charAt(0).toUpperCase() + category.slice(1)} Products`;
-    return 'All Products';
+    if (search) return `Recherche "${search}" - Résultats | AllAdsMarket`;
+    if (featured === 'true') return 'Produits Vedettes - Sélection Premium | AllAdsMarket';
+    if (trending === 'true') return 'Produits Tendances 2025 - Les Plus Populaires | AllAdsMarket';
+    if (discounted === 'true') return 'Produits en Promotion - Offres Réduites | AllAdsMarket';
+    if (category) {
+      const categoryName = category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' ');
+      return `${categoryName} - Produits de Qualité | AllAdsMarket`;
+    }
+    return 'Tous les Produits - Catalogue Complet | AllAdsMarket';
   };
 
   const getPageDescription = () => {
@@ -165,13 +168,26 @@ const Products = () => {
     const featured = searchParams.get('featured');
     const trending = searchParams.get('trending');
     const discounted = searchParams.get('discounted');
+    const productCount = products.length;
 
-    if (search) return `Find the best products matching "${search}"`;
-    if (featured === 'true') return 'Discover our handpicked featured products';
-    if (trending === 'true') return 'See what\'s popular right now';
-    if (discounted === 'true') return 'Great deals on discounted products';
-    if (category) return `Browse our selection of ${category} products`;
-    return 'Browse our complete collection of amazing products';
+    // Descriptions optimisées SEO (120-160 caractères)
+    if (search) {
+      return `Découvrez ${productCount > 0 ? productCount : 'nos'} produits correspondant à "${search}" sur AllAdsMarket. Offres exclusives, livraison rapide et garantie qualité.`;
+    }
+    if (featured === 'true' || location.pathname === '/featured') {
+      return `Produits vedettes sélectionnés par AllAdsMarket. Découvrez ${productCount > 0 ? productCount : 'nos'} produits premium avec les meilleures offres et garanties qualité.`;
+    }
+    if (trending === 'true' || location.pathname === '/trending') {
+      return `Produits tendances 2025 sur AllAdsMarket. ${productCount > 0 ? productCount : 'Découvrez nos'} articles les plus populaires avec offres exclusives et livraison rapide.`;
+    }
+    if (discounted === 'true') {
+      return `Promotions et produits en réduction sur AllAdsMarket. ${productCount > 0 ? productCount : 'Découvrez nos'} meilleures offres avec remises importantes et garantie qualité.`;
+    }
+    if (category) {
+      const categoryName = category.charAt(0).toUpperCase() + category.slice(1).replace(/-/g, ' ');
+      return `Catégorie ${categoryName} sur AllAdsMarket. ${productCount > 0 ? productCount : 'Découvrez nos'} produits ${categoryName.toLowerCase()} avec offres exclusives et livraison rapide.`;
+    }
+    return `Catalogue complet de produits sur AllAdsMarket. ${productCount > 0 ? productCount : 'Découvrez plus de'} produits de qualité avec offres exclusives, garanties et livraison rapide.`;
   };
 
   if (loading) {
@@ -217,18 +233,70 @@ const Products = () => {
   }
 
   const canonicalUrl = getCanonicalUrl(location.pathname);
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://alladsmarket.com';
+  
+  // Schema.org ItemList structured data for products page
+  const itemListStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": getPageTitle(),
+    "description": getPageDescription(),
+    "url": canonicalUrl,
+    "numberOfItems": products.length,
+    "itemListElement": products.slice(0, 20).map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Product",
+        "name": product.name,
+        "description": product.description || product.shortDescription,
+        "image": product.images?.[0]?.url || `${baseUrl}/og-image.jpg`,
+        "url": `${baseUrl}/products/${product.slug || product._id}`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": product.currency || "USD",
+          "price": product.price || 0,
+          "availability": product.stock?.status === 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock'
+        },
+        "brand": {
+          "@type": "Brand",
+          "name": product.brand || "AllAdsMarket"
+        }
+      }
+    }))
+  };
 
   return (
     <>
       <Helmet>
-        <title>{getPageTitle()} - AllAdsMarket</title>
+        <title>{getPageTitle()}</title>
         <meta name="description" content={getPageDescription()} />
+        <meta name="keywords" content={(() => {
+          const category = searchParams.get('category');
+          const search = searchParams.get('search');
+          const keywords = ['produits', 'shopping', 'e-commerce', 'offres', 'deals', 'AllAdsMarket', 'marketplace'];
+          if (category) keywords.push(category.replace(/-/g, ' '));
+          if (search) keywords.push(search);
+          return keywords.join(', ');
+        })()} />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={`${getPageTitle()} - AllAdsMarket`} />
+        <meta property="og:title" content={getPageTitle()} />
         <meta property="og:description" content={getPageDescription()} />
+        <meta property="og:image" content={`${baseUrl}/og-image.jpg`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="AllAdsMarket" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={getPageTitle()} />
+        <meta name="twitter:description" content={getPageDescription()} />
+        <meta name="twitter:image" content={`${baseUrl}/og-image.jpg`} />
+        <meta property="og:site_name" content="AllAdsMarket" />
+        <script type="application/ld+json">
+          {JSON.stringify(itemListStructuredData)}
+        </script>
       </Helmet>
       <div className="products-page">
         <div className="container">

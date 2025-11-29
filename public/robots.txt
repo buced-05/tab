@@ -113,11 +113,14 @@ Disallow: /dist/
 Disallow: /build/
 
 # ===========================================
-# SITEMAPS
+# SITEMAPS - Tous les sitemaps disponibles
 # ===========================================
 
+# Sitemap principal (index)
 Sitemap: https://alladsmarket.com/sitemap.xml
 Sitemap: https://alladsmarket.com/sitemap-index.xml
+
+# Sitemaps par type de contenu
 Sitemap: https://alladsmarket.com/sitemap-pages.xml
 Sitemap: https://alladsmarket.com/sitemap-articles.xml
 Sitemap: https://alladsmarket.com/sitemap-products.xml
@@ -125,6 +128,29 @@ Sitemap: https://alladsmarket.com/sitemap-images.xml
 Sitemap: https://alladsmarket.com/sitemap-categories.xml
 Sitemap: https://alladsmarket.com/sitemap-authors.xml
 Sitemap: https://alladsmarket.com/sitemap-news.xml
+
+# Sitemaps multilingues (19 langues)
+Sitemap: https://alladsmarket.com/sitemap-fr.xml
+Sitemap: https://alladsmarket.com/sitemap-en.xml
+Sitemap: https://alladsmarket.com/sitemap-en-GB.xml
+Sitemap: https://alladsmarket.com/sitemap-de.xml
+Sitemap: https://alladsmarket.com/sitemap-es.xml
+Sitemap: https://alladsmarket.com/sitemap-it.xml
+Sitemap: https://alladsmarket.com/sitemap-pt.xml
+Sitemap: https://alladsmarket.com/sitemap-pt-BR.xml
+Sitemap: https://alladsmarket.com/sitemap-nl.xml
+Sitemap: https://alladsmarket.com/sitemap-sv.xml
+Sitemap: https://alladsmarket.com/sitemap-no.xml
+Sitemap: https://alladsmarket.com/sitemap-ru.xml
+Sitemap: https://alladsmarket.com/sitemap-ja.xml
+Sitemap: https://alladsmarket.com/sitemap-zh.xml
+Sitemap: https://alladsmarket.com/sitemap-hi.xml
+Sitemap: https://alladsmarket.com/sitemap-ar.xml
+Sitemap: https://alladsmarket.com/sitemap-sw.xml
+Sitemap: https://alladsmarket.com/sitemap-am.xml
+
+# Feed Google Shopping
+Sitemap: https://alladsmarket.com/google-shopping-feed.xml
 
 # ===========================================
 # HOST (optionnel, mais recommandé)

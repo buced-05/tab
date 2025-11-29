@@ -1,2 +1,0 @@
-"""Django migrations package for content app."""
-

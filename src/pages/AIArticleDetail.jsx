@@ -121,7 +121,7 @@ const AIArticleDetail = () => {
       }
     };
 
-    const loadRelatedFromBackend = async (currentArticle) => {
+    const loadRelatedFromAPI = async (currentArticle) => {
       if (!currentArticle || !currentArticle.categorySlug) {
         setRelatedArticles([]);
         return;
@@ -188,10 +188,10 @@ const AIArticleDetail = () => {
         const withDefaults = applyArticleDefaults(translated);
         setArticle(withDefaults);
         setTableOfContents(generateTableOfContents(withDefaults.content));
-        loadRelatedFromBackend(withDefaults);
+        loadRelatedFromAPI(withDefaults);
       } catch (error) {
         if (!isMounted) return;
-        console.error('[AIArticleDetail] Erreur lors du chargement via l’API Django:', error);
+        console.error('[AIArticleDetail] Erreur lors du chargement:', error);
 
         const fallbackArticle =
           getPremiumAIArticleBySlug(normalizedSlug) ||

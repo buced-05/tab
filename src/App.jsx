@@ -20,6 +20,7 @@ import {
   ErrorHandler,
   DeviceNavigationHandler
 } from './components';
+import InternalLinksOptimizer from './components/InternalLinksOptimizer';
 import './styles/compatibility-fixes.css';
 import './App.css';
 import './styles/index.css';
@@ -204,6 +205,7 @@ const AppContent = () => {
         </script>
       </Helmet>
       <ScrollToTop />
+      <InternalLinksOptimizer />
       <div className="app">
         {!isProfilePage && !hideHeaderOnArticles && <Header />}
         <main 

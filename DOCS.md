@@ -56,7 +56,7 @@ Sources consolidated: docs/TRANSLATION_COMPLETE.md, docs/TRANSLATION_DEBUG.md, S
 - Project structure, coding standards, component conventions.
 - Articles (AI / Revolutionary) pages and detail views.
 - Product data source and affiliate flow (external redirects).
-- Backend Django : arborescence du projet (`backend/`), application `api`, endpoints disponibles (`/api/health/`, `/api/featured-articles/`), conventions pour ajouter de nouvelles vues ou modèles.
+- Application frontend uniquement : pas de backend, toutes les données sont statiques ou chargées depuis des APIs externes.
 
 Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIALOG_GUIDE.md, FORM_PROGRESS_GUIDE.md, KINETIC_IMAGES_INTEGRATION.md, KINETIC_IMAGES_CORRECTION.md
 
@@ -64,15 +64,12 @@ Sources consolidated: docs/PROJECT_STRUCTURE.md, docs/DEVELOPMENT_GUIDE.md, DIAL
 
 ## Déploiement & Infrastructure
 - Procédures complètes de déploiement (safe mode, VPS, checklists post-start) et scripts d’automatisation.
-- Configuration Nginx/HTACCESS, sécurité serveur, pipeline de build et gestion des services (`systemctl`, `gunicorn`/`uvicorn`) pour le backend Django.
+- Configuration Nginx, sécurité serveur, pipeline de build pour application React statique.
 - Checklists de vérification, guides de rollback et plans de maintenance.
-- Backend Django en production :
-  - Créer/mettre à jour le venv : `python3 -m venv .venv && .venv/bin/pip install -r backend/requirements.txt`
-  - Appliquer les migrations : `.venv/bin/python backend/manage.py migrate`
-  - Collecter les statiques : `.venv/bin/python backend/manage.py collectstatic --noinput`
-  - Lancer via Gunicorn (PM2 ou systemd) : `pm2 start ecosystem.config.js --env production --update-env`
-  - Gunicorn écoute sur `127.0.0.1:8001` et Nginx reverse-proxy `/api/` vers ce port (cf. `nginx-alladsmarket-complete.conf`).
-- Pour un test rapide en local, `python backend/manage.py runserver 0.0.0.0:8000` reste disponible, mais ne doit pas être utilisé en production.
+- Déploiement en production :
+  - Build frontend : `npm ci && npm run build`
+  - Nginx sert les fichiers statiques depuis le dossier `dist/`
+  - Pas de backend, application 100% frontend
 
 Sources consolidées : `DEPLOY_INSTRUCTIONS.md`, `DEPLOY_COMPLETE.md`, `DEPLOY_SAFE.md`, `DEPLOY_SAFE_VPS.md`, `VPS_DEPLOYMENT_CHECKLIST.md`, `VPS_POST_START_CHECKLIST.md`, `VPS_START_SERVICES.md`, `VPS_VERIFICATION_COMPLETE.md`, `QUICK_VPS_FIX.md`, `NGINX_CONFIGURATION_GUIDE.md`, `NGINX_SETUP_INSTRUCTIONS.md`, `SOLUTION_VPS_IMMEDIATE.md`, `SOLUTION_529_PAGES_NON_INDEXEES.md`.
 

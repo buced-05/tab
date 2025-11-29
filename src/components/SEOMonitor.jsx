@@ -10,6 +10,7 @@ const SEOMonitor = ({
   const [seoScore, setSeoScore] = useState(0);
   const [seoIssues, setSeoIssues] = useState([]);
   const [coreWebVitals, setCoreWebVitals] = useState({});
+  const [showPanel, setShowPanel] = useState(false);
 
   // Fonction pour calculer le score SEO
   const calculateSEOScore = () => {
@@ -255,40 +256,69 @@ const SEOMonitor = ({
         </script>
       </Helmet>
       
-      {/* Affichage du score SEO en mode développement */}
+      {/* Affichage du score SEO en mode développement - Masqué par défaut */}
       {process.env.NODE_ENV === 'development' && (
-        <div style={{
-          position: 'fixed',
-          top: '10px',
-          right: '10px',
-          background: seoScore >= 85 ? '#28a745' : seoScore >= 70 ? '#ffc107' : '#dc3545',
-          color: 'white',
-          padding: '10px',
-          borderRadius: '5px',
-          fontSize: '12px',
-          zIndex: 9999,
-          maxWidth: '200px'
-        }}>
-          <div><strong>Score SEO: {seoScore}/100</strong></div>
-          {seoIssues.length > 0 && (
-            <div>
-              <strong>Issues:</strong>
-              <ul style={{ margin: '5px 0', paddingLeft: '15px' }}>
-                {seoIssues.map((issue, index) => (
-                  <li key={index}>{issue}</li>
-                ))}
-              </ul>
+        <>
+          {/* Bouton pour afficher/masquer le panneau */}
+          <button
+            onClick={() => setShowPanel(!showPanel)}
+            style={{
+              position: 'fixed',
+              top: '10px',
+              right: '10px',
+              background: seoScore >= 85 ? '#28a745' : seoScore >= 70 ? '#ffc107' : '#dc3545',
+              color: 'white',
+              border: 'none',
+              padding: '8px 12px',
+              borderRadius: '5px',
+              fontSize: '11px',
+              cursor: 'pointer',
+              zIndex: 9999,
+              fontWeight: 'bold',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+            }}
+            title="Afficher/Masquer le panneau SEO"
+          >
+            SEO {seoScore}/100 {showPanel ? '▼' : '▲'}
+          </button>
+          
+          {/* Panneau SEO (affiché seulement si showPanel est true) */}
+          {showPanel && (
+            <div style={{
+              position: 'fixed',
+              top: '45px',
+              right: '10px',
+              background: seoScore >= 85 ? '#28a745' : seoScore >= 70 ? '#ffc107' : '#dc3545',
+              color: 'white',
+              padding: '10px',
+              borderRadius: '5px',
+              fontSize: '12px',
+              zIndex: 9999,
+              maxWidth: '200px',
+              boxShadow: '0 4px 6px rgba(0,0,0,0.3)'
+            }}>
+              <div><strong>Score SEO: {seoScore}/100</strong></div>
+              {seoIssues.length > 0 && (
+                <div>
+                  <strong>Issues:</strong>
+                  <ul style={{ margin: '5px 0', paddingLeft: '15px' }}>
+                    {seoIssues.map((issue, index) => (
+                      <li key={index}>{issue}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {Object.keys(coreWebVitals).length > 0 && (
+                <div>
+                  <strong>Core Web Vitals:</strong>
+                  <div>LCP: {coreWebVitals.lcp ? Math.round(coreWebVitals.lcp) + 'ms' : 'N/A'}</div>
+                  <div>FID: {coreWebVitals.fid ? Math.round(coreWebVitals.fid) + 'ms' : 'N/A'}</div>
+                  <div>CLS: {coreWebVitals.cls ? coreWebVitals.cls.toFixed(3) : 'N/A'}</div>
+                </div>
+              )}
             </div>
           )}
-          {Object.keys(coreWebVitals).length > 0 && (
-            <div>
-              <strong>Core Web Vitals:</strong>
-              <div>LCP: {coreWebVitals.lcp ? Math.round(coreWebVitals.lcp) + 'ms' : 'N/A'}</div>
-              <div>FID: {coreWebVitals.fid ? Math.round(coreWebVitals.fid) + 'ms' : 'N/A'}</div>
-              <div>CLS: {coreWebVitals.cls ? coreWebVitals.cls.toFixed(3) : 'N/A'}</div>
-            </div>
-          )}
-        </div>
+        </>
       )}
     </>
   );

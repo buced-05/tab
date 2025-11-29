@@ -190,7 +190,7 @@ const AIArticlesPage = () => {
         updateStatsFromArticles(withMetrics);
       } catch (error) {
         if (!isMounted) return;
-        console.error('[AIArticles] Échec du chargement via API Django:', error);
+        console.error('[AIArticles] Échec du chargement:', error);
         console.warn('[AIArticles] Impossible de charger les articles via API, fallback local:', error);
 
         const fallbackArticles = getAllPremiumAIArticlesWithDynamicDates();

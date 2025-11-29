@@ -90,10 +90,12 @@ const Home = () => {
   return (
     <div className="products-page">
       <SEOHead 
-        title={t('home.title')}
-        description="Découvrez une sélection soigneusement choisie de produits exceptionnels. Trouvez les meilleures offres, des produits de qualité et des marques de confiance."
-        keywords="produits tendances, offres exclusives, deals, shopping en ligne, e-commerce, marques premium, bonnes affaires, produits populaires, qualité, sélection"
+        title="AllAdsMarket - Marketplace d'Affiliation Premium | Produits Tendances & Offres Exclusives 2025"
+        description="Découvrez AllAdsMarket, votre marketplace d'affiliation premium avec plus de 100K+ produits de marques de confiance. Trouvez les meilleurs deals, offres exclusives et produits tendances en 2025. Shopping en ligne sécurisé avec livraison rapide."
+        keywords="marketplace affiliation, produits tendances 2025, offres exclusives, deals shopping, e-commerce premium, marques de confiance, bonnes affaires, produits populaires, shopping en ligne, AllAdsMarket"
         url="/"
+        type="website"
+        includeDefaultKeywords={true}
       />
       <HiddenHashtags />
       
