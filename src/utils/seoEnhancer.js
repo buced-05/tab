@@ -4,38 +4,117 @@
  */
 
 /**
- * Génère une meta description optimisée (120-160 caractères)
+ * Génère une meta description optimisée (150-160 caractères)
+ * Optimisée pour le CTR et le SEO avec appel à l'action
  */
-export const generateOptimizedDescription = (text, keywords = []) => {
+export const generateOptimizedDescription = (text, keywords = [], options = {}) => {
   if (!text) return '';
+  
+  const {
+    includeCTA = true,
+    maxLength = 160,
+    minLength = 150,
+    addValueProposition = true
+  } = options;
   
   // Nettoyer le texte
   let description = text
     .replace(/\s+/g, ' ')
+    .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1') // Supprimer les liens markdown
+    .replace(/https?:\/\/[^\s]+/g, '') // Supprimer les URLs
     .trim();
   
-  // Ajouter des mots-clés si manquants
+  // Extraire les phrases clés (première phrase souvent la plus importante)
+  const sentences = description.split(/[.!?]+/).filter(s => s.trim().length > 20);
+  let optimizedDescription = sentences[0] || description;
+  
+  // Ajouter des mots-clés stratégiques si manquants
   if (keywords.length > 0) {
-    const missingKeywords = keywords.filter(kw => 
-      !description.toLowerCase().includes(kw.toLowerCase())
-    );
+    const missingKeywords = keywords
+      .filter(kw => kw && kw.length > 3)
+      .filter(kw => !optimizedDescription.toLowerCase().includes(kw.toLowerCase()))
+      .slice(0, 2);
     
-    if (missingKeywords.length > 0 && description.length < 140) {
-      description += ` - ${missingKeywords.slice(0, 2).join(', ')}`;
+    if (missingKeywords.length > 0 && optimizedDescription.length < 140) {
+      optimizedDescription += ` - ${missingKeywords.join(', ')}`;
     }
   }
   
-  // Tronquer à 160 caractères (limite Google)
-  if (description.length > 160) {
-    description = description.substring(0, 157).trim() + '...';
+  // Ajouter une proposition de valeur si possible
+  if (addValueProposition && optimizedDescription.length < 130) {
+    const valueProps = [
+      'Guide complet',
+      'Stratégies avancées',
+      'Techniques éprouvées',
+      'Découvrez comment',
+      'Apprenez à',
+      'Maîtrisez'
+    ];
+    
+    // Vérifier si on a déjà une valeur ajoutée
+    const hasValueProp = valueProps.some(prop => 
+      optimizedDescription.toLowerCase().includes(prop.toLowerCase())
+    );
+    
+    if (!hasValueProp && optimizedDescription.length < 120) {
+      optimizedDescription = `Guide complet : ${optimizedDescription}`;
+    }
   }
   
-  // S'assurer qu'on a au moins 120 caractères
-  if (description.length < 120 && text.length > 120) {
-    description = text.substring(0, 157).trim() + '...';
+  // Ajouter un appel à l'action si demandé
+  if (includeCTA && optimizedDescription.length < 145) {
+    const ctas = [
+      'Découvrez',
+      'Apprenez',
+      'Maîtrisez',
+      'Explorez',
+      'Développez'
+    ];
+    
+    // Vérifier si on a déjà un CTA
+    const hasCTA = ctas.some(cta => 
+      optimizedDescription.toLowerCase().startsWith(cta.toLowerCase())
+    );
+    
+    if (!hasCTA && !optimizedDescription.toLowerCase().startsWith('découvrez')) {
+      // Ne pas ajouter si ça dépasse la limite
+      if (optimizedDescription.length < 130) {
+        optimizedDescription = `Découvrez ${optimizedDescription.toLowerCase()}`;
+      }
+    }
   }
   
-  return description;
+  // Tronquer intelligemment à la limite (150-160 caractères optimal)
+  if (optimizedDescription.length > maxLength) {
+    // Chercher le dernier point, virgule ou espace avant la limite
+    const cutPoint = optimizedDescription.substring(0, maxLength - 3).lastIndexOf(/[.,;:]/);
+    if (cutPoint > minLength) {
+      optimizedDescription = optimizedDescription.substring(0, cutPoint + 1).trim();
+    } else {
+      // Couper à un espace
+      const spaceCut = optimizedDescription.substring(0, maxLength - 3).lastIndexOf(' ');
+      if (spaceCut > minLength) {
+        optimizedDescription = optimizedDescription.substring(0, spaceCut).trim() + '...';
+      } else {
+        optimizedDescription = optimizedDescription.substring(0, maxLength - 3).trim() + '...';
+      }
+    }
+  }
+  
+  // S'assurer qu'on a au moins 150 caractères (optimal pour Google)
+  if (optimizedDescription.length < minLength && text.length > minLength) {
+    // Prendre plus de contenu du texte original
+    const extended = text.substring(0, maxLength - 3).trim();
+    const lastSpace = extended.lastIndexOf(' ');
+    optimizedDescription = extended.substring(0, lastSpace > minLength ? lastSpace : maxLength - 3).trim() + '...';
+  }
+  
+  // Capitaliser la première lettre
+  if (optimizedDescription.length > 0) {
+    optimizedDescription = optimizedDescription.charAt(0).toUpperCase() + optimizedDescription.slice(1);
+  }
+  
+  return optimizedDescription;
 };
 
 /**
