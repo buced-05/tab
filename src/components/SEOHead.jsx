@@ -1,6 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import {
+  generateOptimizedDescription,
+  generateOptimizedTitle,
+  generateKeywords,
+  generateResourceHints,
+  validateAndOptimizeMetaTags
+} from '../utils/seoEnhancer';
 
 /**
  * Composant SEO Head ultra-optimisé pour le meilleur positionnement
@@ -57,22 +64,56 @@ const SEOHead = ({
         'téléchargement gratuit',
         'PDF gratuit',
         'guide gratuit',
-        'alladsmarket'
+        'alladsmarket',
+        'France',
+        'français'
       ]
     : [];
-  const mergedKeywords = keywords
-    ? baseKeywords.length
-      ? `${keywords}, ${baseKeywords.join(', ')}`
-      : keywords
-    : baseKeywords.join(', ');
-  const seoKeywords = mergedKeywords;
+  
+  // Optimisation automatique des meta tags
+  const keywordsArray = keywords ? keywords.split(',').map(k => k.trim()) : [];
+  const optimizedKeywords = generateKeywords(description || title, [...baseKeywords, ...keywordsArray]);
+  
+  // Optimisation du titre et de la description
+  const optimizedTitle = generateOptimizedTitle(title, 'AllAdsMarket');
+  const optimizedDescription = generateOptimizedDescription(description, optimizedKeywords.split(', '));
+  
+  // Validation des meta tags
+  const validation = validateAndOptimizeMetaTags({
+    title: optimizedTitle,
+    description: optimizedDescription,
+    keywords: optimizedKeywords
+  });
+  
+  const seoTitle = validation.metaTags.title;
+  const seoDescription = validation.metaTags.description;
+  const seoKeywords = validation.metaTags.keywords;
+  
+  // Resource hints pour améliorer les performances
+  const resourceHints = generateResourceHints({
+    preconnect: [
+      'https://fonts.googleapis.com',
+      'https://fonts.gstatic.com',
+      'https://images.unsplash.com',
+      'https://www.google-analytics.com'
+    ],
+    dnsPrefetch: [
+      'https://www.googletagmanager.com',
+      'https://tse2.mm.bing.net'
+    ],
+    preload: image ? [{
+      url: image,
+      as: 'image',
+      type: 'image/jpeg'
+    }] : []
+  });
   
   // Données structurées par défaut - Optimisées pour IA, Perplexity et SEO
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": title,
-    "description": description,
+    "headline": seoTitle,
+    "description": seoDescription,
     "image": {
       "@type": "ImageObject",
       "url": ogImage,
@@ -106,6 +147,14 @@ const SEOHead = ({
       "@id": fullUrl
     },
     "keywords": seoKeywords,
+    "about": {
+      "@type": "Thing",
+      "name": "Marketing Digital et E-commerce"
+    },
+    "mentions": tags.map(tag => ({
+      "@type": "Thing",
+      "name": tag
+    })),
     "articleSection": section || "Articles",
     "wordCount": description ? description.split(' ').length : 0,
     "inLanguage": locale.replace('_', '-'),
@@ -134,22 +183,35 @@ const SEOHead = ({
   
   return (
     <Helmet>
-      {/* Meta tags de base */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      {/* Meta tags de base - OPTIMISÉS AUTOMATIQUEMENT */}
+      <title>{seoTitle}</title>
+      <meta name="description" content={seoDescription} />
       <meta name="keywords" content={seoKeywords} />
       <meta name="author" content={author || "Team AllAdsMarket"} />
       <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`} />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
       
+      {/* OPTIMISATION POUR LE MARCHÉ FRANÇAIS */}
+      <meta name="geo.region" content="FR" />
+      <meta name="geo.placename" content="France" />
+      <meta name="geo.position" content="46.2276;2.2137" />
+      <meta name="ICBM" content="46.2276, 2.2137" />
+      <meta name="language" content="fr-FR" />
+      <meta httpEquiv="Content-Language" content="fr-FR" />
+      <meta name="target" content="all" />
+      <meta name="audience" content="all" />
+      <meta name="coverage" content="Worldwide" />
+      <meta name="distribution" content="Global" />
+      <meta name="rating" content="General" />
+      
       {/* Canonical URL */}
       <link rel="canonical" href={canonical} />
       
-      {/* Open Graph / Facebook - Optimisé */}
+      {/* Open Graph / Facebook - Optimisé avec meta tags validés */}
       <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={seoTitle} />
+      <meta property="og:description" content={seoDescription} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:secure_url" content={ogImage} />
       <meta property="og:image:width" content="1200" />
@@ -158,18 +220,17 @@ const SEOHead = ({
       <meta property="og:image:alt" content={description || title} />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:site_name" content="AllAdsMarket" />
-      <meta property="og:locale" content={locale} />
+      {/* OPTIMISATION POUR LE MARCHÉ FRANÇAIS - Français en priorité */}
+      <meta property="og:locale" content="fr_FR" />
       <meta property="og:locale:alternate" content="en_US" />
       <meta property="og:locale:alternate" content="es_ES" />
       <meta property="og:locale:alternate" content="de_DE" />
-      <meta property="og:locale:alternate" content="it_IT" />
-      <meta property="og:locale:alternate" content="pt_BR" />
       <meta property="og:updated_time" content={modifiedTime || publishedTime || new Date().toISOString()} />
       
-      {/* Twitter Card - Optimisé */}
+      {/* Twitter Card - Optimisé avec meta tags validés */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={seoTitle} />
+      <meta name="twitter:description" content={seoDescription} />
       <meta name="twitter:image" content={twitterImage} />
       <meta name="twitter:image:alt" content={description || title} />
       <meta name="twitter:site" content="@alladsmarket" />
@@ -235,13 +296,10 @@ const SEOHead = ({
       <meta name="og:image:type" content="image/jpeg" />
       <meta name="twitter:image:alt" content={description || title} />
       
-      {/* Preconnect et DNS Prefetch pour améliorer les performances */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-      <link rel="dns-prefetch" href="https://images.unsplash.com" />
-      <link rel="dns-prefetch" href="https://tse2.mm.bing.net" />
+      {/* Resource Hints optimisés pour améliorer les performances SEO */}
+      {resourceHints.map((hint, index) => (
+        <link key={`resource-${index}`} {...hint} />
+      ))}
       
       {/* Favicon et icônes */}
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -298,6 +356,11 @@ const SEOHead = ({
           "foundingDate": "2024",
           "foundingLocation": {
             "@type": "Place",
+            "addressCountry": "FR",
+            "addressLocality": "France"
+          },
+          "address": {
+            "@type": "PostalAddress",
             "addressCountry": "FR"
           },
           "contactPoint": {
@@ -362,6 +425,53 @@ const SEOHead = ({
                 "item": `${baseUrl}/${url.split('/').slice(0, index + 2).join('/')}`
               })))
             ]
+          })}
+        </script>
+      )}
+      
+      {/* CollectionPage pour les pages de liste (produits, articles) */}
+      {(url?.includes('/products') || url?.includes('/ai-articles') || url?.includes('/articles')) && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": seoTitle,
+            "description": seoDescription,
+            "url": fullUrl,
+            "mainEntity": {
+              "@type": "ItemList",
+              "numberOfItems": "100+",
+              "itemListElement": []
+            }
+          })}
+        </script>
+      )}
+      
+      {/* ItemList pour améliorer l'indexation des listes */}
+      {type === 'website' && url !== '/' && (
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": seoTitle,
+            "description": seoDescription,
+            "url": fullUrl,
+            "inLanguage": "fr-FR",
+            "isPartOf": {
+              "@type": "WebSite",
+              "name": "AllAdsMarket",
+              "url": baseUrl
+            },
+            "about": {
+              "@type": "Thing",
+              "name": "Marketing Digital et E-commerce"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": ogImage,
+              "width": 1200,
+              "height": 630
+            }
           })}
         </script>
       )}

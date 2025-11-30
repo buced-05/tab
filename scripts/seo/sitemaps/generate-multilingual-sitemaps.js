@@ -8,6 +8,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
+import { calculateSitemapPriority, calculateChangeFreq } from '../../../src/utils/seoEnhancer.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -316,8 +317,12 @@ function generatePagesSitemap() {
   
   staticPages.forEach(page => {
     const lastmod = currentDate; // Toujours utiliser la date actuelle
-    const changefreq = page.changefreq || 'weekly';
-    const priority = page.priority || 0.8;
+    // Utiliser les fonctions d'optimisation SEO pour calculer dynamiquement
+    const pageType = page.path === '/' ? 'home' : 
+                     page.path.includes('product') ? 'product' :
+                     page.path.includes('article') ? 'article' : 'page';
+    const changefreq = calculateChangeFreq(page.path, lastmod, pageType);
+    const priority = calculateSitemapPriority(page.path, pageType);
     const basePath = normalizePath(page.path);
     const fullUrl = `${baseUrl}${basePath}`;
 
@@ -384,8 +389,9 @@ function generateArticlesSitemap() {
     }
 
     const lastmod = article.publishDate ? new Date(article.publishDate).toISOString() : currentDate;
-    const priority = article.trending ? 0.9 : (article.featured ? 0.85 : 0.8);
-    const changefreq = 'weekly';
+    // Utiliser les fonctions d'optimisation SEO pour calculer dynamiquement
+    const priority = calculateSitemapPriority(`/ai-article/${article.slug}`, 'article');
+    const changefreq = calculateChangeFreq(`/ai-article/${article.slug}`, lastmod, 'article');
     const basePath = normalizePath(`/ai-article/${escapeXml(article.slug)}`);
     const fullUrl = `${baseUrl}${basePath}`;
 

@@ -100,17 +100,23 @@ const resources = {
   }
 };
 
+// OPTIMISATION POUR LE MARCHÉ FRANÇAIS
+// Le site est principalement destiné au marché français
+// La détection automatique de langue est désactivée pour forcer le français par défaut
 i18n
-  .use(LanguageDetector)
+  // Désactiver LanguageDetector pour forcer le français par défaut
+  // .use(LanguageDetector) // COMMENTÉ - Site principalement français
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'fr', // Set French as default language
-    fallbackLng: 'fr', // Fallback to French
+    lng: 'fr', // FORCER le français comme langue par défaut
+    fallbackLng: 'fr', // Fallback vers le français
     debug: false,
     
+    // Détection désactivée - Site principalement français
+    // Les utilisateurs peuvent changer manuellement via le sélecteur de langue
     detection: {
-      order: ['navigator', 'htmlTag'],
+      order: [], // Pas de détection automatique
       lookupFromPathIndex: 0,
       lookupFromSubdomainIndex: 0,
       checkWhitelist: true
@@ -124,8 +130,8 @@ i18n
       useSuspense: false
     },
 
-    // Ensure all languages are properly loaded
-    supportedLngs: ['en', 'zh', 'hi', 'es', 'fr', 'ar', 'pt', 'ru', 'ja', 'de', 'it', 'nl', 'sv', 'no', 'sw', 'am'],
+    // Langues supportées (français en priorité)
+    supportedLngs: ['fr', 'en', 'es', 'de', 'it', 'pt', 'zh', 'hi', 'ar', 'ru', 'ja', 'nl', 'sv', 'no', 'sw', 'am'],
     nonExplicitSupportedLngs: true
   });
 

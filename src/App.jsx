@@ -21,6 +21,7 @@ import {
   DeviceNavigationHandler
 } from './components';
 import InternalLinksOptimizer from './components/InternalLinksOptimizer';
+import ImageSEOOptimizer from './components/ImageSEOOptimizer';
 import './styles/compatibility-fixes.css';
 import './App.css';
 import './styles/index.css';
@@ -161,7 +162,9 @@ const AppContent = () => {
             if (typeof window !== 'undefined') {
               const fullUrl = window.location.href.split('#')[0].split('?')[0];
               const url = new URL(fullUrl);
-              const supported = ['fr','en','en-GB','de','es','it','pt','pt-BR','nl','sv','no','ru','ja','zh','hi','ar','sw','am'];
+              // OPTIMISATION POUR LE MARCHÉ FRANÇAIS - Prioriser le français
+              // Seulement les langues principales pour éviter les erreurs 404
+              const supported = ['fr', 'en', 'es', 'de', 'it', 'pt'];
               const pathname = url.pathname.replace(/\/$/, '') || '/';
               const parts = pathname.split('/').filter(Boolean);
               const hasLangPrefix = parts.length > 0 && supported.includes(parts[0]);
@@ -169,11 +172,14 @@ const AppContent = () => {
               const origin = url.origin;
               const links = [];
               links.push(<link key="canonical" rel="canonical" href={fullUrl} />);
-              supported.forEach((lang) => {
-                const href = lang === 'fr' ? `${origin}${basePath}` : `${origin}/${lang}${basePath === '/' ? '' : basePath}`;
+              // Français en premier (priorité pour le marché français)
+              links.push(<link key="alt-fr" rel="alternate" hrefLang="fr" href={`${origin}${basePath}`} />);
+              links.push(<link key="alt-xdefault" rel="alternate" hrefLang="x-default" href={`${origin}${basePath}`} />);
+              // Autres langues principales seulement
+              supported.filter(lang => lang !== 'fr').forEach((lang) => {
+                const href = `${origin}/${lang}${basePath === '/' ? '' : basePath}`;
                 links.push(<link key={`alt-${lang}`} rel="alternate" hrefLang={lang} href={href} />);
               });
-              links.push(<link key="alt-xdefault" rel="alternate" hrefLang="x-default" href={`${origin}${basePath}`} />);
               return links;
             }
             return null;
@@ -206,6 +212,7 @@ const AppContent = () => {
       </Helmet>
       <ScrollToTop />
       <InternalLinksOptimizer />
+      <ImageSEOOptimizer />
       <div className="app">
         {!isProfilePage && !hideHeaderOnArticles && <Header />}
         <main 
