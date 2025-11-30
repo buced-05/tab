@@ -575,6 +575,13 @@ export const optimizeUrl = (text, maxLength = 100) => {
     .replace(/-+$/, ''); // Supprimer le dernier tiret si on a coupé
 };
 
+// Importer l'optimiseur de placement des mots-clés
+export { 
+  analyzeKeywordPlacement,
+  generateOptimizedAltText as generateOptimizedAltTextWithKeyword,
+  optimizeSlugWithKeyword
+} from './keywordPlacementOptimizer';
+
 export default {
   generateOptimizedDescription,
   generateOptimizedTitle,
