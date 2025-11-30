@@ -13,6 +13,8 @@
     "backend:makemigrations": "python backend/manage.py makemigrations",
     "generate-sitemaps": "node scripts/generate-multilingual-sitemaps.js",
     "seo:generate": "npm run generate-sitemaps",
+    "check:esm-imports": "node scripts/utils/check-esm-imports.js",
+    "prebuild": "npm run check:esm-imports",
     "git:clean": "node scripts/git/clean-generated-files.js",
     "git:pre-merge": "npm run git:clean",
     "git:pull-safe": "bash scripts/vps/git-pull-safe.sh",
