@@ -28,15 +28,91 @@ export const generateOptimizedDescription = (text, keywords = [], options = {}) 
   const sentences = description.split(/[.!?]+/).filter(s => s.trim().length > 20);
   let optimizedDescription = sentences[0] || description;
   
-  // Ajouter des mots-clés stratégiques si manquants
-  if (keywords.length > 0) {
-    const missingKeywords = keywords
-      .filter(kw => kw && kw.length > 3)
-      .filter(kw => !optimizedDescription.toLowerCase().includes(kw.toLowerCase()))
-      .slice(0, 2);
+  // Intégrer les mots-clés de manière naturelle dans le texte
+  if (keywords.length > 0 && optimizedDescription.length < 140) {
+    const relevantKeywords = keywords
+      .filter(kw => kw && kw.length > 3 && kw.length < 30) // Éviter les mots-clés trop longs
+      .filter(kw => {
+        const kwLower = kw.toLowerCase();
+        const descLower = optimizedDescription.toLowerCase();
+        // Vérifier si le mot-clé ou ses variantes sont déjà présents
+        return !descLower.includes(kwLower) && 
+               !kwLower.split(' ').some(word => descLower.includes(word) && word.length > 4);
+      })
+      .slice(0, 1); // Limiter à 1 mot-clé pour garder la naturalité
     
-    if (missingKeywords.length > 0 && optimizedDescription.length < 140) {
-      optimizedDescription += ` - ${missingKeywords.join(', ')}`;
+    if (relevantKeywords.length > 0) {
+      const keyword = relevantKeywords[0];
+      const keywordLower = keyword.toLowerCase();
+      
+      // Chercher des positions naturelles pour insérer le mot-clé
+      // Patterns pour trouver où insérer naturellement
+      const insertionPatterns = [
+        {
+          pattern: /(techniques|stratégies|méthodes|outils|solutions|services|formations|guides)/i,
+          connector: ' incluant ',
+          position: 'after'
+        },
+        {
+          pattern: /(pour|avec|grâce à|via|en|sur|dans)/i,
+          connector: ' ',
+          position: 'after'
+        },
+        {
+          pattern: /(développer|créer|optimiser|améliorer|maximiser|apprendre|maîtriser)/i,
+          connector: ' ',
+          position: 'after'
+        }
+      ];
+      
+      let inserted = false;
+      
+      // Essayer d'insérer le mot-clé après un pattern naturel
+      for (const { pattern, connector, position } of insertionPatterns) {
+        const match = optimizedDescription.match(pattern);
+        if (match) {
+          const insertPos = position === 'after' 
+            ? match.index + match[0].length 
+            : match.index;
+          
+          // Vérifier qu'on ne dépasse pas la limite
+          const newLength = optimizedDescription.length + connector.length + keyword.length;
+          if (newLength <= maxLength) {
+            optimizedDescription = optimizedDescription.slice(0, insertPos) + 
+              connector + keyword + 
+              optimizedDescription.slice(insertPos);
+            inserted = true;
+            break;
+          }
+        }
+      }
+      
+      // Si on n'a pas trouvé de position naturelle, intégrer de manière fluide
+      if (!inserted && optimizedDescription.length < 145) {
+        // Chercher la fin d'une phrase ou d'une clause
+        const lastChar = optimizedDescription[optimizedDescription.length - 1];
+        const needsComma = !['.', '!', '?', ':', ';'].includes(lastChar);
+        
+        if (needsComma) {
+          // Insérer avec une virgule pour une intégration naturelle
+          const newLength = optimizedDescription.length + 2 + keyword.length; // ", " + keyword
+          if (newLength <= maxLength) {
+            optimizedDescription += `, ${keyword}`;
+            inserted = true;
+          }
+        } else {
+          // Ajouter après un point/virgule avec un connecteur naturel
+          const connectors = [' avec ', ' incluant ', ' pour '];
+          for (const connector of connectors) {
+            const newLength = optimizedDescription.length + connector.length + keyword.length;
+            if (newLength <= maxLength) {
+              optimizedDescription += connector + keyword;
+              inserted = true;
+              break;
+            }
+          }
+        }
+      }
     }
   }
   
