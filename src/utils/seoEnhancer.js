@@ -580,7 +580,7 @@ export {
   analyzeKeywordPlacement,
   generateOptimizedAltText as generateOptimizedAltTextWithKeyword,
   optimizeSlugWithKeyword
-} from './keywordPlacementOptimizer';
+} from './keywordPlacementOptimizer.js';
 
 export default {
   generateOptimizedDescription,
