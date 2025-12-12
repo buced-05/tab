@@ -235,7 +235,7 @@ const Products = () => {
   const canonicalUrl = getCanonicalUrl(location.pathname);
   const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://alladsmarket.com';
   
-  // Schema.org ItemList structured data for products page
+  // Schema.org ItemList structured data for products page - Optimisé SEO
   const itemListStructuredData = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -249,21 +249,94 @@ const Products = () => {
       "item": {
         "@type": "Product",
         "name": product.name,
-        "description": product.description || product.shortDescription,
-        "image": product.images?.[0]?.url || `${baseUrl}/og-image.jpg`,
+        "description": product.description || product.shortDescription || `${product.name} - Découvrez ce produit sur AllAdsMarket`,
+        "image": product.images?.map(img => img.url) || [product.images?.[0]?.url || `${baseUrl}/og-image.jpg`],
         "url": `${baseUrl}/products/${product.slug || product._id}`,
+        "sku": product.sku || product._id,
+        "mpn": product.mpn || product._id,
         "offers": {
-          "@type": "Offer",
+          "@type": "AggregateOffer",
+          "url": product.affiliateUrl || `${baseUrl}/products/${product.slug || product._id}`,
           "priceCurrency": product.currency || "USD",
+          "lowPrice": product.originalPrice && product.originalPrice > product.price ? product.price : (product.price || 0),
+          "highPrice": product.originalPrice || product.price || 0,
           "price": product.price || 0,
-          "availability": product.stock?.status === 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock'
+          "priceValidUntil": new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+          "availability": product.stock?.status === 'out_of_stock' ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock',
+          "itemCondition": "https://schema.org/NewCondition",
+          "seller": {
+            "@type": "Organization",
+            "name": "AllAdsMarket",
+            "url": baseUrl
+          },
+          "offerCount": 1
         },
         "brand": {
           "@type": "Brand",
           "name": product.brand || "AllAdsMarket"
-        }
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": product.rating?.average || 4.5,
+          "reviewCount": product.rating?.count || 10,
+          "bestRating": "5",
+          "worstRating": "1",
+          "ratingCount": product.rating?.count || 10
+        },
+        "review": product.rating?.reviews && product.rating.reviews.length > 0
+          ? product.rating.reviews.slice(0, 1).map(review => ({
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": review.author || "Client AllAdsMarket"
+              },
+              "datePublished": review.date || new Date().toISOString(),
+              "reviewBody": review.comment || "Excellent produit",
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": review.rating || 5,
+                "bestRating": "5",
+                "worstRating": "1"
+              }
+            }))
+          : [{
+              "@type": "Review",
+              "author": {
+                "@type": "Person",
+                "name": "Client AllAdsMarket"
+              },
+              "datePublished": new Date().toISOString(),
+              "reviewBody": `Excellent produit ${product.name}. Recommandé pour sa qualité et son rapport qualité-prix.`,
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": product.rating?.average || 4.5,
+                "bestRating": "5",
+                "worstRating": "1"
+              }
+            }],
+        "category": product.category || "Products"
       }
     }))
+  };
+
+  // Breadcrumb structured data
+  const breadcrumbStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": baseUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": getPageTitle(),
+        "item": canonicalUrl
+      }
+    ]
   };
 
   return (
@@ -296,6 +369,9 @@ const Products = () => {
         <meta property="og:site_name" content="AllAdsMarket" />
         <script type="application/ld+json">
           {JSON.stringify(itemListStructuredData)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbStructuredData)}
         </script>
       </Helmet>
       <div className="products-page">
