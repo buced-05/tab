@@ -8,17 +8,23 @@ import {
   generateResourceHints,
   validateAndOptimizeMetaTags
 } from '../utils/seoEnhancer';
+import {
+  generateEEATMetaTags,
+  generateHelpfulContentSchema,
+  generateSmartResourceHints,
+  generateEnhancedSocialMetaTags
+} from '../utils/seoAdvanced2025';
 
 /**
  * Composant SEO Head ultra-optimisé pour le meilleur positionnement
  * Implémente toutes les meilleures pratiques SEO 2024
  */
-const SEOHead = ({ 
-  title, 
-  description, 
-  keywords, 
-  image, 
-  url, 
+const SEOHead = ({
+  title,
+  description,
+  keywords,
+  image,
+  url,
   type = 'article',
   author,
   publishedTime,
@@ -37,7 +43,7 @@ const SEOHead = ({
 }) => {
   const { i18n } = useTranslation();
   const currentLocale = i18n.language || 'fr';
-  
+
   // Génération automatique des URLs canoniques
   const baseUrl = process.env.REACT_APP_BASE_URL || 'https://alladsmarket.com';
   const fullUrl = url
@@ -46,50 +52,59 @@ const SEOHead = ({
       : `${baseUrl}${url.startsWith('/') ? url : `/${url}`}`
     : (typeof window !== 'undefined' ? window.location.href : baseUrl);
   const canonical = canonicalUrl || fullUrl;
-  
+
   // Génération automatique des images
   const ogImage = image || `${baseUrl}/og-image.jpg`;
   const twitterImage = image || `${baseUrl}/twitter-card.jpg`;
-  
+
   // Génération automatique des mots-clés SEO (avec focus sur "télécharger gratuit")
   const baseKeywords = includeDefaultKeywords
     ? [
-        'marketing digital',
-        'SEO',
-        'e-commerce',
-        'intelligence artificielle',
-        'content marketing',
-        'télécharger',
-        'télécharger gratuit',
-        'téléchargement gratuit',
-        'PDF gratuit',
-        'guide gratuit',
-        'alladsmarket',
-        'France',
-        'français'
-      ]
+      'marketing digital',
+      'SEO',
+      'e-commerce',
+      'intelligence artificielle',
+      'content marketing',
+      'télécharger',
+      'télécharger gratuit',
+      'téléchargement gratuit',
+      'PDF gratuit',
+      'guide gratuit',
+      'alladsmarket',
+      'France',
+      'français'
+    ]
     : [];
-  
+
   // Optimisation automatique des meta tags
   const keywordsArray = keywords ? keywords.split(',').map(k => k.trim()) : [];
   const optimizedKeywords = generateKeywords(description || title, [...baseKeywords, ...keywordsArray]);
-  
+
   // Optimisation du titre et de la description
   const optimizedTitle = generateOptimizedTitle(title, 'AllAdsMarket');
   const optimizedDescription = generateOptimizedDescription(description, optimizedKeywords.split(', '));
-  
+
   // Validation des meta tags
   const validation = validateAndOptimizeMetaTags({
     title: optimizedTitle,
     description: optimizedDescription,
     keywords: optimizedKeywords
   });
-  
+
   const seoTitle = validation.metaTags.title;
   const seoDescription = validation.metaTags.description;
   const seoKeywords = validation.metaTags.keywords;
-  
-  // Resource hints pour améliorer les performances
+
+  // Resource hints intelligents basés sur le type de page
+  const pageType = url?.includes('/products') ? 'product'
+    : url?.includes('/article') || url?.includes('/ai-article') ? 'article'
+      : 'website';
+
+  const smartResourceHints = generateSmartResourceHints(pageType, {
+    criticalImages: image ? [{ url: image, priority: 'high' }] : []
+  });
+
+  // Resource hints classiques pour compatibilité
   const resourceHints = generateResourceHints({
     preconnect: [
       'https://fonts.googleapis.com',
@@ -107,7 +122,18 @@ const SEOHead = ({
       type: 'image/jpeg'
     }] : []
   });
-  
+
+  // Combiner les resource hints
+  const allResourceHints = [...smartResourceHints, ...resourceHints];
+
+  // Meta tags E-E-A-T
+  const eeatMetaTags = generateEEATMetaTags({
+    author: author || "Team AllAdsMarket",
+    expertise: ['Marketing Digital', 'SEO', 'E-commerce'],
+    publishedTime: publishedTime,
+    modifiedTime: modifiedTime || publishedTime
+  });
+
   // Données structurées par défaut - Optimisées pour IA, Perplexity et SEO
   const defaultStructuredData = {
     "@context": "https://schema.org",
@@ -178,9 +204,21 @@ const SEOHead = ({
       "cssSelector": ["h1", "h2", ".article-summary"]
     }
   };
-  
-  const finalStructuredData = structuredData || defaultStructuredData;
-  
+
+  // Améliorer les données structurées avec Helpful Content
+  const helpfulContentData = generateHelpfulContentSchema({
+    title: seoTitle,
+    description: seoDescription,
+    author: author || "Team AllAdsMarket",
+    url: fullUrl,
+    publishedTime: publishedTime,
+    modifiedTime: modifiedTime || publishedTime,
+    section: section,
+    keywords: seoKeywords
+  });
+
+  const finalStructuredData = structuredData || helpfulContentData || defaultStructuredData;
+
   return (
     <Helmet>
       {/* Meta tags de base - OPTIMISÉS AUTOMATIQUEMENT */}
@@ -191,7 +229,7 @@ const SEOHead = ({
       <meta name="robots" content={`${noindex ? 'noindex' : 'index'}, ${nofollow ? 'nofollow' : 'follow'}`} />
       <meta name="googlebot" content="index, follow" />
       <meta name="bingbot" content="index, follow" />
-      
+
       {/* OPTIMISATION POUR LE MARCHÉ FRANÇAIS */}
       <meta name="geo.region" content="FR" />
       <meta name="geo.placename" content="France" />
@@ -204,10 +242,10 @@ const SEOHead = ({
       <meta name="coverage" content="Worldwide" />
       <meta name="distribution" content="Global" />
       <meta name="rating" content="General" />
-      
+
       {/* Canonical URL */}
       <link rel="canonical" href={canonical} />
-      
+
       {/* Open Graph / Facebook - Optimisé avec meta tags validés */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={seoTitle} />
@@ -226,7 +264,7 @@ const SEOHead = ({
       <meta property="og:locale:alternate" content="es_ES" />
       <meta property="og:locale:alternate" content="de_DE" />
       <meta property="og:updated_time" content={modifiedTime || publishedTime || new Date().toISOString()} />
-      
+
       {/* Twitter Card - Optimisé avec meta tags validés */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={seoTitle} />
@@ -237,7 +275,7 @@ const SEOHead = ({
       <meta name="twitter:creator" content="@alladsmarket" />
       <meta name="twitter:domain" content="alladsmarket.com" />
       <meta name="twitter:url" content={fullUrl} />
-      
+
       {/* Meta tags pour les réseaux sociaux */}
       <meta property="article:author" content={author || "Team AllAdsMarket"} />
       <meta property="article:published_time" content={publishedTime} />
@@ -255,7 +293,7 @@ const SEOHead = ({
         }
         return null;
       })}
-      
+
       {/* Langues alternatives */}
       {alternateLocales.map((locale) => (
         <link key={locale} rel="alternate" hrefLang={locale} href={`${baseUrl}/${locale}${url}`} />
@@ -263,7 +301,7 @@ const SEOHead = ({
       {additionalLinkTags.map((link, index) => (
         <link key={`link-${index}-${link.rel || index}`} {...link} />
       ))}
-      
+
       {/* Meta tags techniques - Optimisés pour SEO */}
       <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
       <meta name="theme-color" content="#6366f1" />
@@ -271,7 +309,7 @@ const SEOHead = ({
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="apple-mobile-web-app-title" content="AllAdsMarket" />
-      
+
       {/* Meta tags SEO avancés */}
       <meta name="format-detection" content="telephone=no" />
       <meta name="mobile-web-app-capable" content="yes" />
@@ -280,7 +318,7 @@ const SEOHead = ({
       <meta name="msapplication-starturl" content="/" />
       <meta name="msapplication-navbutton-color" content="#6366f1" />
       <meta name="msapplication-window" content="width=1024;height=768" />
-      
+
       {/* Meta tags pour les performances et le SEO */}
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta httpEquiv="Content-Language" content={currentLocale} />
@@ -289,30 +327,41 @@ const SEOHead = ({
       <meta name="distribution" content="global" />
       <meta name="rating" content="general" />
       <meta name="referrer" content="no-referrer-when-downgrade" />
-      
+
       {/* Meta tags pour les images */}
       <meta name="og:image:width" content="1200" />
       <meta name="og:image:height" content="630" />
       <meta name="og:image:type" content="image/jpeg" />
       <meta name="twitter:image:alt" content={description || title} />
-      
+
       {/* Resource Hints optimisés pour améliorer les performances SEO */}
-      {resourceHints.map((hint, index) => (
+      {allResourceHints.map((hint, index) => (
         <link key={`resource-${index}`} {...hint} />
       ))}
-      
+
+      {/* Meta tags E-E-A-T pour SEO 2025 */}
+      {eeatMetaTags.map((meta, index) => {
+        if (meta.name) {
+          return <meta key={`eeat-${index}-${meta.name}`} name={meta.name} content={meta.content} />;
+        }
+        if (meta.property) {
+          return <meta key={`eeat-${index}-${meta.property}`} property={meta.property} content={meta.content} />;
+        }
+        return null;
+      })}
+
       {/* Favicon et icônes */}
       <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
       <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
       <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
       <link rel="mask-icon" href="/favicon.svg" color="#6366f1" />
-      
+
       {/* Données structurées JSON-LD */}
       <script type="application/ld+json">
         {JSON.stringify(finalStructuredData)}
       </script>
-      
+
       {/* Données structurées supplémentaires pour le site */}
       <script type="application/ld+json">
         {JSON.stringify({
@@ -336,7 +385,7 @@ const SEOHead = ({
           }
         })}
       </script>
-      
+
       {/* Données structurées pour l'organisation - Optimisées pour IA et SEO */}
       <script type="application/ld+json">
         {JSON.stringify({
@@ -404,7 +453,7 @@ const SEOHead = ({
           }
         })}
       </script>
-      
+
       {/* BreadcrumbList pour améliorer la navigation et le SEO */}
       {url && url !== '/' && (
         <script type="application/ld+json">
@@ -428,7 +477,7 @@ const SEOHead = ({
           })}
         </script>
       )}
-      
+
       {/* CollectionPage pour les pages de liste (produits, articles) */}
       {(url?.includes('/products') || url?.includes('/ai-articles') || url?.includes('/articles')) && (
         <script type="application/ld+json">
@@ -446,7 +495,7 @@ const SEOHead = ({
           })}
         </script>
       )}
-      
+
       {/* ItemList pour améliorer l'indexation des listes */}
       {type === 'website' && url !== '/' && (
         <script type="application/ld+json">

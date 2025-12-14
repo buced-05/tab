@@ -257,6 +257,8 @@
     "statsProducts": "Produits",
     "statsBrands": "Marques",
     "statsCustomers": "Clients satisfaits",
+    "statsPagesDiscovered": "Pages découvertes",
+    "statsVideosDiscovered": "Vidéos découvertes",
     "shopByCategory": "Acheter par catégorie",
     "electronics": "Électronique",
     "electronicsDesc": "Derniers gadgets et technologies",
@@ -471,4 +473,3 @@
     "productGiftFall": "Automne cadeaux"
   }
 }
-

@@ -258,6 +258,8 @@
     "statsProducts": "Products",
     "statsBrands": "Brands",
     "statsCustomers": "Happy Customers",
+    "statsPagesDiscovered": "Pages discovered",
+    "statsVideosDiscovered": "Videos discovered",
     "shopByCategory": "Shop by Category",
     "electronics": "Electronics",
     "electronicsDesc": "Latest gadgets and tech",
@@ -893,4 +895,3 @@
     "description": "View and manage your visited items. These items are saved locally on your device when you click Quick View or Buy Now."
   }
 }
-

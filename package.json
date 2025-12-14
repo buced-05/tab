@@ -19,6 +19,7 @@
     "git:pre-merge": "npm run git:clean",
     "git:pull-safe": "bash scripts/vps/git-pull-safe.sh",
     "git:update-vps": "bash scripts/vps/git-update-vps.sh",
+    "git:pull-no-conflict": "bash scripts/vps/git-pull-no-conflict.sh",
     "vps:start": "bash scripts/vps/start-all-services.sh",
     "test:ga": "bash scripts/test-google-analytics.sh",
     "prepull": "npm run git:clean",

@@ -22,6 +22,7 @@ import {
 } from './components';
 import InternalLinksOptimizer from './components/InternalLinksOptimizer';
 import ImageSEOOptimizer from './components/ImageSEOOptimizer';
+import SEOOptimizer2025 from './components/SEOOptimizer2025';
 import './styles/compatibility-fixes.css';
 import './App.css';
 import './styles/index.css';
@@ -82,19 +83,19 @@ const AppContent = () => {
   useEffect(() => {
     // Ensure loader is hidden
     document.body.classList.add('app-loaded');
-    
+
     // Add/remove class to body for profile pages
     if (isProfilePage) {
       document.body.classList.add('profile-page');
     } else {
       document.body.classList.remove('profile-page');
     }
-    
+
     // Test translations on app load
     setTimeout(() => {
       testTranslationLoading(t, i18n);
     }, 1000);
-    
+
     // Cleanup on unmount
     return () => {
       document.body.classList.remove('profile-page');
@@ -113,7 +114,7 @@ const AppContent = () => {
         brand_name: 'AllAdsMarket',
         brand_presence: 'active'
       });
-      
+
       // Update config for SPA routing with AI platform settings
       window.gtag('config', 'G-G21WK948XL', {
         page_path: location.pathname + location.search,
@@ -124,7 +125,7 @@ const AppContent = () => {
         allow_enhanced_conversions: true,
         discovery_campaign_parameters: true
       });
-      
+
       // Envoyer l'événement de présence de marque pour les plateformes IA
       window.gtag('event', 'brand_presence', {
         event_category: 'engagement',
@@ -148,7 +149,7 @@ const AppContent = () => {
             const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
             const canonicalUrl = getCanonicalUrl(pathname);
             const hreflangTags = getHreflangTags(pathname);
-            
+
             const links = [];
             // Canonical
             links.push(<link key="canonical" rel="canonical" href={canonicalUrl} />);
@@ -213,40 +214,41 @@ const AppContent = () => {
       <ScrollToTop />
       <InternalLinksOptimizer />
       <ImageSEOOptimizer />
+      <SEOOptimizer2025 />
       <div className="app">
         {!isProfilePage && !hideHeaderOnArticles && <Header />}
-        <main 
+        <main
           className={`main-content ${isProfilePage ? 'profile-main' : ''}`}
-          style={{ 
+          style={{
             paddingTop: isProfilePage || hideHeaderOnArticles ? '0' : 'var(--header-height)'
           }}
         >
           <Suspense fallback={<PageLoader />}>
             <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/classic" element={<Home />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/products/:id" element={<ProductDetail />} />
-                  <Route path="/articles" element={<AIArticlesPage />} />
-                  <Route path="/revolutionary-blog" element={<RevolutionaryBlog />} />
-                  <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
-                  <Route path="/ai-articles" element={<AIArticlesPage />} />
-                  <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
-                  <Route path="/app-admin" element={<Admin />} />
-                  <Route path="/featured" element={<Products />} />
-                  <Route path="/trending" element={<Products />} />
-                  <Route path="/categories" element={<Products />} />
-                  <Route path="/visited-items" element={<AffiliateLinksPage />} />
-                  <Route path="/help" element={<HelpCenter />} />
-                  <Route path="/contact" element={<ContactUs />} />
-                  <Route path="/faq" element={<FAQ />} />
-                  <Route path="/shipping" element={<ShippingInfo />} />
-                  <Route path="/returns" element={<Returns />} />
-                  <Route path="/privacy" element={<PrivacyPolicy />} />
-                  <Route path="/terms" element={<TermsOfService />} />
-                  <Route path="/demo" element={<DialogDemo />} />
-                  <Route path="/form-progress-demo" element={<FormProgressDemo />} />
-                  <Route path="*" element={<NotFound />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/classic" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/articles" element={<AIArticlesPage />} />
+              <Route path="/revolutionary-blog" element={<RevolutionaryBlog />} />
+              <Route path="/article/:id" element={<RevolutionaryArticleDetail />} />
+              <Route path="/ai-articles" element={<AIArticlesPage />} />
+              <Route path="/ai-article/:slug" element={<AIArticleDetail />} />
+              <Route path="/app-admin" element={<Admin />} />
+              <Route path="/featured" element={<Products />} />
+              <Route path="/trending" element={<Products />} />
+              <Route path="/categories" element={<Products />} />
+              <Route path="/visited-items" element={<AffiliateLinksPage />} />
+              <Route path="/help" element={<HelpCenter />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/shipping" element={<ShippingInfo />} />
+              <Route path="/returns" element={<Returns />} />
+              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/demo" element={<DialogDemo />} />
+              <Route path="/form-progress-demo" element={<FormProgressDemo />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>

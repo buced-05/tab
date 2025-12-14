@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
 import SEOHead from '../components/SEOHead';
 import realAPI from '../services/realAPI';
+import { getDiscoveryStats, initializeDiscoveryStats } from '../services/discoveryStatsService';
 import '../styles/admin.css';
 
 const Admin = () => {
@@ -75,9 +76,9 @@ const Admin = () => {
     setError('');
 
     try {
-          // Use real API
-          const data = await realAPI.login(loginData.username, loginData.password);
-      
+      // Use real API
+      const data = await realAPI.login(loginData.username, loginData.password);
+
       if (data.success) {
         localStorage.setItem('adminToken', data.token);
         localStorage.setItem('adminUser', JSON.stringify(data.user));
@@ -106,12 +107,17 @@ const Admin = () => {
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
     const userData = localStorage.getItem('adminUser');
-    
+
     if (token && userData) {
       setIsAuthenticated(true);
       setUser(JSON.parse(userData));
       loadDashboardData();
     }
+
+    // Initialize and load discovery statistics
+    initializeDiscoveryStats();
+    const stats = getDiscoveryStats();
+    setDiscoveryStats(stats);
   }, []);
 
   // Handle URL parameters for direct navigation
@@ -124,38 +130,38 @@ const Admin = () => {
 
   // Load dashboard data
   const loadDashboardData = async () => {
-        try {
-          const data = await realAPI.getDashboardStats();
-          setDashboardData(data);
-        } catch (err) {
-          console.error('Error loading dashboard data:', err);
-        }
+    try {
+      const data = await realAPI.getDashboardStats();
+      setDashboardData(data);
+    } catch (err) {
+      console.error('Error loading dashboard data:', err);
+    }
   };
 
   // Load products
   const loadProducts = async () => {
     setProductsLoading(true);
-        try {
-          const data = await realAPI.getProducts();
-          setProducts(data);
-        } catch (err) {
-          console.error('Error loading products:', err);
-        } finally {
-          setProductsLoading(false);
-        }
+    try {
+      const data = await realAPI.getProducts();
+      setProducts(data);
+    } catch (err) {
+      console.error('Error loading products:', err);
+    } finally {
+      setProductsLoading(false);
+    }
   };
 
   // Load articles
   const loadArticles = async () => {
     setArticlesLoading(true);
-        try {
-          const data = await realAPI.getArticles();
-          setArticles(data);
-        } catch (err) {
-          console.error('Error loading articles:', err);
-        } finally {
-          setArticlesLoading(false);
-        }
+    try {
+      const data = await realAPI.getArticles();
+      setArticles(data);
+    } catch (err) {
+      console.error('Error loading articles:', err);
+    } finally {
+      setArticlesLoading(false);
+    }
   };
 
   // Create new product
@@ -164,7 +170,7 @@ const Admin = () => {
     setLoading(true);
 
     try {
-          const data = await realAPI.createProduct(newProduct);
+      const data = await realAPI.createProduct(newProduct);
       if (data.success) {
         alert('Product created successfully!');
         setNewProduct({
@@ -199,7 +205,7 @@ const Admin = () => {
     setLoading(true);
 
     try {
-          const data = await realAPI.createArticle(newArticle);
+      const data = await realAPI.createArticle(newArticle);
       if (data.success) {
         alert('Article created successfully!');
         setNewArticle({
@@ -238,12 +244,12 @@ const Admin = () => {
   if (!isAuthenticated) {
     return (
       <div className="admin-login">
-        <SEOHead 
+        <SEOHead
           title="Admin Login - AllAdsMarket"
           description="Admin panel for managing products and articles"
           url="/app-admin"
         />
-        
+
         <div className="login-container">
           <div className="login-card">
             <h1>Admin Login</h1>
@@ -253,7 +259,7 @@ const Admin = () => {
                 <input
                   type="text"
                   value={loginData.username}
-                  onChange={(e) => setLoginData({...loginData, username: e.target.value})}
+                  onChange={(e) => setLoginData({ ...loginData, username: e.target.value })}
                   required
                 />
               </div>
@@ -262,7 +268,7 @@ const Admin = () => {
                 <input
                   type="password"
                   value={loginData.password}
-                  onChange={(e) => setLoginData({...loginData, password: e.target.value})}
+                  onChange={(e) => setLoginData({ ...loginData, password: e.target.value })}
                   required
                 />
               </div>
@@ -279,12 +285,12 @@ const Admin = () => {
 
   return (
     <div className="admin-panel">
-      <SEOHead 
+      <SEOHead
         title="Admin Panel - AllAdsMarket"
         description="Admin panel for managing products and articles"
         url="/app-admin"
       />
-      
+
       <div className="admin-header">
         <h1>Admin Panel</h1>
         <div className="admin-user">
@@ -294,31 +300,31 @@ const Admin = () => {
       </div>
 
       <div className="admin-tabs">
-        <button 
+        <button
           className={activeTab === 'dashboard' ? 'active' : ''}
           onClick={() => setActiveTab('dashboard')}
         >
           Dashboard
         </button>
-        <button 
+        <button
           className={activeTab === 'products' ? 'active' : ''}
           onClick={() => setActiveTab('products')}
         >
           Products
         </button>
-        <button 
+        <button
           className={activeTab === 'articles' ? 'active' : ''}
           onClick={() => setActiveTab('articles')}
         >
           Articles
         </button>
-        <button 
+        <button
           className={activeTab === 'new-product' ? 'active' : ''}
           onClick={() => setActiveTab('new-product')}
         >
           New Product
         </button>
-        <button 
+        <button
           className={activeTab === 'new-article' ? 'active' : ''}
           onClick={() => setActiveTab('new-article')}
         >
@@ -351,6 +357,45 @@ const Admin = () => {
               </div>
             ) : (
               <p>Loading dashboard data...</p>
+            )}
+
+            {/* Discovery Statistics Section */}
+            {discoveryStats && (
+              <div className="discovery-stats-section" style={{ marginTop: '2rem' }}>
+                <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Discovery Statistics</h3>
+                <div className="dashboard-stats">
+                  <div className="stat-card" style={{ backgroundColor: '#f0f9ff', border: '1px solid #0ea5e9' }}>
+                    <h3>Pages découvertes</h3>
+                    <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#0ea5e9' }}>
+                      {discoveryStats.pagesDiscovered || 0}
+                    </p>
+                    {discoveryStats.lastUpdateDate && (
+                      <small style={{ color: '#64748b', fontSize: '0.875rem' }}>
+                        Last update: {new Date(discoveryStats.lastUpdateDate).toLocaleDateString('fr-FR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit'
+                        })}
+                      </small>
+                    )}
+                  </div>
+                  <div className="stat-card" style={{ backgroundColor: '#fef3f2', border: '1px solid #ef4444' }}>
+                    <h3>Vidéos découvertes</h3>
+                    <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#ef4444' }}>
+                      {discoveryStats.videosDiscovered || 0}
+                    </p>
+                    {discoveryStats.lastUpdateDate && (
+                      <small style={{ color: '#64748b', fontSize: '0.875rem' }}>
+                        Last update: {new Date(discoveryStats.lastUpdateDate).toLocaleDateString('fr-FR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit'
+                        })}
+                      </small>
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         )}
@@ -413,7 +458,7 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newProduct.name}
-                    onChange={(e) => setNewProduct({...newProduct, name: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
                     required
                   />
                 </div>
@@ -422,7 +467,7 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newProduct.brand}
-                    onChange={(e) => setNewProduct({...newProduct, brand: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, brand: e.target.value })}
                   />
                 </div>
               </div>
@@ -431,7 +476,7 @@ const Admin = () => {
                 <label>Description</label>
                 <textarea
                   value={newProduct.description}
-                  onChange={(e) => setNewProduct({...newProduct, description: e.target.value})}
+                  onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
                   rows="4"
                 />
               </div>
@@ -441,7 +486,7 @@ const Admin = () => {
                   <label>Category</label>
                   <select
                     value={newProduct.category}
-                    onChange={(e) => setNewProduct({...newProduct, category: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
                   >
                     <option value="">Select Category</option>
                     <option value="electronics">Electronics</option>
@@ -459,7 +504,7 @@ const Admin = () => {
                     type="number"
                     step="0.01"
                     value={newProduct.price}
-                    onChange={(e) => setNewProduct({...newProduct, price: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
                     required
                   />
                 </div>
@@ -469,7 +514,7 @@ const Admin = () => {
                     type="number"
                     step="0.01"
                     value={newProduct.originalPrice}
-                    onChange={(e) => setNewProduct({...newProduct, originalPrice: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, originalPrice: e.target.value })}
                   />
                 </div>
               </div>
@@ -484,8 +529,8 @@ const Admin = () => {
                     step="0.1"
                     value={newProduct.rating.average}
                     onChange={(e) => setNewProduct({
-                      ...newProduct, 
-                      rating: {...newProduct.rating, average: parseFloat(e.target.value) || 0}
+                      ...newProduct,
+                      rating: { ...newProduct.rating, average: parseFloat(e.target.value) || 0 }
                     })}
                     placeholder="4.5"
                   />
@@ -497,8 +542,8 @@ const Admin = () => {
                     min="0"
                     value={newProduct.rating.count}
                     onChange={(e) => setNewProduct({
-                      ...newProduct, 
-                      rating: {...newProduct.rating, count: parseInt(e.target.value) || 0}
+                      ...newProduct,
+                      rating: { ...newProduct.rating, count: parseInt(e.target.value) || 0 }
                     })}
                     placeholder="150"
                   />
@@ -510,7 +555,7 @@ const Admin = () => {
                 <input
                   type="url"
                   value={newProduct.affiliateUrl}
-                  onChange={(e) => setNewProduct({...newProduct, affiliateUrl: e.target.value})}
+                  onChange={(e) => setNewProduct({ ...newProduct, affiliateUrl: e.target.value })}
                 />
               </div>
 
@@ -520,7 +565,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.inStock}
-                      onChange={(e) => setNewProduct({...newProduct, inStock: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, inStock: e.target.checked })}
                     />
                     In Stock
                   </label>
@@ -530,7 +575,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.isFeatured}
-                      onChange={(e) => setNewProduct({...newProduct, isFeatured: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, isFeatured: e.target.checked })}
                     />
                     Featured
                   </label>
@@ -540,7 +585,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.isTrending}
-                      onChange={(e) => setNewProduct({...newProduct, isTrending: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, isTrending: e.target.checked })}
                     />
                     Trending
                   </label>
@@ -563,7 +608,7 @@ const Admin = () => {
                 <input
                   type="text"
                   value={newArticle.title}
-                  onChange={(e) => setNewArticle({...newArticle, title: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, title: e.target.value })}
                   required
                 />
               </div>
@@ -572,7 +617,7 @@ const Admin = () => {
                 <label>Content</label>
                 <textarea
                   value={newArticle.content}
-                  onChange={(e) => setNewArticle({...newArticle, content: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, content: e.target.value })}
                   rows="10"
                   required
                 />
@@ -582,7 +627,7 @@ const Admin = () => {
                 <label>Excerpt</label>
                 <textarea
                   value={newArticle.excerpt}
-                  onChange={(e) => setNewArticle({...newArticle, excerpt: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, excerpt: e.target.value })}
                   rows="3"
                 />
               </div>
@@ -593,14 +638,14 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newArticle.author}
-                    onChange={(e) => setNewArticle({...newArticle, author: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, author: e.target.value })}
                   />
                 </div>
                 <div className="form-group">
                   <label>Category</label>
                   <select
                     value={newArticle.category}
-                    onChange={(e) => setNewArticle({...newArticle, category: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, category: e.target.value })}
                   >
                     <option value="">Select Category</option>
                     <option value="electronics">Electronics</option>
@@ -616,7 +661,7 @@ const Admin = () => {
                   <label>Status</label>
                   <select
                     value={newArticle.status}
-                    onChange={(e) => setNewArticle({...newArticle, status: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, status: e.target.value })}
                   >
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
@@ -630,7 +675,7 @@ const Admin = () => {
                 <input
                   type="url"
                   value={newArticle.featuredImage}
-                  onChange={(e) => setNewArticle({...newArticle, featuredImage: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, featuredImage: e.target.value })}
                 />
               </div>
 
@@ -652,7 +697,7 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newProduct.name}
-                    onChange={(e) => setNewProduct({...newProduct, name: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
                     required
                   />
                 </div>
@@ -661,7 +706,7 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newProduct.brand}
-                    onChange={(e) => setNewProduct({...newProduct, brand: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, brand: e.target.value })}
                   />
                 </div>
               </div>
@@ -670,7 +715,7 @@ const Admin = () => {
                 <label>Description *</label>
                 <textarea
                   value={newProduct.description}
-                  onChange={(e) => setNewProduct({...newProduct, description: e.target.value})}
+                  onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })}
                   required
                 />
               </div>
@@ -682,7 +727,7 @@ const Admin = () => {
                     type="number"
                     step="0.01"
                     value={newProduct.price}
-                    onChange={(e) => setNewProduct({...newProduct, price: parseFloat(e.target.value)})}
+                    onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) })}
                     required
                   />
                 </div>
@@ -692,7 +737,7 @@ const Admin = () => {
                     type="number"
                     step="0.01"
                     value={newProduct.originalPrice}
-                    onChange={(e) => setNewProduct({...newProduct, originalPrice: parseFloat(e.target.value)})}
+                    onChange={(e) => setNewProduct({ ...newProduct, originalPrice: parseFloat(e.target.value) })}
                   />
                 </div>
               </div>
@@ -702,7 +747,7 @@ const Admin = () => {
                   <label>Category *</label>
                   <select
                     value={newProduct.category}
-                    onChange={(e) => setNewProduct({...newProduct, category: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })}
                     required
                   >
                     <option value="">Select Category</option>
@@ -720,7 +765,7 @@ const Admin = () => {
                   <input
                     type="url"
                     value={newProduct.affiliateUrl}
-                    onChange={(e) => setNewProduct({...newProduct, affiliateUrl: e.target.value})}
+                    onChange={(e) => setNewProduct({ ...newProduct, affiliateUrl: e.target.value })}
                   />
                 </div>
               </div>
@@ -729,7 +774,7 @@ const Admin = () => {
                 <label>Image URLs (one per line)</label>
                 <textarea
                   value={newProduct.images.join('\n')}
-                  onChange={(e) => setNewProduct({...newProduct, images: e.target.value.split('\n').filter(url => url.trim())})}
+                  onChange={(e) => setNewProduct({ ...newProduct, images: e.target.value.split('\n').filter(url => url.trim()) })}
                   rows={3}
                 />
               </div>
@@ -740,7 +785,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.isFeatured}
-                      onChange={(e) => setNewProduct({...newProduct, isFeatured: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, isFeatured: e.target.checked })}
                     />
                     Featured Product
                   </label>
@@ -750,7 +795,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.isTrending}
-                      onChange={(e) => setNewProduct({...newProduct, isTrending: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, isTrending: e.target.checked })}
                     />
                     Trending Product
                   </label>
@@ -760,7 +805,7 @@ const Admin = () => {
                     <input
                       type="checkbox"
                       checked={newProduct.inStock}
-                      onChange={(e) => setNewProduct({...newProduct, inStock: e.target.checked})}
+                      onChange={(e) => setNewProduct({ ...newProduct, inStock: e.target.checked })}
                     />
                     In Stock
                   </label>
@@ -784,7 +829,7 @@ const Admin = () => {
                 <input
                   type="text"
                   value={newArticle.title}
-                  onChange={(e) => setNewArticle({...newArticle, title: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, title: e.target.value })}
                   required
                 />
               </div>
@@ -793,7 +838,7 @@ const Admin = () => {
                 <label>Content *</label>
                 <textarea
                   value={newArticle.content}
-                  onChange={(e) => setNewArticle({...newArticle, content: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, content: e.target.value })}
                   rows={10}
                   required
                 />
@@ -805,14 +850,14 @@ const Admin = () => {
                   <input
                     type="text"
                     value={newArticle.author}
-                    onChange={(e) => setNewArticle({...newArticle, author: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, author: e.target.value })}
                   />
                 </div>
                 <div className="form-group">
                   <label>Category</label>
                   <select
                     value={newArticle.category}
-                    onChange={(e) => setNewArticle({...newArticle, category: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, category: e.target.value })}
                   >
                     <option value="">Select Category</option>
                     <option value="electronics">Electronics</option>
@@ -831,7 +876,7 @@ const Admin = () => {
                 <input
                   type="url"
                   value={newArticle.featuredImage}
-                  onChange={(e) => setNewArticle({...newArticle, featuredImage: e.target.value})}
+                  onChange={(e) => setNewArticle({ ...newArticle, featuredImage: e.target.value })}
                 />
               </div>
 
@@ -840,7 +885,7 @@ const Admin = () => {
                   <label>Status</label>
                   <select
                     value={newArticle.status}
-                    onChange={(e) => setNewArticle({...newArticle, status: e.target.value})}
+                    onChange={(e) => setNewArticle({ ...newArticle, status: e.target.value })}
                   >
                     <option value="draft">Draft</option>
                     <option value="published">Published</option>
@@ -852,7 +897,7 @@ const Admin = () => {
                   <input
                     type="number"
                     value={newArticle.productId}
-                    onChange={(e) => setNewArticle({...newArticle, productId: parseInt(e.target.value)})}
+                    onChange={(e) => setNewArticle({ ...newArticle, productId: parseInt(e.target.value) })}
                   />
                 </div>
               </div>
